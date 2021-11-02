@@ -9,6 +9,10 @@ namespace ObserverPattern3 {
 
     void Start() {
       gameManager.onLevelIncreased.AddListener(UpdateHealthOnNewLevel);
+
+      // ! Cons: poor security - observer can modify or invoke nityEvent of the subject
+      // gameManager.onLevelIncreased.RemoveAllListeners();
+      // gameManager.onLevelIncreased.Invoke();
     }
   }
 }
