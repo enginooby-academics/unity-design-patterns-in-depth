@@ -152,7 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ec71ab1aac83434994c8cbc5c80c83a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1588728991}
 --- !u!4 &769790320
 Transform:
   m_ObjectHideFlags: 0
@@ -333,21 +332,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _level: 0
-  onLevelIncreased:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1446302152}
-        m_TargetAssemblyTypeName: ObserverPattern.Player, Assembly-CSharp
-        m_MethodName: UpdateHealthOnNewLevel
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!4 &1588728992
 Transform:
   m_ObjectHideFlags: 0
