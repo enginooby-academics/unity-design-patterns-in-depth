@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace ObserverPattern {
   public class GameManager : MonoBehaviour {
-    public int level;
+    [SerializeField] private int _level;
+    public int Level => _level;
 
     void Start() {
       StartCoroutine(IncreaseLevelCouroutine());
@@ -14,7 +15,7 @@ namespace ObserverPattern {
       while (true) {
         int randomPeriod = Random.Range(2, 5);
         yield return new WaitForSeconds(randomPeriod);
-        Debug.Log("Current level: " + (++level));
+        Debug.Log("Current level: " + (++_level));
       }
     }
   }

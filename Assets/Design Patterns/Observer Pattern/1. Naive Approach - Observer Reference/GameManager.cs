@@ -6,7 +6,9 @@ namespace ObserverPattern1 {
   public class GameManager : MonoBehaviour {
     // ! Observer reference: tight coupling
     [SerializeField] ObserverPattern.Player player;
-    public int level;
+
+    [SerializeField] private int _level;
+    public int Level => _level;
 
     void Start() {
       StartCoroutine(IncreaseLevelCouroutine());
@@ -16,8 +18,8 @@ namespace ObserverPattern1 {
       while (true) {
         int randomPeriod = Random.Range(2, 5);
         yield return new WaitForSeconds(randomPeriod);
-        Debug.Log("Current level: " + (++level));
-        player.UpdateHealthOnNewLevel(level);
+        Debug.Log("Current level: " + (++_level));
+        player.UpdateHealthOnNewLevel(_level);
       }
     }
   }
