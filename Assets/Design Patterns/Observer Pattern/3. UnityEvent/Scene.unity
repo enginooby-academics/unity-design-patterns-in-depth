@@ -332,7 +332,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4b7afc2c6cba6041bb9af6c84749369, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onLevelIncrease:
+  _level: 0
+  onLevelIncreased:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1446302152}
@@ -347,7 +348,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _level: 0
 --- !u!4 &1588728992
 Transform:
   m_ObjectHideFlags: 0

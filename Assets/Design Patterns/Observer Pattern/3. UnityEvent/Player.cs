@@ -8,7 +8,7 @@ namespace ObserverPattern3 {
     [SerializeField] GameManager gameManager;
 
     void Start() {
-      gameManager.onLevelIncrease.AddListener(UpdateHealthOnNewLevel);
+      gameManager.onLevelIncreased.AddListener(UpdateHealthOnNewLevel);
     }
   }
 }

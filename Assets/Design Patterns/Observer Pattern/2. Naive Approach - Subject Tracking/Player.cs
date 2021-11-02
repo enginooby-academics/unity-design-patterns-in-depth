@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace ObserverPattern2 {
   public class Player : ObserverPattern.Player {
-    // 1: keep subject's reference
+    // ! 1: keep subject's reference
     [SerializeField] private ObserverPattern.GameManager gameManager;
 
-    // 2: cache subject's state
+    // ! 2: cache subject's state
     private int currentLevel;
 
     private void Start() {
