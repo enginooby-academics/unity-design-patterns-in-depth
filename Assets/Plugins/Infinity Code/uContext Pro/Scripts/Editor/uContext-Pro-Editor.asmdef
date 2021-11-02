@@ -1,0 +1,18 @@
+{
+    "name": "uContext-Pro-Editor",
+    "references": [
+        "GUID:87843e9ac67c10143b744f1654861669",
+        "GUID:4a00e731d60dfa244a21715c2798de51"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}

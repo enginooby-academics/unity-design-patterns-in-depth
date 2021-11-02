@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1084737832019621272
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7625115891589855219}
+  - component: {fileID: 1734031179447859844}
+  m_Layer: 0
+  m_Name: Terrain Modifier
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7625115891589855219
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1084737832019621272}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.57377124, y: -1.8762894, z: 3.0243468}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1734031179447859844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1084737832019621272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fedecd0fccf40b4a97c9ae6218e4e1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setupGuide: To use this component, add Digger Master (Tools -> Digger -> Setup
+    terrains) & Digger Master Runtime (Setup for runtime)
+  currentCamera: {fileID: 0}
+  editAsynchronously: 1
+  brush: 0
+  action: 0
+  textureIndex: 0
+  size: 4
+  opacity: 0.5
+  autoRemoveTrees: 1
+  autoRemoveDetails: 1
+  persistDataKey: 112
+  deleteDataKey: 107
+  autoRemoveTreesInEditor: 0
+  autoRemoveDetailsInEditor: 0

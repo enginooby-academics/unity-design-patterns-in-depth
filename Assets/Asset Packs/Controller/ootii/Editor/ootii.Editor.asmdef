@@ -1,0 +1,12 @@
+{
+    "name": "ootii.Editor",
+    "references": [
+        "ootii"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

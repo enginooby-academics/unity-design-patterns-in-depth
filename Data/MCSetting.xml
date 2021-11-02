@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MCSetting>
+  <useHierarchy>false</useHierarchy>
+  <useProject>false</useProject>
+  <showPreferenceItem>true</showPreferenceItem>
+  <logOutput>false</logOutput>
+  <customHierarchyRoot />
+  <customProjectRoot />
+  <hierarchyItemList>
+    <MCItem>
+      <type>Original</type>
+      <command />
+      <original>Copy</original>
+      <overrideLabel>false</overrideLabel>
+      <label>Copy</label>
+    </MCItem>
+    <MCItem>
+      <type>Original</type>
+      <command />
+      <original>Paste</original>
+      <overrideLabel>false</overrideLabel>
+      <label>Paste</label>
+    </MCItem>
+    <MCItem>
+      <type>Separator</type>
+      <command />
+      <original>None</original>
+      <overrideLabel>false</overrideLabel>
+      <label />
+    </MCItem>
+    <MCItem>
+      <type>Original</type>
+      <command />
+      <original>SelectPrefab</original>
+      <overrideLabel>false</overrideLabel>
+      <label>Select Prefab</label>
+    </MCItem>
+    <MCItem>
+      <type>Input</type>
+      <command>GameObject/3D Object/Sphere</command>
+      <original>None</original>
+      <overrideLabel>true</overrideLabel>
+      <label>Sphere</label>
+    </MCItem>
+    <MCItem>
+      <type>Input</type>
+      <command>GameObject/3D Object/Cube</command>
+      <original>None</original>
+      <overrideLabel>true</overrideLabel>
+      <label>Cube</label>
+    </MCItem>
+    <MCItem>
+      <type>MenuPath</type>
+      <command>GameObject/3D Object/Cube</command>
+      <original>None</original>
+      <overrideLabel>true</overrideLabel>
+      <label>Test</label>
+    </MCItem>
+  </hierarchyItemList>
+  <projectItemList />
+</MCSetting>

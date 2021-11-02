@@ -1,0 +1,34 @@
+fileFormatVersion: 2
+guid: c4cd36f15bf750343b472cd9e8c41d61
+labels:
+- highlight
+- interaction
+- mouse
+- center
+- view
+- cursor
+- screen
+- label
+- tooltip
+- text
+- over
+- hover
+- object
+- ui
+- interface
+- touch
+- click
+- clic
+- distance
+- mobile
+- animation
+timeCreated: 1433695526
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

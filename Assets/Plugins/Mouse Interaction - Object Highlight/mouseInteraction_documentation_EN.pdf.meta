@@ -1,0 +1,30 @@
+fileFormatVersion: 2
+guid: 04ddef5107a3e46488c69040801020b9
+labels:
+- highlight
+- interaction
+- mouse
+- center
+- view
+- cursor
+- screen
+- label
+- tooltip
+- text
+- over
+- hover
+- object
+- ui
+- interface
+- touch
+- mobile
+- click
+- animation
+- clic
+- distance
+timeCreated: 1449754060
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

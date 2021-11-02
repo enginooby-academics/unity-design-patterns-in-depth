@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8860069505338676471
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8860069505338676470}
+  - component: {fileID: 8860069505338676465}
+  m_Layer: 0
+  m_Name: Vfxer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8860069505338676470
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8860069505338676471}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8860069505338676465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8860069505338676471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40c1c5107baaea74a977e8842cfd594f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentVfxPrefab: {fileID: 11413144, guid: a1f480689c2691e4ca60d7b61ac55cff, type: 3}
+  vfxPrefabs:
+  - {fileID: 11413144, guid: a1f480689c2691e4ca60d7b61ac55cff, type: 3}
+  - {fileID: 11494580, guid: b1f11e54366d8f645a479f338e3e1189, type: 3}
+  - {fileID: 11422040, guid: efae5e56ebb7cd04f8e5de57add5d41f, type: 3}
+  - {fileID: 11401198, guid: a027108eca869824e93bcef13617c227, type: 3}
+  - {fileID: 11456172, guid: b443e26a77d42e14f8ce9553a2e3d66e, type: 3}
+  - {fileID: 11488312, guid: 3534d34ed60de86488d565def6a29c1b, type: 3}
+  - {fileID: 11420126, guid: ff6f0f6ed5fb04648a63068803ce172a, type: 3}
+  - {fileID: 114080421759393006, guid: a81c7790dc60711449b2698a0e659254, type: 3}
+  - {fileID: 11455996, guid: 1b930446d9f82a142b3d1dc1b08b2aba, type: 3}
+  - {fileID: 11499322, guid: ce16402a5706c5d43b17816535e8435b, type: 3}
+  - {fileID: 11491672, guid: a47c612bbe8020344b7e25b32c43f19c, type: 3}
+  - {fileID: 11406030, guid: ee410b25241ca5b4d882ab243ed0ec28, type: 3}
+  - {fileID: 11416722, guid: 35116999e9d68934793855a178d5ad0c, type: 3}
+  - {fileID: 11408928, guid: ee903ef942b90df49ac97e090955a932, type: 3}
+  - {fileID: 11429780, guid: 2d07d975b9fe7ee40ba60a911b4de94a, type: 3}
+  - {fileID: 11466236, guid: 3a2e703ea946a3541998e277199bd811, type: 3}
+  - {fileID: 11491496, guid: ec8bc866056531f478152e30918cf463, type: 3}
+  - {fileID: 11447062, guid: c75f56d444e719549a62ffcd5c3f0a03, type: 3}
+  - {fileID: 11432544, guid: 7dc1fb0d8e8d01346a938f4b26353016, type: 3}
+  - {fileID: 11447286, guid: a67561a23eac9644fb36a13cbb6f880b, type: 3}
+  - {fileID: 114630448198454340, guid: 47b0ae5a328d70b45b3a6302dc06e937, type: 3}
+  defaultBurnVfxPrefab: {fileID: 11420126, guid: ff6f0f6ed5fb04648a63068803ce172a,
+    type: 3}
+  burnVfxPrefabs:
+  - {fileID: 11494580, guid: b1f11e54366d8f645a479f338e3e1189, type: 3}
+  - {fileID: 11422040, guid: efae5e56ebb7cd04f8e5de57add5d41f, type: 3}
+  - {fileID: 11420126, guid: ff6f0f6ed5fb04648a63068803ce172a, type: 3}
+  - {fileID: 11408928, guid: ee903ef942b90df49ac97e090955a932, type: 3}
+  - {fileID: 11447062, guid: c75f56d444e719549a62ffcd5c3f0a03, type: 3}

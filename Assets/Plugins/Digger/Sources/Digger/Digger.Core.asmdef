@@ -1,0 +1,20 @@
+{
+    "name": "Digger.Core",
+    "references": [
+        "Unity.Mathematics",
+        "Unity.Burst",
+        "Digger.NativeCollections",
+        "Digger.Unsafe",
+        "NavMeshComponents",
+        "JBooth.MicroSplat.Core"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

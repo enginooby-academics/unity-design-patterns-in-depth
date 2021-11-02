@@ -1,0 +1,12 @@
+{
+    "name": "sc.posteffects",
+    "displayName": "SC Post Effects",
+    "version": "2.1.8",
+    "unity": "2019.1",
+    "description": "Additional effects for the Post Processing Stack or URP volume framework",
+    "author": {
+        "name": "Staggart Creations",
+        "email": "contact@staggart.xyz",
+        "url": "http://staggart.xyz/"
+    }
+}

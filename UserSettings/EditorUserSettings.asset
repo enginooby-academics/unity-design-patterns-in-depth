@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!162 &1
+EditorUserSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 4
+  m_ConfigSettings:
+    RecentlyUsedScenePath-0:
+      value: 22424703114646680e0b0227036c6c1118131a253466333e243d04
+      flags: 0
+    RecentlyUsedScenePath-1:
+      value: 22424703114646680e0b0227036c6c151a121b3e6c0d2036282a0920acf53a31f6fe
+      flags: 0
+    RecentlyUsedScenePath-2:
+      value: 22424703114646701f071c361f05675f3b120b22092e20352e3d5203c1df103defe878fce9332b25
+      flags: 0
+    RecentlyUsedScenePath-3:
+      value: 224247031146466b011b0b2b1e30103d19020b2f6c012824283b1c30f6e93b36a2aa76c6e5303a3f2d42c73503360d36f5021d44c92f0f061e41ce0d14f115005ee11dc815860a12c20d05
+      flags: 0
+    RecentlyUsedScenePath-4:
+      value: 22424703114646680e0b0227036c6b151b07142b382d68252320092a
+      flags: 0
+    RecentlyUsedScenePath-5:
+      value: 2242470311464664390b01321c224b1559241b2f222d357f1e2c1136e1f4741de4e133eaf3297129370bfb25
+      flags: 0
+    RecentlyUsedScenePath-6:
+      value: 2242470311464664390b01321c224b1559270a2f2a29242362001327e7f2353bf6e824faa8173a2f3142d93a1c3b1270cd270c18fe4b2f0d170bfe1a02b1051d18d101
+      flags: 0
+    RecentlyUsedScenePath-7:
+      value: 2242470311464664390b01321c224b1559241b2f222d357f192c1023eee1203dacf238e0f323
+      flags: 0
+    RecentlyUsedScenePath-8:
+      value: 224247031146466b011b0b2b1e30103319131d193829213562081925e3ee373de6c106dac4352a322d07fd7321260032e2060c18b92e120a1c1ef10b22fc151d148b0dcb13dc06
+      flags: 0
+    RecentlyUsedScenePath-9:
+      value: 22424703114646643e060d30152710231512162f3f67123520391132f6e57a2decee22f0
+      flags: 0
+    vcSharedLogLevel:
+      value: 0d5e400f0650
+      flags: 0
+  m_VCAutomaticAdd: 1
+  m_VCDebugCom: 0
+  m_VCDebugCmd: 0
+  m_VCDebugOut: 0
+  m_SemanticMergeMode: 2
+  m_VCShowFailedCheckout: 1
+  m_VCOverwriteFailedCheckoutAssets: 1
+  m_VCProjectOverlayIcons: 1
+  m_VCHierarchyOverlayIcons: 1
+  m_VCOtherOverlayIcons: 1
+  m_VCAllowAsyncUpdate: 0

@@ -1,0 +1,49 @@
+﻿#if URP
+using UnityEngine.Rendering.Universal;
+#endif
+
+using UnityEditor.Rendering;
+using UnityEditor;
+
+namespace SCPE
+{
+#if URP
+    [VolumeComponentEditor(typeof(Transition))]
+    sealed class TransitionEditor : VolumeComponentEditor
+    {
+        SerializedDataParameter gradientTex;
+        SerializedDataParameter progress;
+
+        private bool isSetup;
+
+        public override void OnEnable()
+        {
+            base.OnEnable();
+
+            var o = new PropertyFetcher<Transition>(serializedObject);
+            isSetup = AutoSetup.ValidEffectSetup<TransitionRenderer>();
+
+            gradientTex = Unpack(o.Find(x => x.gradientTex));
+            progress = Unpack(o.Find(x => x.progress));
+        }
+
+
+        public override void OnInspectorGUI()
+        {
+            SCPE_GUI.DisplayDocumentationButton("transition");
+
+            SCPE_GUI.DisplaySetupWarning<TransitionRenderer>(ref isSetup);
+
+            PropertyField(gradientTex);
+
+            if (gradientTex.overrideState.boolValue && gradientTex.value.objectReferenceValue == null)
+            {
+                EditorGUILayout.HelpBox("Assign a gradient texture (pre-made textures can be found in the \"_Samples\" package", MessageType.Info);
+            }
+
+            PropertyField(progress);
+
+        }
+    }
+#endif
+}
