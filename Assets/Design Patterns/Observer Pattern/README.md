@@ -20,6 +20,9 @@
 + Cons: poor security since observer can modify or invoke the UnityEvent of the observer.
 
 ### 4. C# event: Action, Delegate & Func
-+ Procedure is same as UnityEvent. C# events are not serializable, hence canot bind actions via the inspector.
++ Procedure is same as UnityEvent. C# events are not serializable, hence cannot bind actions via the inspector.
+  + Action can not have return type.
+  + Delegate & Func can have return type.
+  + Actions should be binded to event in observer OnEnable() and removed in OnDisable().
 + Pros: loose coupling, more secured, higher performance than UnityEvent.
 + Cons: no visual event binding.
