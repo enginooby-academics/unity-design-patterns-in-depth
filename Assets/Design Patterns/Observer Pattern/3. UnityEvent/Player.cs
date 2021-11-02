@@ -8,7 +8,7 @@ namespace ObserverPattern3 {
     [SerializeField] GameManager gameManager;
 
     void Start() {
-      gameManager.onLevelIncreased.AddListener(UpdateHealthOnNewLevel);
+      gameManager.onLevelIncreasedEvent.AddListener(UpdateHealthOnNewLevel);
 
       // ! Cons: poor security - observer can modify or invoke nityEvent of the subject
       // gameManager.onLevelIncreased.RemoveAllListeners();

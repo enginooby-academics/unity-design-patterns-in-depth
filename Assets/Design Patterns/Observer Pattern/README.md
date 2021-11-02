@@ -18,3 +18,8 @@
   + Script event binding: from observer, make reference to subject's UnityEvent and bind the action with ```AddListener()```.
 + Pros: loose coupling, visual event binding (in inspector).
 + Cons: poor security since observer can modify or invoke the UnityEvent of the observer.
+
+### 4. C# event: Action, Delegate & Func
++ Procedure is same as UnityEvent. C# events are not serializable, hence canot bind actions via the inspector.
++ Pros: loose coupling, more secured, higher performance than UnityEvent.
++ Cons: no visual event binding.

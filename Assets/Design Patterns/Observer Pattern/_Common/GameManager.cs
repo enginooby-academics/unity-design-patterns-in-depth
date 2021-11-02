@@ -21,6 +21,5 @@ namespace ObserverPattern {
     }
 
     protected virtual void OnLevelIncreasedCallback() { }
-
   }
 }

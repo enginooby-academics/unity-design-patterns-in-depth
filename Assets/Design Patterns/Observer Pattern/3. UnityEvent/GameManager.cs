@@ -5,10 +5,10 @@ using UnityEngine.Events; // !
 
 namespace ObserverPattern3 {
   public class GameManager : ObserverPattern.GameManager {
-    public UnityEvent<int> onLevelIncreased = new UnityEvent<int>(); // !
+    public UnityEvent<int> onLevelIncreasedEvent = new UnityEvent<int>(); // !
 
     protected override void OnLevelIncreasedCallback() {
-      onLevelIncreased.Invoke(_level); // !
+      onLevelIncreasedEvent.Invoke(_level); // !
     }
   }
 }
