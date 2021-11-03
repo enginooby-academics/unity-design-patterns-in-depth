@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Design Patterns/Singleton/3. Persisten Singleton/Scene 1.unity
-    guid: fa609a91a35a208448b9560a47e35d29
+    path: Assets/Design Patterns/Singleton/4. Lazy Singleton/Scene 1.unity
+    guid: 79634a998a933914db966d10b4d6b207
   - enabled: 1
-    path: Assets/Design Patterns/Singleton/3. Persisten Singleton/Scene 2.unity
-    guid: 47831bc7a71f64f4da3d4588a48db8dc
+    path: Assets/Design Patterns/Singleton/4. Lazy Singleton/Scene 2.unity
+    guid: b8096390f8c742a4088b4b851adb26c4
   m_configObjects: {}

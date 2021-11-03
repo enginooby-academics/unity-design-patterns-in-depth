@@ -13,3 +13,6 @@
 
 #### 3. Persistent singleton
 + Simply use ```DontDestroyOnLoad()``` to keep the instance across scene loading.
+
+#### 4. Lazy singleton
++ Although this is a rare use case in Unity development, it is a nice feature to have.
