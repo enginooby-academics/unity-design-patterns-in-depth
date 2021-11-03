@@ -26,3 +26,8 @@
   + Actions should be binded to event in observer OnEnable() and removed in OnDisable().
 + Pros: loose coupling, more secured, higher performance than UnityEvent.
 + Cons: no visual event binding.
+
+
+## Unity Features
+#### UI Event System
+Event cant be triggered by UI Event System when Graphic Raycaster hit an UI target.

@@ -7,6 +7,7 @@ namespace ObserverPattern1 {
     // ! Observer reference: tight coupling
     [SerializeField] ObserverPattern.Player player;
 
+    // ! Unsubscribe to avoid memory leak
     protected override void OnLevelIncreasedCallback() {
       player.UpdateHealthOnNewLevel(_level); // !
     }
