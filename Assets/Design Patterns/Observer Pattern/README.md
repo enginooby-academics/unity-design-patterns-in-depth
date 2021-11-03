@@ -28,6 +28,8 @@
 + Cons: no visual event binding.
 
 
-## Unity Features
+## Unity Features & Assets
 #### UI Event System
 Event cant be triggered by UI Event System when Graphic Raycaster hit an UI target.
+#### UltEvents
+Support persistent (inspector) event binding. Compared to UnityEvent, UltEvent could invoke method with more parameters & types, also could have return type. Hence, this asset is a good alternative to UnityEvent.
