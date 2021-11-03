@@ -4,15 +4,19 @@ using UnityEngine;
 
 // + eager initialization
 // + global access
-// + scene-persistent: no if access variable via static instance
-// + unique: no
-namespace Singleton.Static {
+// + scene-persistent: no
+// + unique
+namespace Singleton.Simple {
   public class GameManager : MonoBehaviour {
-    #region Static Implementation
+    #region Singleton Implementation
     public static GameManager Instance;
 
     private void Awake() {
-      Instance = this;
+      if (Instance) {
+        Destroy(gameObject);
+      } else {
+        Instance = this;
+      }
     }
     #endregion
 

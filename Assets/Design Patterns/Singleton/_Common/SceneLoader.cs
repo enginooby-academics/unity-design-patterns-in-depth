@@ -17,12 +17,12 @@ namespace Singleton {
 
     [Button]
     public void LoadAnotherScene() {
-      SceneManager.LoadScene("1 Singleton B");
+      SceneManager.LoadScene("Scene 2");
     }
 
     [Button]
     public void LoadAnotherSceneAdditively() {
-      SceneManager.LoadScene("1 Singleton B", LoadSceneMode.Additive);
+      SceneManager.LoadScene("Scene 2", LoadSceneMode.Additive);
     }
   }
 }
