@@ -18,10 +18,10 @@ public class SpawnerManager : MonoBehaviour {
   private Selector selector;
 
   void Start() {
-    butterflySpawner = butterflySpawner ?? LoadSpawnerInResources("Butterfly Spawner");
-    spellSpawner = spellSpawner ?? LoadSpawnerInResources("Spell Spawner");
-    currentSpawner = currentSpawner ?? spellSpawner;
-    selector = selector ?? FindObjectOfType<Selector>();
+    butterflySpawner ??= LoadSpawnerInResources("Butterfly Spawner");
+    spellSpawner ??= LoadSpawnerInResources("Spell Spawner");
+    currentSpawner ??= spellSpawner;
+    selector ??= FindObjectOfType<Selector>();
     currentCamera = Camera.main;
   }
 

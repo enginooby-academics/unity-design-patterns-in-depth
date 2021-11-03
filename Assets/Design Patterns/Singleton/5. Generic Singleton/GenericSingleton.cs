@@ -12,14 +12,14 @@ namespace Singleton.Generic {
     private static T instance;
 
     public static T Instance {
-      // get => instance ??= FindObjectOfType<T>() ?? CreateNewInstance(); // not working
-      get {
-        if (instance == null) {
-          instance = FindObjectOfType<T>();
-          instance ??= CreateNewInstance();
-        }
-        return instance;
-      }
+      get => instance ??= FindObjectOfType<T>() ?? CreateNewInstance(); // not working
+      // get {
+      //   if (instance == null) {
+      //     instance = FindObjectOfType<T>();
+      //     instance ??= CreateNewInstance();
+      //   }
+      //   return instance;
+      // }
     }
 
     private static T CreateNewInstance() {

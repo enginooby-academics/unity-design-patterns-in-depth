@@ -9,7 +9,7 @@ public static class GizmosUtils {
   public static void DrawGizmosDirection(this GameObject go, Vector3 offset, Color? color = null, float thickness = 2f) {
 #if UNITY_EDITOR
     // TODO: draw decorative arrow & length number
-    color = color ?? Color.magenta;
+    color ??= Color.magenta;
     Handles.color = color.Value;
     Handles.DrawLine(go.transform.position, go.transform.position + offset, thickness);
 #endif

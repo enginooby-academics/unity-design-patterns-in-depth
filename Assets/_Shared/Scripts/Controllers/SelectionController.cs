@@ -18,10 +18,10 @@ public class SelectionController : MonoBehaviour {
 
   void Start() {
     // CONSIDER: find references in Edit Mode
-    selector = selector ?? FindObjectOfType<Selector>();
-    highlighter = highlighter ?? FindObjectOfType<Highlighter>();
-    transformer = transformer ?? FindObjectOfType<Transformer>();
-    vfxer = vfxer ?? FindObjectOfType<Vfxer>();
+    selector ??= FindObjectOfType<Selector>();
+    highlighter ??= FindObjectOfType<Highlighter>();
+    transformer ??= FindObjectOfType<Transformer>();
+    vfxer ??= FindObjectOfType<Vfxer>();
   }
 
   void Update() {

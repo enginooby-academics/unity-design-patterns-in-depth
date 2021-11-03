@@ -51,7 +51,7 @@ public class Selector : MonoBehaviour {
   private void Awake() {
     Instance = this;
     mainCamera = Camera.main;
-    highlighter = highlighter ?? FindObjectOfType<Highlighter>();
+    highlighter ??= FindObjectOfType<Highlighter>();
   }
 
   void Update() {

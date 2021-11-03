@@ -9,8 +9,8 @@ public class StatUI {
   [HideInInspector] public string statName;
   public StatUI(string statName = "UI", string prefix = null, string suffix = null) {
     this.statName = statName;
-    this.prefix = prefix ?? this.statName + ": ";
-    this.suffix = suffix ?? "";
+    this.prefix ??= this.statName + ": ";
+    this.suffix ??= "";
   }
 
   public enum UIType { Text, Icon, Progress }

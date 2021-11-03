@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
-namespace Singleton.Generic {
+namespace Singleton.ThreadSafety {
   public class Player : MonoBehaviour {
     // [Button]
     private void Start() {

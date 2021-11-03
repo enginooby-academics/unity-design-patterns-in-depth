@@ -17,6 +17,6 @@ public abstract class ComponentOperator<T> : MonoBehaviourBase where T : Compone
 
 
   private void Reset() {
-    component = component ?? GetComponent<T>();
+    component ??= GetComponent<T>();
   }
 }
