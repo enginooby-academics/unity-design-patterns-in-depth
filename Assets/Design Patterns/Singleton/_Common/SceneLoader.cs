@@ -6,8 +6,15 @@ using Sirenix.OdinInspector;
 
 namespace Singleton {
   public class SceneLoader : MonoBehaviour {
+    public static SceneLoader Instance;
+
     private void Awake() {
-      DontDestroyOnLoad(this);
+      if (Instance) {
+        Destroy(gameObject);
+      } else {
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+      }
     }
 
     [Button]

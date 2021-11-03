@@ -10,3 +10,6 @@
 
 #### 2. Simple singleton
 + In the start of scene loading, all instances other the first one are destroyed to keep it unique.
+
+#### 3. Persistent singleton
++ Simply use ```DontDestroyOnLoad()``` to keep the instance across scene loading.
