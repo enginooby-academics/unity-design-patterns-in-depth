@@ -7,8 +7,7 @@ using UnityEngine;
 // + scene-persistent: no
 // + unique
 namespace Singleton.Simple {
-  public class GameManager : MonoBehaviour {
-    #region Singleton Implementation
+  public class GameManager : Singleton.GameManager {
     public static GameManager Instance;
 
     private void Awake() {
@@ -16,22 +15,6 @@ namespace Singleton.Simple {
         Destroy(gameObject);
       } else {
         Instance = this;
-      }
-    }
-    #endregion
-
-    private int _level = 1;
-    public int Level => _level;
-
-    private void Start() {
-      StartCoroutine(IncreaseLevelCouroutine());
-    }
-
-    private IEnumerator IncreaseLevelCouroutine() {
-      while (true) {
-        int randomPeriod = Random.Range(2, 5);
-        yield return new WaitForSeconds(randomPeriod);
-        Debug.Log("Current level: " + (++_level));
       }
     }
   }

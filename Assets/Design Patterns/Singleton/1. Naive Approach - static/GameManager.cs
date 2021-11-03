@@ -7,7 +7,7 @@ using UnityEngine;
 // + scene-persistent: no if access variable via static instance
 // + unique: no
 namespace Singleton.Static {
-  public class GameManager : MonoBehaviour {
+  public class GameManager : Singleton.GameManager {
     #region Static Implementation
     public static GameManager Instance;
 
@@ -15,20 +15,5 @@ namespace Singleton.Static {
       Instance = this;
     }
     #endregion
-
-    private int _level = 1;
-    public int Level => _level;
-
-    private void Start() {
-      StartCoroutine(IncreaseLevelCouroutine());
-    }
-
-    private IEnumerator IncreaseLevelCouroutine() {
-      while (true) {
-        int randomPeriod = Random.Range(2, 5);
-        yield return new WaitForSeconds(randomPeriod);
-        Debug.Log("Current level: " + (++_level));
-      }
-    }
   }
 }
