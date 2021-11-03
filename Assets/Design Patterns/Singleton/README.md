@@ -16,3 +16,5 @@
 
 #### 4. Lazy singleton
 + Although this is a rare use case in Unity development, it is a nice feature to have.
+
+#### 5. Generic singleton
