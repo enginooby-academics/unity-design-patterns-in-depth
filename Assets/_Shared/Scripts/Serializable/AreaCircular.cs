@@ -3,8 +3,11 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
-// ? Change to SerializableBase AreaCircular and make Monobehaviour Vision utilizing AreaCircular
+// ? Rename to AreaArc3D or AreaSphericalSector
 [Serializable, InlineProperty]
 public class AreaCircular : SerializableBase, IArea {
   [BoxGroup("$label")]
@@ -44,8 +47,13 @@ public class AreaCircular : SerializableBase, IArea {
 
     color ??= Color.magenta;
     Gizmos.color = color.Value;
+
     // TODO: draw portion of sphere based on angle
     if (gizmosWire) Gizmos.DrawWireSphere(origin.GameObject.transform.position, radius);
     else Gizmos.DrawSphere(origin.GameObject.transform.position, radius);
+
+    // Handles.color = color.Value;
+    // Transform transform = origin.GameObject.transform;
+    // Handles.DrawSolidArc(transform.position, transform.up, transform.position, angle, radius);
   }
 }
