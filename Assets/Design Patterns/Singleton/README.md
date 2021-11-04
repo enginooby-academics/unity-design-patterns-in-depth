@@ -8,15 +8,15 @@
   + Only eager initialization.
   + Not scene-persistent.
 
-#### 2. Simple singleton (base implementation)
+#### 2. MonoBehaviour Singleton (Unity-specific implementation)
 + In the start of scene loading, all instances other the first one are destroyed to keep it unique.
 
-#### 3. Persistent singleton (Unity-specific implementation)
+#### 3. Persistent MonoBehaviour Singleton (Unity-specific implementation)
 + Simply use ```DontDestroyOnLoad()``` to keep the instance across scene loading.
 
-#### 4. Lazy singleton (Unity-specific implementation)
+#### 4. Lazy MonoBehaviour Singleton (Unity-specific implementation)
 + Although this is a rare use case in Unity development, it is a nice feature to have.
 
-#### 5. Generic singleton (Unity-specific implementation)
+#### 5. Generic MonoBehaviour Singleton (Unity-specific implementation)
 
-#### 6. Thread-safety singleton with Lazy\<T> (Unity-specific implementation)
+#### 6. Thread-safety MonoBehaviour Singleton with Lazy\<T> (Unity-specific implementation)

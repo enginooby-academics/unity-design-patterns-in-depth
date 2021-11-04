@@ -69,7 +69,7 @@ public class Follower : MonoBehaviour {
   }
 
   void ProcessBoundary() {
-    dest.y = yBoundaryWorld.Clamp(dest.y);
+    // dest.y = yBoundaryWorld.Clamp(dest.y);
     // IMPL
   }
   #endregion ===================================================================================================================================
