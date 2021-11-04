@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 
 // ? Create Serializable AreaMultiple/Areas
-
 [Serializable, InlineProperty]
 public class Area : SerializableBase, IArea {
   protected override void OnComponentOwnerChange() {
@@ -44,13 +43,13 @@ public class Area : SerializableBase, IArea {
     return contains;
   }
 
-  public void DrawGizmos() {
+  public void DrawGizmos(Color? color = null) {
     switch (areaType) {
       case AreaType.Axis:
-        areaAxis.DrawGizmos();
+        areaAxis.DrawGizmos(color: color);
         break;
       case AreaType.Point:
-        areaPoint.DrawGizmos();
+        areaPoint.DrawGizmos(color: color);
         break;
       case AreaType.Polygon:
         break;

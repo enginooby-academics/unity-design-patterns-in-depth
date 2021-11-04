@@ -21,7 +21,7 @@ public class AreaAxis : SerializableBase, IArea {
     return false;
   }
 
-  public void DrawGizmos() {
+  public void DrawGizmos(Color? color = null) {
     origins.ForEach(DrawGizmosSingleOrigin);
   }
 

@@ -4,6 +4,7 @@ using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
 
+// ? rename to AreaAxisPoint
 [Serializable, InlineProperty]
 public class AreaPoint : SerializableBase, IArea {
   [OnValueChanged(nameof(UpdatePoints), true)]
@@ -77,10 +78,11 @@ public class AreaPoint : SerializableBase, IArea {
     return false;
   }
 
-  public void DrawGizmos() {
+  public void DrawGizmos(Color? color = null) {
     if (pointPositions.IsUnset() || pointTransforms.IsUnset()) return;
 
-    Gizmos.color = Color.magenta;
+    color ??= Color.magenta;
+    Gizmos.color = color.Value;
     if (useTransforms) {
       pointTransforms.ForEach(transform => {
         if (!transform) pointTransforms.Remove(transform);

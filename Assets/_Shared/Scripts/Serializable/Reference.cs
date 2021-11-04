@@ -43,6 +43,9 @@ public class Reference : SerializableBase {
       if (!gameObjectRef) FindTarget();
       return gameObjectRef;
     }
+    set {
+      if (value) gameObjectRef = value;
+    }
   }
 
   // UTIL
