@@ -4,15 +4,20 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using System;
 using System.Linq;
+using UnityEngine.Pool; // ! Pool API requires Unity 2021.1+
 
-// ? CONSIDER: implement pool & generic
+// ? Implement generic
 // ? Events
-
 public enum GizmosMode { OnSelected, Always }
 
 [TypeInfoBox("Spawner usages: gun, repeating backgrounds, enemy/obstacle waves")]
 public class Spawner : MonoBehaviourBase {
+  private void Awake() {
+    if (enablePool) InitPool();
+  }
+
   private void Reset() {
+    if (enablePool) InitPool();
     spawningArea.SetComponentOwner(gameObject);
   }
 
@@ -52,9 +57,16 @@ public class Spawner : MonoBehaviourBase {
     return instance;
   }
 
-  private GameObject SpawnIndividual(Vector3 pos, GameObject prefabToSpawn, bool keepPrefabRotation = false) {
-    Quaternion rotation = (keepPrefabRotation) ? prefabToSpawn.transform.rotation : Quaternion.identity;
-    GameObject spawnedObject = InstantiateUtils.Instantiate(pos: pos, prefab: prefabToSpawn, keepPrefabPos: keepPrefabPosition, parent: parentObject, rotation: rotation);
+  private GameObject SpawnIndividual(Vector3 pos, bool keepPrefabRotation = false) {
+    currentPrefab = assetCollection.Retrieve();
+    Quaternion rotation = (keepPrefabRotation) ? currentPrefab.transform.rotation : Quaternion.identity;
+
+    GameObject spawnedObject = null;
+    if (enablePool) {
+      spawnedObject = GetInstanceFromPool(pos, keepPrefabRotation, rotation);
+    } else {
+      spawnedObject = InstantiateUtils.Instantiate(pos: pos, prefab: currentPrefab, keepPrefabPos: keepPrefabPosition, parent: parentObject, rotation: rotation);
+    }
 
     if (saveSpawnedObjects) spawnedObjects.Add(spawnedObject);
     if (moveToLastSpawnedObject) transform.position = spawnedObject.transform.position;
@@ -73,7 +85,7 @@ public class Spawner : MonoBehaviourBase {
     List<GameObject> newSpawnedObjects = new List<GameObject>();
 
     if (spawningArea.IsAxixType) {
-      newSpawnedObjects.Add(SpawnIndividual(spawningArea.areaAxis.Random, assetCollection.Retrieve(), keepPrefabRotation: keepPrefabRotation));
+      newSpawnedObjects.Add(SpawnIndividual(spawningArea.areaAxis.Random, keepPrefabRotation: keepPrefabRotation));
     }
 
     if (spawningArea.IsPointType) {
@@ -81,7 +93,7 @@ public class Spawner : MonoBehaviourBase {
     }
 
     if (enableAdjacentSpawning) {
-      SpawnLocationAdjacent(assetCollection.Retrieve(), keepPrefabRotation, newSpawnedObjects);
+      SpawnLocationAdjacent(keepPrefabRotation, newSpawnedObjects);
     }
 
     return newSpawnedObjects;
@@ -102,6 +114,7 @@ public class Spawner : MonoBehaviourBase {
   [InfoBox("If using SceneAsset, pay attention not to destroy the asset blueprint.", InfoMessageType.Warning)]
   [BoxGroup("Asset Collection")]
   [SerializeField, HideLabel] public AssetCollection<GameObject> assetCollection = new AssetCollection<GameObject>();
+  private GameObject currentPrefab;
   #endregion ===================================================================================================================================
 
   #region UNIVERSAL SPAWNED ATTRIBUTES ===================================================================================================================================
@@ -190,59 +203,59 @@ public class Spawner : MonoBehaviourBase {
     if (pointSpawnMode == PointSpawnMode.RandomAll) {
       spawningArea.areaPoint.pointTransforms.ForEach(pointTransform => {
         if (pointProbability.Percent()) {
-          newSpawnedObjects.Add(SpawnIndividual(pointTransform.position, assetCollection.Retrieve(), keepPrefabRotation: keepPrefabRotation));
+          newSpawnedObjects.Add(SpawnIndividual(pointTransform.position, keepPrefabRotation: keepPrefabRotation));
         }
       });
     }
 
     if (pointSpawnMode == PointSpawnMode.RandomOne) {
       Vector3 postToSpawn = spawningArea.areaPoint.pointTransforms.GetRandom().position;
-      newSpawnedObjects.Add(SpawnIndividual(postToSpawn, assetCollection.Retrieve(), keepPrefabRotation: keepPrefabRotation));
+      newSpawnedObjects.Add(SpawnIndividual(postToSpawn, keepPrefabRotation: keepPrefabRotation));
     }
 
     if (pointSpawnMode == PointSpawnMode.Iterate) {
       pointCurrentIterate = spawningArea.areaPoint.pointTransforms.NavNext(pointCurrentIterate);
-      newSpawnedObjects.Add(SpawnIndividual(pointCurrentIterate.position, assetCollection.Retrieve(), keepPrefabRotation: keepPrefabRotation));
+      newSpawnedObjects.Add(SpawnIndividual(pointCurrentIterate.position, keepPrefabRotation: keepPrefabRotation));
     }
 
     if (pointSpawnMode == PointSpawnMode.RandomIterate) {
       pointCurrentIterate = spawningArea.areaPoint.pointTransforms.NavNext(pointCurrentIterate);
-      newSpawnedObjects.Add(SpawnIndividual(pointCurrentIterate.position, assetCollection.Retrieve(), keepPrefabRotation: keepPrefabRotation));
+      newSpawnedObjects.Add(SpawnIndividual(pointCurrentIterate.position, keepPrefabRotation: keepPrefabRotation));
     }
   }
   #endregion ===================================================================================================================================
 
   #region SPAWNING LOCATION ADJACENT ===================================================================================================================================
   [DetailedInfoBox("Click to see Adjacent Location usage...",
-  "- Spawn object next to the last spawned object. Used for endless background objects. \n"
-  + "- Attention: colliders on prefabs (to get size), Boundary (destroy action) & Auto spawn rate")]
-  [BoxGroup("Spawning Location/Adjacent")]
+  "- Spawn new object next to the last spawned object. Used for endless background objects. \n"
+  + "- Attention: colliders on prefabs (to get size), Boundary (destroy action) & Auto spawn rate.")]
+  [FoldoutGroup("Spawning Location/Adjacent")]
   [SerializeField] bool enableAdjacentSpawning;
 
-  [BoxGroup("Spawning Location/Adjacent")]
+  [FoldoutGroup("Spawning Location/Adjacent")]
   [InfoBox("Useful for Trigger Spawning")]
   [EnableIf(nameof(enableAdjacentSpawning))]
   [SerializeField] bool moveSpawnerToMark = true;
 
-  [BoxGroup("Spawning Location/Adjacent")]
+  [FoldoutGroup("Spawning Location/Adjacent")]
   [EnableIf(nameof(enableAdjacentSpawning))]
   [SerializeField] private GameObject adjacentMarkPrefab;
 
-  [BoxGroup("Spawning Location/Adjacent")]
+  [FoldoutGroup("Spawning Location/Adjacent")]
   [EnableIf(nameof(enableAdjacentSpawning))]
   [SerializeField] private GameObject adjacentMark;
 
-  [BoxGroup("Spawning Location/Adjacent")]
+  [FoldoutGroup("Spawning Location/Adjacent")]
   [EnableIf(nameof(enableAdjacentSpawning))]
   [SerializeField] private float adjacentOffset = 0f;
 
-  [BoxGroup("Spawning Location/Adjacent")]
+  [FoldoutGroup("Spawning Location/Adjacent")]
   [EnableIf(nameof(enableAdjacentSpawning))]
   [ShowInInspector, DisplayAsString(false)] private float previousSpawnedSize;
 
   // UTIL
   private float GetPrefabSize(GameObject prefab, Axis axis = Axis.X) {
-    BoxCollider boxCollider = assetCollection.Retrieve().GetComponent<BoxCollider>();
+    BoxCollider boxCollider = currentPrefab.GetComponent<BoxCollider>();
     float size = 0f;
     if (axis == Axis.X) {
       size = boxCollider.size.x * prefab.transform.localScale.x;
@@ -251,15 +264,15 @@ public class Spawner : MonoBehaviourBase {
     return size + adjacentOffset;
   }
 
-  private void SpawnLocationAdjacent(GameObject prefabToSpawn, bool keepPrefabRotation, List<GameObject> newSpawnedObjects) {
+  private void SpawnLocationAdjacent(bool keepPrefabRotation, List<GameObject> newSpawnedObjects) {
     Vector3 posToSpawn = transform.position;
-    previousSpawnedSize = GetPrefabSize(prefabToSpawn);
+    previousSpawnedSize = GetPrefabSize(currentPrefab);
     // AxisBitmask persistentPrefabPositionAxis = keepPrefabPosition;
     if (adjacentMark != null) {
       posToSpawn = adjacentMark.transform.position + new Vector3(previousSpawnedSize / 2, 0, 0);
       keepPrefabPosition = (AxisFlag)1;
     }
-    GameObject spawnedObject = SpawnIndividual(posToSpawn, prefabToSpawn, keepPrefabRotation: keepPrefabRotation);
+    GameObject spawnedObject = SpawnIndividual(posToSpawn, keepPrefabRotation: keepPrefabRotation);
     Vector3 pos = spawnedObject.transform.position;
     newSpawnedObjects.Add(spawnedObject);
     Vector3 endpointPos = new Vector3(pos.x + previousSpawnedSize / 2, pos.y, pos.z);
@@ -440,11 +453,85 @@ public class Spawner : MonoBehaviourBase {
   }
   #endregion
 
-  #region SPAWNER CONFIG ===================================================================================================================================
+  #region POOL CONFIG ===================================================================================================================================
   [PropertySpace(SpaceBefore = SECTION_SPACE)]
   [HideLabel, DisplayAsString(false), ShowInInspector]
-  const string ADDICTIONAL_CONFIG_SPACE = "";
+  const string POOL_CONFIG_SPACE = "";
 
+  // [ToggleGroup(nameof(enablePool), groupTitle: "Pool Config")]
+  [FoldoutGroup("Pool Config")]
+  [SerializeField] bool enablePool = true;
+
+  // [ToggleGroup(nameof(enablePool))]
+  [FoldoutGroup("Pool Config")]
+  [SerializeField, LabelText("Collision Check")] bool poolCollisionCheck = true;
+
+  // [ToggleGroup(nameof(enablePool))]
+  [FoldoutGroup("Pool Config")]
+  [SerializeField, LabelText("Release On Invisible")] bool poolObjectReleaseOnBecameInvisible;
+
+  // [ToggleGroup(nameof(enablePool))]
+  [FoldoutGroup("Pool Config")]
+  [Tooltip("Value 0 means disable lifespan.")]
+  [SerializeField, Min(0), LabelText("Release By Lifespan")] float poolObjectReleaseByLifespan;
+
+  // [ToggleGroup(nameof(enablePool))]
+  [FoldoutGroup("Pool Config")]
+  [SerializeField, Min(1), LabelText("Max Size")] int poolMaxSize = 20;
+
+  // [ToggleGroup(nameof(enablePool))]
+  [FoldoutGroup("Pool Config")]
+  [SerializeField, Min(1), LabelText("Default Capacity")] int poolDefaultCapacity = 1000;
+
+  private IObjectPool<GameObject> pool;
+
+  private void InitPool() {
+    pool = new ObjectPool<GameObject>(
+      SpawnIndividualByPool,
+      OnPoolGet,
+      OnPoolRelease,
+      OnPoolDestroy,
+      maxSize: poolMaxSize,
+      defaultCapacity: poolDefaultCapacity
+    );
+  }
+
+  private GameObject SpawnIndividualByPool() {
+    GameObject instance = Instantiate(currentPrefab);
+    PoolObject poolObject = instance.AddComponent<PoolObject>();
+    poolObject.pool = pool;
+    poolObject.lifespan = poolObjectReleaseByLifespan;
+    poolObject.releaseOnBecameInvisible = poolObjectReleaseOnBecameInvisible;
+    return instance;
+  }
+
+  // ! Get() from Pool does not respect Retrieve Mode of Collection
+  private GameObject GetInstanceFromPool(Vector3 pos, bool keepPrefabRotation, Quaternion rot) {
+    GameObject instance = pool.Get();
+    instance.transform.position = pos;
+    instance.transform.rotation = rot;
+    instance.transform.UpdatePosOnAxis(target: instance.transform, axis: keepPrefabPosition);
+    if (parentObject && instance) instance.transform.SetParent(parentObject);
+
+    return instance;
+  }
+
+  private void OnPoolRelease(GameObject poolObject) {
+    poolObject.SetActive(false);
+  }
+
+  private void OnPoolGet(GameObject poolObject) {
+    poolObject.SetActive(true);
+  }
+
+  private void OnPoolDestroy(GameObject poolObject) {
+    // DestroyImmediate(poolObject); // TODO: for Edit Mode
+    Destroy(poolObject);
+  }
+
+  #endregion ===================================================================================================================================
+
+  #region SPAWNER CONFIG ===================================================================================================================================
   [BoxGroup("Spawner Config")]
   [SerializeField, LabelText("Spawn Amount/Time")] Vector2Wrapper spawnAmountRangePerTime = new Vector2Wrapper(new Vector2(1, 1), min: 0, max: 10);
 

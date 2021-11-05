@@ -23,11 +23,13 @@ public class AreaPoint : SerializableBase, IArea {
 
   [InfoBox("Create Transforms as children of Origin, useful for manual positioning points or moving Origin.")]
   [OnValueChanged(nameof(UpdatePoints))]
+  [InlineButton(nameof(ClearPointTransforms), "Clear")]
+  [LabelText("Generate Point Transforms")]
+  [ToggleLeft]
   public bool useTransforms = true;
 
   [HideInInspector] public List<Transform> pointTransforms = new List<Transform>();
 
-  [Button]
   public void ClearPointTransforms() {
     pointTransforms.ForEach(transform => { if (transform) UnityEngine.Object.DestroyImmediate(transform.gameObject); });
     pointTransforms.Clear();
