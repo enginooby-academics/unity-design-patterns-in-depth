@@ -84,7 +84,9 @@ Thumbs.db
 # REWIRED
 Assets/Plugins/Rewired/Internal/Assets
 
-### ASSET PACKS ###
+### 3RD-PARTY ASSETS ###
 # Extensions folder (personal convention) contains productivity assets (editor)
 /Assets/Extensions/ 
 **/_Demo*
+/Assets/Asset Packs/ 
+/Assets/Plugins/ 
