@@ -496,28 +496,34 @@ MonoBehaviour:
     areaType: 1
     areaAxis:
       componentOwner: {fileID: 0}
-      origins: []
+      origins:
+      - componentOwner: {fileID: 0}
+        gameObjectRef: {fileID: 1408875112}
+        tag: Player
+        name: Player
+        type: 
+        findMethod: 0
       box:
         title: Axes
         xRange:
           OnValueChange:
             m_PersistentCalls:
               m_Calls: []
-          Value: {x: 0, y: 0}
+          Value: {x: -2, y: 2}
           min: -100
           max: 100
         yRange:
           OnValueChange:
             m_PersistentCalls:
               m_Calls: []
-          Value: {x: 0, y: 0}
+          Value: {x: -4, y: 4}
           min: -100
           max: 100
         zRange:
           OnValueChange:
             m_PersistentCalls:
               m_Calls: []
-          Value: {x: 0, y: 0}
+          Value: {x: -3, y: 3}
           min: -100
           max: 100
         all:
@@ -555,6 +561,19 @@ MonoBehaviour:
       - {fileID: 465950960}
       - {fileID: 1991322597}
       - {fileID: 1577291494}
+    areaCircular:
+      componentOwner: {fileID: 0}
+      origin:
+        componentOwner: {fileID: 0}
+        gameObjectRef: {fileID: 1408875112}
+        tag: Player
+        name: Player
+        type: 
+        findMethod: 0
+      label: 
+      radius: 3
+      angle: 360
+      gizmosWire: 1
   pointSpawnMode: 0
   pointProbability: 50
   enableAdjacentSpawning: 0

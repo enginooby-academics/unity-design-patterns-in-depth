@@ -4,57 +4,51 @@ using System;
 using System.Collections.Generic;
 
 // ? Create Serializable AreaMultiple/Areas
+// ? Rename AreaComposite/AreaSingle
+// REFACTOR: Use Composite Pattern
 [Serializable, InlineProperty]
 public class Area : SerializableBase, IArea {
   protected override void OnComponentOwnerChange() {
-    this.areaPoint.origin.componentOwner = componentOwner;
-    this.areaAxis.componentOwner = componentOwner;
+    areaPoint.origin.componentOwner = componentOwner;
+    areaAxis.componentOwner = componentOwner;
+    areaCircular.SetComponentOwner(componentOwner);
   }
 
   // ? Use flag enum to enable multiple area types at the same time
-  public enum AreaType { Axis, Point, Polygon } // Polygon w/ number of vertices: triangle (3), square (4)...
+  public enum AreaType { Axis, Point, Circular } // TODO: Polygon type w/ number of vertices: triangle (3), square (4)...
+
+  [OnValueChanged(nameof(UpdateCurrentArea))]
   [HideLabel, EnumToggleButtons] public AreaType areaType = AreaType.Axis;
+  [SerializeField] private IArea currentArea;
+  private void UpdateCurrentArea() {
+    currentArea = areaType switch
+    {
+      AreaType.Axis => areaAxis,
+      AreaType.Point => areaPoint,
+      AreaType.Circular => areaCircular,
+      _ => null
+    };
+  }
 
   public bool IsAxixType { get => areaType == AreaType.Axis; }
   public bool IsPointType { get => areaType == AreaType.Point; }
-  public bool IsPolygonType { get => areaType == AreaType.Polygon; }
+
 
   [ShowIf(nameof(areaType), AreaType.Axis)]
   [HideLabel] public AreaAxis areaAxis;
 
   [ShowIf(nameof(areaType), AreaType.Point)]
   [HideLabel] public AreaPoint areaPoint;
+  [ShowIf(nameof(areaType), AreaType.Circular)]
+  [HideLabel] public AreaCircular areaCircular = new AreaCircular();
 
   public bool Contains(Vector3 pos) {
-    bool contains = false;
-    switch (areaType) {
-      case AreaType.Axis:
-        contains = areaAxis.Contains(pos);
-        break;
-      case AreaType.Point:
-        contains = areaPoint.Contains(pos);
-        break;
-      case AreaType.Polygon:
-        break;
-      default:
-        break;
-    }
-
-    return contains;
+    if (currentArea == null) UpdateCurrentArea();
+    return currentArea.Contains(pos);
   }
 
   public void DrawGizmos(Color? color = null) {
-    switch (areaType) {
-      case AreaType.Axis:
-        areaAxis.DrawGizmos(color: color);
-        break;
-      case AreaType.Point:
-        areaPoint.DrawGizmos(color: color);
-        break;
-      case AreaType.Polygon:
-        break;
-      default:
-        break;
-    }
+    if (currentArea == null) UpdateCurrentArea();
+    currentArea.DrawGizmos(color);
   }
 }

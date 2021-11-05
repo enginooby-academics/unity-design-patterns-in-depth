@@ -6,7 +6,7 @@ using TMPro;
 
 [Serializable, InlineProperty]
 public class StatUI {
-  [HideInInspector] public string statName;
+  [HideInInspector] public string statName; // REFACTOR: Use StringBuilder
   public StatUI(string statName = "UI", string prefix = null, string suffix = null) {
     this.statName = statName;
     this.prefix ??= this.statName + ": ";

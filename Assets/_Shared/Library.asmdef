@@ -1,0 +1,23 @@
+{
+    "name": "Library",
+    "rootNamespace": "",
+    "references": [
+        "GUID:fb24642277b1db2449da7ac148ce939d",
+        "GUID:f665db37fdb6948bdb01c7790e0d3a2b",
+        "GUID:2dd7e9ee6d7b89e4197547f04c3897ad",
+        "GUID:b6af883ec2a5d8f4f9ff7b816453f7b7",
+        "GUID:5dcdc52bda908774f89d2f937ee99dcb",
+        "GUID:df380645f10b7bc4b97d4f5eb6303d95",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:5e8cf3486346a574d89cf4d1ffa00ff8"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
