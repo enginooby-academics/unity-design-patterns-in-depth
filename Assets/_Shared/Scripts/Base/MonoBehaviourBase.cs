@@ -13,8 +13,15 @@ using Sirenix.OdinInspector;
 /// </summary>
 public abstract class MonoBehaviourBase : MonoBehaviour {
   [FoldoutGroup("MonoBehaviour Common")]
+  [Button]
+  public void GetAutoReferences() {
+#if UNITY_EDITOR
+    UnityEditor.EditorApplication.ExecuteMenuItem("Tools/AutoRefs/Set AutoRefs");
+#endif
+  }
 
   #region ACTIVITY ===================================================================================================================================
+  [FoldoutGroup("MonoBehaviour Common")]
   [SerializeField, Min(0f)] float lifespan;
 
   public void DisableForSecs(float seconds) {

@@ -5,14 +5,17 @@ using System;
 using UnityEngine.Events;
 
 [Flags] public enum DestroyTarget { Trigger = 1 << 1, Self = 1 << 2, Other = 1 << 3 }
+[Flags] public enum ReleaseToPoolTarget { Self = 1 << 1, Other = 1 << 2 }
 
 [Serializable, InlineProperty]
 public class TriggerEvent {
   [HorizontalGroup("Group 1")]
+  [PropertyOrder(-10)]
   public bool enable = true;
 
   [HorizontalGroup("Group 1")]
   [EnableIf(nameof(enable))]
+  [PropertyOrder(-10)]
   public float delay;
 
   // ? Make tag list as Serialiable or part of TargetTags
@@ -38,6 +41,10 @@ public class TriggerEvent {
     // }
     return true;
   }
+
+  [EnableIf(nameof(enable))]
+  [BoxGroup("After Action")]
+  [EnumToggleButtons, LabelText("Release To Pool")] public ReleaseToPoolTarget releaseToPoolTargetAfterInvoked;
 
   [EnableIf(nameof(enable))]
   [BoxGroup("After Action")]

@@ -12,33 +12,40 @@ public class Area : SerializableBase, IArea {
     areaPoint.origin.componentOwner = componentOwner;
     areaAxis.componentOwner = componentOwner;
     areaCircular.SetComponentOwner(componentOwner);
+    area2DFuncPoint.SetComponentOwner(componentOwner);
   }
 
   // ? Use flag enum to enable multiple area types at the same time
-  public enum AreaType { Axis, Point, Circular } // TODO: Polygon type w/ number of vertices: triangle (3), square (4)...
+  public enum AreaType { Axis, Point, Point2dFunc, Circular } // TODO: Polygon type w/ number of vertices: triangle (3), square (4)...
 
   [OnValueChanged(nameof(UpdateCurrentArea))]
   [HideLabel, EnumToggleButtons] public AreaType areaType = AreaType.Axis;
-  [SerializeField] private IArea currentArea;
+  [HideInInspector] public IArea currentArea;
+  [HideInInspector] public AreaPoint currentAreaPoint;
+
   private void UpdateCurrentArea() {
     currentArea = areaType switch
     {
       AreaType.Axis => areaAxis,
       AreaType.Point => areaPoint,
+      AreaType.Point2dFunc => area2DFuncPoint,
       AreaType.Circular => areaCircular,
       _ => null
     };
   }
 
   public bool IsAxixType { get => areaType == AreaType.Axis; }
-  public bool IsPointType { get => areaType == AreaType.Point; }
-
+  public bool IsPointType { get => areaType == AreaType.Point || areaType == AreaType.Point2dFunc; }
 
   [ShowIf(nameof(areaType), AreaType.Axis)]
   [HideLabel] public AreaAxis areaAxis;
 
   [ShowIf(nameof(areaType), AreaType.Point)]
-  [HideLabel] public AreaPoint areaPoint;
+  [HideLabel] public AreaAxisPoint areaPoint;
+
+  [ShowIf(nameof(areaType), AreaType.Point2dFunc)]
+  [HideLabel] public Area2DFuncPoint area2DFuncPoint;
+
   [ShowIf(nameof(areaType), AreaType.Circular)]
   [HideLabel] public AreaCircular areaCircular = new AreaCircular();
 

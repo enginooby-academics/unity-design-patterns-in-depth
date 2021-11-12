@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Transformer : MonoBehaviour {
   [SerializeField] MonoBehaviour currentPlayer;
+  [SerializeField] Rigidbody objectRigidbody;
   private Vector3 previousPlayerPos;
   private Selector selector;
 
@@ -17,12 +19,15 @@ public class Transformer : MonoBehaviour {
 
   // TODO: Process dest so that player do not collide w/ target
   public void MovePlayerTowards(GameObject target) {
-    if (!currentPlayer) return;
+    if (!objectRigidbody) return;
+    // objectRigidbody.DOMove(target.transform.position, 10);
 
-    Vector3 rawDest = target.transform.position;
-    Vector3 dest = new Vector3(rawDest.x, rawDest.y + 50f, rawDest.z);
-    previousPlayerPos = currentPlayer.transform.position;
-    currentPlayer.MoveTowards(dest, 1500f);
+    // if (!currentPlayer) return;
+
+    // Vector3 rawDest = target.transform.position;
+    // Vector3 dest = new Vector3(rawDest.x, rawDest.y + 50f, rawDest.z);
+    // previousPlayerPos = currentPlayer.transform.position;
+    // currentPlayer.MoveTowards(dest, 1500f);
     // currentPlayer.MoveTowardsByRigidBody(dest, offset: 0f, speed: 100f);
   }
 

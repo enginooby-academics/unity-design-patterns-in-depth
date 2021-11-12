@@ -63,7 +63,7 @@ public class Spawner : MonoBehaviourBase {
 
     GameObject spawnedObject = null;
     if (enablePool) {
-      spawnedObject = GetInstanceFromPool(pos, keepPrefabRotation, rotation);
+      spawnedObject = GetInstanceFromPool(pos, keepPrefabRotation);
     } else {
       spawnedObject = InstantiateUtils.Instantiate(pos: pos, prefab: currentPrefab, keepPrefabPos: keepPrefabPosition, parent: parentObject, rotation: rotation);
     }
@@ -107,6 +107,7 @@ public class Spawner : MonoBehaviourBase {
   #endregion ===================================================================================================================================
 
   #region ASSET COLLECTION ===================================================================================================================================
+  [NaughtyAttributes.HorizontalLine(color: NaughtyAttributes.EColor.Red)]
   [PropertySpace(SpaceBefore = SECTION_SPACE + 10)]
   [HideLabel, DisplayAsString(false), ShowInInspector]
   const string OBJECT_SELECTION_SPACE = "Configure resources and selection mode to spawn";
@@ -187,10 +188,11 @@ public class Spawner : MonoBehaviourBase {
 
   private void OnSpawningAreaChange() {
     if (spawningArea.IsPointType) {
-      if (spawningArea.areaPoint.pointTransforms.IsUnset()) return;
-      pointCurrentIterate = spawningArea.areaPoint.pointTransforms.GetLast();
+      List<Transform> points = (spawningArea.currentArea as AreaPoint).pointTransforms;
+      if (points.IsUnset()) return;
+      pointCurrentIterate = points.GetLast();
       if (pointSpawnMode == PointSpawnMode.RandomIterate) {
-        spawningArea.areaPoint.pointTransforms.Shuffle();
+        points.Shuffle();
       }
     }
   }
@@ -200,26 +202,27 @@ public class Spawner : MonoBehaviourBase {
 
   // REFACTOR
   private void SpawnLocationPoint(bool keepPrefabRotation, List<GameObject> newSpawnedObjects) {
+    List<Transform> points = (spawningArea.currentArea as AreaPoint).pointTransforms;
     if (pointSpawnMode == PointSpawnMode.RandomAll) {
-      spawningArea.areaPoint.pointTransforms.ForEach(pointTransform => {
+      points.ForEach(point => {
         if (pointProbability.Percent()) {
-          newSpawnedObjects.Add(SpawnIndividual(pointTransform.position, keepPrefabRotation: keepPrefabRotation));
+          newSpawnedObjects.Add(SpawnIndividual(point.position, keepPrefabRotation: keepPrefabRotation));
         }
       });
     }
 
     if (pointSpawnMode == PointSpawnMode.RandomOne) {
-      Vector3 postToSpawn = spawningArea.areaPoint.pointTransforms.GetRandom().position;
+      Vector3 postToSpawn = points.GetRandom().position;
       newSpawnedObjects.Add(SpawnIndividual(postToSpawn, keepPrefabRotation: keepPrefabRotation));
     }
 
     if (pointSpawnMode == PointSpawnMode.Iterate) {
-      pointCurrentIterate = spawningArea.areaPoint.pointTransforms.NavNext(pointCurrentIterate);
+      pointCurrentIterate = points.NavNext(pointCurrentIterate);
       newSpawnedObjects.Add(SpawnIndividual(pointCurrentIterate.position, keepPrefabRotation: keepPrefabRotation));
     }
 
     if (pointSpawnMode == PointSpawnMode.RandomIterate) {
-      pointCurrentIterate = spawningArea.areaPoint.pointTransforms.NavNext(pointCurrentIterate);
+      pointCurrentIterate = points.NavNext(pointCurrentIterate);
       newSpawnedObjects.Add(SpawnIndividual(pointCurrentIterate.position, keepPrefabRotation: keepPrefabRotation));
     }
   }
@@ -453,6 +456,7 @@ public class Spawner : MonoBehaviourBase {
   }
   #endregion
 
+  // TODO: integrate pool w/ wave spawning mode
   #region POOL CONFIG ===================================================================================================================================
   [PropertySpace(SpaceBefore = SECTION_SPACE)]
   [HideLabel, DisplayAsString(false), ShowInInspector]
@@ -460,7 +464,12 @@ public class Spawner : MonoBehaviourBase {
 
   // [ToggleGroup(nameof(enablePool), groupTitle: "Pool Config")]
   [FoldoutGroup("Pool Config")]
+  [OnValueChanged(nameof(OnPoolEnabled))]
   [SerializeField] bool enablePool = true;
+
+  private void OnPoolEnabled() {
+    if (enablePool) enableLifeTime = false;
+  }
 
   // [ToggleGroup(nameof(enablePool))]
   [FoldoutGroup("Pool Config")]
@@ -498,26 +507,47 @@ public class Spawner : MonoBehaviourBase {
 
   private GameObject SpawnIndividualByPool() {
     GameObject instance = Instantiate(currentPrefab);
-    PoolObject poolObject = instance.AddComponent<PoolObject>();
+    // float poolObjectLifespan = poolObjectReleaseByLifespan;
+
+    PoolObject poolObject = instance.GetComponent<PoolObject>(); ;
+    if (poolObject != null) {
+      // respect  pre-setup params from the PoolObject component
+    } else {
+      poolObject = instance.AddComponent<PoolObject>();
+      print("add new pool object component");
+      poolObject.lifespan = poolObjectReleaseByLifespan;
+      poolObject.releaseOnBecameInvisible = poolObjectReleaseOnBecameInvisible;
+    }
+
     poolObject.pool = pool;
-    poolObject.lifespan = poolObjectReleaseByLifespan;
-    poolObject.releaseOnBecameInvisible = poolObjectReleaseOnBecameInvisible;
+    // if (poolObjectLifespan != 0) StartCoroutine(ReleaseToPoolCoroutine(instance, poolObjectLifespan));
+
     return instance;
   }
 
   // ! Get() from Pool does not respect Retrieve Mode of Collection
-  private GameObject GetInstanceFromPool(Vector3 pos, bool keepPrefabRotation, Quaternion rot) {
+  private GameObject GetInstanceFromPool(Vector3 pos, bool keepPrefabRotation) {
     GameObject instance = pool.Get();
     instance.transform.position = pos;
-    instance.transform.rotation = rot;
+    // instance.transform.rotation = rot;
     instance.transform.UpdatePosOnAxis(target: instance.transform, axis: keepPrefabPosition);
     if (parentObject && instance) instance.transform.SetParent(parentObject);
 
     return instance;
   }
 
+  private bool CanObjectReleasedToPool(GameObject poolObject) {
+    return poolObject.activeInHierarchy && poolObject;
+  }
+
   private void OnPoolRelease(GameObject poolObject) {
+    if (!CanObjectReleasedToPool(poolObject)) return;
     poolObject.SetActive(false);
+  }
+
+  private IEnumerator ReleaseToPoolCoroutine(GameObject poolObject, float delay) {
+    yield return new WaitForSeconds(delay);
+    OnPoolRelease(poolObject);
   }
 
   private void OnPoolGet(GameObject poolObject) {

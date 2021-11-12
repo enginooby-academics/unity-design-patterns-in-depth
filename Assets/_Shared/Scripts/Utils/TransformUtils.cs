@@ -40,4 +40,22 @@ public static class TransformUtils {
     if (axis.HasFlag(AxisFlag.Y)) transform.PosY(target.position.y);
     if (axis.HasFlag(AxisFlag.Z)) transform.PosZ(target.position.z);
   }
+
+  /// <summary>
+  /// Copy position, rotation & localScale values from target Transform.
+  /// </summary>
+  public static void CopyFrom(this Transform transform, Transform target) {
+    transform.position = target.position;
+    transform.rotation = target.rotation;
+    transform.localScale = target.localScale;
+  }
+
+  /// <summary>
+  /// Copy position, rotation & localScale values from target GameObject's Transform.
+  /// </summary>
+  public static void CopyFrom(this Transform transform, GameObject target) {
+    transform.position = target.transform.position;
+    transform.rotation = target.transform.rotation;
+    transform.localScale = target.transform.localScale;
+  }
 }

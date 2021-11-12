@@ -1,0 +1,28 @@
+{
+    "name": "Library",
+    "rootNamespace": "",
+    "references": [
+        "QFSW.QC",
+        "Beautify.Universal.Runtime",
+        "sc.posteffects.runtime",
+        "Digger.Core",
+        "Unity.RenderPipelines.Core.Runtime",
+        "Unity.TextMeshPro",
+        "NaughtyAttributes.Core",
+        "DOTweenAsm",
+        "MeshEffect",
+        "Outlinable"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [
+        "DOTween.dll",
+        "DOTweenPro.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

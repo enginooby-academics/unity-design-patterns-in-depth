@@ -8,10 +8,10 @@ using UnityEngine.Events;
 
 [Serializable, InlineProperty]
 public class ColliderEvent : TriggerEvent {
-  [SerializeField, PropertyOrder(-2)] public bool enableForAll = false;
+  [PropertyOrder(-1)] public bool enableForAll = false;
 
   [DisableIf(nameof(enableForAll))]
-  [SerializeField, PropertyOrder(-1)] public List<Reference> targets = new List<Reference>();
+  [PropertyOrder(-1)] public List<Reference> targets = new List<Reference>();
 
   public List<string> Tags {
     get {

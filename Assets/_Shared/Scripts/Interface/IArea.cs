@@ -1,4 +1,5 @@
 // * Define area for spawner, detector, boundary, vision...
+// * Two types of areas: continous and decrete (points)
 using UnityEngine;
 
 public interface IArea {

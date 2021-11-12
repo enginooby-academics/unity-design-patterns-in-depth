@@ -20,7 +20,7 @@ public class EventManager : MonoBehaviour {
       yield return new WaitForSeconds(e.delay);
       e.Invoke();
       ProcessEventFX(e);
-      ProcessDestroyAfterInvoke(e, other: other.gameObject);
+      ProcessAfterInvoke(e, other: other.gameObject);
     }
   }
 
@@ -33,7 +33,7 @@ public class EventManager : MonoBehaviour {
       yield return new WaitForSeconds(e.delay);
       e.Invoke();
       ProcessEventFX(e);
-      ProcessDestroyAfterInvoke(e, other: other.gameObject);
+      ProcessAfterInvoke(e, other: other.gameObject);
     }
   }
 
@@ -45,7 +45,7 @@ public class EventManager : MonoBehaviour {
       yield return new WaitForSeconds(e.delay);
       e.Invoke();
       ProcessEventFX(e);
-      ProcessDestroyAfterInvoke(e);
+      ProcessAfterInvoke(e);
     }
   }
 
@@ -64,9 +64,21 @@ public class EventManager : MonoBehaviour {
     if (triggerEvent.Sfx) triggerEvent.Sfx.PlayOneShot();
   }
 
-  private void ProcessDestroyAfterInvoke(TriggerEvent triggerEvent, GameObject other = null) {
+  private void ProcessAfterInvoke(TriggerEvent triggerEvent, GameObject other = null) {
     if (triggerEvent.destroyAfterInvoked.HasFlag(DestroyTarget.Trigger) && this) Destroy(this);
     if (triggerEvent.destroyAfterInvoked.HasFlag(DestroyTarget.Self) && gameObject) Destroy(gameObject);
     if (triggerEvent.destroyAfterInvoked.HasFlag(DestroyTarget.Other) && other) Destroy(other);
+
+    if (triggerEvent.releaseToPoolTargetAfterInvoked.HasFlag(ReleaseToPoolTarget.Self)) {
+      PoolObject poolObject = GetComponent<PoolObject>(); ;
+      if (!poolObject) return;
+      poolObject.ReleaseToPool();
+    }
+
+    if (triggerEvent.releaseToPoolTargetAfterInvoked.HasFlag(ReleaseToPoolTarget.Other)) {
+      PoolObject poolObject = other.GetComponent<PoolObject>(); ;
+      if (!poolObject) return;
+      poolObject.ReleaseToPool();
+    }
   }
 }

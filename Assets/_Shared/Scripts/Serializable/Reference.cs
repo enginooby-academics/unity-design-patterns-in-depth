@@ -1,8 +1,9 @@
-// Help to get single reference by different methods: tag, name, type, ref (direct assign in Inspector)... in Scene or Asset
+//* Help to get single reference by different methods: tag, name, type, ref (direct assign in Inspector)... in Scene or Asset
 
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System;
+
 
 // ? Derived classes: ReferenceVector3/ReferenceTag has additional Vector3 targetVect/string tag attribute... 
 // ? Filter
@@ -28,6 +29,7 @@ public class Reference : SerializableBase {
   }
 
   [ShowIf(nameof(findMethod), FindMethod.Tag)]
+  [NaughtyAttributes.Tag]
   [HideLabel] public string tag = "Player";
 
   [ShowIf(nameof(findMethod), FindMethod.Name)]
