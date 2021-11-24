@@ -46,7 +46,7 @@ public static class ComponentUtils {
     return theRb;
   }
 
-  /// <summary>If RigidBody exists, setup/override it as provided params</summary>
+  /// <summary>If RigidBody exists, setup & override it as provided params.</summary>
   public static Rigidbody AddAndSetupRigidBodyIfNotExist(this MonoBehaviour monoBehaviour, bool useGravity = true, float mass = 1, bool isKinematic = false) {
     Rigidbody theRb = monoBehaviour.gameObject.GetComponent<Rigidbody>();
     if (theRb == null) theRb = monoBehaviour.gameObject.AddComponent<Rigidbody>();
@@ -55,6 +55,30 @@ public static class ComponentUtils {
     theRb.isKinematic = isKinematic;
     // TODO: constrain
     return theRb;
+  }
+
+  /// <summary>
+  /// If Collider exists, setup & override it as provided params. Otherwise, add BoxCollider.
+  /// </summary>
+  public static Collider AddAndSetupColliderIfNotExist(this MonoBehaviour monoBehaviour, bool isTrigger = true) {
+    return monoBehaviour.gameObject.AddAndSetupColliderIfNotExist(isTrigger);
+  }
+
+  /// <summary>
+  /// If Collider exists, setup & override it as provided params. Otherwise, add BoxCollider.
+  /// </summary>
+  public static Collider AddAndSetupColliderIfNotExist(this GameObject gameObject, bool isTrigger = true) {
+    return gameObject.AddAndSetupColliderIfNotExist<BoxCollider>(isTrigger);
+  }
+
+  /// <summary>
+  /// If Collider exists, setup & override it as provided params.
+  /// </summary>
+  public static Collider AddAndSetupColliderIfNotExist<T>(this GameObject gameObject, bool isTrigger = true) where T : Collider {
+    Collider collider = gameObject.GetComponent<Collider>();
+    if (collider == null) collider = gameObject.AddComponent<T>();
+    collider.isTrigger = isTrigger;
+    return collider;
   }
 
   /// <summary>

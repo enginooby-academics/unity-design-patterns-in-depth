@@ -69,10 +69,13 @@ public class AssetCollection<T> where T : UnityEngine.Object {
     // Debug.Log(CurrentItemOrFirst.name);
   }
 
-  private void OnItemsChanged() {
+  public void OnItemsChanged() {
     if (items.IsUnset()) return;
     UpdateDeactivateExceptCurrent();
     if (enableEvent) onItemsChanged.Invoke();
+    if (!items.Contains(currentItem)) {
+      currentItem = items[0];
+    }
   }
   #endregion
 

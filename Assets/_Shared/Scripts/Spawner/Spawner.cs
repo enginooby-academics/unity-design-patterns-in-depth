@@ -10,7 +10,10 @@ using UnityEngine.Pool; // ! Pool API requires Unity 2021.1+
 // ? Events
 public enum GizmosMode { OnSelected, Always }
 
-[TypeInfoBox("Spawner usages: gun, repeating backgrounds, enemy/obstacle waves")]
+// [TypeInfoBox("Spawner usages: gun, repeating backgrounds, enemy/obstacle waves")]
+/// <summary>
+/// Spawner usages: gun, repeating backgrounds, enemy/obstacle waves
+/// </summary>
 public class Spawner : MonoBehaviourBase {
   private void Awake() {
     if (enablePool) InitPool();
@@ -20,7 +23,6 @@ public class Spawner : MonoBehaviourBase {
     if (enablePool) InitPool();
     spawningArea.SetComponentOwner(gameObject);
   }
-
   private void Start() {
     // Reset();
     saveSpawnedObjects = false; // FIX: enable this and Destroy spawned objects by Boundary cause error
@@ -112,10 +114,15 @@ public class Spawner : MonoBehaviourBase {
   [HideLabel, DisplayAsString(false), ShowInInspector]
   const string OBJECT_SELECTION_SPACE = "Configure resources and selection mode to spawn";
 
+  [OnValueChanged(nameof(OnAssetCollectionChanged), true)]
   [InfoBox("If using SceneAsset, pay attention not to destroy the asset blueprint.", InfoMessageType.Warning)]
   [BoxGroup("Asset Collection")]
   [SerializeField, HideLabel] public AssetCollection<GameObject> assetCollection = new AssetCollection<GameObject>();
   private GameObject currentPrefab;
+
+  private void OnAssetCollectionChanged() {
+    assetCollection.OnItemsChanged();
+  }
   #endregion ===================================================================================================================================
 
   #region UNIVERSAL SPAWNED ATTRIBUTES ===================================================================================================================================
@@ -169,7 +176,7 @@ public class Spawner : MonoBehaviourBase {
 
   [BoxGroup("Spawning Location")]
   [OnValueChanged(nameof(OnSpawningAreaChange), true)]
-  [SerializeField, HideLabel] Area spawningArea;
+  [SerializeField, HideLabel] Area spawningArea = new Area();
 
   enum PointSpawnMode { Iterate, RandomIterate, RandomOne, RandomAll }
 
@@ -202,7 +209,8 @@ public class Spawner : MonoBehaviourBase {
 
   // REFACTOR
   private void SpawnLocationPoint(bool keepPrefabRotation, List<GameObject> newSpawnedObjects) {
-    List<Transform> points = (spawningArea.currentArea as AreaPoint).pointTransforms;
+    List<Transform> points = (spawningArea.CurrentArea as AreaPoint).pointTransforms;
+
     if (pointSpawnMode == PointSpawnMode.RandomAll) {
       points.ForEach(point => {
         if (pointProbability.Percent()) {
@@ -218,6 +226,8 @@ public class Spawner : MonoBehaviourBase {
 
     if (pointSpawnMode == PointSpawnMode.Iterate) {
       pointCurrentIterate = points.NavNext(pointCurrentIterate);
+      // print(pointCurrentIterate.position);
+      // print(pointCurrentIterate.name);
       newSpawnedObjects.Add(SpawnIndividual(pointCurrentIterate.position, keepPrefabRotation: keepPrefabRotation));
     }
 
@@ -511,22 +521,22 @@ public class Spawner : MonoBehaviourBase {
 
     PoolObject poolObject = instance.GetComponent<PoolObject>(); ;
     if (poolObject != null) {
-      // respect  pre-setup params from the PoolObject component
+      // respect pre-setup params from the PoolObject component
     } else {
       poolObject = instance.AddComponent<PoolObject>();
-      print("add new pool object component");
+      // print("add new pool object component");
       poolObject.lifespan = poolObjectReleaseByLifespan;
       poolObject.releaseOnBecameInvisible = poolObjectReleaseOnBecameInvisible;
     }
 
     poolObject.pool = pool;
-    // if (poolObjectLifespan != 0) StartCoroutine(ReleaseToPoolCoroutine(instance, poolObjectLifespan));
 
     return instance;
   }
 
   // ! Get() from Pool does not respect Retrieve Mode of Collection
   private GameObject GetInstanceFromPool(Vector3 pos, bool keepPrefabRotation) {
+    if (pool == null) InitPool();
     GameObject instance = pool.Get();
     instance.transform.position = pos;
     // instance.transform.rotation = rot;

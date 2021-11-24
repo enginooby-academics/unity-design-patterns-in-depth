@@ -21,14 +21,14 @@ public abstract class AreaPoint : SerializableBase, IArea {
   [ToggleLeft]
   public bool useTransforms = true;
 
-  [HideInInspector] public List<Transform> pointTransforms = new List<Transform>();
+  public List<Transform> pointTransforms = new List<Transform>();
 
   public void ClearPointTransforms() {
     pointTransforms.ForEach(transform => { if (transform) UnityEngine.Object.DestroyImmediate(transform.gameObject); });
     pointTransforms.Clear();
   }
 
-  protected virtual void UpdatePoints() {
+  public virtual void UpdatePoints() {
     if (!origin.GameObject) {
       Debug.LogWarning("Origin is not set.");
       return;

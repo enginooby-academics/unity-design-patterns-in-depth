@@ -1,0 +1,1 @@
+Dependency asset: [Pixel Cursors](https://assetstore.unity.com/packages/2d/gui/icons/pixel-cursors-109256#content)

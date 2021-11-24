@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
+using Enginoobz;
 // ! Cannot bind events in Inspector if the listener is Prefab Asset. Workaround: only use Scene Prefab
 public class EventManager : MonoBehaviour {
   public List<OnTriggerEnterEvent> onTriggerEnterEvents = new List<OnTriggerEnterEvent>();

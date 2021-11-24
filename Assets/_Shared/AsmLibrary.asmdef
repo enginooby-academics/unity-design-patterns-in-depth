@@ -11,7 +11,8 @@
         "NaughtyAttributes.Core",
         "DOTweenAsm",
         "MeshEffect",
-        "Outlinable"
+        "Outlinable",
+        "ch.giezi.tools.ScriptableObjectVariant"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

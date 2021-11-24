@@ -4,8 +4,7 @@ using System;
 using UnityEngine.Events;
 
 // ? Make generics for int/float
-// ? Stat can be separated from GameManager => Make seperate StatManager
-
+// TODO: Extend from Stat
 [Serializable, InlineProperty]
 public class StatGame {
   [HideInInspector] public string statName;

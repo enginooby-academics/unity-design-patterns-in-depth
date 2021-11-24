@@ -27,7 +27,7 @@ public class Area2DFuncPoint : AreaPoint {
   [OnValueChanged(nameof(UpdatePoints))]
   public float degree2;
 
-  protected override void UpdatePoints() {
+  public override void UpdatePoints() {
     base.UpdatePoints();
     if (!origin.GameObject) { // TODO: implement this in base
       Debug.LogWarning("Origin is not set.");

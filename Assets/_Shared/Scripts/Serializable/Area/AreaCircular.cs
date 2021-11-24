@@ -42,6 +42,15 @@ public class AreaCircular : SerializableBase, IArea {
     return directionToPos.magnitude < radius && angleToPos < angle;
   }
 
+  // TODO: Declare overloading Contains in IArea
+  public bool Contains(GameObject target) {
+    return Contains(target.transform.position);
+  }
+
+  public bool Contains(Reference reference) {
+    return Contains(reference.GameObject);
+  }
+
   public void DrawGizmos(Color? color = null) {
     if (!origin.GameObject) return;
 

@@ -42,7 +42,7 @@ public enum TriggerEventType { // CONSIDER: OnMouse events
 }
 
 /* Command constants used for Quantum Console utility */
-static class CommandPrefix {
+public static class CommandPrefix {
   public const string PostFx = "p.";
   public const string Environment = "e.";
   public const string Highlight = "h.";
@@ -50,7 +50,7 @@ static class CommandPrefix {
   public const string Selection = "s.";
 }
 
-static class CommandTarget {
+public static class CommandTarget {
   public const string Selection = "selection";
   public const string Camera = "camera";
   public const string Tag = "tag";

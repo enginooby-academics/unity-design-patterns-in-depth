@@ -16,11 +16,11 @@ public static class VolumeUtils {
 
   /// <summary> Set the same state (active or inactive) for all components </summary>
   public static void SetActiveOnRandomInclusively(this VolumeComponent[] volumeComponents, float probability = .5f) {
-    // IPM
+    // IMPL
   }
 
   /// <summary> Set one component of the collection active randomly, set inactive for the rest </summary>
   public static void SetActiveOnRandomExclusively(this VolumeComponent[] volumeComponents) {
-    // IPM
+    // IMPL
   }
 }

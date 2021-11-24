@@ -1,13 +1,24 @@
 using UnityEngine;
+using static VectorUtils;
 
 // namespace ExtentionMethods {
 public static class TransformUtils {
-
-  /// <summary>Reset position, rotation, scale</summary>
+  /// <summary>
+  /// Reset position, rotation, scale
+  /// </summary>
   public static void Reset(this Transform transform) {
     transform.ResetPosition();
     transform.ResetRotation();
     transform.ResetScale();
+  }
+
+  /// <summary>
+  /// Reset local position, local rotation, local scale
+  /// </summary>
+  public static void ResetLocal(this Transform transform) {
+    transform.localPosition = Vector3.zero;
+    transform.localScale = Vector3.one;
+    transform.localEulerAngles = Vector3.zero;
   }
 
   public static void ResetPosition(this Transform transform) {
@@ -57,5 +68,113 @@ public static class TransformUtils {
     transform.position = target.transform.position;
     transform.rotation = target.transform.rotation;
     transform.localScale = target.transform.localScale;
+  }
+
+  public static float DistanceFrom(this Transform transform, Vector3 targetPos) {
+    // optimizer than Vector3.Distance()
+    float x = Vector3.SqrMagnitude(transform.position - targetPos);
+    return Mathf.Pow(x, .5f);
+  }
+
+  public static float DistanceFrom(this Transform transform, Transform targetTransform) {
+    return transform.DistanceFrom(targetTransform.position);
+  }
+
+  /// <summary>
+  /// Check if distance to target is less than given range.
+  /// </summary>
+  public static bool IsInRange(this Transform transform, Transform targetTransform, float range) {
+    // optimizer than Vector3.Distance()
+    float distanceSquare = Vector3.SqrMagnitude(transform.position - targetTransform.position);
+    return distanceSquare <= range * range;
+  }
+
+  /// <summary>
+  /// Rotate local X (red axis) to target.
+  /// </summary>
+  public static void LookAtX(this Transform transform, Transform target) {
+    transform.LookAtX(target.position);
+  }
+
+  /// <summary>
+  /// Rotate local Y (green axis) to target.
+  /// </summary>
+  public static void LookAtY(this Transform transform, Transform target) {
+    transform.LookAtY(target.position);
+  }
+
+  /// <summary>
+  /// Rotate local Z (blue axis) to target.
+  /// </summary>
+  public static void LookAtZ(this Transform transform, Transform target) {
+    transform.LookAtZ(target.position);
+  }
+
+  /// <summary>
+  /// Rotate local X (red axis) to destination.
+  /// </summary>
+  public static void LookAtX(this Transform transform, Vector3 dest) {
+    transform.right = dest - transform.position;
+  }
+
+  /// <summary>
+  /// Rotate local Y (green axis) to destination.
+  /// </summary>
+  public static void LookAtY(this Transform transform, Vector3 dest) {
+    transform.up = dest - transform.position;
+  }
+
+  /// <summary>
+  /// Rotate local Z (blue axis) to destination.
+  /// </summary>
+  public static void LookAtZ(this Transform transform, Vector3 dest) {
+    transform.forward = dest - transform.position;
+  }
+
+  /// <summary>
+  /// Translate on local X (included deltaTime).
+  /// </summary>
+  public static void MoveX(this Transform transform, float distance = 1f) {
+    transform.Translate(v100 * Time.deltaTime * distance);
+  }
+
+  /// <summary>
+  /// Translate on local Y (included deltaTime).
+  /// </summary>
+  public static void MoveY(this Transform transform, float distance = 1f) {
+    transform.Translate(v010 * Time.deltaTime * distance);
+  }
+
+  /// <summary>
+  /// Translate on local Z (included deltaTime).
+  /// </summary>
+  public static void MoveZ(this Transform transform, float distance = 1f) {
+    transform.Translate(v001 * Time.deltaTime * distance);
+  }
+
+  /// <summary>
+  /// Rotate local Y (green axis) and move to (stop at) destination (included deltaTime).
+  /// </summary>
+  public static void LookAtAndMoveY(this Transform transform, Vector3 dest, float distance = 1f) {
+    transform.LookAtY(dest);
+    transform.MoveY(distance);
+  }
+
+  /// <summary>
+  /// Rotate local Y (green axis) and move to (stop at) target (included deltaTime).
+  /// </summary>
+  public static void LookAtAndMoveY(this Transform transform, Transform target, float distance = 1f) {
+    transform.LookAtY(target.position);
+    transform.MoveY(distance);
+  }
+
+  /// <summary>
+  /// Return center position of the collider. If collider not exist, return transform position.
+  /// </summary>
+  public static Vector3 GetColliderCenter(this Transform transform) {
+    if (transform.TryGetComponent<Collider>(out Collider collider)) {
+      return collider.bounds.center;
+    }
+    return transform.position;
   }
 }

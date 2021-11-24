@@ -30,15 +30,23 @@ public class Reference : SerializableBase {
 
   [ShowIf(nameof(findMethod), FindMethod.Tag)]
   [NaughtyAttributes.Tag]
-  [HideLabel] public string tag = "Player";
+  [HideLabel, SerializeField]
+  private string _tag = "Player";
 
   [ShowIf(nameof(findMethod), FindMethod.Name)]
-  [HideLabel] public string name = "Player";
+  [HideLabel, SerializeField]
+  private string _name = "Player";
 
   [ShowIf(nameof(findMethod), FindMethod.Type)]
-  [HideLabel] public string type;
+  [HideLabel, SerializeField]
+  private string _type;
 
-  [EnumToggleButtons, HideLabel] public FindMethod findMethod;
+  public string Tag => _tag;
+  public string Name => _name;
+  public string Type => _type;
+
+  [EnumToggleButtons, HideLabel]
+  public FindMethod findMethod;
 
   public GameObject GameObject {
     get {
@@ -52,8 +60,13 @@ public class Reference : SerializableBase {
 
   // UTIL
   private void FindTarget() {
-    if (findMethod == FindMethod.Tag) gameObjectRef = GameObject.FindGameObjectWithTag(tag);
-    if (findMethod == FindMethod.Name) gameObjectRef = GameObject.Find(name);
+    if (findMethod == FindMethod.Tag) gameObjectRef = GameObject.FindGameObjectWithTag(_tag);
+    if (findMethod == FindMethod.Name) gameObjectRef = GameObject.Find(_name);
     // if (targetFindMethod == FindMethod.Name) target = GameObject.FindObjectOfType<GetType // IMPL
+
+    if (gameObjectRef) {
+      _name = gameObjectRef.name;
+      _tag = gameObjectRef.tag;
+    }
   }
 }

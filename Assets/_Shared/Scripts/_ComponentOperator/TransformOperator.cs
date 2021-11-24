@@ -1,7 +1,5 @@
 // * Use cases: for simple transformations (w/ its loop & constrain). E.g: bullet, non-physical controller
 // * For complex movements, use path tools such as Simple Waypoint System
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using static VectorUtils;
@@ -21,16 +19,16 @@ public class TransformOperator : MonoBehaviourBase {
   enum Mode { Auto, Control }
 
   private void Start() {
-    if (enableLifetime) Destroy(gameObject, lifetime);
   }
 
   void LateUpdate() {
-    // ProcessLifetime();
+    ProcessLookAt();
     ProcessTranslating();
     ProcessRotating();
   }
 
   public void Stop() {
+    StopLookAt();
     StopTranslating();
     StopRotating();
   }
@@ -39,15 +37,29 @@ public class TransformOperator : MonoBehaviourBase {
     DrawGizmosTranslating();
   }
 
-  // ? make Lifetime Serializable class or move to MonoBehaviourBase
-  [SerializeField] bool enableLifetime;
-  [SerializeField, Min(0f)] float lifetime;
-  void ProcessLifetime() { // Alternative: Destroy w/ delay
-    if (!enableLifetime) return;
+  #region LOOK AT ===================================================================================================================================
+  [ToggleGroup(nameof(_enableLookAt), groupTitle: "Loot At")]
+  [SerializeField]
+  private bool _enableLookAt;
 
-    lifetime -= Time.deltaTime;
-    if (lifetime <= 0f) Destroy(gameObject);
+  // TODO: Damping
+
+  [ToggleGroup(nameof(_enableLookAt))]
+  [SerializeField, LabelText("Target")]
+  private Reference _lookAtTarget;
+
+  private void ProcessLookAt() {
+    if (!_enableLookAt) return;
+
+    // TODO: parameterize direction +-X/Y/Z
+    // UTIL
+    transform.forward = _lookAtTarget.GameObject.transform.forward;
   }
+
+  public void StopLookAt() {
+    _enableLookAt = false;
+  }
+  #endregion ===================================================================================================================================
 
   #region TRANSLATING ===================================================================================================================================
   [ToggleGroup(nameof(enableTranslating), groupTitle: "Translating")]
@@ -177,12 +189,6 @@ public class TransformOperator : MonoBehaviourBase {
 
   public void SetScale(Vector3 scale) {
 
-  }
-
-  public void CopyTransform(Transform transformToCopy) {
-    transform.position = transformToCopy.position;
-    transform.rotation = transformToCopy.rotation;
-    transform.localScale = transformToCopy.localScale;
   }
   #endregion ===================================================================================================================================
 

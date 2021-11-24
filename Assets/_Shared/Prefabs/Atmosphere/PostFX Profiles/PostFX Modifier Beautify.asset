@@ -715,7 +715,7 @@ MonoBehaviour:
     showEyeDropper: 1
   outlineThreshold:
     m_OverrideState: 1
-    m_Value: 0.009
+    m_Value: 0.02
     min: 0
     max: 1
   nightVision:

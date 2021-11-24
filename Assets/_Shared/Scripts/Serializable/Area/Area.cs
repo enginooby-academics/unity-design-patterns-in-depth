@@ -8,6 +8,7 @@ using System.Collections.Generic;
 // REFACTOR: Use Composite Pattern
 [Serializable, InlineProperty]
 public class Area : SerializableBase, IArea {
+
   protected override void OnComponentOwnerChange() {
     areaPoint.origin.componentOwner = componentOwner;
     areaAxis.componentOwner = componentOwner;
@@ -20,8 +21,16 @@ public class Area : SerializableBase, IArea {
 
   [OnValueChanged(nameof(UpdateCurrentArea))]
   [HideLabel, EnumToggleButtons] public AreaType areaType = AreaType.Axis;
-  [HideInInspector] public IArea currentArea;
-  [HideInInspector] public AreaPoint currentAreaPoint;
+  [HideInInspector] public IArea currentArea; // ? Remove this since had setter
+
+  public IArea CurrentArea => areaType switch
+  {
+    AreaType.Axis => areaAxis,
+    AreaType.Point => areaPoint,
+    AreaType.Point2dFunc => area2DFuncPoint,
+    AreaType.Circular => areaCircular,
+    _ => null
+  };
 
   private void UpdateCurrentArea() {
     currentArea = areaType switch
@@ -33,6 +42,7 @@ public class Area : SerializableBase, IArea {
       _ => null
     };
   }
+
 
   public bool IsAxixType { get => areaType == AreaType.Axis; }
   public bool IsPointType { get => areaType == AreaType.Point || areaType == AreaType.Point2dFunc; }
@@ -48,6 +58,10 @@ public class Area : SerializableBase, IArea {
 
   [ShowIf(nameof(areaType), AreaType.Circular)]
   [HideLabel] public AreaCircular areaCircular = new AreaCircular();
+
+  public Area() {
+    currentArea = areaAxis;
+  }
 
   public bool Contains(Vector3 pos) {
     if (currentArea == null) UpdateCurrentArea();

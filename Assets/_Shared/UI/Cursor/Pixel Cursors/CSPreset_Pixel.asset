@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e349a8de82cb05409c6a59a5305694a, type: 3}
+  m_Name: CSPreset_Pixel
+  m_EditorClassIdentifier: 
+  _cursorDatas:
+  - {fileID: 11400000, guid: bdafc7766cace0842b8820b648efbcaa, type: 2}
+  - {fileID: 11400000, guid: 783292463af8b0c40a875b21160047c6, type: 2}
+  - {fileID: 11400000, guid: d338c942c8526424b921615ba66da354, type: 2}
+  - {fileID: 11400000, guid: 0b6188ef6480bb1429069b3bca8a8975, type: 2}
+  - {fileID: 11400000, guid: d3dd546c8332e8544a4576dfb686fb01, type: 2}

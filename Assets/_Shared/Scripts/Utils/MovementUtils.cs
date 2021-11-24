@@ -3,11 +3,6 @@ using System.Collections;
 using static VectorUtils;
 
 public static class MovementUtils {
-  /// <summary>Add local position Z to distance</summary>
-  public static void MoveZ(this MonoBehaviour monoBehaviour, float distance = 1f) {
-    monoBehaviour.transform.Translate(v001 * Time.deltaTime * distance);
-  }
-
   /// <summary>Add world-space position X to distance</summary>
   public static void MoveXWorld(this MonoBehaviour monoBehaviour, float distance = 1f) {
     monoBehaviour.transform.Translate(v100 * Time.deltaTime * distance, Space.World);
@@ -29,13 +24,25 @@ public static class MovementUtils {
     monoBehaviour.MoveZWorld(distances.z);
   }
 
-  /// <summary>Add local position X to distance</summary>
+  /// <summary>
+  /// Translate on local X (included deltaTime).
+  /// </summary>
   public static void MoveX(this MonoBehaviour monoBehaviour, float distance = 1f) {
-    monoBehaviour.transform.Translate(v100 * Time.deltaTime * distance);
+    monoBehaviour.transform.MoveX(distance);
   }
 
+  /// <summary>
+  /// Translate on local Y (included deltaTime).
+  /// </summary>
   public static void MoveY(this MonoBehaviour monoBehaviour, float distance = 1f) {
-    monoBehaviour.transform.Translate(v010 * Time.deltaTime * distance);
+    monoBehaviour.transform.MoveY(distance);
+  }
+
+  /// <summary>
+  /// Translate on local Z (included deltaTime).
+  /// </summary>
+  public static void MoveZ(this MonoBehaviour monoBehaviour, float distance = 1f) {
+    monoBehaviour.transform.MoveZ(distance);
   }
 
   public static void MoveXInBound(this MonoBehaviour monoBehaviour, float distance, Vector2 range) {

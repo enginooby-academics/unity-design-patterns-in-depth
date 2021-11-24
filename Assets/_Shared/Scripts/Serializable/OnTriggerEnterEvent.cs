@@ -4,5 +4,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine.Events;
 
-[Serializable, InlineProperty]
-public class OnTriggerEnterEvent : ColliderEvent { }
+namespace Enginoobz {
+  [Serializable, InlineProperty]
+  public class OnTriggerEnterEvent : ColliderEvent { }
+}

@@ -1,8 +1,25 @@
 using UnityEngine;
 
 public static class VectorUtils {
+  public static Vector3 v000 = Vector3.zero;
+
+  /// <summary>
+  /// Vector3.zero
+  /// </summary>
+  public static Vector3 v0 = Vector3.zero;
+  public static Vector3 v111 = Vector3.one;
+
+  /// <summary>
+  /// Vector3.one
+  /// </summary>
+  public static Vector3 v1 = Vector3.one;
   public static Vector3 v001 = Vector3.forward;
   public static Vector3 v011 = new Vector3(0, 1, 1);
+  public static Vector3 v101 = new Vector3(1, 0, 1);
+  public static Vector3 v110 = new Vector3(1, 1, 0);
+  public static Vector3 vm10m1 = new Vector3(-1, 0, -1);
+  public static Vector3 vm101 = new Vector3(-1, 0, 1);
+  public static Vector3 v10m1 = new Vector3(1, 0, -1);
   public static Vector3 v00m1 = Vector3.back;
   public static Vector3 v010 = Vector3.up;
   public static Vector3 v0m10 = Vector3.down;
@@ -71,5 +88,27 @@ public static class VectorUtils {
     if (axisFlag.HasFlag(AxisFlag.X) && !axisFlag.HasFlag(AxisFlag.Y) && !axisFlag.HasFlag(AxisFlag.Z)) return v011;
     if (axisFlag.HasFlag(AxisFlag.X) && axisFlag.HasFlag(AxisFlag.Y) && !axisFlag.HasFlag(AxisFlag.Z)) return v001;
     return Vector3.zero;
+  }
+
+  /// <summary>
+  /// Scale all vectors in the array by the given factor.
+  /// </summary>
+  public static Vector3[] Scale(this Vector3[] vectors, Vector3 factor) {
+    for (int i = 0; i < vectors.Length; i++) {
+      vectors[i].Scale(factor);
+    }
+
+    return vectors;
+  }
+
+  /// <summary>
+  /// Add the offset to all vectors in the array.
+  /// </summary>
+  public static Vector3[] Offset(this Vector3[] vectors, Vector3 offset) {
+    for (int i = 0; i < vectors.Length; i++) {
+      vectors[i] += offset;
+    }
+
+    return vectors;
   }
 }

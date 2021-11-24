@@ -49,9 +49,21 @@ public static class CollectionUtils {
     return list[previous];
   }
 
-
   public static T GetRandom<T>(this List<T> list) {
     return list[Random.Range(0, list.Count)];
+  }
+
+  /// <summary>
+  /// Return a random element which is different than the given one (can be null).
+  /// </summary>
+  public static T GetRandomOtherThan<T>(this List<T> list, T excludingElement) {
+    if (excludingElement == null || list.Count == 1) return list.GetRandom();
+    int excludingIndex = list.IndexOf(excludingElement);
+    int randomIndex = excludingIndex;
+    while (randomIndex == excludingIndex) {
+      randomIndex = Random.Range(0, list.Count);
+    }
+    return list[randomIndex];
   }
 
   private static System.Random rng = new System.Random();

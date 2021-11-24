@@ -12,7 +12,7 @@ public class AreaAxisPoint : AreaPoint {
   [OnValueChanged(nameof(UpdatePoints))]
   public Vector3 pointDistance = Vector3.one;
 
-  protected override void UpdatePoints() {
+  public override void UpdatePoints() {
     base.UpdatePoints();
     if (!origin.GameObject) {
       Debug.LogWarning("Origin is not set.");
