@@ -2,7 +2,7 @@ using UnityEngine;
 using static RayUtils;
 
 namespace Prototype {
-  public abstract class ShapeGenerator : MonoBehaviourSingleton<ShapeGenerator> {
+  public abstract class ShapeGenerator : MonoBehaviour {
     public Prototype.ProceduralShape template;
     protected Vector3 _mousePos = Vector3.zero;
 

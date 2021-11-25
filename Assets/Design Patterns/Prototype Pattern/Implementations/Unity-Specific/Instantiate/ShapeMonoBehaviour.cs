@@ -1,18 +1,12 @@
 using UnityEngine;
 
-namespace Prototype {
+namespace Prototype.Unity.Instantiate {
   /// <summary>
   /// Add Unity behaviours to generated procedural shapes.
   /// </summary>
   public class ShapeMonoBehaviour : MonoBehaviour {
-    public ProceduralShape shape;
-
-    void Update() {
-      shape?.OnUpdate();
-    }
-
     private void OnMouseDown() {
-      FindObjectOfType<ShapeGenerator>().template = shape;
+      FindObjectOfType<ShapeGenerator>().templateGameObject = gameObject;
     }
   }
 }
