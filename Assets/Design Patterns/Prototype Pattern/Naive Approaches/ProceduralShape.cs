@@ -37,7 +37,7 @@ namespace Prototype.Naive {
       _meshRenderer = _gameObject.AddComponent<MeshRenderer>();
       _mesh = _meshFilter.mesh;
 
-      var material = new Material(Shader.Find("Standard"));
+      var material = new Material(Shader.Find("Universal Render Pipeline/Lit"));
       material.color = color;
       _meshRenderer.material = material;
 

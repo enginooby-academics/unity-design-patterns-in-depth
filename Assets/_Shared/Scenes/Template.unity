@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.28502426, g: 0.37139055, b: 0.49601007, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -637,26 +637,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9c4cec6d868ce34db327c190639659f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 311
-  invertMovement: 1
-  invertRotation: 1
-  invertScrolWheel: 1
-  toggleMode: 0
-  keyStartA: 1
-  keyStartB: 2
-  keyPrecision: 4
-  hoverBoxSize: 150
-  adjustBoxSize: 600
-  hoverAlpha: 0.75
-  adjustAlpha: 1
-  animateBoxes: 1
-  showOOB: 1
-  undoTimerMax: 10
-  UseShader: 1
-  shaderBrightness: 1
-  isDeleted: 0
 --- !u!4 &529580570
 Transform:
   m_ObjectHideFlags: 0
@@ -1663,6 +1643,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FPS Counter
       objectReference: {fileID: 0}
+    - target: {fileID: 3647499050171774681, guid: 8b08a37eeca7987479b33dc5082355cc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9058062079351357962, guid: 8b08a37eeca7987479b33dc5082355cc,
         type: 3}
       propertyPath: m_RootOrder
@@ -1936,6 +1921,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1558768962033604927, guid: a9ae185496a0f0045a56fe567238aa45,
+        type: 3}
+      propertyPath: _controllerDataFiles
+      value: 
+      objectReference: {fileID: 11400000, guid: bddfc8f66e3ac1e4292f84db004fb4b5,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9ae185496a0f0045a56fe567238aa45, type: 3}
 --- !u!1001 &1640771683350510947

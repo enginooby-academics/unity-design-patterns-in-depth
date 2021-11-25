@@ -202,6 +202,19 @@ MonoBehaviour:
     alwaysEnable: 0
     allowInSceneView: 1
     allowedCameraTypes: 0
+--- !u!114 &-2943087041767758374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d111dc2a0b22b142804f4d59508b893, type: 3}
+  m_Name: NewURPOutlineFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
 --- !u!114 &-2730821557496591918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,7 +319,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_RendererFeatures:
   - {fileID: 3075354231182545811}
-  - {fileID: 6649408177303102393}
   - {fileID: 733416281454808313}
   - {fileID: -1461135545484695636}
   - {fileID: -8665283929704873317}
@@ -338,7 +350,8 @@ MonoBehaviour:
   - {fileID: 2340311315689419139}
   - {fileID: -6616740171100211342}
   - {fileID: -2730821557496591918}
-  m_RendererFeatureMap: 9353211c61daad2ab9a3bad68171475cf90c9ae0389e2d0a
+  - {fileID: 753354097740238408}
+  m_RendererFeatureMap: 9353211c61daad2af90c9ae0389e2d0aac27b07af600b9eb9b420a342dbabe87c257479af18f217f152fd496a1da4fa6f1dfb67adf7c5421bc6cea15e5ade593ed87ccc57b82a4c60660505f8203e984c8ab07c528122a1e1862277a16606f1379d2950c97a29d7e0453e8af217600e436bf864105f6b6f0bfd7af252cf63c949d3644e65196771b6b8cbe2491d7531db7bf64fa49855a8bfd58e0577e02b196ea1d75b0cafd0b265b6b878e17c3e91fac9e9324875752f7f92d76cf92577dd359fbbc6dc1efd15cb70152cf2a39993e095f84412f1b6100cae4ee381c298e73fcf4642d22ac86b583b17efbbd747a2072b78312df9d2ca4d2c96f10432c1ada484ee4798f73740a
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
   shaders:
@@ -395,6 +408,19 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8e1eeeaa7fba944fb8e39c0af65b268, type: 3}
   m_Name: NewTranslucentImageBlurSource
+  m_EditorClassIdentifier: 
+  m_Active: 1
+--- !u!114 &753354097740238408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d111dc2a0b22b142804f4d59508b893, type: 3}
+  m_Name: NewURPOutlineFeature
   m_EditorClassIdentifier: 
   m_Active: 1
 --- !u!114 &1400443658790461976
