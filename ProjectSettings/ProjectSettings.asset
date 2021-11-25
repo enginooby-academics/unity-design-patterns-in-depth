@@ -361,6 +361,7 @@ PlayerSettings:
   switchScreenResolutionBehavior: 2
   switchUseCPUProfiler: 0
   switchUseGOLDLinker: 0
+  switchLTOSetting: 0
   switchApplicationID: 0x01004b9000490000
   switchNSODependencies: 
   switchTitleNames_0: 
@@ -599,7 +600,7 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
-    1: OOTII_CC;UCONTEXT;ODIN_INSPECTOR;ODIN_INSPECTOR_3;URP_OUTLINE;EPO_DOTWEEN;UCONTEXT_PRO;__DIGGER__
+    1: OOTII_CC;UCONTEXT;ODIN_INSPECTOR;ODIN_INSPECTOR_3;EPO_DOTWEEN;UCONTEXT_PRO;__DIGGER__
     4: UNITY_POST_PROCESSING_STACK_V2
     7: UNITY_POST_PROCESSING_STACK_V2
     13: POWER_INSPECTOR;UNITY_POST_PROCESSING_STACK_V2;ODIN_INSPECTOR;ODIN_INSPECTOR_3;URP_OUTLINE;UCONTEXT;OOTII_CC;UCONTEXT_PRO
@@ -624,7 +625,6 @@ PlayerSettings:
   suppressCommonWarnings: 1
   allowUnsafeCode: 0
   useDeterministicCompilation: 1
-  useReferenceAssemblies: 1
   enableRoslynAnalyzers: 1
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 1
