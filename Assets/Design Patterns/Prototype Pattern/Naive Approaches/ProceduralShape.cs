@@ -18,20 +18,18 @@ namespace Prototype.Naive {
     protected MeshFilter _meshFilter;
     protected MeshRenderer _meshRenderer;
     protected Mesh _mesh;
+    protected Color _color;
 
     public GameObject GameObject => _gameObject;
     public string Name => _gameObject.name;
+    public Color Color => _color;
     public Vector3 Position => _gameObject.transform.position;
-    public Quaternion Rottion => _gameObject.transform.rotation;
-    public Vector3 LocalScale => _gameObject.transform.localScale;
 
     // TODO: uv, Material, shader, behaviours (spin, shake) 
 
-    protected ProceduralShape(string name, Color color, Vector3 position, Quaternion rotation, Vector3 localScale) {
+    protected ProceduralShape(string name, Color color, Vector3 position) {
       _gameObject = new GameObject(name);
       _gameObject.transform.position = position;
-      _gameObject.transform.rotation = rotation;
-      _gameObject.transform.localScale = localScale;
 
       _meshFilter = _gameObject.AddComponent<MeshFilter>();
       _meshRenderer = _gameObject.AddComponent<MeshRenderer>();
@@ -40,6 +38,7 @@ namespace Prototype.Naive {
       var material = new Material(Shader.Find("Universal Render Pipeline/Lit"));
       material.color = color;
       _meshRenderer.material = material;
+      _color = color;
 
       _shapeMonoBehaviour = _gameObject.AddComponent<ShapeMonoBehaviour>();
       _shapeMonoBehaviour.shape = this;

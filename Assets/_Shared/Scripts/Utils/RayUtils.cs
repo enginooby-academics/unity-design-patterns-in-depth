@@ -17,6 +17,16 @@ public static class RayUtils {
   /// </summary>
   public static RaycastHit[] HitsFromMouseRay => Physics.RaycastAll(MouseRay);
 
+  public static Vector3? MousePosOnRayHit {
+    get {
+      if (Physics.Raycast(MouseRay, out var hit)) {
+        return hit.point;
+      }
+
+      return null;
+    }
+  }
+
   /// <summary>
   /// Cast a ray from main camera to mouse position 
   /// then retrieve the list of all the components of the given type from Hits

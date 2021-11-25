@@ -5,8 +5,8 @@ namespace Prototype.Naive {
     private float _size;
     public float Size => _size;
 
-    public ProceduralCube(string name, Color color, Vector3 position, Quaternion rotation, Vector3 localScale, float size = 1f)
-    : base(name, color, position, rotation, localScale) {
+    public ProceduralCube(string name, Color color, Vector3 position, float size = 1f)
+    : base(name, color, position) {
       _size = size;
       CreateMesh();
       _gameObject.AddComponent<BoxCollider>();
