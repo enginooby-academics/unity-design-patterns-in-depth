@@ -11,6 +11,7 @@ namespace Prototype.Naive {
       var greenCube = new ProceduralCube("Cube", Color.green, v0, size: 1f);
       var redCube = new ProceduralCube("Cube", Color.red, v0, size: 1f);
       var sphere = new ProceduralSphere("Sphere", Color.yellow, v0);
+      var cylinder = new ProceduralCylinder("Cylinder", Color.cyan, v0);
       template = greenCube;
     }
 
@@ -20,8 +21,10 @@ namespace Prototype.Naive {
         var clone = new ProceduralCube(templateCube.Name, templateCube.Color, _mousePos, templateCube.Size);
       } else if (template is ProceduralSphere) {
         var templateSphere = template as ProceduralSphere;
-        print(templateSphere.Name);
-        var clone = new ProceduralSphere(templateSphere.Name, templateSphere.Color, _mousePos, templateSphere.Radius);
+        var clone = new ProceduralSphere(templateSphere.Name, templateSphere.Color, _mousePos, templateSphere.Radius, templateSphere.HorizontalSegments, templateSphere.VerticalSegments);
+      } else if (template is ProceduralCylinder) {
+        var templateCylinder = template as ProceduralCylinder;
+        var clone = new ProceduralCylinder(templateCylinder.Name, templateCylinder.Color, _mousePos, templateCylinder.Radius, templateCylinder.Segments, templateCylinder.Height);
       }
     }
 

@@ -3,8 +3,8 @@ using UnityEngine;
 namespace Prototype.Naive {
   public class ProceduralSphere : ProceduralShape {
     private float _radius;
-    public int _horizontalSegments;
-    public int _verticalSegments;
+    private int _horizontalSegments;
+    private int _verticalSegments;
 
     public float Radius => _radius;
     public int HorizontalSegments => _horizontalSegments;
