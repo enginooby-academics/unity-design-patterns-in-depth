@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Prototype.Naive {
+namespace Prototype {
   /// <summary>
   /// Add Unity behaviours to generated procedural shapes.
   /// </summary>
@@ -8,7 +8,6 @@ namespace Prototype.Naive {
     public ProceduralShape shape;
 
     void Start() {
-
     }
 
     void Update() {
