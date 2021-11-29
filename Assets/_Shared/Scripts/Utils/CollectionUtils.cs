@@ -7,6 +7,13 @@ public static class CollectionUtils {
     return list == null || list.Count == 0;
   }
 
+  /// <summary>
+  /// Check if list has at least 1 element.
+  /// </summary>
+  public static bool IsSet<T>(this IList<T> list) {
+    return list != null && list.Count > 0;
+  }
+
   public static bool ValidateIndex<T>(this IList<T> list, int index) {
     return 0 <= index && index < list.Count;
   }

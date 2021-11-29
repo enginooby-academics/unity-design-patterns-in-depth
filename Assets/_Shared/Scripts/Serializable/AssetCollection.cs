@@ -1,6 +1,5 @@
 /// Use cases: random bullets/vfx/sfx, postfx profile/character switcher in Play/Edit Mode
 
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -28,7 +27,8 @@ public class AssetCollection<T> where T : UnityEngine.Object {
   [InlineButton(nameof(GetAndSetToRandomItem), "?")]
   [InlineButton(nameof(GetAndSetToNextItem), ">")]
   [InlineButton(nameof(GetAndSetToPreviousItem), "<")]
-  [SerializeField, ValueDropdown(nameof(items)), Space(LINE_SPACE)] T currentItem;
+  [SerializeField, ValueDropdown(nameof(items)), Space(LINE_SPACE)]
+  T currentItem;
 
   public enum CollectionRetrieveMode { Current, Random, Iterate }
   [SerializeField, EnumToggleButtons, Space(LINE_SPACE)] public CollectionRetrieveMode retrieveMode = CollectionRetrieveMode.Random;

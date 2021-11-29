@@ -63,6 +63,18 @@ public static class VectorUtils {
     return new Vector2(vect.x + offset, vect.y + offset);
   }
 
+  public static Vector3 WithX(this Vector3 vect, float newX) {
+    return new Vector3(newX, vect.y, vect.z);
+  }
+
+  public static Vector3 WithY(this Vector3 vect, float newY) {
+    return new Vector3(vect.x, newY, vect.z);
+  }
+
+  public static Vector3 WithZ(this Vector3 vect, float newZ) {
+    return new Vector3(vect.x, vect.y, newZ);
+  }
+
   public static Vector3 SetX(this Vector3 vect, float newX) {
     return new Vector3(newX, vect.y, vect.z);
   }
