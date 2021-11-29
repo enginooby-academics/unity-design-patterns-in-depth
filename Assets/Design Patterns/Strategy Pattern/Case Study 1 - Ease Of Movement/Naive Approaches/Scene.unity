@@ -459,26 +459,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1592630713}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c211821ecf5d60242a90d74572912062, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d807da06aa019d468ca902fd634038d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 10
-  _movementEase:
-    id: 0
-  _movementEases:
-  - id: 1
-  - id: 2
-  - id: 3
-  references:
-    version: 1
-    00000000:
-      type: {class: EaseInBounce, ns: Strategy.Base, asm: StrategyPattern}
-    00000001:
-      type: {class: EaseInBounce, ns: Strategy.Base, asm: StrategyPattern}
-    00000002:
-      type: {class: EaseInSine, ns: Strategy.Base, asm: StrategyPattern}
-    00000003:
-      type: {class: EaseLinear, ns: Strategy.Base, asm: StrategyPattern}
+  _speed: 5
+  _movementEase: 0
 --- !u!65 &1592630715
 BoxCollider:
   m_ObjectHideFlags: 0
