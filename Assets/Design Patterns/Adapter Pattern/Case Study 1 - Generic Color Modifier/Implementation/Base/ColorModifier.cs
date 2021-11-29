@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 namespace Adapter.Base {
   public class ColorModifier : MonoBehaviour {
-    [SerializeField]
     private IColorizable _colorizableTarget;
 
     private void InitColorizableTarget() {
