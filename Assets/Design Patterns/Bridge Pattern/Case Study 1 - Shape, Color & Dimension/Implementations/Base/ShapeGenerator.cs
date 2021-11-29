@@ -8,6 +8,7 @@ namespace BridgePattern.Case1.Base {
   /// Client.
   /// </summary>
   public class ShapeGenerator : MonoBehaviour {
+    // ! Reflection sometimes causes editor crash
     [ValueDropdown(nameof(_shapeTypes)), SerializeField, SerializeReference]
     private Type _shapeType;
 
