@@ -12,7 +12,8 @@
         "DOTweenAsm",
         "MeshEffect",
         "Outlinable",
-        "ch.giezi.tools.ScriptableObjectVariant"
+        "ch.giezi.tools.ScriptableObjectVariant",
+        "AsmIUnified"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

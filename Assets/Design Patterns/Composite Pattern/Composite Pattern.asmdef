@@ -1,0 +1,17 @@
+{
+    "name": "CompositePattern",
+    "rootNamespace": "",
+    "references": [
+        "Library",
+        "AsmIUnified"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

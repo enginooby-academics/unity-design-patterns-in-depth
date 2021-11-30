@@ -1,4 +1,4 @@
-// * Define area from axes (results in line/face/box) for spawner, detector, boundary...
+// * Define area from axes (results in line/face/box)
 // * basically a Vector3Range with position origins
 using UnityEngine;
 using Sirenix.OdinInspector;
@@ -7,9 +7,11 @@ using System.Collections.Generic;
 
 [Serializable, InlineProperty]
 public class AreaAxis : SerializableBase, IArea {
-  [LabelText("Area Origins")] public List<Reference> origins;
+  [LabelText("Area Origins")]
+  public List<Reference> origins;
 
-  [HideLabel] public Vector3Range box = new Vector3Range(title: "Axes", new Vector2(-100, 100));
+  [HideLabel]
+  public Vector3Range box = new Vector3Range(title: "Axes", new Vector2(-100, 100));
 
   public bool Contains(Vector3 pos) {
     foreach (Reference origin in origins) {

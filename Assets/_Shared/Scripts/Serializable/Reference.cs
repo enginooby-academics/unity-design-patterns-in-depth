@@ -1,42 +1,47 @@
 //* Help to get single reference by different methods: tag, name, type, ref (direct assign in Inspector)... in Scene or Asset
-
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System;
 
-
 // ? Derived classes: ReferenceVector3/ReferenceTag has additional Vector3 targetVect/string tag attribute... 
 // ? Filter
-
 [Serializable, InlineProperty]
 public class Reference : SerializableBase {
   public enum FindMethod { Ref, Tag, Name, Type }
   // [Title("Target", bold: false, horizontalLine: false), PropertySpace(spaceBefore: -10)]
 
+  protected bool _enableGameObjectReference = true;
+
+  [EnableIf(nameof(_enableGameObjectReference))]
   [ShowIf(nameof(findMethod), FindMethod.Ref)]
   [InlineButton(nameof(SetPlayerAsTarget), "Player")]
   [InlineButton(nameof(SetSelfAsTarget), "Self")]
-  [SerializeField, HideLabel] GameObject gameObjectRef;
+  [SerializeField, HideLabel]
+  protected GameObject _gameObjectRef;
+
   private void SetPlayerAsTarget() {
-    gameObjectRef = GameObject.FindGameObjectWithTag("Player");
-    if (!gameObjectRef) gameObjectRef = GameObject.Find("Player");
-    if (!gameObjectRef) Debug.LogWarning("GameObject with Player tag/name does not exist.");
+    _gameObjectRef = GameObject.FindGameObjectWithTag("Player");
+    if (!_gameObjectRef) _gameObjectRef = GameObject.Find("Player");
+    if (!_gameObjectRef) Debug.LogWarning("GameObject with Player tag/name does not exist.");
   }
 
   private void SetSelfAsTarget() {
     if (!componentOwner) return;
-    gameObjectRef = componentOwner;
+    _gameObjectRef = componentOwner;
   }
 
+  [EnableIf(nameof(_enableGameObjectReference))]
   [ShowIf(nameof(findMethod), FindMethod.Tag)]
   [NaughtyAttributes.Tag]
   [HideLabel, SerializeField]
   private string _tag = "Player";
 
+  [EnableIf(nameof(_enableGameObjectReference))]
   [ShowIf(nameof(findMethod), FindMethod.Name)]
   [HideLabel, SerializeField]
   private string _name = "Player";
 
+  [EnableIf(nameof(_enableGameObjectReference))]
   [ShowIf(nameof(findMethod), FindMethod.Type)]
   [HideLabel, SerializeField]
   private string _type;
@@ -45,28 +50,29 @@ public class Reference : SerializableBase {
   public string Name => _name;
   public string Type => _type;
 
+  [EnableIf(nameof(_enableGameObjectReference))]
   [EnumToggleButtons, HideLabel]
   public FindMethod findMethod;
 
   public GameObject GameObject {
     get {
-      if (!gameObjectRef) FindTarget();
-      return gameObjectRef;
+      if (!_gameObjectRef) FindTarget();
+      return _gameObjectRef;
     }
     set {
-      if (value) gameObjectRef = value;
+      if (value) _gameObjectRef = value;
     }
   }
 
   // UTIL
   private void FindTarget() {
-    if (findMethod == FindMethod.Tag) gameObjectRef = GameObject.FindGameObjectWithTag(_tag);
-    if (findMethod == FindMethod.Name) gameObjectRef = GameObject.Find(_name);
+    if (findMethod == FindMethod.Tag) _gameObjectRef = GameObject.FindGameObjectWithTag(_tag);
+    if (findMethod == FindMethod.Name) _gameObjectRef = GameObject.Find(_name);
     // if (targetFindMethod == FindMethod.Name) target = GameObject.FindObjectOfType<GetType // IMPL
 
-    if (gameObjectRef) {
-      _name = gameObjectRef.name;
-      _tag = gameObjectRef.tag;
+    if (_gameObjectRef) {
+      _name = _gameObjectRef.name;
+      _tag = _gameObjectRef.tag;
     }
   }
 }

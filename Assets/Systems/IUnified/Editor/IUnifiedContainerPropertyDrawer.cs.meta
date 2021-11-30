@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 0b407bd9cc49f1743aa3814d36578970
+labels:
+- C#
+- interface
+- interfaces
+- inspector
+- editor
+- field
+- fields
+- dependency
+- dependencies
+- abstraction
+- abstractions
+- IUnified
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 

@@ -7,12 +7,14 @@ using System.Collections.Generic;
 [Serializable, InlineProperty]
 public abstract class AreaPoint : SerializableBase, IArea {
   [OnValueChanged(nameof(UpdatePoints), true)]
-  [LabelText("Area Origin")] public Reference origin; // ? Replace by ReferenceVector3
+  [LabelText("Area Origin")]
+  public Reference origin; // ? Replace by ReferenceVector3
 
   [OnValueChanged(nameof(UpdatePoints))]
   public float pointRadius = .5f;
 
-  [HideInInspector] public List<Vector3> pointPositions = new List<Vector3>();
+  [HideInInspector]
+  public List<Vector3> pointPositions = new List<Vector3>();
 
   [InfoBox("Create Transforms as children of Origin, useful for manual positioning points or moving Origin.")]
   [OnValueChanged(nameof(UpdatePoints))]
@@ -41,7 +43,6 @@ public abstract class AreaPoint : SerializableBase, IArea {
     if (!origin.GameObject) return null;
 
     GameObject pointTransform = new GameObject(name);
-    // pointTransform.AddComponent<SpawnPoint>(); // ? Replace/remove SpanwPoint component 
     pointTransform.transform.position = pos;
     pointTransform.transform.SetParent(origin.GameObject.transform);
     return pointTransform.transform;

@@ -1,14 +1,15 @@
-// * Define area from radius & angle. Use case: vision area (where a character can see)
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System;
-using System.Collections.Generic;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
 // ? Rename to AreaArc3D or AreaSphericalSector
 [Serializable, InlineProperty]
+/// <summary>
+/// * Define area from radius & angle. Use case: vision area
+/// </summary>
 public class AreaCircular : SerializableBase, IArea {
   [BoxGroup("$label")]
   [HideLabel] public Reference origin; // ? Replace by ReferenceVector3
@@ -61,8 +62,8 @@ public class AreaCircular : SerializableBase, IArea {
     if (gizmosWire) Gizmos.DrawWireSphere(origin.GameObject.transform.position, radius);
     else Gizmos.DrawSphere(origin.GameObject.transform.position, radius);
 
-    // Handles.color = color.Value;
-    // Transform transform = origin.GameObject.transform;
-    // Handles.DrawSolidArc(transform.position, transform.up, transform.position, angle, radius);
+    Handles.color = color.Value;
+    Transform transform = origin.GameObject.transform;
+    Handles.DrawSolidArc(transform.position, transform.up, transform.position, angle, radius);
   }
 }

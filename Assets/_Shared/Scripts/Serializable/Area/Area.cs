@@ -1,7 +1,6 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System;
-using System.Collections.Generic;
 
 // ? Create Serializable AreaMultiple/Areas
 // ? Rename AreaComposite/AreaSingle
@@ -20,8 +19,11 @@ public class Area : SerializableBase, IArea {
   public enum AreaType { Axis, Point, Point2dFunc, Circular } // TODO: Polygon type w/ number of vertices: triangle (3), square (4)...
 
   [OnValueChanged(nameof(UpdateCurrentArea))]
-  [HideLabel, EnumToggleButtons] public AreaType areaType = AreaType.Axis;
-  [HideInInspector] public IArea currentArea; // ? Remove this since had setter
+  [HideLabel, EnumToggleButtons]
+  public AreaType areaType = AreaType.Axis;
+
+  [HideInInspector]
+  public IArea currentArea; // ? Remove this since had setter
 
   public IArea CurrentArea => areaType switch
   {
@@ -43,21 +45,24 @@ public class Area : SerializableBase, IArea {
     };
   }
 
-
   public bool IsAxixType { get => areaType == AreaType.Axis; }
   public bool IsPointType { get => areaType == AreaType.Point || areaType == AreaType.Point2dFunc; }
 
   [ShowIf(nameof(areaType), AreaType.Axis)]
-  [HideLabel] public AreaAxis areaAxis;
+  [HideLabel]
+  public AreaAxis areaAxis;
 
   [ShowIf(nameof(areaType), AreaType.Point)]
-  [HideLabel] public AreaAxisPoint areaPoint;
+  [HideLabel]
+  public AreaAxisPoint areaPoint;
 
   [ShowIf(nameof(areaType), AreaType.Point2dFunc)]
-  [HideLabel] public Area2DFuncPoint area2DFuncPoint;
+  [HideLabel]
+  public Area2DFuncPoint area2DFuncPoint;
 
   [ShowIf(nameof(areaType), AreaType.Circular)]
-  [HideLabel] public AreaCircular areaCircular = new AreaCircular();
+  [HideLabel]
+  public AreaCircular areaCircular = new AreaCircular();
 
   public Area() {
     currentArea = areaAxis;
