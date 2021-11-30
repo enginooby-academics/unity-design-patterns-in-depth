@@ -1,3 +1,4 @@
+using System.Linq;
 using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
@@ -6,7 +7,7 @@ using UnityEngine;
 namespace CompositePattern.Case1.Base {
   [Serializable, InlineProperty]
   /// <summary>
-  /// 'Composite' class.
+  /// The 'Composite' class.
   /// </summary>
   public class AreaComposite : Area {
     [SerializeField, SerializeReference]
@@ -15,15 +16,16 @@ namespace CompositePattern.Case1.Base {
 
     public AreaComposite(List<Area> areas) {
       _areas = areas;
-      _isAreaComposite = true;
+      _isComposite = true;
     }
 
     public AreaComposite() {
       _areas = new List<Area>();
-      _isAreaComposite = true;
+      _isComposite = true;
     }
 
     public List<Area> Areas => _areas;
+    public List<Area> EnableAreas => Areas.Where(area => area.IsEnabled).ToList();
 
     public virtual void Add(Area area) {
       _areas.Add(area);
@@ -35,11 +37,13 @@ namespace CompositePattern.Case1.Base {
 
     public override Vector3 RandomPoint {
       get {
-        return _areas.GetRandom().RandomPoint;
+        return EnableAreas.GetRandom().RandomPoint; // ? Performance
       }
     }
 
     public override bool Contains(Vector3 pos) {
+      if (!_isEnabled) return false;
+
       foreach (var area in _areas) {
         if (area.Contains(pos)) return true;
       }
@@ -51,7 +55,7 @@ namespace CompositePattern.Case1.Base {
       if (_areas.IsUnset()) return;
 
       foreach (var area in _areas) {
-        area.DrawGizmos(color);
+        area?.DrawGizmos(color);
       }
     }
 

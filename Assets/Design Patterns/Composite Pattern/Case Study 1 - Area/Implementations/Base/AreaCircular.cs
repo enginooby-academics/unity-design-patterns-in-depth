@@ -1,25 +1,29 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System;
+using Drawing;
+using Unity.Mathematics;
 #if UNITY_EDITOR
-using UnityEditor;
 #endif
 
 namespace CompositePattern.Case1.Base {
   // ? Rename to AreaArc3D or AreaSphericalSector
   [Serializable, InlineProperty]
   /// <summary>
+  /// The 'Leaf' class.
   /// * Define area from radius & angle. Use case: vision area.
   /// </summary>
   public class AreaCircular : Area {
     // private string _label;
 
     [SerializeField]
-    [BoxGroup("Circular")]
+    [ToggleGroup(nameof(_isEnabled))]
+    [BoxGroup(nameof(_isEnabled) + "/Circular")]
     private float _radius = 10f;
 
     [SerializeField]
-    [BoxGroup("Circular")]
+    [ToggleGroup(nameof(_isEnabled))]
+    [BoxGroup(nameof(_isEnabled) + "/Circular")]
     private float _angle = 360f;
 
     public AreaCircular() : base() {
@@ -38,6 +42,8 @@ namespace CompositePattern.Case1.Base {
     public override Vector3 RandomPoint => throw new NotImplementedException();
 
     public override bool Contains(Vector3 pos) {
+      if (!_isEnabled) return false;
+
       foreach (ReferenceVector3 origin in _origins) {
         // https://learn.unity.com/tutorial/chasing-the-player?uv=2019.4&projectId=5e0b85cdedbc2a144cf5cde5#5e0b8be8edbc2a035d135cd8
         Vector3 directionToPos = pos - origin.Value;
@@ -50,20 +56,18 @@ namespace CompositePattern.Case1.Base {
     }
 
     protected override void DrawGizmosOnSingleOrigin(ReferenceVector3 origin) {
-      if (!origin.HasValue) return;
-      Vector3 originPos = origin.Value;
-      Gizmos.color = _gizmosColor;
-      Handles.color = _gizmosColor;
-      Transform transform = origin.GameObject.transform;
+      // TODO: draw sphere sector (3D)
+      float a1 = -.5f * _angle * Mathf.PI / 180f;
+      float a2 = .5f * _angle * Mathf.PI / 180f;
+      var arcStart = (float3)origin.Value + new float3(Mathf.Cos(a1), 0, Mathf.Sin(a1)) * _radius;
+      var arcEnd = (float3)origin.Value + new float3(Mathf.Cos(a2), 0, Mathf.Sin(a2)) * _radius;
 
-      // TODO: draw portion of sphere based on angle
-      // if (gizmosWire) Gizmos.DrawWireSphere(origin.GameObject.transform.position, radius);
-      // else Gizmos.DrawSphere(origin.GameObject.transform.position, radius);
-
-      if (_gizmosMode == GizmosMode.Solid) {
-        Handles.DrawSolidArc(transform.position, transform.up, transform.position, _angle, _radius);
-      } else if (_gizmosMode == GizmosMode.Wire) {
-        Handles.DrawWireArc(transform.position, transform.up, transform.position, _angle, _radius);
+      using (Draw.WithLineWidth(_gizmosWidth)) {
+        if (_gizmosMode == GizmosMode.Solid) {
+          Draw.SolidArc(origin.Value, arcStart, arcEnd, _gizmosColor);
+        } else if (_gizmosMode == GizmosMode.Wire) {
+          Draw.Arc(origin.Value, arcStart, arcEnd, _gizmosColor);
+        }
       }
     }
   }

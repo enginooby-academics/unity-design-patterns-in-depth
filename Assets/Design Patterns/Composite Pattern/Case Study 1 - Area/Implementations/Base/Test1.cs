@@ -1,8 +1,9 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Drawing;
 
 namespace CompositePattern.Case1.Base {
-  public class Test1 : MonoBehaviour {
+  public class Test1 : MonoBehaviourGizmos {
     [SerializeField, SerializeReference, HideLabel]
     private Area _spawnArea = new AreaComposite();
 
@@ -12,7 +13,7 @@ namespace CompositePattern.Case1.Base {
       (_spawnArea as AreaComposite).Add(new AreaAxis(gameObject));
     }
 
-    private void OnDrawGizmos() {
+    public override void DrawGizmos() {
       _spawnArea?.DrawGizmos();
     }
 

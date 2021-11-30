@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 34839133}
   - component: {fileID: 34839132}
   - component: {fileID: 34839131}
+  - component: {fileID: 34839134}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -206,6 +207,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &34839134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34839130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &161344087
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,9 +369,12 @@ MonoBehaviour:
     00000000:
       type: {class: AreaComposite, ns: CompositePattern.Case1.Base, asm: CompositePattern}
       data:
+        _isEnabled: 1
         _origins: []
         _gizmosColor: {r: 0, g: 1, b: 1, a: 1}
+        _gizmosWidth: 1.5
         _gizmosMode: 0
+        _gizmosDisplay: 0
         _areas:
         - id: 1
         - id: 2
@@ -345,6 +382,7 @@ MonoBehaviour:
     00000001:
       type: {class: AreaAxis, ns: CompositePattern.Case1.Base, asm: CompositePattern}
       data:
+        _isEnabled: 1
         _origins:
         - componentOwner: {fileID: 0}
           _gameObjectRef: {fileID: 204964188}
@@ -354,8 +392,10 @@ MonoBehaviour:
           findMethod: 0
           _useStaticVector3: 0
           _value: {x: 0, y: 0, z: 0}
-        _gizmosColor: {r: 0, g: 1, b: 1, a: 1}
-        _gizmosMode: 0
+        _gizmosColor: {r: 0, g: 0, b: 0, a: 1}
+        _gizmosWidth: 3.39
+        _gizmosMode: 1
+        _gizmosDisplay: 8
         _box:
           title: Axes
           xRange:
@@ -388,24 +428,9 @@ MonoBehaviour:
             max: 10
           initialMinMax: {x: 0, y: 0}
     00000002:
-      type: {class: AreaCircular, ns: CompositePattern.Case1.Base, asm: CompositePattern}
-      data:
-        _origins:
-        - componentOwner: {fileID: 0}
-          _gameObjectRef: {fileID: 204964188}
-          _tag: Player
-          _name: Player
-          _type: 
-          findMethod: 0
-          _useStaticVector3: 0
-          _value: {x: 0, y: 0, z: 0}
-        _gizmosColor: {r: 0, g: 1, b: 1, a: 1}
-        _gizmosMode: 0
-        _radius: 8.81
-        _angle: 360
-    00000003:
       type: {class: AreaAxis, ns: CompositePattern.Case1.Base, asm: CompositePattern}
       data:
+        _isEnabled: 1
         _origins:
         - componentOwner: {fileID: 0}
           _gameObjectRef: {fileID: 204964188}
@@ -413,41 +438,62 @@ MonoBehaviour:
           _name: Player
           _type: 
           findMethod: 0
-          _useStaticVector3: 0
+          _useStaticVector3: 1
           _value: {x: 0, y: 0, z: 0}
-        _gizmosColor: {r: 0, g: 1, b: 1, a: 1}
+        _gizmosColor: {r: 1, g: 0.49435714, b: 0, a: 1}
+        _gizmosWidth: 1.89
         _gizmosMode: 0
+        _gizmosDisplay: 8
         _box:
           title: Axes
           xRange:
             OnValueChange:
               m_PersistentCalls:
                 m_Calls: []
-            Value: {x: 0, y: 0}
-            min: -100
-            max: 100
+            Value: {x: -0.2758634, y: 2.8275847}
+            min: -10
+            max: 10
           yRange:
             OnValueChange:
               m_PersistentCalls:
                 m_Calls: []
-            Value: {x: 0, y: 0}
-            min: -100
-            max: 100
+            Value: {x: -0.2758634, y: 2.8275847}
+            min: -10
+            max: 10
           zRange:
             OnValueChange:
               m_PersistentCalls:
                 m_Calls: []
-            Value: {x: 0, y: 0}
-            min: -100
-            max: 100
+            Value: {x: -0.2758634, y: 2.8275847}
+            min: -10
+            max: 10
           all:
             OnValueChange:
               m_PersistentCalls:
                 m_Calls: []
-            Value: {x: 0, y: 0}
+            Value: {x: -0.2758634, y: 2.8275847}
             min: -10
             max: 10
           initialMinMax: {x: 0, y: 0}
+    00000003:
+      type: {class: AreaCircular, ns: CompositePattern.Case1.Base, asm: CompositePattern}
+      data:
+        _isEnabled: 0
+        _origins:
+        - componentOwner: {fileID: 0}
+          _gameObjectRef: {fileID: 204964188}
+          _tag: Player
+          _name: Player
+          _type: 
+          findMethod: 0
+          _useStaticVector3: 0
+          _value: {x: 0, y: 0, z: 0}
+        _gizmosColor: {r: 1, g: 0, b: 0.15174389, a: 1}
+        _gizmosWidth: 2.89
+        _gizmosMode: 0
+        _gizmosDisplay: 0
+        _radius: 3.42
+        _angle: 93.2
 --- !u!4 &204964190
 Transform:
   m_ObjectHideFlags: 0
@@ -456,7 +502,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 204964188}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.25, y: 0.21, z: 4.83}
+  m_LocalPosition: {x: -6.49, y: -2.17, z: -0.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
