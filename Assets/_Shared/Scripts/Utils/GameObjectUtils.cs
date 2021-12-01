@@ -9,4 +9,11 @@ public static class GameObjectUtils {
   public static void ToggleActive(this List<GameObject> goList) {
     goList.ForEach(ToggleActive);
   }
+
+  /// <summary>
+  /// Hide GameObject from the hierarchy.
+  /// </summary>
+  public static void HideAndDontSave(this GameObject gameObject) {
+    gameObject.hideFlags = HideFlags.HideAndDontSave;
+  }
 }

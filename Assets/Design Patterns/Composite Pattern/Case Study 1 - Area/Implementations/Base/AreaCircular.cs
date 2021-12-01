@@ -41,6 +41,7 @@ namespace CompositePattern.Case1.Base {
 
     public override Vector3 RandomPoint => throw new NotImplementedException();
 
+    // FIX: range not correct
     public override bool Contains(Vector3 pos) {
       if (!_isEnabled) return false;
 
@@ -57,8 +58,10 @@ namespace CompositePattern.Case1.Base {
 
     protected override void DrawGizmosOnSingleOrigin(ReferenceVector3 origin) {
       // TODO: draw sphere sector (3D)
-      float a1 = -.5f * _angle * Mathf.PI / 180f;
-      float a2 = .5f * _angle * Mathf.PI / 180f;
+      // float a1 = -.5f * _angle * Mathf.PI / 180f;
+      // float a2 = .5f * _angle * Mathf.PI / 180f;
+      float a1 = 0 * _angle * Mathf.PI / 180f;
+      float a2 = 1 * _angle * Mathf.PI / 180f;
       var arcStart = (float3)origin.Value + new float3(Mathf.Cos(a1), 0, Mathf.Sin(a1)) * _radius;
       var arcEnd = (float3)origin.Value + new float3(Mathf.Cos(a2), 0, Mathf.Sin(a2)) * _radius;
 

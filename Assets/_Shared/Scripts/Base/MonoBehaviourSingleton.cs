@@ -13,7 +13,7 @@ public class MonoBehaviourSingleton<T> : MonoBehaviour where T : Component {
         }
         if (_instance == null) {
           GameObject obj = new GameObject();
-          obj.hideFlags = HideFlags.HideAndDontSave;
+          obj.HideAndDontSave();
           _instance = obj.AddComponent<T>();
         }
       }

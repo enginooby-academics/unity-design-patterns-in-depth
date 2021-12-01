@@ -101,6 +101,9 @@ public static class CollectionUtils {
   /// </summary>
   public static void Destroy<T>(this T[] components) where T : MonoBehaviour {
     foreach (T component in components) {
+#if UNITY_EDITOR
+      if (!UnityEditor.EditorApplication.isPlaying) Object.DestroyImmediate(component.gameObject);
+#endif
       Object.Destroy(component.gameObject);
     }
   }

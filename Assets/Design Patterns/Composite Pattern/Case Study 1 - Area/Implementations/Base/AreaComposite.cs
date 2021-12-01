@@ -27,8 +27,9 @@ namespace CompositePattern.Case1.Base {
     public List<Area> Areas => _areas;
     public List<Area> EnableAreas => Areas.Where(area => area.IsEnabled).ToList();
 
-    public virtual void Add(Area area) {
+    public virtual AreaComposite Add(Area area) {
       _areas.Add(area);
+      return this;
     }
 
     public virtual void Remove(Area area) {

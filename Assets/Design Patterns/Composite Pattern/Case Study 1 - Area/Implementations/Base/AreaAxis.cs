@@ -37,11 +37,11 @@ namespace CompositePattern.Case1.Base {
       return false;
     }
 
-    // REFACTOR
     protected override void DrawGizmosOnSingleOrigin(ReferenceVector3 origin) {
       Vector3 center = GetBoxOriginPos(origin);
       Vector3 size = _box.Size;
 
+      // REFACTOR
       if (_gizmosDisplay.HasFlag(GizmosDisplay.InGame)) {
         using (Draw.ingame.WithLineWidth(_gizmosWidth)) {
           if (_gizmosMode == GizmosMode.Solid) {
