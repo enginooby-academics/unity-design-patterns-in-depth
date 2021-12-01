@@ -31,16 +31,16 @@ namespace FacadePattern.Case1.Base {
 
     private void SetupBeautifySystem() {
       GameObject beautifyGameObject = new GameObject("Beautify");
-      beautifyGameObject.HideAndDontSave();
+      // beautifyGameObject.HideInHierarchy();
       Volume beautifyVolume = beautifyGameObject.AddComponent<Volume>();
       beautifyVolume.LoadVolumeProfile("Graphics/PFX_Beautify_FacadePattern");
-      beautifyGameObject.AddComponent<Beautify.Universal.BeautifySettings>();
+      // beautifyGameObject.AddComponent<Beautify.Universal.BeautifySettings>();
       _beautifySystem = beautifyGameObject.AddComponent<PostFxModifierBeautify>();
     }
 
     private void SetupSCPESystem() {
       GameObject scpeGameObject = new GameObject("SCPE");
-      scpeGameObject.HideAndDontSave();
+      // scpeGameObject.HideInHierarchy();
       Volume scpeVolume = scpeGameObject.AddComponent<Volume>();
       scpeVolume.LoadVolumeProfile("Graphics/PFX_SCPE_FacadePattern");
       _scpeSystem = scpeGameObject.AddComponent<PostFxModifierSCPE>();
@@ -48,7 +48,7 @@ namespace FacadePattern.Case1.Base {
 
     private void SetupPostFXSystem() {
       GameObject postFXGameObject = new GameObject("PostFX");
-      postFXGameObject.HideAndDontSave();
+      // postFXGameObject.HideInHierarchy();
       _postFXSytem = postFXGameObject.AddComponent<Volume>();
     }
 

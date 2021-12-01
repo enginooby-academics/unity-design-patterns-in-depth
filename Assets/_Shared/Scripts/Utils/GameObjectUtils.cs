@@ -11,9 +11,16 @@ public static class GameObjectUtils {
   }
 
   /// <summary>
-  /// Hide GameObject from the hierarchy.
+  /// The GameObject is not shown in the Hierarchy, not saved to to Scenes, and not unloaded by Resources.UnloadUnusedAssets().
   /// </summary>
   public static void HideAndDontSave(this GameObject gameObject) {
-    // gameObject.hideFlags = HideFlags.HideAndDontSave;
+    gameObject.hideFlags = HideFlags.HideAndDontSave;
+  }
+
+  /// <summary>
+  /// The object will not appear in the hierarchy.
+  /// </summary>
+  public static void HideInHierarchy(this GameObject gameObject) {
+    gameObject.hideFlags = HideFlags.HideInHierarchy;
   }
 }
