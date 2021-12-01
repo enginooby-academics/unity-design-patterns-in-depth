@@ -14,6 +14,6 @@ public static class GameObjectUtils {
   /// Hide GameObject from the hierarchy.
   /// </summary>
   public static void HideAndDontSave(this GameObject gameObject) {
-    gameObject.hideFlags = HideFlags.HideAndDontSave;
+    // gameObject.hideFlags = HideFlags.HideAndDontSave;
   }
 }

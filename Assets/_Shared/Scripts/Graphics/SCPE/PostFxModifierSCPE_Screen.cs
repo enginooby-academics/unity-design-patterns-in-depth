@@ -104,6 +104,10 @@ namespace Enginoobz.Graphics {
       blackBars.active = !blackBars.active;
     }
 
+    public void ActivateBlackBars(bool isActive) {
+      blackBars.active = isActive;
+    }
+
     [Command(CommandPrefix.PostFx + "kaleidoscope-toggle")]
     public void ToggleKaleidoscope() {
       kaleidoscope.ToggleState();

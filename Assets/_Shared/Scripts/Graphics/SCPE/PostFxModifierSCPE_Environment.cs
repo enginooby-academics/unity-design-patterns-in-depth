@@ -38,5 +38,9 @@ namespace Enginoobz.Graphics {
     public void ToggleFog() {
       fog.active = !fog.active;
     }
+
+    public void ActivateFog(bool isActive) {
+      fog.active = isActive;
+    }
   }
 }

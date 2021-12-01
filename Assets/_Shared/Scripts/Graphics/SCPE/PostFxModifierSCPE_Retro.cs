@@ -63,6 +63,10 @@ namespace Enginoobz.Graphics {
       dithering.active = !dithering.active;
     }
 
+    public void ActivateDithering(bool isActive) {
+      dithering.active = isActive;
+    }
+
     [Command(CommandPrefix.PostFx + "pixelize-toggle")]
     public void TogglePixelize() {
       pixelize.active = !pixelize.active;
@@ -71,6 +75,10 @@ namespace Enginoobz.Graphics {
     [Command(CommandPrefix.PostFx + "posterize-toggle")]
     public void TogglePosterize() {
       posterize.active = !posterize.active;
+    }
+
+    public void ActivatePosterize(bool isActive) {
+      posterize.active = isActive;
     }
 
     [Command(CommandPrefix.PostFx + "scanlines-toggle")]

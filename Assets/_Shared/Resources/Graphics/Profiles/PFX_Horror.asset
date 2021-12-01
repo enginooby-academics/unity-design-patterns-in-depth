@@ -72,7 +72,7 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.211
+    m_Value: 0.332
     min: 0
     max: 1
   smoothness:
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   texture:
     m_OverrideState: 1
-    m_Value: {fileID: 2800000, guid: 2b698f1b5f9aa944899012a28b478cae, type: 3}
+    m_Value: {fileID: 2800000, guid: 6ece7d54efd9cad44828a82e920d64ae, type: 3}
   contribution:
     m_OverrideState: 1
     m_Value: 1
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-  m_Name: Movie4_profile
+  m_Name: PFX_Horror
   m_EditorClassIdentifier: 
   components:
   - {fileID: 849379129802519247}
@@ -153,7 +153,7 @@ MonoBehaviour:
   - {fileID: -7011558710299706105}
   - {fileID: -412145549234005601}
   - {fileID: 6113422710150601651}
-  - {fileID: 1167728373745559721}
+  - {fileID: 4328640520945426141}
 --- !u!114 &849379129802519247
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -171,7 +171,7 @@ MonoBehaviour:
   mode:
     m_OverrideState: 1
     m_Value: 2
---- !u!114 &1167728373745559721
+--- !u!114 &3360876200094112920
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -189,11 +189,11 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0
   quality:
-    m_OverrideState: 1
-    m_Value: 1
+    m_OverrideState: 0
+    m_Value: 0
   intensity:
-    m_OverrideState: 1
-    m_Value: 0.504
+    m_OverrideState: 0
+    m_Value: 0
     min: 0
     max: 1
   clamp:
@@ -201,6 +201,44 @@ MonoBehaviour:
     m_Value: 0.05
     min: 0
     max: 0.2
+--- !u!114 &4328640520945426141
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66f335fb1ffd8684294ad653bf1c7564, type: 3}
+  m_Name: ColorAdjustments
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  postExposure:
+    m_OverrideState: 1
+    m_Value: -0.1
+  contrast:
+    m_OverrideState: 1
+    m_Value: 33
+    min: -100
+    max: 100
+  colorFilter:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+    hdr: 1
+    showAlpha: 0
+    showEyeDropper: 1
+  hueShift:
+    m_OverrideState: 0
+    m_Value: 0
+    min: -180
+    max: 180
+  saturation:
+    m_OverrideState: 1
+    m_Value: -29
+    min: -100
+    max: 100
 --- !u!114 &6113422710150601651
 MonoBehaviour:
   m_ObjectHideFlags: 3

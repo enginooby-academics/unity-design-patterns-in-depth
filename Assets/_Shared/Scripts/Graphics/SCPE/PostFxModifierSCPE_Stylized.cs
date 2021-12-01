@@ -56,6 +56,10 @@ namespace Enginoobz.Graphics {
       kuwahara.active = !kuwahara.active;
     }
 
+    public void ActivateKuwahara(bool isActive) {
+      kuwahara.active = isActive;
+    }
+
     [Command(CommandPrefix.PostFx + "edge-detection-toggle")]
     public void ToggleEdgeDetection() {
       edgeDetection.active = !edgeDetection.active;

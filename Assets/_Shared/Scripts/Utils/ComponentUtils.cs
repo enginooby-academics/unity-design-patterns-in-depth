@@ -4,6 +4,10 @@ using System.Reflection;
 using System.Collections;
 
 public static class ComponentUtils {
+  public static void DestroyGO(this Component component) {
+    if (component != null) UnityEngine.Object.Destroy(component.gameObject);
+  }
+
   public static T CopyTo<T>(this T original, GameObject destination) where T : Component {
     System.Type type = original.GetType();
     Component copy = destination.AddComponent(type);

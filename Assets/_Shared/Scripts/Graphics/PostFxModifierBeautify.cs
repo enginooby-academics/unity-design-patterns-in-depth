@@ -8,7 +8,9 @@ namespace Enginoobz.Graphics {
   // Used for short keys (controller) or UI
   [RequireComponent(typeof(Volume))]
   public class PostFxModifierBeautify : MonoBehaviour {
-    private Beautify.Universal.Beautify settings;
+    private Beautify.Universal.Beautify _settings;
+    public Beautify.Universal.Beautify Settings => _settings ?? BeautifySettings.settings;
+
     private bool originalBlurState;
     private bool originalSharpenState;
     private bool originalVignettingOuterRingState;
@@ -16,61 +18,69 @@ namespace Enginoobz.Graphics {
     private bool originalOutlineState;
     private bool originalNightVisionState;
 
-    private void Start() {
+    private void Awake() {
       GetBeautifySettings();
     }
 
     private void GetBeautifySettings() {
-      settings = BeautifySettings.settings;
-      originalBlurState = settings.blurIntensity.overrideState;
-      originalSharpenState = settings.sharpenIntensity.overrideState;
-      originalVignettingOuterRingState = settings.vignettingOuterRing.overrideState;
-      originalVignettingInnerRingState = settings.vignettingInnerRing.overrideState;
-      originalNightVisionState = settings.nightVision.overrideState;
-      originalOutlineState = settings.outline.overrideState;
+      originalBlurState = Settings.blurIntensity.overrideState;
+      originalSharpenState = Settings.sharpenIntensity.overrideState;
+      originalVignettingOuterRingState = Settings.vignettingOuterRing.overrideState;
+      originalVignettingInnerRingState = Settings.vignettingInnerRing.overrideState;
+      originalNightVisionState = Settings.nightVision.overrideState;
+      originalOutlineState = Settings.outline.overrideState;
     }
 
     public void Disable() {
-      settings.active = false;
+      Settings.active = false;
     }
 
     public void ToggleCompareMode() {
-      settings.active = true;
-      settings.compareMode.overrideState = !settings.compareMode.overrideState;
+      Settings.active = true;
+      Settings.compareMode.overrideState = !Settings.compareMode.overrideState;
     }
 
     [Command(CommandPrefix.PostFx + "blur-toggle")]
     public void ToggleBlur() {
-      settings.blurIntensity.overrideState = !settings.blurIntensity.overrideState;
+      Settings.blurIntensity.overrideState = !Settings.blurIntensity.overrideState;
     }
 
     [Command(CommandPrefix.PostFx + "sharpen-toggle")]
     public void ToggleSharpen() {
-      settings.sharpenIntensity.overrideState = !settings.sharpenIntensity.overrideState;
+      Settings.sharpenIntensity.overrideState = !Settings.sharpenIntensity.overrideState;
     }
 
     [Command(CommandPrefix.PostFx + "vignette-toggle")]
     public void ToggleVignette() {
-      settings.vignettingOuterRing.overrideState = !settings.vignettingOuterRing.overrideState;
-      settings.vignettingInnerRing.overrideState = !settings.vignettingInnerRing.overrideState;
+      Settings.vignettingOuterRing.overrideState = !Settings.vignettingOuterRing.overrideState;
+      Settings.vignettingInnerRing.overrideState = !Settings.vignettingInnerRing.overrideState;
+    }
+
+    public void ActivateVignette(bool isActive) {
+      Settings.vignettingOuterRing.overrideState = isActive;
+      Settings.vignettingInnerRing.overrideState = isActive;
     }
 
     [Command(CommandPrefix.PostFx + "night-vision-toggle")]
     public void ToggleNightVision() {
-      settings.nightVision.overrideState = !settings.nightVision.overrideState;
+      Settings.nightVision.overrideState = !Settings.nightVision.overrideState;
     }
 
     [Command(CommandPrefix.PostFx + "outline-toggle")]
     public void ToggleOutline() {
-      settings.outline.overrideState = !settings.outline.overrideState;
+      Settings.outline.overrideState = !Settings.outline.overrideState;
+    }
+
+    public void ActivateOutline(bool isActive) {
+      Settings.outline.overrideState = isActive;
     }
 
     public void Reset() {
-      settings.blurIntensity.overrideState = originalBlurState;
-      settings.vignettingOuterRing.overrideState = originalVignettingOuterRingState;
-      settings.vignettingInnerRing.overrideState = originalVignettingInnerRingState;
-      settings.nightVision.overrideState = originalNightVisionState;
-      settings.outline.overrideState = originalOutlineState;
+      Settings.blurIntensity.overrideState = originalBlurState;
+      Settings.vignettingOuterRing.overrideState = originalVignettingOuterRingState;
+      Settings.vignettingInnerRing.overrideState = originalVignettingInnerRingState;
+      Settings.nightVision.overrideState = originalNightVisionState;
+      Settings.outline.overrideState = originalOutlineState;
     }
 
     public void Randomize() {

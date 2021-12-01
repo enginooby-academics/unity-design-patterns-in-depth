@@ -18,8 +18,8 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 0
   compareMode:
-    m_OverrideState: 0
-    m_Value: 1
+    m_OverrideState: 1
+    m_Value: 0
   compareLineAngle:
     m_OverrideState: 1
     m_Value: 1.78
@@ -662,18 +662,18 @@ MonoBehaviour:
     min: 0
     max: 1
   vignettingOuterRing:
-    m_OverrideState: 1
-    m_Value: 0.36
+    m_OverrideState: 0
+    m_Value: 0.556
     min: 0
     max: 1
   vignettingInnerRing:
-    m_OverrideState: 1
-    m_Value: 1
+    m_OverrideState: 0
+    m_Value: 0.83
     min: 0
     max: 1
   vignettingFade:
-    m_OverrideState: 0
-    m_Value: 0.395
+    m_OverrideState: 1
+    m_Value: 0.439
     min: 0
     max: 1
   vignettingCircularShape:
@@ -705,7 +705,7 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: {fileID: 0}
   outline:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 1
   outlineColor:
     m_OverrideState: 0
@@ -729,7 +729,7 @@ MonoBehaviour:
     showEyeDropper: 1
   blurIntensity:
     m_OverrideState: 0
-    m_Value: 0.14
+    m_Value: 0.12
     min: 0
     max: 4
   ditherIntensity:
@@ -747,7 +747,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-  m_Name: PFX_Beautify
+  m_Name: PFX_Beautify_FacadePattern
   m_EditorClassIdentifier: 
   components:
   - {fileID: -3558722411037484923}
