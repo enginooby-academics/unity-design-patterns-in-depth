@@ -144,4 +144,5 @@ public static class CollectionUtils {
 
     return list[nearestIndex];
   }
+
 }

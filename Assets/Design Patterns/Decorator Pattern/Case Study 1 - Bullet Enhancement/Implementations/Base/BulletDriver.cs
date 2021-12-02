@@ -23,17 +23,15 @@ namespace Decorator.Base {
 
     void Start() {
       _target = FindObjectOfType<AttackTarget>();
-
       _bullet = new Bullet();
 
+      // IMPL: decorator creation using Inspector
       for (int i = 0; i < _fireDecorators; i++) {
         _bullet = new BulletFireDecorator(_bullet);
       }
-
       _forceDecorators.ForEach(forceDecorator => {
         _bullet = new BulletForceDecorator(_bullet, forceDecorator.bonusDamage);
       });
-
       _speedDecorators.ForEach(speedDecorator => {
         _bullet = new BulletSpeedDecorator(_bullet, speedDecorator.bonusSpeed);
       });
@@ -51,6 +49,7 @@ namespace Decorator.Base {
     }
   }
 
+  // ? Use Serialize Decorator directly instead
   [Serializable, InlineProperty]
   class ForceDecoratorConfig {
     public float bonusDamage;
