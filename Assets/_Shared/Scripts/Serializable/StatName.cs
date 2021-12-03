@@ -29,6 +29,12 @@ public enum StatName : int {
   [StringValue(nameof(Scores))]
   Scores,
 
+  [StringValue(nameof(Score))]
+  Score,
+
+  [StringValue(nameof(Coin))]
+  Coin,
+
   [StringValue(nameof(Lives))]
   Lives,
 
@@ -37,4 +43,7 @@ public enum StatName : int {
   /// </summary>
   [StringValue(nameof(Strength))]
   Strength,
+
+  [StringValue(nameof(Speed))]
+  Speed,
 }

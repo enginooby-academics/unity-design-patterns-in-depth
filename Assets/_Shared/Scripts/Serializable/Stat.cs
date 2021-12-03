@@ -3,6 +3,7 @@ using Sirenix.OdinInspector;
 using System;
 using UnityEngine.Events;
 using System.Collections.Generic;
+using System.Collections;
 
 // ? Make generics for int/float
 [Serializable, InlineProperty]
@@ -85,7 +86,6 @@ public class Stat {
   // [ToggleGroup(nameof(enable))]
   [FoldoutGroup("$statName"), ShowIf(nameof(enable))]
   [OnValueChanged(nameof(InitStatUIs), true)]
-  // [HideLabel]
   [LabelText("UIs")]
   public List<StatUI> uis = new List<StatUI>() { new StatUI() };
 
@@ -156,6 +156,19 @@ public class Stat {
 
   public void Add(int amount) {
     Update(amount);
+  }
+
+  /// <summary>
+  /// Add temporarily for a period of time, then return to the previous value. Provide MonoBehaviour component to start coroutine.
+  /// </summary>
+  public void Add(int amount, float duration, MonoBehaviour monoBehaviour) {
+    monoBehaviour.StartCoroutine(AddCoroutine(amount, duration));
+  }
+
+  private IEnumerator AddCoroutine(int amount, float duration) {
+    Add(amount);
+    yield return new WaitForSeconds(duration);
+    Add(-amount);
   }
 
   /// <summary>

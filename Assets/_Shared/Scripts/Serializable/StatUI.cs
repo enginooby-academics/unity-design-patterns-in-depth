@@ -29,6 +29,7 @@ public class StatUI {
   [ShowIf(nameof(uiType), UIType.Text)]
   [InlineEditor]
   [HideLabel]
+  // FIX: label text not serialized if label is an instance prefab or child of an instance prefab
   public TextMeshProUGUI label;
 
   // [BoxGroup("$statName")]

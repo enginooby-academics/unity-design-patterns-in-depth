@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
@@ -20,8 +19,8 @@ public class GameManager : MonoBehaviourSingleton<GameManager> {
 
   private void Setup() {
     SetupStats();
-    gameOverLabel.gameObject.SetActive(false);
-    restartButton.SetActive(false);
+    if (gameOverLabel) gameOverLabel.gameObject.SetActive(false);
+    if(restartButton) restartButton.SetActive(false);
 
     if (backgroundMusic && audioSource) {
       audioSource.clip = backgroundMusic;

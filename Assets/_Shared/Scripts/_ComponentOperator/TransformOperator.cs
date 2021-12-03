@@ -62,118 +62,149 @@ public class TransformOperator : MonoBehaviourBase {
   #endregion ===================================================================================================================================
 
   #region TRANSLATING ===================================================================================================================================
-  [ToggleGroup(nameof(enableTranslating), groupTitle: "Translating")]
-  [SerializeField] bool enableTranslating = true;
-  [ToggleGroup(nameof(enableTranslating))]
-  [SerializeField, LabelText("Speed")] Vector3 translationalSpeed;
-  [ToggleGroup(nameof(enableTranslating))]
-  [SerializeField, LabelText("Acceleration")] Vector3 translationalAcceleration;
-  [ToggleGroup(nameof(enableTranslating))]
-  [SerializeField, LabelText("Offset Bound")] Vector3 translationalOffsetBound;
+  [ToggleGroup(nameof(_enableTranslating), groupTitle: "Translating")]
+  [SerializeField]
+  private bool _enableTranslating = true;
 
-  [ToggleGroup(nameof(enableTranslating))]
-  [SerializeField, EnumToggleButtons] Mode translatingMode = Mode.Auto;
+  [ToggleGroup(nameof(_enableTranslating))]
+  [SerializeField, LabelText("Speed")]
+  private Vector3 _translationalSpeed;
 
-  [ToggleGroup(nameof(enableTranslating))]
-  [ShowIf(nameof(translatingMode), Mode.Control)]
-  [SerializeField] InputModifier xTranslateKey = new InputModifier(inputType: InputModifier.InputType.Axis);
-  [ToggleGroup(nameof(enableTranslating))]
-  [ShowIf(nameof(translatingMode), Mode.Control)]
-  [SerializeField] InputModifier yTranslateKey = new InputModifier(inputType: InputModifier.InputType.Axis);
-  [ToggleGroup(nameof(enableTranslating))]
-  [ShowIf(nameof(translatingMode), Mode.Control)]
-  [SerializeField] InputModifier zTranslateKey = new InputModifier(inputType: InputModifier.InputType.Axis, inputAxis: InputAxis.Horizontal);
+  public Vector3 TranslationalSpeed {
+    get => _translationalSpeed;
+    set => _translationalSpeed = value;
+  }
+
+  [ToggleGroup(nameof(_enableTranslating))]
+  [SerializeField, LabelText("Acceleration")]
+  private Vector3 _translationalAcceleration;
+
+  [ToggleGroup(nameof(_enableTranslating))]
+  [SerializeField, LabelText("Offset Bound")]
+  private Vector3 _translationalOffsetBound;
+
+  [ToggleGroup(nameof(_enableTranslating))]
+  [SerializeField, EnumToggleButtons]
+  private Mode _translatingMode = Mode.Auto;
+
+  [ToggleGroup(nameof(_enableTranslating))]
+  [ShowIf(nameof(_translatingMode), Mode.Control)]
+  [SerializeField]
+  private InputModifier _xTranslateKey = new InputModifier(inputType: InputModifier.InputType.Axis);
+
+  [ToggleGroup(nameof(_enableTranslating))]
+  [ShowIf(nameof(_translatingMode), Mode.Control)]
+  [SerializeField]
+  private InputModifier _yTranslateKey = new InputModifier(inputType: InputModifier.InputType.Axis);
+
+  [ToggleGroup(nameof(_enableTranslating))]
+  [ShowIf(nameof(_translatingMode), Mode.Control)]
+  [SerializeField]
+  private InputModifier _zTranslateKey = new InputModifier(inputType: InputModifier.InputType.Axis, inputAxis: InputAxis.Horizontal);
 
   void DrawGizmosTranslating() {
-    if (!enableTranslating) return;
+    if (!_enableTranslating) return;
 
-    gameObject.DrawGizmosDirection(translationalSpeed);
-    Gizmos.DrawSphere(gameObject.transform.position + translationalOffsetBound, .2f);
+    gameObject.DrawGizmosDirection(_translationalSpeed);
+    Gizmos.DrawSphere(gameObject.transform.position + _translationalOffsetBound, .2f);
   }
 
   void ProcessTranslating() {
-    if (!enableTranslating) return;
+    if (!_enableTranslating) return;
 
-    if (translatingMode == Mode.Auto) {
-      this.MoveWorld(distances: translationalSpeed);
+    if (_translatingMode == Mode.Auto) {
+      this.MoveWorld(distances: _translationalSpeed);
     } else {
-      this.MoveXWorld(distance: xTranslateKey.InputValue * translationalSpeed.x);
-      this.MoveYWorld(distance: yTranslateKey.InputValue * translationalSpeed.y);
-      this.MoveZWorld(distance: zTranslateKey.InputValue * translationalSpeed.z);
+      this.MoveXWorld(distance: _xTranslateKey.InputValue * _translationalSpeed.x);
+      this.MoveYWorld(distance: _yTranslateKey.InputValue * _translationalSpeed.y);
+      this.MoveZWorld(distance: _zTranslateKey.InputValue * _translationalSpeed.z);
     }
   }
 
   void StopTranslating() {
-    enableTranslating = false;
+    _enableTranslating = false;
   }
   #endregion ===================================================================================================================================
 
   #region ROTATING ===================================================================================================================================
-  [ToggleGroup(nameof(enableRotating), groupTitle: "Rotating")]
-  [SerializeField] bool enableRotating;
+  [ToggleGroup(nameof(_enableRotating), groupTitle: "Rotating")]
+  [SerializeField]
+  private bool _enableRotating;
 
-  [ToggleGroup(nameof(enableRotating))]
-  [SerializeField, LabelText("Speed")] Vector3 rotationalSpeed;
-  [ToggleGroup(nameof(enableRotating))]
-  [SerializeField, LabelText("Acceleration")] Vector3 rotationalAcceleration;
+  [ToggleGroup(nameof(_enableRotating))]
+  [SerializeField, LabelText("Speed")]
+  private Vector3 _rotationalSpeed;
 
-  [ToggleGroup(nameof(enableRotating))]
+  [ToggleGroup(nameof(_enableRotating))]
+  [SerializeField, LabelText("Acceleration")]
+  Vector3 rotationalAcceleration;
+
+  [ToggleGroup(nameof(_enableRotating))]
   [InlineButton(nameof(SetSelfAsRotationPivot), "Self")]
-  [SerializeField, LabelText("Pivot")] Transform rotationPivot;
+  [SerializeField, LabelText("Pivot")]
+  private Transform _rotationPivot;
+
   private void SetSelfAsRotationPivot() {
-    rotationPivot = transform;
+    _rotationPivot = transform;
   }
 
-  [ToggleGroup(nameof(enableRotating))]
-  [SerializeField, EnumToggleButtons] Mode rotationMode = Mode.Auto;
+  [ToggleGroup(nameof(_enableRotating))]
+  [SerializeField, EnumToggleButtons]
+  private Mode _rotationMode = Mode.Auto;
 
-  [ToggleGroup(nameof(enableRotating))]
-  [ShowIf(nameof(rotationMode), Mode.Control)]
-  [SerializeField] InputModifier xRotateKey = new InputModifier();
-  [ToggleGroup(nameof(enableRotating))]
-  [ShowIf(nameof(rotationMode), Mode.Control)]
-  [SerializeField] InputModifier yRotateKey = new InputModifier();
-  [ToggleGroup(nameof(enableRotating))]
-  [ShowIf(nameof(rotationMode), Mode.Control)]
-  [SerializeField] InputModifier zRotateKey = new InputModifier();
+  [ToggleGroup(nameof(_enableRotating))]
+  [ShowIf(nameof(_rotationMode), Mode.Control)]
+  [SerializeField]
+  private InputModifier _xRotateKey = new InputModifier();
+
+  [ToggleGroup(nameof(_enableRotating))]
+  [ShowIf(nameof(_rotationMode), Mode.Control)]
+  [SerializeField]
+  private InputModifier _yRotateKey = new InputModifier();
+
+  [ToggleGroup(nameof(_enableRotating))]
+  [ShowIf(nameof(_rotationMode), Mode.Control)]
+  [SerializeField]
+  private InputModifier _zRotateKey = new InputModifier();
 
   void ProcessRotating() {
-    if (!enableRotating) return;
+    if (!_enableRotating) return;
 
-    if (rotationPivot) ProcessRotatingWithPivot();
+    if (_rotationPivot) ProcessRotatingWithPivot();
     else ProcessRotatingWithoutPivot();
   }
 
   void ProcessRotatingWithoutPivot() {
-    if (rotationMode == Mode.Control) {
-      this.RotateX(rotationalSpeed.x * xRotateKey.InputValue);
-      this.RotateY(rotationalSpeed.y * yRotateKey.InputValue);
-      this.RotateZ(rotationalSpeed.z * zRotateKey.InputValue);
+    if (_rotationMode == Mode.Control) {
+      this.RotateX(_rotationalSpeed.x * _xRotateKey.InputValue);
+      this.RotateY(_rotationalSpeed.y * _yRotateKey.InputValue);
+      this.RotateZ(_rotationalSpeed.z * _zRotateKey.InputValue);
     } else {
-      this.Rotate(angles: rotationalSpeed);
+      this.Rotate(angles: _rotationalSpeed);
     }
   }
 
   void ProcessRotatingWithPivot() {
-    if (rotationMode == Mode.Control) {
-      transform.RotateAround(rotationPivot.position, v100, rotationalSpeed.x * Time.deltaTime * xRotateKey.InputValue);
-      transform.RotateAround(rotationPivot.position, v010, rotationalSpeed.y * Time.deltaTime * yRotateKey.InputValue);
-      transform.RotateAround(rotationPivot.position, v001, rotationalSpeed.z * Time.deltaTime * zRotateKey.InputValue);
+    if (_rotationMode == Mode.Control) {
+      transform.RotateAround(_rotationPivot.position, v100, _rotationalSpeed.x * Time.deltaTime * _xRotateKey.InputValue);
+      transform.RotateAround(_rotationPivot.position, v010, _rotationalSpeed.y * Time.deltaTime * _yRotateKey.InputValue);
+      transform.RotateAround(_rotationPivot.position, v001, _rotationalSpeed.z * Time.deltaTime * _zRotateKey.InputValue);
     } else {
-      transform.RotateAround(rotationPivot.position, v100, rotationalSpeed.x * Time.deltaTime);
-      transform.RotateAround(rotationPivot.position, v010, rotationalSpeed.y * Time.deltaTime);
-      transform.RotateAround(rotationPivot.position, v001, rotationalSpeed.z * Time.deltaTime);
+      transform.RotateAround(_rotationPivot.position, v100, _rotationalSpeed.x * Time.deltaTime);
+      transform.RotateAround(_rotationPivot.position, v010, _rotationalSpeed.y * Time.deltaTime);
+      transform.RotateAround(_rotationPivot.position, v001, _rotationalSpeed.z * Time.deltaTime);
     }
   }
 
   void StopRotating() {
-    enableRotating = false;
+    _enableRotating = false;
   }
   #endregion ===================================================================================================================================
 
   #region SCALING ===================================================================================================================================
-  [ToggleGroup(nameof(enableScaling), groupTitle: "Scaling")]
-  [SerializeField] bool enableScaling;
+  [ToggleGroup(nameof(_enableScaling), groupTitle: "Scaling")]
+  [SerializeField]
+  private bool _enableScaling;
 
   #endregion ===================================================================================================================================
 
