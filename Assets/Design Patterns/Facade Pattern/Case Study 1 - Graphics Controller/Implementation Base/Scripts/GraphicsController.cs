@@ -17,9 +17,9 @@ namespace FacadePattern.Case1.Base {
 
     private void Awake() {
       // SetupCamera();
-      SetupBeautifySystem();
-      SetupSCPESystem();
-      SetupPostFXSystem();
+      InitBeautifySystem();
+      InitSCPESystem();
+      InitPostFXSystem();
     }
 
     private void SetupCamera() {
@@ -29,26 +29,27 @@ namespace FacadePattern.Case1.Base {
       uac.antialiasingQuality = AntialiasingQuality.High;
     }
 
-    private void SetupBeautifySystem() {
+    // FIX: only init Beautify successfully after each recompiling
+    private void InitBeautifySystem() {
       GameObject beautifyGameObject = new GameObject("Beautify");
-      // beautifyGameObject.HideInHierarchy();
+      beautifyGameObject.HideInHierarchy();
       Volume beautifyVolume = beautifyGameObject.AddComponent<Volume>();
       beautifyVolume.LoadVolumeProfile("Graphics/PFX_Beautify_FacadePattern");
       // beautifyGameObject.AddComponent<Beautify.Universal.BeautifySettings>();
       _beautifySystem = beautifyGameObject.AddComponent<PostFxModifierBeautify>();
     }
 
-    private void SetupSCPESystem() {
+    private void InitSCPESystem() {
       GameObject scpeGameObject = new GameObject("SCPE");
-      // scpeGameObject.HideInHierarchy();
+      scpeGameObject.HideInHierarchy();
       Volume scpeVolume = scpeGameObject.AddComponent<Volume>();
       scpeVolume.LoadVolumeProfile("Graphics/PFX_SCPE_FacadePattern");
       _scpeSystem = scpeGameObject.AddComponent<PostFxModifierSCPE>();
     }
 
-    private void SetupPostFXSystem() {
+    private void InitPostFXSystem() {
       GameObject postFXGameObject = new GameObject("PostFX");
-      // postFXGameObject.HideInHierarchy();
+      postFXGameObject.HideInHierarchy();
       _postFXSytem = postFXGameObject.AddComponent<Volume>();
     }
 
