@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -6,8 +5,8 @@ namespace MementoPattern.Case1.Base {
   /// <summary>
   /// The 'Originator' class.
   /// </summary>
-  public enum ShapeType { Cube, Sphere, Cylinder }
 
+  public enum ShapeType { Cube, Sphere, Cylinder } // subset of PrimitiveType for this study case
   public class Shape : SerializedMonoBehaviour {
     [SerializeField, OnValueChanged(nameof(UpdateType)), EnumToggleButtons]
     private ShapeType _type;
@@ -26,9 +25,10 @@ namespace MementoPattern.Case1.Base {
       set {
         _type = value;
         if (!_meshFilter) _meshFilter = GetComponent<MeshFilter>();
-        _meshFilter.mesh = _shapeTypeResources[_type];
+        _meshFilter.mesh = PrimitiveUtils.GetPrimitiveMesh(_type);
       }
     }
+
     public Color Color {
       set {
         _color = value;
@@ -36,6 +36,7 @@ namespace MementoPattern.Case1.Base {
         _material.color = _color;
       }
     }
+
     public float Size {
       set {
         _size = value;
@@ -45,23 +46,11 @@ namespace MementoPattern.Case1.Base {
 
     private Material _material;
     private MeshFilter _meshFilter;
-    private Dictionary<ShapeType, Mesh> _shapeTypeResources;
 
     private void Awake() {
-      FetchShapeTypeResources();
       UpdateColor();
       UpdateSize();
       UpdateType();
-    }
-
-    private void FetchShapeTypeResources() {
-      Mesh cubeMesh = Resources.Load<GameObject>("Shapes/Cube").GetComponent<MeshFilter>().sharedMesh;
-      Mesh sphereMesh = Resources.Load<GameObject>("Shapes/Sphere").GetComponent<MeshFilter>().sharedMesh;
-      Mesh cylinderMesh = Resources.Load<GameObject>("Shapes/Cylinder").GetComponent<MeshFilter>().sharedMesh;
-      _shapeTypeResources = new Dictionary<ShapeType, Mesh>();
-      _shapeTypeResources.Add(ShapeType.Cube, cubeMesh);
-      _shapeTypeResources.Add(ShapeType.Sphere, sphereMesh);
-      _shapeTypeResources.Add(ShapeType.Cylinder, cylinderMesh);
     }
 
     [Button]

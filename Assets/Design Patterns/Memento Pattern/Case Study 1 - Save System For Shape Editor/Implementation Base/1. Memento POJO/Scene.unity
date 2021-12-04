@@ -437,59 +437,59 @@ MonoBehaviour:
     _name: Player
     _type: 
     findMethod: 0
-  enableTranslating: 0
-  translationalSpeed: {x: 0, y: 0, z: 0}
-  translationalAcceleration: {x: 0, y: 0, z: 0}
-  translationalOffsetBound: {x: 0, y: 0, z: 0}
-  translatingMode: 0
-  xTranslateKey:
+  _enableTranslating: 0
+  _translationalSpeed: {x: 0, y: 0, z: 0}
+  _translationalAcceleration: {x: 0, y: 0, z: 0}
+  _translationalOffsetBound: {x: 0, y: 0, z: 0}
+  _translatingMode: 0
+  _xTranslateKey:
     inputType: 1
     inputTypeName: A
     keyCode: 0
     keyTriggerEvent: 4
     inputAxis: 0
     modifierKey: 1
-  yTranslateKey:
+  _yTranslateKey:
     inputType: 1
     inputTypeName: A
     keyCode: 0
     keyTriggerEvent: 4
     inputAxis: 0
     modifierKey: 1
-  zTranslateKey:
+  _zTranslateKey:
     inputType: 1
     inputTypeName: A
     keyCode: 0
     keyTriggerEvent: 4
     inputAxis: 1
     modifierKey: 1
-  enableRotating: 1
-  rotationalSpeed: {x: 50, y: 50, z: 50}
+  _enableRotating: 1
+  _rotationalSpeed: {x: 60, y: 60, z: 60}
   rotationalAcceleration: {x: 0, y: 0, z: 0}
-  rotationPivot: {fileID: 0}
-  rotationMode: 0
-  xRotateKey:
+  _rotationPivot: {fileID: 0}
+  _rotationMode: 0
+  _xRotateKey:
     inputType: 0
     inputTypeName: A
     keyCode: 0
     keyTriggerEvent: 4
     inputAxis: 0
     modifierKey: 1
-  yRotateKey:
+  _yRotateKey:
     inputType: 0
     inputTypeName: A
     keyCode: 0
     keyTriggerEvent: 4
     inputAxis: 0
     modifierKey: 1
-  zRotateKey:
+  _zRotateKey:
     inputType: 0
     inputTypeName: A
     keyCode: 0
     keyTriggerEvent: 4
     inputAxis: 0
     modifierKey: 1
-  enableScaling: 0
+  _enableScaling: 0
 --- !u!65 &1184198024
 BoxCollider:
   m_ObjectHideFlags: 0
