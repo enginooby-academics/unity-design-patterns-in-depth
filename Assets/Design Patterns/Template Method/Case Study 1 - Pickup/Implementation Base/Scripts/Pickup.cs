@@ -4,6 +4,7 @@ using Sirenix.OdinInspector;
 namespace TemplateMethodPattern.Case1.Base {
   public abstract class Pickup : MonoBehaviour {
     // TODO: Find and assign FXs for each pickup
+    // TODO: Implement size, color pickups
     [HorizontalGroup("FX"), LabelWidth(30)]
     [SerializeField, LabelText("VFX")]
     private ParticleSystem _vfx;

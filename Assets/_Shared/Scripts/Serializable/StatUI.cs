@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine.UI;
 using DG.Tweening;
 
+// TODO: Separate different UI types to classes implementing IStatUI
 [Serializable, InlineProperty]
 public class StatUI {
   [HideInInspector]
