@@ -7,6 +7,8 @@ namespace MementoPattern.Case1.Base {
   /// </summary>
 
   public enum ShapeType { Cube, Sphere, Cylinder } // subset of PrimitiveType for this study case
+
+  [TypeInfoBox("Modify properties in Play Mode only!")]
   public class Shape : SerializedMonoBehaviour {
     [SerializeField, OnValueChanged(nameof(UpdateType)), EnumToggleButtons]
     private ShapeType _type;
@@ -24,28 +26,23 @@ namespace MementoPattern.Case1.Base {
     public ShapeType Type {
       set {
         _type = value;
-        if (!_meshFilter) _meshFilter = GetComponent<MeshFilter>();
-        _meshFilter.mesh = PrimitiveUtils.GetPrimitiveMesh(_type);
+        this.SetPrimitiveMesh(_type);
       }
     }
 
     public Color Color {
       set {
         _color = value;
-        if (!_material) _material = GetComponent<MeshRenderer>().material;
-        _material.color = _color;
+        this.SetMaterialColor(_color);
       }
     }
 
     public float Size {
       set {
         _size = value;
-        transform.localScale = Vector3.one * _size;
+        this.SetScale(_size);
       }
     }
-
-    private Material _material;
-    private MeshFilter _meshFilter;
 
     private void Awake() {
       UpdateColor();
