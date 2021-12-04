@@ -18,7 +18,7 @@ public static class PrimitiveUtils {
   }
 
   public static Mesh GetPrimitiveMesh(PrimitiveType type) {
-    if (!_meshes.ContainsKey(type)) {
+    if (!_meshes.ContainsKey(type) || !_meshes[type]) { // non sharedMesh may be destroyed from the second times. In this case. also create new.
       CreatePrimitiveMesh(type);
     }
 
