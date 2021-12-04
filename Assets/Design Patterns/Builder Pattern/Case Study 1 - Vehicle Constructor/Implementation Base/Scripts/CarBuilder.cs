@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace NG.builder_pattern.example {
+namespace BuilderPattern.Case1.Base {
   // Makes the parts and adds them to the vehicle at the correct local position.
   public class CarBuilder : IVehicleBuilder {
     private Vehicle _vehicle;

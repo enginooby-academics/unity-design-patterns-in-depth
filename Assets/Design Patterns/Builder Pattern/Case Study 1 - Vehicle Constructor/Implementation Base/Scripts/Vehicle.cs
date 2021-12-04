@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace NG.builder_pattern.example {
+namespace BuilderPattern.Case1.Base {
   // Our final product
   public class Vehicle {
     private string _name;
@@ -35,10 +35,7 @@ namespace NG.builder_pattern.example {
       GameObject go = GameObject.CreatePrimitive(primitiveType);
       go.name = name;
       go.transform.localScale = scale;
-      MeshRenderer meshRenderer = go.GetComponent<MeshRenderer>();
-      if (meshRenderer != null)
-        meshRenderer.material.color = color;
-
+      go.SetMaterialColor(color);
       return go;
     }
   }

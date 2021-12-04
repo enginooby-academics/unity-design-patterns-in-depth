@@ -73,6 +73,32 @@ public static class CollectionUtils {
     return list[randomIndex];
   }
 
+  /// <summary>
+  /// Return true if the element exists and not null.
+  /// </summary>
+  public static bool TryGetById<T>(this List<UnityEngine.Object> objects, int id, out T element) where T : UnityEngine.Object {
+    if (objects.Count > id) {
+      element = objects[id] as T;
+      return element ? true : false;
+    } else {
+      element = null;
+      return false;
+    }
+  }
+
+  /// <summary>
+  /// Return true if the element exists and not null.
+  /// </summary>
+  public static bool TryGetById<T>(this UnityEngine.Object[] objects, int id, out T element) where T : UnityEngine.Object {
+    if (objects.Length > id) {
+      element = objects[id] as T;
+      return element ? true : false;
+    } else {
+      element = null;
+      return false;
+    }
+  }
+
   private static System.Random rng = new System.Random();
   public static void Shuffle<T>(this IList<T> list) {
     Debug.Log("Shuffle");

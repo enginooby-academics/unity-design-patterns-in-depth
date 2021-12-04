@@ -1,34 +1,35 @@
 using UnityEngine;
-using NG.builder_pattern.example;
 
-public class BuilderController : MonoBehaviour {
-  void Start() {
-    // Instantiate the director and builders
-    var shopForeman = new ShopForeman();
-    var carBuilder = new CarBuilder();
-    var motorCycleBuilder = new MotorCycleBuilder();
-    var scooterBuilder = new ScooterBuilder();
+namespace BuilderPattern.Case1.Base {
+  public class BuilderController : MonoBehaviour {
+    void Start() {
+      // Instantiate the director and builders
+      var shopForeman = new ShopForeman();
+      var carBuilder = new CarBuilder();
+      var motorCycleBuilder = new MotorCycleBuilder();
+      var scooterBuilder = new ScooterBuilder();
 
-    // Make the products, the vehicles.
-    shopForeman.Construct(carBuilder);
-    shopForeman.Construct(motorCycleBuilder);
-    shopForeman.Construct(scooterBuilder);
+      // Make the products, the vehicles.
+      shopForeman.Construct(carBuilder);
+      shopForeman.Construct(motorCycleBuilder);
+      shopForeman.Construct(scooterBuilder);
 
-    // Get the vehicles and access their methods.
-    Vehicle car = carBuilder.Vehicle;
-    Debug.Log(car.GetPartsList());
+      // Get the vehicles and access their methods.
+      Vehicle car = carBuilder.Vehicle;
+      Debug.Log(car.GetPartsList());
 
-    Vehicle motorCycle = motorCycleBuilder.Vehicle;
-    Debug.Log(motorCycle.GetPartsList());
+      Vehicle motorCycle = motorCycleBuilder.Vehicle;
+      Debug.Log(motorCycle.GetPartsList());
 
-    Vehicle scooter = scooterBuilder.Vehicle;
-    Debug.Log(scooter.GetPartsList());
+      Vehicle scooter = scooterBuilder.Vehicle;
+      Debug.Log(scooter.GetPartsList());
 
 
-    // These calls don't have anything to do with the pattern.
-    // They are simply here to make our visual display of the vehicles
-    // in the Unity scene look nice.
-    car.parent.transform.position = new Vector3(-6f, 0, 0);
-    motorCycle.parent.transform.position = new Vector3(6f, 0, 0);
+      // These calls don't have anything to do with the pattern.
+      // They are simply here to make our visual display of the vehicles
+      // in the Unity scene look nice.
+      car.parent.transform.position = new Vector3(-6f, 0, 0);
+      motorCycle.parent.transform.position = new Vector3(6f, 0, 0);
+    }
   }
 }

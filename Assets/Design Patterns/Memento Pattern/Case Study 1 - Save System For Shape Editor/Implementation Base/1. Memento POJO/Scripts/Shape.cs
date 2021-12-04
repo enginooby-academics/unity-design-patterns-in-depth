@@ -23,24 +23,25 @@ namespace MementoPattern.Case1.Base {
     private void UpdateColor() => Color = _color;
     private void UpdateSize() => Size = _size;
 
+
     public ShapeType Type {
       set {
         _type = value;
-        this.SetPrimitiveMesh(_type);
+        gameObject.SetPrimitiveMesh(_type);
       }
     }
 
     public Color Color {
       set {
         _color = value;
-        this.SetMaterialColor(_color);
+        gameObject.SetMaterialColor(_color);
       }
     }
 
     public float Size {
       set {
         _size = value;
-        this.SetScale(_size);
+        gameObject.SetScale(_size);
       }
     }
 

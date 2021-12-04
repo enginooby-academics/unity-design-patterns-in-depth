@@ -114,6 +114,13 @@ public static class TransformUtils {
   public static void SetScale(this MonoBehaviour monoBehaviour, float value) {
     monoBehaviour.transform.localScale = Vector3.one * value;
   }
+
+  /// <summary>
+  /// Set localScale.x/y/z to the given value.
+  /// </summary>
+  public static void SetScale(this GameObject go, float value) {
+    go.transform.localScale = Vector3.one * value;
+  }
   #endregion SCALE ================================================================================================================================
 
   public static float DistanceFrom(this Transform transform, Vector3 targetPos) {

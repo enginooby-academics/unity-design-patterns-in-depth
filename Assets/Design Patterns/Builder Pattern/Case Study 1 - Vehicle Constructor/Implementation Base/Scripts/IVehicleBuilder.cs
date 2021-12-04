@@ -1,4 +1,4 @@
-namespace NG.builder_pattern.example {
+namespace BuilderPattern.Case1.Base {
   // Our 'abstract Builder' class
   // Definition of what methods will be used to actually build the vehicles.
   public interface IVehicleBuilder {

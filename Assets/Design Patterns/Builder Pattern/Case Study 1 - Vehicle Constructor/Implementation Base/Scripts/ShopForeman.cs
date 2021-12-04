@@ -1,7 +1,4 @@
-using UnityEngine;
-using System.Collections.Generic;
-
-namespace NG.builder_pattern.example {
+namespace BuilderPattern.Case1.Base {
   // Our 'Director' class. Tells us how to construct the vehicles.
   public class ShopForeman {
     public void Construct(IVehicleBuilder vehicleBuilder) {

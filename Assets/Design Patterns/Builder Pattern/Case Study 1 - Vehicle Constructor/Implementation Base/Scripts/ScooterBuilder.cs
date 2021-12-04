@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace NG.builder_pattern.example {
+namespace BuilderPattern.Case1.Base {
   public class ScooterBuilder : IVehicleBuilder {
     private Vehicle _vehicle;
 
