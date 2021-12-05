@@ -3,19 +3,19 @@ using System;
 using UnityEngine;
 
 /// <summary>
-/// This utility is for quick modifying properties of components. <br/>
-/// The GameObject w/ modified components are cached. If component is changed in runtime, call ClearCache().
-/// Used to remove all GetComponent() invokings.
+/// This utility is for quickly performing action on components w/o declaring component fields in MonoBehaviour and calling GetComponent(). <br/>
+/// The GameObject w/ used components are cached. If component is changed in runtime, call ClearCache().
 /// </summary>
 public static class CacheStaticUtils {
-  // * Multi-cache
+  // ! Only include common actions
   // ? Use Object[] or List<Object>
   // ? Use GameObject or MonoBehaviour
   private static Dictionary<GameObject, UnityEngine.Object[]> _cachedGameObjects = new Dictionary<GameObject, UnityEngine.Object[]>();
-  private readonly static bool ENABLE_DEBUG = false;
-  public readonly static int MATERIAL_ID = 0;
-  public readonly static int MESHFILTER_ID = 1;
-  public readonly static int COMPONENT_COUNT = 2; // equals to last id + 1
+  private readonly static bool ENABLE_DEBUG = true;
+  public readonly static int MESH_RENDERRER_ID = 0;
+  public readonly static int MESH_FILTER_ID = 1;
+  public readonly static int TRANSFORM_OP_ID = 2;
+  public readonly static int COMPONENT_COUNT = 3; // equals to last id + 1
   // TODO: Commonly-used components such as RigidBody, AudioSource, Animator
 
   /// <summary>
@@ -35,73 +35,69 @@ public static class CacheStaticUtils {
   }
 
   /// <summary>
-  /// [CacheStaticUtils] Require static MeshRenderer component w/ static Material.
+  /// [CacheStaticUtils] Require static MeshRenderer component.
   /// </summary>
-  // REFACTOR
-  public static void SetMaterialColor(this GameObject go, Color color) {
-    // GameObject cached
-    if (_cachedGameObjects.TryGetValue(go, out var components)) {
-      // component cached
-      if (components.TryGetById<Material>(MATERIAL_ID, out Material cachedMaterial)) {
-        cachedMaterial.color = color;
-      } else {
-        // component uncached
-        if (ENABLE_DEBUG) Debug.Log("Cached GameObject: Getting MeshRenderer");
-        if (go.TryGetComponent<MeshRenderer>(out var meshRenderer1)) {
-          meshRenderer1.material.color = color;
-          components[MATERIAL_ID] = meshRenderer1.material;
-          return;
-        }
-        DebugComponentNotFound(typeof(MeshRenderer), go);
-      }
-      return;
+  public static void SetMaterialColor(this GameObject go, Color color, bool isMaterialShared = false) {
+    void PerformAction(UnityEngine.Object component) {
+      if (isMaterialShared) (component as MeshRenderer).sharedMaterial.color = color;
+      else (component as MeshRenderer).material.color = color;
     }
 
-    // GameObject uncached
-    if (ENABLE_DEBUG) Debug.Log("Un-cached GameObject: Getting MeshRenderer");
-    if (go.TryGetComponent<MeshRenderer>(out var meshRenderer)) {
-      meshRenderer.material.color = color;
-      var newComponents = new UnityEngine.Object[COMPONENT_COUNT];
-      newComponents[MATERIAL_ID] = meshRenderer.material;
-      _cachedGameObjects.Add(go, newComponents);
-      return;
-    }
-    DebugComponentNotFound(typeof(MeshRenderer), go);
+    ProcessCaching(go, PerformAction, MESH_RENDERRER_ID, typeof(MeshRenderer));
   }
 
   /// <summary>
   /// [CacheStaticUtils] Require static MeshFilter component. <br/>
   /// Convert the given enum to PrimitiveType, hence the string name must match. Useful for enum subset of PrimitiveType if don't want to include all primitive meshes. 
   /// </summary>
-  public static void SetPrimitiveMesh(this GameObject go, Enum type) {
-    if (_cachedGameObjects.TryGetValue(go, out var components)) {
-      if (components.TryGetById<MeshFilter>(MESHFILTER_ID, out var cachedMeshFilter)) {
-        cachedMeshFilter.mesh = PrimitiveUtils.GetPrimitiveMesh(type);
-        return;
-      } else {
-        if (ENABLE_DEBUG) Debug.Log("Cached GameObject: Getting MeshFilter");
-        if (go.TryGetComponent<MeshFilter>(out var meshFilter1)) {
-          meshFilter1.mesh = PrimitiveUtils.GetPrimitiveMesh(type);
-          components[MESHFILTER_ID] = meshFilter1;
-          return;
-        }
-        DebugComponentNotFound(typeof(MeshFilter), go);
-      }
-      return;
+  public static void SetPrimitiveMesh(this GameObject go, Enum meshType) {
+    void PerformAction(UnityEngine.Object component) {
+      (component as MeshFilter).mesh = PrimitiveUtils.GetPrimitiveMesh(meshType);
     }
 
-    if (ENABLE_DEBUG) Debug.Log("Un-cached GameObject: Getting MeshFilter");
-    if (go.TryGetComponent<MeshFilter>(out var meshFilter)) {
-      meshFilter.mesh = PrimitiveUtils.GetPrimitiveMesh(type);
-      var newComponents = new UnityEngine.Object[COMPONENT_COUNT];
-      newComponents[MESHFILTER_ID] = meshFilter;
-      _cachedGameObjects.Add(go, newComponents);
+    ProcessCaching(go, PerformAction, MESH_FILTER_ID, typeof(MeshFilter));
+  }
+
+  /// <summary>
+  /// [CacheStaticUtils] Require static TransformOperator component.
+  /// </summary>
+  public static void InvertTranslationalDirection(this GameObject go) {
+    void PerformAction(UnityEngine.Object component) {
+      (component as TransformOperator).InvertTranslationalDirection();
+    }
+
+    ProcessCaching(go, PerformAction, TRANSFORM_OP_ID, typeof(TransformOperator));
+  }
+
+  #region INTERNAL METHODS ===================================================================================================================================
+  private static void ProcessCaching(GameObject go, Action<UnityEngine.Object> PerformAction, int componentId, Type componentType) {
+    if (_cachedGameObjects.TryGetValue(go, out var components)) {
+      if (components.TryGetById(componentId, out var component)) {
+        PerformAction(component);
+      } else CacheComponent(go, PerformAction, componentId, componentType, components);
       return;
     }
-    DebugComponentNotFound(typeof(MeshFilter), go);
+    CacheGameObject(go, out components);
+    CacheComponent(go, PerformAction, componentId, componentType, components, false);
+  }
+
+  private static void CacheGameObject(GameObject go, out UnityEngine.Object[] components) {
+    components = new UnityEngine.Object[COMPONENT_COUNT];
+    _cachedGameObjects.Add(go, components);
+  }
+
+  private static void CacheComponent(GameObject go, Action<UnityEngine.Object> PerformAction, int componentId, Type componentType, UnityEngine.Object[] components, bool isGameObjectCached = true) {
+    if (go.TryGetComponent(componentType, out var component)) {
+      if (ENABLE_DEBUG) Debug.Log($"GameObject cached: {isGameObjectCached}. Getting {component.GetType()}");
+      components[componentId] = component;
+      PerformAction(component);
+      return;
+    }
+    DebugComponentNotFound(componentType, go);
   }
 
   private static void DebugComponentNotFound(Type type, GameObject go) {
     Debug.LogError($"Component {type.ToString()} on {go.name} not found!");
   }
+  #endregion INTERNAL METHODS ================================================================================================================================
 }

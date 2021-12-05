@@ -23,4 +23,15 @@ public static class GameObjectUtils {
   public static void HideInHierarchy(this GameObject gameObject) {
     gameObject.hideFlags = HideFlags.HideInHierarchy;
   }
+
+  /// <summary>
+  /// DestroyImmediate if in Edit Mode.
+  /// </summary>
+  public static void Destroy(this GameObject gameObject) {
+    if (Application.isPlaying) {
+      Object.Destroy(gameObject);
+    } else {
+      Object.DestroyImmediate(gameObject);
+    }
+  }
 }

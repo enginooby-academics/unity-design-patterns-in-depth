@@ -191,8 +191,10 @@ MonoBehaviour:
     findMethod: 0
   _enableTranslating: 0
   _translationalSpeed: {x: 0, y: 0, z: 0}
+  _translationalMinPos: {x: 0, y: 0, z: 0}
+  _translationalMaxPos: {x: 0, y: 0, z: 0}
+  _translationalOnBoundaryAction: 3
   _translationalAcceleration: {x: 0, y: 0, z: 0}
-  _translationalOffsetBound: {x: 0, y: 0, z: 0}
   _translatingMode: 0
   _xTranslateKey:
     inputType: 1
@@ -456,8 +458,10 @@ MonoBehaviour:
     findMethod: 0
   _enableTranslating: 0
   _translationalSpeed: {x: 0, y: 0, z: 0}
+  _translationalMinPos: {x: 0, y: 0, z: 0}
+  _translationalMaxPos: {x: 0, y: 0, z: 0}
+  _translationalOnBoundaryAction: 3
   _translationalAcceleration: {x: 0, y: 0, z: 0}
-  _translationalOffsetBound: {x: 0, y: 0, z: 0}
   _translatingMode: 0
   _xTranslateKey:
     inputType: 1
@@ -604,7 +608,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &594817990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -652,8 +656,10 @@ MonoBehaviour:
     findMethod: 0
   _enableTranslating: 0
   _translationalSpeed: {x: 0, y: 0, z: 0}
+  _translationalMinPos: {x: 0, y: 0, z: 0}
+  _translationalMaxPos: {x: 0, y: 0, z: 0}
+  _translationalOnBoundaryAction: 3
   _translationalAcceleration: {x: 0, y: 0, z: 0}
-  _translationalOffsetBound: {x: 0, y: 0, z: 0}
   _translatingMode: 0
   _xTranslateKey:
     inputType: 1

@@ -71,6 +71,18 @@ public static class VectorUtils {
     return new Vector3(vect.x, newY, vect.z);
   }
 
+  public static Vector3 WithNegativeY(this Vector3 vect) {
+    return new Vector3(vect.x, -Mathf.Abs(vect.y), vect.z);
+  }
+
+  public static Vector3 WithPositiveY(this Vector3 vect) {
+    return new Vector3(vect.x, Mathf.Abs(vect.y), vect.z);
+  }
+
+  public static Vector3 OffsetY(this Vector3 vect, float offset) {
+    return new Vector3(vect.x, vect.y + offset, vect.z);
+  }
+
   public static Vector3 WithZ(this Vector3 vect, float newZ) {
     return new Vector3(vect.x, vect.y, newZ);
   }

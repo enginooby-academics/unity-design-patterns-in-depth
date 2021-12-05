@@ -99,6 +99,19 @@ public static class CollectionUtils {
     }
   }
 
+  /// <summary>
+  /// Return true if the element exists and not null.
+  /// </summary>
+  public static bool TryGetById(this UnityEngine.Object[] objects, int id, out UnityEngine.Object element) {
+    if (objects.Length > id) {
+      element = objects[id];
+      return element ? true : false;
+    } else {
+      element = null;
+      return false;
+    }
+  }
+
   private static System.Random rng = new System.Random();
   public static void Shuffle<T>(this IList<T> list) {
     Debug.Log("Shuffle");

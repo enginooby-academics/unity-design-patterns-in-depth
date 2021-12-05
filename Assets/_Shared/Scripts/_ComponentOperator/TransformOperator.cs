@@ -17,8 +17,12 @@ using static VectorUtils;
 
 public class TransformOperator : MonoBehaviourBase {
   enum Mode { Auto, Control }
+  enum OnBoundaryAction { Stop, LoopMinToMax, LoopMaxToMin, LoopPingPong }
+
+  private Vector3 _originalPos;
 
   private void Start() {
+    InitTranslation();
   }
 
   void LateUpdate() {
@@ -67,6 +71,7 @@ public class TransformOperator : MonoBehaviourBase {
   private bool _enableTranslating = true;
 
   [ToggleGroup(nameof(_enableTranslating))]
+  [OnValueChanged(nameof(InitTranslation))]
   [SerializeField, LabelText("Speed")]
   private Vector3 _translationalSpeed;
 
@@ -76,12 +81,36 @@ public class TransformOperator : MonoBehaviourBase {
   }
 
   [ToggleGroup(nameof(_enableTranslating))]
-  [SerializeField, LabelText("Acceleration")]
-  private Vector3 _translationalAcceleration;
+  [ShowIf(nameof(_translatingMode), Mode.Auto)]
+  [OnValueChanged(nameof(InitTranslation))]
+  [SerializeField, LabelText("Min Position")]
+  private Vector3 _translationalMinPos;
 
   [ToggleGroup(nameof(_enableTranslating))]
-  [SerializeField, LabelText("Offset Bound")]
-  private Vector3 _translationalOffsetBound;
+  [ShowIf(nameof(_translatingMode), Mode.Auto)]
+  [OnValueChanged(nameof(InitTranslation))]
+  [SerializeField, LabelText("Max Position")]
+  private Vector3 _translationalMaxPos;
+
+  [ToggleGroup(nameof(_enableTranslating))]
+  [ShowIf(nameof(_translatingMode), Mode.Auto)]
+  [SerializeField, LabelText("On Reach Boundary")]
+  private OnBoundaryAction _translationalOnBoundaryAction = OnBoundaryAction.LoopPingPong;
+
+  private bool IsTranslatingOnY => _translationalSpeed.y != 0;
+  private bool? IsTranslatingToMaxY;
+
+  public void InvertTranslationalY() {
+    IsTranslatingToMaxY = !IsTranslatingToMaxY;
+  }
+
+  public void InvertTranslationalDirection() {
+    InvertTranslationalY();
+  }
+
+  [ToggleGroup(nameof(_enableTranslating))]
+  [SerializeField, LabelText("Acceleration")]
+  private Vector3 _translationalAcceleration;
 
   [ToggleGroup(nameof(_enableTranslating))]
   [SerializeField, EnumToggleButtons]
@@ -102,22 +131,46 @@ public class TransformOperator : MonoBehaviourBase {
   [SerializeField]
   private InputModifier _zTranslateKey = new InputModifier(inputType: InputModifier.InputType.Axis, inputAxis: InputAxis.Horizontal);
 
+  private void InitTranslation() {
+    _originalPos = transform.position;
+    IsTranslatingToMaxY = (_translationalSpeed.y > 0);
+  }
+
   void DrawGizmosTranslating() {
     if (!_enableTranslating) return;
 
     gameObject.DrawGizmosDirection(_translationalSpeed);
-    Gizmos.DrawSphere(gameObject.transform.position + _translationalOffsetBound, .2f);
+    if (IsTranslatingOnY) {
+      Gizmos.DrawSphere(_originalPos.WithY(_translationalMinPos.y), .2f);
+      Gizmos.DrawSphere(_originalPos.WithY(_translationalMaxPos.y), .2f);
+    }
   }
 
   void ProcessTranslating() {
     if (!_enableTranslating) return;
 
     if (_translatingMode == Mode.Auto) {
-      this.MoveWorld(distances: _translationalSpeed);
+      ProcessAutoTranslating();
     } else {
       this.MoveXWorld(distance: _xTranslateKey.InputValue * _translationalSpeed.x);
       this.MoveYWorld(distance: _yTranslateKey.InputValue * _translationalSpeed.y);
       this.MoveZWorld(distance: _zTranslateKey.InputValue * _translationalSpeed.z);
+    }
+  }
+
+  private void ProcessAutoTranslating() {
+    if (IsTranslatingOnY) ProcessTranslationalBoundaryY();
+    this.MoveWorld(distances: _translationalSpeed);
+  }
+
+  private void ProcessTranslationalBoundaryY() {
+    IsTranslatingToMaxY = transform.ReachingYMinOrMax(_translationalMinPos.y, _translationalMaxPos.y) ?? IsTranslatingToMaxY;
+    switch (_translationalOnBoundaryAction) {
+      case OnBoundaryAction.LoopPingPong:
+        _translationalSpeed = (IsTranslatingToMaxY.Value)
+          ? _translationalSpeed.WithPositiveY()
+          : _translationalSpeed.WithNegativeY();
+        break;
     }
   }
 

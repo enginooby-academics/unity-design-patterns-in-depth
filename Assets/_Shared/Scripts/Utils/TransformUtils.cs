@@ -185,6 +185,7 @@ public static class TransformUtils {
   }
 
   /// <summary>
+  /// [In-update] <br/>
   /// Translate on local X (included deltaTime).
   /// </summary>
   public static void MoveX(this Transform transform, float distance = 1f) {
@@ -196,6 +197,17 @@ public static class TransformUtils {
   /// </summary>
   public static void MoveY(this Transform transform, float distance = 1f) {
     transform.Translate(v010 * Time.deltaTime * distance);
+  }
+
+  /// <summary>
+  /// This looping movement is based on Time.time so don't need extra direction flag in the MonoBehaviour<br/>
+  /// Howerver, if the speed is changed in runtime, the position may be teleported.
+  /// </summary>
+  public static void MoveYInRange(this Transform transform, float minY, float maxY, float speed = 1f) {
+    Vector3 pos1 = transform.position.WithY(minY);
+    Vector3 pos2 = transform.position.WithY(maxY);
+    transform.position = Vector3.Lerp(pos1, pos2, (Mathf.Sin(speed * Time.time) + 1.0f) / 2.0f);
+    // transform.position = Vector3.Lerp(pos1, pos2, Mathf.PingPong(Time.time * speed, 1.0f));
   }
 
   /// <summary>

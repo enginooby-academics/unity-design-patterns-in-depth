@@ -38,7 +38,7 @@ public static class PrimitiveUtils {
     Mesh mesh = gameObject.GetComponent<MeshFilter>().sharedMesh;
     // just to normalize cylinder height as other shapes as cube, sphere...
     if (type == PrimitiveType.Cylinder) mesh = mesh.WithScale(.5f, AxisFlag.Y);
-    GameObject.Destroy(gameObject);
+    gameObject.Destroy();
     _meshes[type] = mesh;
     return mesh;
   }
