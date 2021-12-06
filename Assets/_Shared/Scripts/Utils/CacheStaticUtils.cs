@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
+// ? Create new component if not found
 /// <summary>
 /// This utility is for quickly performing action on components w/o declaring component fields in MonoBehaviour and calling GetComponent(). <br/>
 /// The GameObject w/ used components are cached. If component is changed in runtime, call ClearCache().

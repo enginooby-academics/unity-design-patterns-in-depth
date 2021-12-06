@@ -1,20 +1,21 @@
+using System;
 using UnityEngine;
 
 namespace VisitorPattern.Case1.Base {
   /// <summary>
   /// * A 'Concrete Visitor' class
   /// </summary>
-  public class VolumeCalculator : Calculator {
+  public class SurfaceAreaCalculator : Calculator {
     protected override float Calculate(ProceduralCube cube) {
-      return Mathf.Pow(cube.Size, 3);
+      return (float)(6 * Math.Pow(cube.Size, 2));
     }
 
     protected override float Calculate(ProceduralSphere sphere) {
-      return 4 / 3 * Mathf.PI * Mathf.Pow(sphere.Radius, 3);
+      return 4 * Mathf.PI * Mathf.Pow(sphere.Radius, 2);
     }
 
     protected override float Calculate(ProceduralCylinder cylinder) {
-      return Mathf.PI * Mathf.Pow(cylinder.Radius, 2) * cylinder.Height;
+      return (float)(2 * Math.PI * cylinder.Radius * cylinder.Height + 2 * Math.PI * Math.Pow(cylinder.Radius, 2));
     }
   }
 }

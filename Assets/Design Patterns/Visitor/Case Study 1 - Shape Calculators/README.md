@@ -1,5 +1,5 @@
 ## Case Study 1: Shape Calculators
-Supposedly, we have implemented different type of procedural shapes (i.e cube, sphere, cylinder). Now we want to write algorithms to calculate some math figures of generated shapes (e.g, surface, area, volume). 
+Supposedly, we have implemented different type of procedural shapes (i.e cube, sphere, cylinder). Now we want to write algorithms to calculate some math figures of generated shapes (e.g, surface are, diameter, volume). 
 
 ### Naive Aproaches
 Calculating methods is written directly inside in each procedural shape class.
@@ -11,5 +11,5 @@ Calculating methods is written directly inside in each procedural shape class.
 + Visitor contract: ICalculator
 + Abstract (visitable) element: ProceduralShape implements ICalculatable
 + Concrete (visitable) elements: ProceduralCube, ProceduralSphere, ProceduralCylinder
-+ Concrete visitors: SurfaceCalculator, AreaCalculator, VolumeCalculator implements ICalculator
++ Concrete visitors: SurfaceAreaCalculator, DiameterCalculator, VolumeCalculator implements ICalculator
 + Visitor manager: CalculatorManager - manage and switch between different calculators to demonstrate the flexibily of this pattern.
