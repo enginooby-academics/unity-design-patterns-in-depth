@@ -23,4 +23,14 @@ public static class TypeUtils {
 
     return instances;
   }
+
+  // public static bool HasOverloadForArgument(Type targetType, string methodName, object arg) {
+  //   var methodInfo = targetType.GetMethod(name: methodName, types: new[] { arg.GetType() });
+  //   return methodInfo != null;
+  // }
+
+  public static bool HasOverloadForArgument(this Type targetType, string methodName, object arg) {
+    var methodInfo = targetType.GetMethod(name: methodName, types: new[] { arg.GetType() });
+    return methodInfo != null;
+  }
 }
