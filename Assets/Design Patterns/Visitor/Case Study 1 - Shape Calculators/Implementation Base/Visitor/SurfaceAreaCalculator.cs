@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace VisitorPattern.Case1.Base {
   /// <summary>
-  /// * A 'Concrete Visitor' class
+  /// * [A 'Concrete Visitor' class]
   /// </summary>
   public class SurfaceAreaCalculator : Calculator {
     protected override float Calculate(ProceduralCube cube) {

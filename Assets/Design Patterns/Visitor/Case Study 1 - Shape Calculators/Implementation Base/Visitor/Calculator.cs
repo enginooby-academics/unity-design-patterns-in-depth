@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace VisitorPattern.Case1.Base {
   /// <summary>
-  /// * The 'Abstract Visitor' class
+  /// * [The 'Abstract Visitor' class]
   /// </summary>
   public abstract class Calculator : ICalculator {
     public float Calculate(ICalculatable element) {

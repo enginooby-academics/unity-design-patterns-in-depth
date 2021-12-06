@@ -3,6 +3,9 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace VisitorPattern.Case1.Base {
+  /// <summary>
+  /// * [The 'Abstract Visitable Element' class]
+  /// </summary>
   public abstract class ProceduralShape : MonoBehaviour, ICalculatable {
     public float ProcessCalculation(ICalculator calculator) => calculator.Calculate(this);
 
@@ -39,18 +42,10 @@ namespace VisitorPattern.Case1.Base {
 
       ClearMeshData();
       CreateMeshData();
-      Mesh _mesh = _meshFilter.mesh;
-      _mesh.Clear();
-      _mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt16;
-      _mesh.SetVertices(vertices);
-      _mesh.SetTriangles(triangles, 0, true);
-      _mesh.SetNormals(normals);
-      _mesh.SetTangents(tangents);
-      _mesh.SetUVs(0, uv);
-      _mesh.SetUVs(1, uv2);
-      _mesh.SetUVs(2, uv3);
-      _mesh.SetUVs(3, uv4);
+      UpdateMeshData();
     }
+
+    protected virtual void CreateMeshData() { }
 
     private void ClearMeshData() {
       vertices.Clear();
@@ -63,7 +58,19 @@ namespace VisitorPattern.Case1.Base {
       uv4.Clear();
     }
 
-    protected virtual void CreateMeshData() { }
+    private void UpdateMeshData() {
+      Mesh _mesh = _meshFilter.mesh;
+      _mesh.Clear();
+      _mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt16;
+      _mesh.SetVertices(vertices);
+      _mesh.SetTriangles(triangles, 0, true);
+      _mesh.SetNormals(normals);
+      _mesh.SetTangents(tangents);
+      _mesh.SetUVs(0, uv);
+      _mesh.SetUVs(1, uv2);
+      _mesh.SetUVs(2, uv3);
+      _mesh.SetUVs(3, uv4);
+    }
     #endregion PROCEDURAL-RELATED ====================================================================================================================================================================
   }
 }

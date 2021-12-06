@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace VisitorPattern.Case1.Base {
   /// <summary>
-  /// * A 'Concrete Visitor' class
+  /// * [A 'Concrete Visitor' class]
   /// </summary>
   public class VolumeCalculator : Calculator {
     protected override float Calculate(ProceduralCube cube) {

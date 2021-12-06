@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace VisitorPattern.Case1.Base {
   /// <summary>
-  /// * A 'Concrete Visitable Element' class
+  /// * [A 'Concrete Visitable Element' class]
   /// </summary>
   public class ProceduralCylinder : ProceduralShape {
     [SerializeField, OnValueChanged(nameof(CreateMesh)), Range(1f, 5f)]
