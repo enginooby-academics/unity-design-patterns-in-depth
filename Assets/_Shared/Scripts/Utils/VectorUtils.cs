@@ -19,6 +19,22 @@ public static class VectorUtils {
   public static Vector3 v110 = new Vector3(1, 1, 0);
   public static Vector3 vm10m1 = new Vector3(-1, 0, -1);
   public static Vector3 vm101 = new Vector3(-1, 0, 1);
+
+  /// <summary>
+  /// Vector3(-1, 1, 0)
+  /// </summary>
+  public static Vector3 vm110 = new Vector3(-1, 1, 0);
+
+  /// <summary>
+  /// Vector3(1, -1, 0)
+  /// </summary>
+  public static Vector3 v1m10 = new Vector3(1, -1, 0);
+
+  /// <summary>
+  /// Vector3(-1, -1, 0)
+  /// </summary>
+  public static Vector3 vm1m10 = new Vector3(-1, -1, 0);
+
   public static Vector3 v10m1 = new Vector3(1, 0, -1);
   public static Vector3 v00m1 = Vector3.back;
   public static Vector3 v010 = Vector3.up;
@@ -37,6 +53,10 @@ public static class VectorUtils {
   public static bool Contains(this Vector2 vect, float value) {
     return (vect.x <= value && value <= vect.y);
   }
+
+  // public static bool Equals(this Vector3 vect1, Vector3 vect2, AxisFlag axises){
+
+  // }
 
   /// <summary> Uses a Vector2 where x is min and y is max. </summary>
   public static float Clamp(this Vector2 vect, float value) {
@@ -79,8 +99,15 @@ public static class VectorUtils {
     return new Vector3(vect.x, Mathf.Abs(vect.y), vect.z);
   }
 
+  public static Vector3 OffsetX(this Vector3 vect, float offset) {
+    return new Vector3(vect.x + offset, vect.y, vect.z);
+  }
   public static Vector3 OffsetY(this Vector3 vect, float offset) {
     return new Vector3(vect.x, vect.y + offset, vect.z);
+  }
+
+  public static Vector3 OffsetZ(this Vector3 vect, float offset) {
+    return new Vector3(vect.x, vect.y, vect.z + offset);
   }
 
   public static Vector3 WithZ(this Vector3 vect, float newZ) {
