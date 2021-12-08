@@ -13,15 +13,17 @@ namespace SubclassSandboxPattern.Case1.Base {
 
     [SerializeField, OnValueChanged(nameof(Rebuild)), Range(5f, 20f)]
     [Tooltip("Number of points on the circle.")]
-    private int totalPoints = 10;
+    private int _totalPoints = 10;
 
     [SerializeField, OnValueChanged(nameof(Rebuild)), EnumToggleButtons]
     private Axis _facingAxis = Axis.Z;
 
     protected override void Build() {
-      for (int i = 0; i < totalPoints; i++) {
+      // AddCube(Vector3.zero);
+
+      for (int i = 0; i < _totalPoints; i++) {
         // distance around the circle
-        var radian = 2 * Mathf.PI / totalPoints * i;
+        var radian = 2 * Mathf.PI / _totalPoints * i;
         var dir1 = Mathf.Sin(radian);
         var dir2 = Mathf.Cos(radian);
         var spawnDir = _facingAxis switch
@@ -31,8 +33,9 @@ namespace SubclassSandboxPattern.Case1.Base {
           Axis.Z => new Vector3(dir1, dir2, 0),
           _ => throw new ArgumentOutOfRangeException()
         };
-        var spawnPos = spawnDir * _radius;
-        AddCube(spawnPos, name: dir1.ToDegree() + " " + dir2.ToDegree() + " " + spawnPos);
+        var pos = spawnDir * _radius;
+        var point = AddCube(pos);
+        if (i.IsEven()) ShakeRotation(point);
       }
     }
   }

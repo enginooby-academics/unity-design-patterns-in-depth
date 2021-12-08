@@ -1,12 +1,13 @@
 using UnityEngine;
 using DG.Tweening;
+using Drawing;
 
 namespace SubclassSandboxPattern.Case1.Base {
   /// <summary>
   /// * [The 'Sandbox' base class] 
   /// Couple with ProceduralUtils, VFXs, TransformOperator component, DOTween asset
   /// </summary>
-  public abstract class Builder : MonoBehaviour {
+  public abstract class Builder : MonoBehaviourGizmos {
     // Subsystems
     // load vfxs from resources
 
@@ -24,14 +25,14 @@ namespace SubclassSandboxPattern.Case1.Base {
     /// <summary>
     /// Create primitive shape with the given local position.
     /// </summary>
-    protected GameObject AddCube(Vector3 localPos, float size = 1f, string name = "Primitive") {
+    protected GameObject AddCube(Vector3 localPos, float size = 1f, string name = "Primitive", Color? color = null) {
       GameObject primitive = new GameObject(name);
       MeshFilter meshFilter = primitive.AddComponent<MeshFilter>();
       MeshRenderer meshRenderer = primitive.AddComponent<MeshRenderer>();
 
       meshFilter.mesh = ProceduralUtils.CreateCubeMesh(size);
       meshRenderer.material = new Material(Shader.Find("Universal Render Pipeline/Lit"));
-      meshRenderer.material.color = Color.red;
+      meshRenderer.material.color = color ?? Color.red;
       primitive.transform.SetPos(localPos + transform.position);
       primitive.transform.SetParent(transform);
 
@@ -46,16 +47,16 @@ namespace SubclassSandboxPattern.Case1.Base {
 
     }
 
-    protected void ShakePosition() {
-      transform.DOShakePosition(1f).SetLoops(-1);
+    protected void ShakePosition(GameObject gameObject) {
+      gameObject.transform.DOShakePosition(1f).SetLoops(-1);
     }
 
-    protected void ShakeRotation() {
-      transform.DOShakeRotation(1f).SetLoops(-1);
+    protected void ShakeRotation(GameObject gameObject) {
+      gameObject.transform.DOShakeRotation(1f).SetLoops(-1);
     }
 
-    protected void ShakeScale() {
-      transform.DOShakeScale(1f).SetLoops(-1);
+    protected void ShakeScale(GameObject gameObject) {
+      gameObject.transform.DOShakeScale(1f).SetLoops(-1);
     }
   }
 }

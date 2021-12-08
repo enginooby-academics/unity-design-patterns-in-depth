@@ -10,32 +10,50 @@ namespace SubclassSandboxPattern.Case1.Base {
 
     [SerializeField, OnValueChanged(nameof(Rebuild)), Range(0f, 10f)]
     [Tooltip("Number of points on each side excluding 2 corner points.")]
-    private int sidePoints = 2;
+    private int _sidePoints = 2;
+
+    [SerializeField, OnValueChanged(nameof(Rebuild)), Range(0f, 10f)]
+    private int _diagonalPoints = 0;
+
+    [SerializeField, OnValueChanged(nameof(Rebuild))]
+    private Color _sideColor = Color.blue;
+
+    [SerializeField, OnValueChanged(nameof(Rebuild))]
+    private Color _cornerColor = Color.green;
+
+    [SerializeField, OnValueChanged(nameof(Rebuild))]
+    private Color _diagonalColor = Color.red;
 
     // IMPL
     // [SerializeField, OnValueChanged(nameof(Rebuild)), EnumToggleButtons]
     // private Axis _facingAxis = Axis.Z;
 
-    private Vector3 corner1, corner2, corner3, corner4;
-
     protected override void Build() {
-      AddCube(Vector3.zero);
+      // centroid point
+      // var centroid = AddCube(Vector3.zero);
 
       // corner points
-      corner1 = vm110 * _size;
-      corner2 = v110 * _size;
-      corner3 = v1m10 * _size;
-      corner4 = vm1m10 * _size;
-      AddCube(corner1);
-      AddCube(corner2);
-      AddCube(corner3);
-      AddCube(corner4);
+      var corner1 = vm110 * _size;
+      var corner2 = v110 * _size;
+      var corner3 = v1m10 * _size;
+      var corner4 = vm1m10 * _size;
+      ShakeScale(AddCube(corner1, color: _cornerColor));
+      ShakeScale(AddCube(corner2, color: _cornerColor));
+      ShakeScale(AddCube(corner3, color: _cornerColor));
+      ShakeScale(AddCube(corner4, color: _cornerColor));
 
       // side points
-      PositionsInBetween(corner1, corner2, sidePoints).ForEach(pos => AddCube(pos));
-      PositionsInBetween(corner2, corner3, sidePoints).ForEach(pos => AddCube(pos));
-      PositionsInBetween(corner3, corner4, sidePoints).ForEach(pos => AddCube(pos));
-      PositionsInBetween(corner4, corner1, sidePoints).ForEach(pos => AddCube(pos));
+      PositionsInBetween(corner1, corner2, _sidePoints).ForEach(pos => AddCube(pos, color: _sideColor));
+      PositionsInBetween(corner2, corner3, _sidePoints).ForEach(pos => AddCube(pos, color: _sideColor));
+      PositionsInBetween(corner3, corner4, _sidePoints).ForEach(pos => AddCube(pos, color: _sideColor));
+      PositionsInBetween(corner4, corner1, _sidePoints).ForEach(pos => AddCube(pos, color: _sideColor));
+
+      // diagonal points
+      Vector3 centroidPos = transform.position;
+      PositionsInBetween(centroidPos, corner1, _diagonalPoints / 2).ForEach(pos => AddCube(pos, color: _diagonalColor));
+      PositionsInBetween(centroidPos, corner2, _diagonalPoints / 2).ForEach(pos => AddCube(pos, color: _diagonalColor));
+      PositionsInBetween(centroidPos, corner3, _diagonalPoints / 2).ForEach(pos => AddCube(pos, color: _diagonalColor));
+      PositionsInBetween(centroidPos, corner4, _diagonalPoints / 2).ForEach(pos => AddCube(pos, color: _diagonalColor));
     }
   }
 }
