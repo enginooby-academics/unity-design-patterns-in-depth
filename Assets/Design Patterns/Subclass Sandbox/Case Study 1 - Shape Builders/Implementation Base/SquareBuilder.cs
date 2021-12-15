@@ -4,6 +4,9 @@ using static VectorUtils;
 using static GeometryUtils;
 
 namespace SubclassSandboxPattern.Case1.Base {
+  /// <summary>
+  /// * [The 'Sandbox Subclass'] 
+  /// </summary>
   public class SquareBuilder : Builder {
     [SerializeField, OnValueChanged(nameof(Rebuild)), Range(2f, 6f)]
     private float _size = 4f;
@@ -33,10 +36,10 @@ namespace SubclassSandboxPattern.Case1.Base {
       // var centroid = AddCube(Vector3.zero);
 
       // corner points
-      var corner1 = vm110 * _size;
-      var corner2 = v110 * _size;
-      var corner3 = v1m10 * _size;
-      var corner4 = vm1m10 * _size;
+      var corner1 = _size * vm110;
+      var corner2 = _size * v110;
+      var corner3 = _size * v1m10;
+      var corner4 = _size * vm1m10;
       ShakeScale(AddCube(corner1, color: _cornerColor));
       ShakeScale(AddCube(corner2, color: _cornerColor));
       ShakeScale(AddCube(corner3, color: _cornerColor));

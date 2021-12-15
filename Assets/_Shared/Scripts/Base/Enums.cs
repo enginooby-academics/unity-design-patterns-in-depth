@@ -7,16 +7,52 @@ public enum MouseButton { Left, Right, Middle }
 public enum ModifierKey {
   // * If add more ModifierKey, add its input valid IsHeld() in InputUtils.cs as well
   // L/R: Left/Right
+
+  /// <summary>
+  /// Left Shift key.
+  /// </summary>
   Lshift = 1 << 1,
+
+  /// <summary>
+  /// Right Shift key.
+  /// </summary>
   Rshift = 1 << 2,
+
+  /// <summary>
+  /// Left Ctrl key.
+  /// </summary>
   Lctrl = 1 << 3,
+
+  /// <summary>
+  /// Right Ctrl key.
+  /// </summary>
   Rctrl = 1 << 4,
+
   Caps = 1 << 5,
+
+  /// <summary>
+  /// Left Alt key.
+  /// </summary>
   Lalt = 1 << 6,
+
+  /// <summary>
+  /// Right Alt key.
+  /// </summary>
   Ralt = 1 << 7,
-  // Mouse
+
+  /// <summary>
+  /// Left mouse button.
+  /// </summary>
   Lmb = 1 << 8,
+
+  /// <summary>
+  /// Right mouse button.
+  /// </summary>
   Rmb = 1 << 9,
+
+  /// <summary>
+  /// Middle mouse button.
+  /// </summary>
   Mmb = 1 << 10,
 }
 

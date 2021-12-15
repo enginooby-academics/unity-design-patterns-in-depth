@@ -1,9 +1,13 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
+// ! Utils below are core, not likely to change so can couple w/ sandbox subclasses
 using static VectorUtils;
 using static GeometryUtils;
 
 namespace SubclassSandboxPattern.Case1.Base {
+  /// <summary>
+  /// * [The 'Sandbox Subclass'] 
+  /// </summary>
   public class TriangleBuilder : Builder {
     [SerializeField, OnValueChanged(nameof(Rebuild)), Range(2f, 6f)]
     private float _height = 4f;

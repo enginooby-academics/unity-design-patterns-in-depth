@@ -54,9 +54,9 @@ namespace FacadePattern.Case1.Base {
     }
 
     private void OnDestroy() {
-      _beautifySystem.DestroyGO();
-      _scpeSystem.DestroyGO();
-      _postFXSytem.DestroyGO();
+      _beautifySystem.DestroyGameObject();
+      _scpeSystem.DestroyGameObject();
+      _postFXSytem.DestroyGameObject();
     }
     // TIP: use same label for #endregion to keep "=" equal
     #endregion SUBSYSTEMS ================================================================================================================================

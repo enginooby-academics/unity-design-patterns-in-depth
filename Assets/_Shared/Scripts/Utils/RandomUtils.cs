@@ -21,4 +21,14 @@ public static class RandomUtils {
 
     return vect + offset;
   }
+
+  /// <summary>
+  /// E.g. Vector (1, 1, 1) return between vector (-1, -1, -1) and (1, 1, 1). 
+  /// </summary>
+  public static Vector3 RandomRange(this Vector3 vect) {
+    float randomX = vect.x.RandomTwoSides();
+    float randomY = vect.y.RandomTwoSides();
+    float randomZ = vect.z.RandomTwoSides();
+    return new Vector3(randomX, randomY, randomZ);
+  }
 }

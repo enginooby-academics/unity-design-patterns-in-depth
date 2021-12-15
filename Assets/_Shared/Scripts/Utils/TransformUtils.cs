@@ -48,6 +48,10 @@ public static class TransformUtils {
     transform.position = new Vector3(transform.position.x, transform.position.y, z);
   }
 
+  public static void SetPos(this Transform transform, Vector3 pos) {
+    transform.position = pos;
+  }
+
   public static void PosX(this Transform transform, float x) {
     transform.position = new Vector3(x, transform.position.y, transform.position.z);
   }
@@ -241,5 +245,13 @@ public static class TransformUtils {
       return collider.bounds.center;
     }
     return transform.position;
+  }
+
+  /// <summary>
+  /// Destroy all child GameObjects safely.
+  /// </summary>
+  public static void DestroyChildren(this Transform transform) {
+    // OPTIM: not convert to array
+    transform.gameObject.GetComponentsInChildrenOnly<Transform>().ToArray().DestroyGameObjects();
   }
 }

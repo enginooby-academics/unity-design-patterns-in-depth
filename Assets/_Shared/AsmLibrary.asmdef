@@ -13,7 +13,9 @@
         "MeshEffect",
         "Outlinable",
         "ch.giezi.tools.ScriptableObjectVariant",
-        "AsmIUnified"
+        "AsmIUnified",
+        "ALINE",
+        "Unity.Mathematics"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

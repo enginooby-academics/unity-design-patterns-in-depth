@@ -4,8 +4,7 @@ using UnityEngine;
 
 namespace SubclassSandboxPattern.Case1.Base {
   /// <summary>
-  /// * [The 'Sandbox' subclass] 
-  /// Couple with the base class only
+  /// * [The 'Sandbox Subclass'] 
   /// </summary>
   public class CircleBuilder : Builder {
     [SerializeField, OnValueChanged(nameof(Rebuild)), Range(2f, 6f)]

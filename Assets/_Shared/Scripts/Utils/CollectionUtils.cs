@@ -18,6 +18,7 @@ public static class CollectionUtils {
     return 0 <= index && index < list.Count;
   }
 
+  #region ELEMENT RETRIEVAL
   // TODO: rename GetNext
   public static T NavNext<T>(this List<T> list, T currentItem) {
     int currentIndex = list.IndexOf(currentItem);
@@ -54,6 +55,10 @@ public static class CollectionUtils {
     int currentIndex = list.IndexOf(currentItem);
     int previous = currentIndex == 0 ? list.Count - 1 : currentIndex - 1;
     return list[previous];
+  }
+
+  public static T GetLast<T>(this List<T> list) {
+    return list[list.Count - 1];
   }
 
   public static T GetRandom<T>(this List<T> list) {
@@ -111,6 +116,7 @@ public static class CollectionUtils {
       return false;
     }
   }
+  #endregion
 
   private static System.Random rng = new System.Random();
   public static void Shuffle<T>(this IList<T> list) {
@@ -123,10 +129,6 @@ public static class CollectionUtils {
       list[k] = list[n];
       list[n] = value;
     }
-  }
-
-  public static T GetLast<T>(this List<T> list) {
-    return list[list.Count - 1];
   }
 
   // ! not pass by ref => not modify original list
@@ -150,6 +152,7 @@ public static class CollectionUtils {
   /// <summary>
   /// Return the GameObject in the list which is nearest to the given position.
   /// </summary>
+  // REFACTOR
   public static GameObject GetNearestTo(this IList<GameObject> list, Vector3 pos) {
     int nearestIndex = 0;
     float lastDist = Mathf.Infinity;
@@ -164,7 +167,6 @@ public static class CollectionUtils {
 
     return list[nearestIndex];
   }
-
 
   /// <summary>
   /// Return the GameObject in the list which is nearest to the given position.

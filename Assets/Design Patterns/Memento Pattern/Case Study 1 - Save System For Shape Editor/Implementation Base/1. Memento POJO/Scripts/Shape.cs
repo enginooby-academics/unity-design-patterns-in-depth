@@ -24,9 +24,7 @@ namespace MementoPattern.Case1.Base {
     private void UpdateSize() => Size = _size;
 
     [Button]
-    public void ClearAllCaches() {
-      gameObject.ClearCaches();
-    }
+    public void ClearAllCaches() => gameObject.ClearCaches();
 
     public ShapeType Type {
       set {

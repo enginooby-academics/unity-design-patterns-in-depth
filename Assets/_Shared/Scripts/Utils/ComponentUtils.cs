@@ -2,10 +2,47 @@ using UnityEngine;
 using System;
 using System.Reflection;
 using System.Collections;
+using System.Collections.Generic;
 
 public static class ComponentUtils {
-  public static void DestroyGO(this Component component) {
+  /// <summary>
+  /// Destroy this component's GameObject if component is not null (safely).
+  /// </summary>
+  public static void DestroyGameObject(this Component component) {
     if (component != null) UnityEngine.Object.Destroy(component.gameObject);
+  }
+
+  /// <summary>
+  /// Destroy all GameObjects of components if component is not null.
+  /// </summary>
+  public static void DestroyGameObjects(this Component[] components) {
+    foreach (var component in components) {
+      component.DestroyGameObject();
+    }
+  }
+
+  /// <summary>
+  /// Get all components whose GameObject is child of this GameObject (not this GameObject).
+  /// </summary>
+  public static List<T> GetComponentsInChildrenOnly<T>(this GameObject gameObject) where T : Component {
+    List<T> components = new List<T>();
+    foreach (T component in gameObject.transform) {
+      components.Add(component);
+    }
+
+    return components;
+  }
+
+  /// <summary>
+  /// Get all child GameObjects of this GameObject (not this GameObject).
+  /// </summary>
+  public static List<GameObject> GetGameObjectsInChildrenOnly(this GameObject gameObject) {
+    List<GameObject> children = new List<GameObject>();
+    foreach (Transform transformChild in gameObject.transform) {
+      children.Add(transformChild.gameObject);
+    }
+
+    return children;
   }
 
   public static T CopyTo<T>(this T original, GameObject destination) where T : Component {
@@ -86,14 +123,14 @@ public static class ComponentUtils {
   }
 
   /// <summary>
-  /// Temporary disable the component for a given period.
+  /// Temporarily disable the component for a given period.
   /// </summary>
   public static void Disable(this MonoBehaviour monoBehaviour, float timePeriod) {
     monoBehaviour.enabled = false;
-    monoBehaviour.StartCoroutine(Enable(monoBehaviour, delay: timePeriod));
+    monoBehaviour.StartCoroutine(EnableCoroutine(monoBehaviour, delay: timePeriod));
   }
 
-  private static IEnumerator Enable(MonoBehaviour monoBehaviour, float delay) {
+  private static IEnumerator EnableCoroutine(MonoBehaviour monoBehaviour, float delay) {
     yield return new WaitForSeconds(delay);
     monoBehaviour.enabled = true;
   }
