@@ -1,8 +1,10 @@
 using UnityEngine;
 
 namespace AbstractFactoryPattern.Case1.Base {
+  /// <summary>
+  /// * [A 'Concrete Product']
+  /// </summary>
   public class SimpleCube : Cube {
-    /// * [A 'Concrete Product']
     public SimpleCube() : base(Random.Range(3f, 4f), Color.red) { }
   }
 }

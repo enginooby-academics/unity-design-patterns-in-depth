@@ -1,9 +1,10 @@
 using UnityEngine;
 
 namespace AbstractFactoryPattern.Case1.Base {
+  /// <summary>
+  /// * [A 'Concrete Product']
+  /// </summary>
   public class ShakingSphere : Sphere {
-    /// * [A 'Concrete Product']
-
     public ShakingSphere() : base(Random.Range(1f, 2f), Color.blue) {
       _gameObject.transform.ShakePosition();
     }
