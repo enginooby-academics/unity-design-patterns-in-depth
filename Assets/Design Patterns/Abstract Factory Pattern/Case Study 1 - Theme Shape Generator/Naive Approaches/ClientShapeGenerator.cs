@@ -1,16 +1,16 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace AbstractFactoryPattern.Case1.Unity.Prefab {
-  /// <summary>
-  /// * [The 'Client' class]
-  /// Client instantiate different shapes by theme w/o specifying concrete shape classes.
-  /// </summary>
+namespace AbstractFactoryPattern.Case1.Naive {
   public class ClientShapeGenerator : MonoBehaviour {
-    [SerializeField]
-    private ShapeFactory _currentShapeFactory;
+    // ! need to modify if new theme is added
+    public enum Theme { Simple, Shaking }
+
+    [SerializeField, EnumToggleButtons]
+    private Theme _currentTheme;
 
     private List<Cube> generatedCubes = new List<Cube>();
     private List<Sphere> generatedSpheres = new List<Sphere>();
@@ -18,14 +18,25 @@ namespace AbstractFactoryPattern.Case1.Unity.Prefab {
 
     [Button]
     public void CreateCube() {
-      var cube = _currentShapeFactory.CreateCube();
+      // ! tightly coupled w/ concrete product classes
+      Cube cube = _currentTheme switch
+      {
+        Theme.Simple => new SimpleCube(),
+        Theme.Shaking => new ShakingCube(),
+        _ => throw new ArgumentOutOfRangeException(),
+      };
       cube.SetPos(RandomPos);
       generatedCubes.Add(cube);
     }
 
     [Button]
     public void CreateSphere() {
-      var sphere = _currentShapeFactory.CreateSphere();
+      Sphere sphere = _currentTheme switch
+      {
+        Theme.Simple => new SimpleSphere(),
+        Theme.Shaking => new ShakingSphere(),
+        _ => throw new ArgumentOutOfRangeException(),
+      };
       sphere.SetPos(RandomPos);
       generatedSpheres.Add(sphere);
     }

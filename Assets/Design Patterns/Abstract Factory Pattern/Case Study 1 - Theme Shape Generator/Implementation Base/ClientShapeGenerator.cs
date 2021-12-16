@@ -14,18 +14,19 @@ namespace AbstractFactoryPattern.Case1.Base {
 
     private List<Cube> generatedCubes = new List<Cube>();
     private List<Sphere> generatedSpheres = new List<Sphere>();
+    private Vector3 RandomPos => new Vector3(24, 8, 0).RandomRange();
 
     [Button]
     public void CreateCube() {
       var cube = _currentShapeFactory.CreateCube();
-      cube.SetPos(new Vector3(24, 8, 0).RandomRange());
+      cube.SetPos(RandomPos);
       generatedCubes.Add(cube);
     }
 
     [Button]
     public void CreateSphere() {
       var sphere = _currentShapeFactory.CreateSphere();
-      sphere.SetPos(new Vector3(24, 8, 0).RandomRange());
+      sphere.SetPos(RandomPos);
       generatedSpheres.Add(sphere);
     }
 

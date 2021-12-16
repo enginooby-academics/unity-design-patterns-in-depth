@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace AbstractFactoryPattern.Case1.Base {
+namespace AbstractFactoryPattern.Case1 {
   /// <summary>
   /// * [A 'Abstract Product']
   /// </summary>
