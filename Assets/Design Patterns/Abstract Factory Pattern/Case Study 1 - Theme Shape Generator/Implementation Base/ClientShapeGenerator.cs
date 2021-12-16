@@ -1,20 +1,15 @@
-using System.Collections.Generic;
-using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Shared = AbstractFactoryPattern.Case1;
 
 namespace AbstractFactoryPattern.Case1.Base {
   /// <summary>
   /// * [The 'Client' class]
   /// Client instantiate different shapes by theme w/o specifying concrete shape classes.
   /// </summary>
-  public class ClientShapeGenerator : MonoBehaviour {
+  public class ClientShapeGenerator : Shared.ClientShapeGenerator {
     [SerializeReference]
     private ShapeFactory _currentShapeFactory;
-
-    private List<Cube> generatedCubes = new List<Cube>();
-    private List<Sphere> generatedSpheres = new List<Sphere>();
-    private Vector3 RandomPos => new Vector3(24, 8, 0).RandomRange();
 
     [Button]
     public void CreateCube() {
@@ -28,18 +23,6 @@ namespace AbstractFactoryPattern.Case1.Base {
       var sphere = _currentShapeFactory.CreateSphere();
       sphere.SetPos(RandomPos);
       generatedSpheres.Add(sphere);
-    }
-
-    [Button]
-    public void GetTotalDiagonals() {
-      float total = generatedCubes.Sum(cube => cube.GetDiagonal());
-      print("Total diagonal of all generated cubes is: " + total);
-    }
-
-    [Button]
-    public void GetTotalDiameters() {
-      float total = generatedSpheres.Sum(sphere => sphere.GetDiameter());
-      print("Total diameter of all generated spheres is: " + total);
     }
   }
 }
