@@ -7,8 +7,12 @@ public static class TypeUtils {
   public static List<Type> GetTypesOf<T>(bool isClass = true, bool isAbstract = false) {
     var types = new List<Type>();
     if (isClass && !isAbstract) {
-      types = Assembly.GetAssembly(typeof(T))
-            .GetTypes().Where(p => typeof(T).IsAssignableFrom(p) && p.IsClass && !p.IsAbstract).ToList();
+      types = Assembly
+            .GetAssembly(typeof(T))
+            .GetTypes()
+            .Where(p => typeof(T)
+            .IsAssignableFrom(p) && p.IsClass && !p.IsAbstract)
+            .ToList();
     }
 
     // TODO: implement all isClass cases
@@ -23,6 +27,7 @@ public static class TypeUtils {
 
     return instances;
   }
+
 
   // public static bool HasOverloadForArgument(Type targetType, string methodName, object arg) {
   //   var methodInfo = targetType.GetMethod(name: methodName, types: new[] { arg.GetType() });
