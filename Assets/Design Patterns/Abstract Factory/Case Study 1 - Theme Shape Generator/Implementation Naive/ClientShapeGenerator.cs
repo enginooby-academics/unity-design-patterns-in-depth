@@ -3,7 +3,6 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using Shared = AbstractFactoryPattern.Case1;
 
-
 namespace AbstractFactoryPattern.Case1.Naive {
   public class ClientShapeGenerator : Shared.ClientShapeGenerator {
     // ! need to modify if new theme is added

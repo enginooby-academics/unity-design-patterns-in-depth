@@ -157,7 +157,7 @@ MonoBehaviour:
   references:
     version: 1
     00000000:
-      type: {class: SimpleShapeFactory, ns: AbstractFactoryPattern.Case1.Base, asm: FactoryPattern}
+      type: {class: ShakingShapeFactory, ns: AbstractFactoryPattern.Case1.Base, asm: FactoryPattern}
 --- !u!4 &186939444
 Transform:
   m_ObjectHideFlags: 0

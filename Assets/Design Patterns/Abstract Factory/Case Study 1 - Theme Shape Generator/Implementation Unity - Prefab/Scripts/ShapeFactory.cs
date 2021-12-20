@@ -2,7 +2,8 @@ using UnityEngine;
 
 namespace AbstractFactoryPattern.Case1.Unity.Prefab {
   /// <summary>
-  /// * [The 'Factory']
+  /// * [The 'MonoBehaviour Factory']
+  /// Use product prefabs
   /// </summary>
   public class ShapeFactory : MonoBehaviour {
     [SerializeField]
