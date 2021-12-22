@@ -222,33 +222,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shapeType:
-    id: 0
-  _shapeColor:
-    id: 1
-  _shapeDimension:
-    id: 2
-  _shapeColors:
-  - id: 3
-  - id: 4
-  _shapeDimensions:
-  - id: 5
-  - id: 6
-  references:
-    version: 1
-    00000000:
-      type: {class: RuntimeType, ns: System, asm: mscorlib}
-    00000001:
-      type: {class: ColorRed, ns: BridgePattern.Case1.Base, asm: BridgePattern}
-    00000002:
-      type: {class: DimensionTwo, ns: BridgePattern.Case1.Base, asm: BridgePattern}
-    00000003:
-      type: {class: ColorGreen, ns: BridgePattern.Case1.Base, asm: BridgePattern}
-    00000004:
-      type: {class: ColorRed, ns: BridgePattern.Case1.Base, asm: BridgePattern}
-    00000005:
-      type: {class: DimensionThree, ns: BridgePattern.Case1.Base, asm: BridgePattern}
-    00000006:
-      type: {class: DimensionTwo, ns: BridgePattern.Case1.Base, asm: BridgePattern}
+    _currentTypeName: ShapeCircle
+  _colorType:
+    _currentTypeName: ColorRed
+  _dimensionType:
+    _currentTypeName: DimensionThree
 --- !u!4 &1426994747
 Transform:
   m_ObjectHideFlags: 0

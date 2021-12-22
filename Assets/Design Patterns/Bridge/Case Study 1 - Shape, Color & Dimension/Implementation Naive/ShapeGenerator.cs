@@ -23,7 +23,7 @@ namespace BridgePattern.Case1.Naive {
     }
 
     private void RetrieveShapeTypes() {
-      _shapeTypes = TypeUtils.GetTypesOf<IShape>();
+      _shapeTypes = TypeUtils.GetConcreteTypesOf<IShape>();
     }
   }
 }
