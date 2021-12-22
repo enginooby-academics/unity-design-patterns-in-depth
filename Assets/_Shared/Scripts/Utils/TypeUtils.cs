@@ -4,6 +4,16 @@ using System.Collections.Generic;
 using System;
 
 public static class TypeUtils {
+  public static List<Type> GetConcreteTypesOf<T>() {
+    return GetTypesOf<T>(isClass: true, isAbstract: false);
+    // return Assembly
+    //       .GetAssembly(typeof(T))
+    //       .GetTypes()
+    //       .Where(p => typeof(T)
+    //       .IsAssignableFrom(p) && p.IsClass && !p.IsAbstract)
+    //       .ToList();
+  }
+
   public static List<Type> GetTypesOf<T>(bool isClass = true, bool isAbstract = false) {
     var types = new List<Type>();
     if (isClass && !isAbstract) {
@@ -19,9 +29,19 @@ public static class TypeUtils {
     return types;
   }
 
+  public static List<String> GetConcreteTypeNamesOf<T>() {
+    var types = TypeUtils.GetConcreteTypesOf<T>();
+    var _typeNames = new List<String>();
+
+    for (int i = 0; i < types.Count; i++) {
+      _typeNames.Add(types[i].Name);
+    }
+    return _typeNames;
+  }
+
   public static List<T> GetInstancesOf<T>() where T : class {
     var instances = new List<T>();
-    GetTypesOf<T>().ForEach(type => {
+    GetConcreteTypesOf<T>().ForEach(type => {
       instances.Add(Activator.CreateInstance(type) as T);
     });
 
