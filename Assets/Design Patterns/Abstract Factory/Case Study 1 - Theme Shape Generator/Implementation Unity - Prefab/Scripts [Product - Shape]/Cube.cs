@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace AbstractFactoryPattern.Case1.Unity.Prefab {
   /// <summary> 
-  /// * [A 'Abstract Product'] 
+  /// * [An 'Abstract Product'] 
   /// </summary> 
   public abstract class Cube : MonoBehaviour {
     protected float _size;

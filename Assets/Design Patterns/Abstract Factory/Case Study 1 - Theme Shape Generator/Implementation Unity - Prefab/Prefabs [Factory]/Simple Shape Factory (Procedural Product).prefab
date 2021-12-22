@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 917268423216055241}
   - component: {fileID: 917268423216055240}
   m_Layer: 0
-  m_Name: Simple Shape Factory (Non-prefab Product)
+  m_Name: Simple Shape Factory (Procedural Product)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

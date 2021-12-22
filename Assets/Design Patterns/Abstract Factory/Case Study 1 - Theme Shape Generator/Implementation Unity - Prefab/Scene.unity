@@ -245,7 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c388806fa5f7446946ac5b73a97d3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentShapeFactory: {fileID: 5132068790938880659, guid: e1785a43b2130e544bc36755a361e726,
+  _currentShapeFactory: {fileID: 917268423216055240, guid: e3004fd289a7f4a4a9137997f70a56f5,
     type: 3}
 --- !u!4 &1021698449
 Transform:

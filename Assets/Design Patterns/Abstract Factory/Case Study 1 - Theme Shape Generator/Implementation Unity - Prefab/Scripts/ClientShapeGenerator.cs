@@ -10,8 +10,8 @@ namespace AbstractFactoryPattern.Case1.Unity.Prefab {
   /// </summary>
   public class ClientShapeGenerator : MonoBehaviour {
     [SerializeField]
-    // private ShapeFactory _currentShapeFactory;
-    private ShapeFactoryNonPrefabProduct _currentShapeFactory;
+    private ShapeFactory _currentShapeFactory;
+    // private ProceduralShapeFactory _currentShapeFactory;
 
     private List<Cube> generatedCubes = new List<Cube>();
     private List<Sphere> generatedSpheres = new List<Sphere>();
