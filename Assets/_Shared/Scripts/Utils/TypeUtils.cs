@@ -39,6 +39,16 @@ public static class TypeUtils {
     return _typeNames;
   }
 
+  public static List<String> GetConcreteTypeQualifiedNamesOf<T>() {
+    var types = TypeUtils.GetConcreteTypesOf<T>();
+    var _typeNames = new List<String>();
+
+    for (int i = 0; i < types.Count; i++) {
+      _typeNames.Add(types[i].AssemblyQualifiedName);
+    }
+    return _typeNames;
+  }
+
   public static List<T> GetInstancesOf<T>() where T : class {
     var instances = new List<T>();
     GetConcreteTypesOf<T>().ForEach(type => {

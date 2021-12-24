@@ -6,6 +6,7 @@ namespace BridgePattern.Case1.Unity1 {
   public class ClientShapeGenerator : MonoBehaviour {
     [SerializeField]
     // private Shape _shapePrefab;
+    [InlineEditor]
     private ProceduralShape _shapePrefab;
 
     [Button]
