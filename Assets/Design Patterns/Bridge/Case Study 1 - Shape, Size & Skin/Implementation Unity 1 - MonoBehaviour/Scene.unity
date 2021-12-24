@@ -149,12 +149,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 927741768}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd8614b70e4347e46bd3dcd6ec9abd1c, type: 3}
+  m_Script: {fileID: 11500000, guid: a4c0ff48b3540cd4aba9cd180f352bf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentShape: 0
-  _currentSize: 1
-  _currentSkin: 1
+  _shapePrefab: {fileID: 0}
 --- !u!4 &927741770
 Transform:
   m_ObjectHideFlags: 0
