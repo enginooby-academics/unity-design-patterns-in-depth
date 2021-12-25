@@ -5,16 +5,12 @@ using UnityEngine;
 namespace VisitorPattern.Case1.Naive {
   public class ProceduralCube : ProceduralShape {
     #region CALCULATION-RELATED =======================================================================================================================================================================
-    public override void CalculateDiameter() {
-      print(Math.Sqrt(3) * Size);
+    public override double CalculateSurfaceArea() {
+      return 6 * Math.Pow(Size, 2);
     }
 
-    public override void CalculateSurfaceArea() {
-      print(6 * Math.Pow(Size, 2));
-    }
-
-    public override void CalculateVolume() {
-      print(Mathf.Pow(Size, 3));
+    public override double CalculateVolume() {
+      return Mathf.Pow(Size, 3);
     }
     #endregion CALCULATION-RELATED ====================================================================================================================================================================
 

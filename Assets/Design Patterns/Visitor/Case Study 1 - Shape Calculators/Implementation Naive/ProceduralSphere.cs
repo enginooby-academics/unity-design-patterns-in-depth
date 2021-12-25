@@ -4,16 +4,12 @@ using UnityEngine;
 namespace VisitorPattern.Case1.Naive {
   public class ProceduralSphere : ProceduralShape {
     #region CALCULATION-RELATED =======================================================================================================================================================================
-    public override void CalculateDiameter() {
-      print(2 * Radius);
+    public override double CalculateSurfaceArea() {
+      return 4 * Mathf.PI * Mathf.Pow(Radius, 2);
     }
 
-    public override void CalculateSurfaceArea() {
-      print(4 * Mathf.PI * Mathf.Pow(Radius, 2));
-    }
-
-    public override void CalculateVolume() {
-      print(4 / 3 * Mathf.PI * Mathf.Pow(Radius, 3));
+    public override double CalculateVolume() {
+      return 4 / 3 * Mathf.PI * Mathf.Pow(Radius, 3);
     }
     #endregion CALCULATION-RELATED ====================================================================================================================================================================
 

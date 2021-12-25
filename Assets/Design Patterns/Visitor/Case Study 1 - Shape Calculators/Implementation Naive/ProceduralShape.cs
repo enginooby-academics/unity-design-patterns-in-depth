@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace VisitorPattern.Case1.Naive {
@@ -7,14 +6,9 @@ namespace VisitorPattern.Case1.Naive {
     // ! Naive approach: each shape now has 2 responsibilites which are procudural generation & calculation
     // ! Need to modify the whole inheritance hierarchy
     #region CALCULATION-RELATED =======================================================================================================================================================================
-    [Button]
-    public abstract void CalculateDiameter();
+    public abstract double CalculateSurfaceArea();
 
-    [Button]
-    public abstract void CalculateSurfaceArea();
-
-    [Button]
-    public abstract void CalculateVolume();
+    public abstract double CalculateVolume();
     #endregion CALCULATION-RELATED ====================================================================================================================================================================
 
     #region PROCEDURAL-RELATED =======================================================================================================================================================================
