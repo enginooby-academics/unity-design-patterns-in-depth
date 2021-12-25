@@ -271,7 +271,7 @@ MonoBehaviour:
   references:
     version: 1
     00000000:
-      type: {class: SurfaceAreaCalculator, ns: VisitorPattern.Case1.Naive2, asm: VisitorPattern}
+      type: {class: VolumeCalculator, ns: VisitorPattern.Case1.Naive2, asm: VisitorPattern}
 --- !u!4 &1028295090
 Transform:
   m_ObjectHideFlags: 0

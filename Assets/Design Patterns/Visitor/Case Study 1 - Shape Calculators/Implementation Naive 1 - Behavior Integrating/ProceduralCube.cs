@@ -1,17 +1,13 @@
-using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using static UnityEngine.Mathf;
 
 namespace VisitorPattern.Case1.Naive {
   public class ProceduralCube : ProceduralShape {
     #region CALCULATION-RELATED =======================================================================================================================================================================
-    public override double CalculateSurfaceArea() {
-      return 6 * Math.Pow(Size, 2);
-    }
+    public override double CalculateSurfaceArea() => 6 * Pow(Size, 2);
 
-    public override double CalculateVolume() {
-      return Mathf.Pow(Size, 3);
-    }
+    public override double CalculateVolume() => Pow(Size, 3);
     #endregion CALCULATION-RELATED ====================================================================================================================================================================
 
     #region PROCEDURAL-RELATED =======================================================================================================================================================================

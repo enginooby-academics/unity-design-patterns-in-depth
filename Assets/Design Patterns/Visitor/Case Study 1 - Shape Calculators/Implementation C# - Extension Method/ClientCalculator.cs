@@ -11,7 +11,8 @@ namespace VisitorPattern.Case1.CSharp {
 
     [Button]
     public void ProcessCalculationOnCurrentShape() {
-      _currentShape.ProcessCalculation(_currentCalculator);
+      var result = _currentShape.ProcessCalculation(_currentCalculator);
+      Debug.Log($"{_currentCalculator.GetType().Name}: {result}");
     }
   }
 }

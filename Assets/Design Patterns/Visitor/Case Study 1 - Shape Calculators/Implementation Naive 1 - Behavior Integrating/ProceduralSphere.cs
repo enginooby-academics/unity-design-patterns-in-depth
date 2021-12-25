@@ -1,25 +1,23 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
+using static UnityEngine.Mathf;
 
 namespace VisitorPattern.Case1.Naive {
   public class ProceduralSphere : ProceduralShape {
     #region CALCULATION-RELATED =======================================================================================================================================================================
-    public override double CalculateSurfaceArea() {
-      return 4 * Mathf.PI * Mathf.Pow(Radius, 2);
-    }
+    public override double CalculateSurfaceArea() => 4 * PI * Pow(Radius, 2);
 
-    public override double CalculateVolume() {
-      return 4 / 3 * Mathf.PI * Mathf.Pow(Radius, 3);
-    }
+    public override double CalculateVolume() => 4 / 3 * PI * Pow(Radius, 3);
     #endregion CALCULATION-RELATED ====================================================================================================================================================================
 
     #region PROCEDURAL-RELATED =======================================================================================================================================================================
     [SerializeField, OnValueChanged(nameof(CreateMesh)), Range(1f, 5f)]
     private float _radius;
 
+    public float Radius => _radius;
+
     private int _horizontalSegments = 16;
     private int _verticalSegments = 16;
-    public float Radius => _radius;
 
     protected override void CreateMeshData() {
       float horizontalSegmentAngle = 360f / _horizontalSegments;

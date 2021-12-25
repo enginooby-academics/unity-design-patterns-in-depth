@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace VisitorPattern.Case1.Naive2 {
   public class ClientCalculator : MonoBehaviour {
-    [SerializeField, SerializeReference]
+    [SerializeReference]
     private Calculator _currentCalculator;
 
     [SerializeField, InlineEditor]
