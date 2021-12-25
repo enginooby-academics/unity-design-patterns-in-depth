@@ -6,6 +6,6 @@ namespace VisitorPattern.Case1.Base {
     /// <summary>
     /// * [The 'Accept()' method]
     /// </summary>
-    float ProcessCalculation(ICalculator calculator);
+    float ProcessCalculation(Calculator calculator);
   }
 }

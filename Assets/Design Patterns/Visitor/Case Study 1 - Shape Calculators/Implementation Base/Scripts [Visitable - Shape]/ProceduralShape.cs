@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace VisitorPattern.Case1.Base {
@@ -7,14 +6,7 @@ namespace VisitorPattern.Case1.Base {
   /// * [The 'Abstract Visitable Element' class]
   /// </summary>
   public abstract class ProceduralShape : MonoBehaviour, ICalculatable {
-    public float ProcessCalculation(ICalculator calculator) => calculator.Calculate(this);
-
-    [Button]
-    public void Calculate() {
-      ICalculator calculator = CalculatorManager.Instance.CurrentCalculator;
-      float result = ProcessCalculation(calculator);
-      print($"{calculator.GetType().Name}: {result}");
-    }
+    public float ProcessCalculation(Calculator calculator) => calculator.Calculate(this);
 
     #region PROCEDURAL-RELATED =======================================================================================================================================================================
     protected List<Vector3> vertices = new List<Vector3>();

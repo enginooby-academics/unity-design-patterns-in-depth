@@ -5,7 +5,7 @@ using UnityEngine;
 namespace VisitorPattern.Case1.Naive {
   public abstract class ProceduralShape : MonoBehaviour {
     // ! Naive approach: each shape now has 2 responsibilites which are procudural generation & calculation
-    // ! Need to change every shape class
+    // ! Need to modify the whole inheritance hierarchy
     #region CALCULATION-RELATED =======================================================================================================================================================================
     [Button]
     public abstract void CalculateDiameter();

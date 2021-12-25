@@ -12,9 +12,5 @@ namespace VisitorPattern.Case1.Base {
     protected override float Calculate(ProceduralSphere sphere) {
       return 4 / 3 * Mathf.PI * Mathf.Pow(sphere.Radius, 3);
     }
-
-    protected override float Calculate(ProceduralCylinder cylinder) {
-      return Mathf.PI * Mathf.Pow(cylinder.Radius, 2) * cylinder.Height;
-    }
   }
 }

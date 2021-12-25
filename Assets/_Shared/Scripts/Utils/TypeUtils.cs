@@ -58,6 +58,23 @@ public static class TypeUtils {
     return instances;
   }
 
+  public static MethodInfo GetNonPublicMethod(this Type type, string methodName, Type paramType) {
+    return type.GetMethod(methodName, BindingFlags.Instance | BindingFlags.NonPublic, Type.DefaultBinder, new Type[] { paramType }, null);
+  }
+
+  /// <summary>
+  /// Check type of the first parameter.
+  /// </summary>
+  public static bool IsParamTypeOf<T>(this MethodInfo method) {
+    return method.GetParameters()[0].ParameterType == typeof(T);
+  }
+
+  /// <summary>
+  /// Check method not null and type of the first parameter.
+  /// </summary>
+  public static bool ExistWithParamTypeOf<T>(this MethodInfo method) {
+    return method != null && method.IsParamTypeOf<T>();
+  }
 
   // public static bool HasOverloadForArgument(Type targetType, string methodName, object arg) {
   //   var methodInfo = targetType.GetMethod(name: methodName, types: new[] { arg.GetType() });
