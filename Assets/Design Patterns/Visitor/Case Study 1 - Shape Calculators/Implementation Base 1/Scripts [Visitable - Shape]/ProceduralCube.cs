@@ -1,16 +1,13 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
-using static UnityEngine.Mathf;
 
-namespace VisitorPattern.Case1.Naive1 {
+namespace VisitorPattern.Case1.Base1 {
+  /// <summary>
+  /// * [A 'Concrete Visitable Element' class]
+  /// </summary>
   public class ProceduralCube : ProceduralShape {
-    #region CALCULATION-RELATED =======================================================================================================================================================================
-    public override double CalculateSurfaceArea() => 6 * Pow(Size, 2);
+    public override double ProcessCalculation(Calculator calculator) => calculator.Calculate(this);
 
-    public override double CalculateVolume() => Pow(Size, 3);
-    #endregion CALCULATION-RELATED ====================================================================================================================================================================
-
-    #region PROCEDURAL-RELATED =======================================================================================================================================================================
     [SerializeField, OnValueChanged(nameof(CreateMesh)), Range(1f, 5f)]
     private float _size = 1f;
     public float Size => _size;
@@ -74,6 +71,5 @@ namespace VisitorPattern.Case1.Naive1 {
       vertices.Add(vertex2);
       vertices.Add(vertex3);
     }
-    #endregion PROCEDURAL-RELATED ====================================================================================================================================================================
   }
 }

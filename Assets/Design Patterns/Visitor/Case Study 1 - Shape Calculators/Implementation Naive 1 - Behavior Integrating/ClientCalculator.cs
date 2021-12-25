@@ -1,7 +1,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace VisitorPattern.Case1.Naive {
+namespace VisitorPattern.Case1.Naive1 {
   public class ClientCalculator : MonoBehaviour {
     [SerializeField, InlineEditor]
     private ProceduralShape _currentShape;

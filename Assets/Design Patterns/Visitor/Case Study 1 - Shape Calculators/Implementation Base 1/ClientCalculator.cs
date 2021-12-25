@@ -1,7 +1,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace VisitorPattern.Case1.Base2 {
+namespace VisitorPattern.Case1.Base1 {
   public class ClientCalculator : MonoBehaviour {
     [SerializeField, SerializeReference]
     private Calculator _currentCalculator;

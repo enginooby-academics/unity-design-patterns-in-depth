@@ -1,15 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace VisitorPattern.Case1.Naive1 {
-  public abstract class ProceduralShape : MonoBehaviour {
-    // ! Naive approach: each shape now has 2 responsibilites which are procudural generation & calculation
-    // ! Need to modify the whole inheritance hierarchy
-    #region CALCULATION-RELATED =======================================================================================================================================================================
-    public abstract double CalculateSurfaceArea();
-
-    public abstract double CalculateVolume();
-    #endregion CALCULATION-RELATED ====================================================================================================================================================================
+namespace VisitorPattern.Case1.Base1 {
+  /// <summary>
+  /// * [The 'Abstract Visitable Element' class]
+  /// </summary>
+  public abstract class ProceduralShape : MonoBehaviour, ICalculatable {
+    public abstract double ProcessCalculation(Calculator calculator);
 
     #region PROCEDURAL-RELATED =======================================================================================================================================================================
     protected List<Vector3> vertices = new List<Vector3>();

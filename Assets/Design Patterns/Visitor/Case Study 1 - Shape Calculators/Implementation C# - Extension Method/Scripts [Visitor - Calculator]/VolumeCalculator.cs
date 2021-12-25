@@ -1,16 +1,12 @@
-using UnityEngine;
+using static UnityEngine.Mathf;
 
 namespace VisitorPattern.Case1.CSharp {
   /// <summary>
   /// * [A 'Concrete Visitor' class]
   /// </summary>
   public class VolumeCalculator : Calculator {
-    protected override float Calculate(ProceduralCube cube) {
-      return Mathf.Pow(cube.Size, 3);
-    }
+    protected override double Calculate(ProceduralCube cube) => Pow(cube.Size, 3);
 
-    protected override float Calculate(ProceduralSphere sphere) {
-      return 4 / 3 * Mathf.PI * Mathf.Pow(sphere.Radius, 3);
-    }
+    protected override double Calculate(ProceduralSphere sphere) => 4 / 3 * PI * Pow(sphere.Radius, 3);
   }
 }

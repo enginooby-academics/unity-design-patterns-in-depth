@@ -1,7 +1,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace VisitorPattern.Case1.Base {
+namespace VisitorPattern.Case1.Base2 {
   /// <summary>
   /// * [A 'Concrete Visitable Element' class]
   /// </summary>

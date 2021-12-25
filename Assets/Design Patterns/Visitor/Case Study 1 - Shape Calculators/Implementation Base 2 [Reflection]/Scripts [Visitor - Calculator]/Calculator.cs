@@ -1,22 +1,22 @@
 using System;
 
-namespace VisitorPattern.Case1.Base {
+namespace VisitorPattern.Case1.Base2 {
   /// <summary>
   /// * [The 'Abstract Visitor' class]
   /// </summary>
   public abstract class Calculator {
-    public float Calculate(ICalculatable shape) {
+    public double Calculate(ICalculatable shape) {
       var shapeType = shape.GetType();
       var calculatorType = this.GetType();
       var calculatingMethod = calculatorType.GetNonPublicMethod(nameof(Calculate), paramType: shapeType);
 
-      return (float)calculatingMethod?.Invoke(this, new[] { shape });
+      return (double)calculatingMethod?.Invoke(this, new[] { shape });
 
       throw new NotImplementedException();
     }
 
-    protected abstract float Calculate(ProceduralCube shape);
-    protected abstract float Calculate(ProceduralSphere shape);
+    protected abstract double Calculate(ProceduralCube shape);
+    protected abstract double Calculate(ProceduralSphere shape);
 
     // ! If visitor's operation is not mandatory for all elements, declare virtual methods instead:
     // private SystemException GetNotImplementedException(ICalculatable element) {

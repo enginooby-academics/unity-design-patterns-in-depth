@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace VisitorPattern.Case1.Base {
+namespace VisitorPattern.Case1.Base2 {
   /// <summary>
   /// * [The 'Abstract Visitable Element' class]
   /// </summary>
   public abstract class ProceduralShape : MonoBehaviour, ICalculatable {
-    public float ProcessCalculation(Calculator calculator) => calculator.Calculate(this);
+    public double ProcessCalculation(Calculator calculator) => calculator.Calculate(this);
 
     #region PROCEDURAL-RELATED =======================================================================================================================================================================
     protected List<Vector3> vertices = new List<Vector3>();
@@ -63,6 +63,7 @@ namespace VisitorPattern.Case1.Base {
       _mesh.SetUVs(2, uv3);
       _mesh.SetUVs(3, uv4);
     }
+
     #endregion PROCEDURAL-RELATED ====================================================================================================================================================================
   }
 }

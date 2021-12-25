@@ -1,4 +1,4 @@
-namespace VisitorPattern.Case1.Base2 {
+namespace VisitorPattern.Case1.Base1 {
   /// <summary>
   /// * [The 'Visitable Element Contract']
   /// </summary>
