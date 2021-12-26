@@ -218,15 +218,45 @@ MonoBehaviour:
   m_GameObject: {fileID: 1426994745}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2507e1ce082a1d4184563d28298d994, type: 3}
+  m_Script: {fileID: 11500000, guid: 72a136da59146754cba82a9a71469f40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _shapeType:
     _currentTypeName: Cube
+    _typeNames:
+    - Cube
+    - Sphere
+    _qualifiedTypeNames:
+    - BridgePattern.Case1.Base.Cube, BridgePattern, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    - BridgePattern.Case1.Base.Sphere, BridgePattern, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    _currentQualifiedTypeName: BridgePattern.Case1.Base.Cube, BridgePattern, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   _sizeType:
     _currentTypeName: Big
+    _typeNames:
+    - Big
+    - Small
+    _qualifiedTypeNames:
+    - BridgePattern.Case1.Base.Big, BridgePattern, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    - BridgePattern.Case1.Base.Small, BridgePattern, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    _currentQualifiedTypeName: BridgePattern.Case1.Base.Big, BridgePattern, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   _skinType:
     _currentTypeName: Dark
+    _typeNames:
+    - Dark
+    - Light
+    _qualifiedTypeNames:
+    - BridgePattern.Case1.Base.Dark, BridgePattern, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    - BridgePattern.Case1.Base.Light, BridgePattern, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    _currentQualifiedTypeName: BridgePattern.Case1.Base.Dark, BridgePattern, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!4 &1426994747
 Transform:
   m_ObjectHideFlags: 0
