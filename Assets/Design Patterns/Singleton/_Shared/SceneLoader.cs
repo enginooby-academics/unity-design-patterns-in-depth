@@ -1,35 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Sirenix.OdinInspector;
+using AdvancedSceneManager.Models;
 
 namespace Singleton {
   public class SceneLoader : MonoBehaviour {
-    public static SceneLoader Instance;
-
-    private void Awake() {
-      if (Instance) {
-        Destroy(gameObject);
-      } else {
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-      }
-    }
+    [SerializeField, LabelWidth(80)]
+    [InlineButton(nameof(LoadScene2), label: "Load")]
+    [InlineButton(nameof(LoadScene2Additively), label: "Load Additively")]
+    private Scene _scene2;
 
     [Button]
-    public void ReloadScene() {
-      SceneUtils.ReloadScene();
-    }
+    public void ReloadScene() => SceneUtils.ReloadScene();
 
-    [Button]
-    public void LoadAnotherScene() {
-      SceneManager.LoadScene("Scene 2");
-    }
+    public void LoadScene2() => _scene2.OpenSingle();
 
-    [Button]
-    public void LoadAnotherSceneAdditively() {
-      SceneManager.LoadScene("Scene 2", LoadSceneMode.Additive);
-    }
+    public void LoadScene2Additively() => _scene2.Open();
   }
 }

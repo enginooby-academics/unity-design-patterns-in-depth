@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b924d8347ab3dab468c142134ad59a03, type: 3}
+  m_Name: "SceneManagerProfile\u200B - \u200BNew Collection (1)"
+  m_EditorClassIdentifier: 
+  m_scenes:
+  - Assets/Design Patterns/Singleton/Case Study 1 - Game Manager/Implementation Naive
+    1 - Static/Singleton Case 1 - Naive 1 - Scene 2.unity
+  m_loadingScreenUsage: 1
+  m_loadingScreen: 
+  m_activeScene: 
+  m_startupOption: 0
+  m_loadingPriority: -2
+  m_extraData: {fileID: 0}
+  m_title: New Collection

@@ -331,6 +331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 317aadfe5987ea84d9f8121f5487efab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scene2: {fileID: 11400000, guid: 24cc3316aade07f4a8c5e213859a138c, type: 2}
 --- !u!4 &1855692677
 Transform:
   m_ObjectHideFlags: 0
@@ -455,5 +456,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6332399628148854159, guid: 1a55c95e368579b48ad0185a422798f1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1a55c95e368579b48ad0185a422798f1, type: 3}

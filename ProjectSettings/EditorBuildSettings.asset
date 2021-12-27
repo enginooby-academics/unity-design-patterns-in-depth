@@ -6,11 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Design Patterns/Singleton/Case Study 1 - Game Manager/Implementation
-      Unity/Lazy MonoBehaviour Singleton/Scene 1.unity
-    guid: 79634a998a933914db966d10b4d6b207
+    path: Assets/Settings/AdvancedSceneManager.unity
+    guid: 3f350b385e7e08f45a3c4f5b40e3acbe
+  - enabled: 1
+    path: Assets/Systems/AdvancedSceneManager/System/Defaults/Fade Loading Screen.unity
+    guid: cbffd398304640d4ab3cb4e7f79b7bdf
   - enabled: 1
     path: Assets/Design Patterns/Singleton/Case Study 1 - Game Manager/Implementation
-      Unity/Lazy MonoBehaviour Singleton/Scene 2.unity
-    guid: b8096390f8c742a4088b4b851adb26c4
+      Naive 1 - Static/Singleton Case 1 - Naive 1 - Scene 2.unity
+    guid: 4ec13d009328df1498ace317bce8e316
   m_configObjects: {}
