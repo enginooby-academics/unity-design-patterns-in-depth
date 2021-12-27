@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Sirenix.OdinInspector;
 
-namespace Singleton.Generic {
+namespace SingletonPattern.Case1.Unity3 {
   public class Player : MonoBehaviour {
     // [Button]
     private void Start() {

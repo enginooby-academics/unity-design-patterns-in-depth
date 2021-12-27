@@ -1,13 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Shared = SingletonPattern.Case1;
 
 // + lazy initialization
 // + global access
 // + scene-persistent
 // + unique
-namespace Singleton.Lazy {
-  public class GameManager : Singleton.GameManager {
+namespace SingletonPattern.Case1.Unity4 {
+  public class GameManager : Shared.GameManager {
     // ! make instance private 
     private static GameManager _instance;
 

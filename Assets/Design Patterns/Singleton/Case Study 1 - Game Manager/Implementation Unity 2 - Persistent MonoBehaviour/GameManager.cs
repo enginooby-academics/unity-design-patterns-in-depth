@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Shared = SingletonPattern.Case1;
 
 // + eager initialization
 // + global access
 // + scene-persistent
 // + unique
-namespace Singleton.Persistent {
-  public class GameManager : Singleton.GameManager {
+namespace SingletonPattern.Case1.Unity2 {
+  public class GameManager : Shared.GameManager {
     public static GameManager Instance;
 
     private void Awake() {

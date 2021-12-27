@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 // + lazy initialization
@@ -7,7 +5,7 @@ using UnityEngine;
 // + scene-persistent
 // + unique
 // + generic
-namespace Singleton.Generic {
+namespace SingletonPattern.Case1.Unity3 {
   public class GenericSingleton<T> : MonoBehaviour where T : Component {
     private static T instance;
 

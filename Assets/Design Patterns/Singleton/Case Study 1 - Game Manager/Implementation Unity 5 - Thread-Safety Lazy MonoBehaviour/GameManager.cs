@@ -1,8 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace Singleton.Generic {
+namespace SingletonPattern.Case1.Unity5 {
   public class GameManager : GenericSingleton<GameManager> {
     private int _level = 1;
     public int Level => _level;

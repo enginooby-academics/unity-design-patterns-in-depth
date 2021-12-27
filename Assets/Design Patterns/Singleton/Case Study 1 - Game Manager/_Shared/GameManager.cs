@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Singleton {
+namespace SingletonPattern.Case1 {
   public class GameManager : MonoBehaviour {
     private int _level = 1;
     public int Level => _level;

@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
-namespace Singleton.Static {
+namespace SingletonPattern.Case1.Unity4 {
   public class Player : MonoBehaviour {
-    void Start() {
+    [Button]
+    public void GetCurrentLevel() {
       Debug.Log("I'm on level " + GameManager.Instance.Level);
     }
   }

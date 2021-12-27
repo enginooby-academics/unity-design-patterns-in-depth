@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
 
@@ -9,7 +7,7 @@ using System;
 // + unique: no
 // + generic
 // + thread-safety
-namespace Singleton.ThreadSafety {
+namespace SingletonPattern.Case1.Unity5 {
   public class GenericSingleton<T> : MonoBehaviour where T : MonoBehaviour {
     private static readonly Lazy<T> _instance = new Lazy<T>(CreateNewInstance);
 
