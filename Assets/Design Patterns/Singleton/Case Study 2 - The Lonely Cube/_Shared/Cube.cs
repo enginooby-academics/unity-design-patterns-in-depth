@@ -5,11 +5,9 @@ namespace SingletonPattern.Case2 {
     protected float _size;
     public float Size => _size;
 
-    private void Awake() {
-      _size = Random.Range(1f, 5f);
-    }
-
     void Start() {
+      if (_size == 0) _size = Random.Range(1f, 5f);
+
       transform.ResetPosition();
       gameObject.TryAddComponent<MeshFilter>();
       gameObject.TryAddComponent<MeshRenderer>();

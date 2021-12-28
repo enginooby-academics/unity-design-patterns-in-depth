@@ -16,7 +16,9 @@ MonoBehaviour:
   - Assets/Design Patterns/Singleton/Case Study 1 - Game Manager/Implementation Naive
     1 - Static/Singleton Case 1 - Naive 1 - Scene 2.unity
   - Assets/Design Patterns/Singleton/Case Study 2 - The Lonely Cube/Implementation
-    Naive - Static/Singleton Case 2 - Naive 1 - Scene 2.unity
+    Naive 1 - Static Field/Singleton Case 2 - Naive 1 - Scene 2.unity
+  - Assets/Design Patterns/Singleton/Case Study 2 - The Lonely Cube/Implementation
+    Naive 2 - Static Instance/Singleton Case 2 - Naive 2 - Scene 2.unity
   m_loadingScreenUsage: 1
   m_loadingScreen: 
   m_activeScene: 
