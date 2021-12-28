@@ -7,10 +7,10 @@ namespace SingletonPattern.Case1.Unity5 {
     public int Level => _level;
 
     private void Start() {
-      StartCoroutine(IncreaseLevelCouroutine());
+      StartCoroutine(IncreaseLevelCoroutine());
     }
 
-    private IEnumerator IncreaseLevelCouroutine() {
+    private IEnumerator IncreaseLevelCoroutine() {
       while (true) {
         int randomPeriod = Random.Range(2, 5);
         yield return new WaitForSeconds(randomPeriod);

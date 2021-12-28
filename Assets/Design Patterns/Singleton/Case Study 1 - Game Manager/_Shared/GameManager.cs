@@ -7,10 +7,10 @@ namespace SingletonPattern.Case1 {
     public int Level => _level;
 
     private void Start() {
-      StartCoroutine(IncreaseLevelCoroutine());
+      StartCoroutine(IncreaseLevelCourotine());
     }
 
-    private IEnumerator IncreaseLevelCoroutine() {
+    private IEnumerator IncreaseLevelCourotine() {
       while (true) {
         int randomPeriod = Random.Range(2, 5);
         yield return new WaitForSeconds(randomPeriod);

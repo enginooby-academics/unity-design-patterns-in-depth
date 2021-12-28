@@ -1,7 +1,6 @@
 using UnityEngine;
 
-// + lazy initialization
-// + global access
+// + lazy init
 // + scene-persistent
 // + unique
 // + generic

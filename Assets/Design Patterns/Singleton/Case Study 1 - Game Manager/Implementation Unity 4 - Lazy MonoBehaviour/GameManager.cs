@@ -1,8 +1,7 @@
 using UnityEngine;
 using Shared = SingletonPattern.Case1;
 
-// + lazy initialization
-// + global access
+// + lazy init
 // + scene-persistent
 // + unique
 namespace SingletonPattern.Case1.Unity4 {

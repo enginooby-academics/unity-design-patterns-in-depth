@@ -20,4 +20,13 @@ public class MonoBehaviourSingleton<T> : MonoBehaviour where T : Component {
       return _instance;
     }
   }
+
+  public virtual void Awake() {
+    if (_instance) {
+      Destroy(gameObject);
+    } else {
+      _instance = this as T;
+      DontDestroyOnLoad(gameObject);
+    }
+  }
 }

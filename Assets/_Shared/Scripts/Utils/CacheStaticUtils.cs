@@ -11,7 +11,7 @@ public static class CacheStaticUtils {
   // ? Use GameObject or MonoBehaviour
   // ? UnityEngine.Object (getter not implemented) or UnityEngine.Component
   private static Dictionary<GameObject, Dictionary<Type, UnityEngine.Object>> _cachedGameObjects = new Dictionary<GameObject, Dictionary<Type, UnityEngine.Object>>();
-  private readonly static bool ENABLE_DEBUG = true;
+  private readonly static bool ENABLE_DEBUG = false;
 
 
 #if UNITY_EDITOR

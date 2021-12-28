@@ -1,7 +1,6 @@
 using Shared = SingletonPattern.Case1;
 
-// + eager initialization
-// + global access
+// + eager init
 // + scene-persistent
 // + unique
 namespace SingletonPattern.Case1.Unity2 {

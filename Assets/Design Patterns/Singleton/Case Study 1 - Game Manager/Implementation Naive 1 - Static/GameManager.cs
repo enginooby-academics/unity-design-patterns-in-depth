@@ -1,6 +1,6 @@
 using Shared = SingletonPattern.Case1;
-// + eager initialization
-// + global access
+
+// + eager init
 // + scene-persistent: no if access variable via static instance
 // + unique: no
 namespace SingletonPattern.Case1.Naive1 {

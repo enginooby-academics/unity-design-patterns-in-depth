@@ -15,4 +15,8 @@ EditorBuildSettings:
     path: Assets/Design Patterns/Singleton/Case Study 1 - Game Manager/Implementation
       Naive 1 - Static/Singleton Case 1 - Naive 1 - Scene 2.unity
     guid: 4ec13d009328df1498ace317bce8e316
+  - enabled: 1
+    path: Assets/Design Patterns/Singleton/Case Study 2 - The Lonely Cube/Implementation
+      Naive 1 - Static Field/Singleton Case 2 - Naive 1 - Scene 2.unity
+    guid: b7d6cf05d2244f04c86adb5bcbfe46e6
   m_configObjects: {}

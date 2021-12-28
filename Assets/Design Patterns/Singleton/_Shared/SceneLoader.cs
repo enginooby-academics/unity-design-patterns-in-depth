@@ -2,7 +2,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using AdvancedSceneManager.Models;
 
-namespace Singleton {
+namespace SingletonPattern {
   public class SceneLoader : MonoBehaviour {
     [SerializeField, LabelWidth(80)]
     [InlineButton(nameof(LoadScene2), label: "Load")]
