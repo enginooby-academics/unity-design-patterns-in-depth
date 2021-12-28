@@ -1,12 +1,12 @@
 using UnityEngine;
 using System;
 
-// + lazy initialization
-// + global access
+// + lazy init
 // + scene-persistent ?
-// + unique: no
+// + unique
 // + generic
 // + thread-safety
+
 namespace SingletonPattern.Case1.Unity5 {
   public class GenericSingleton<T> : MonoBehaviour where T : MonoBehaviour {
     private static readonly Lazy<T> _instance = new Lazy<T>(CreateNewInstance);
