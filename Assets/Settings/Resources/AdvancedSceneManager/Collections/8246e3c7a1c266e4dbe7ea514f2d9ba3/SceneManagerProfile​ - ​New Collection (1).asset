@@ -25,6 +25,8 @@ MonoBehaviour:
     Unity 2 - Persistent/Singleton Case 2 - Unity 2 - Scene 2.unity
   - Assets/Design Patterns/Singleton/Case Study 2 - The Lonely Cube/Implementation
     Unity 3 - Generic/Singleton Case 2 - Unity 3 - Scene 2.unity
+  - Assets/Design Patterns/Singleton/Case Study 2 - The Lonely Cube/Implementation
+    Unity 4 - Generic Thread-Safety/Singleton Case 2 - Unity 4 - Scene 2.unity
   m_loadingScreenUsage: 1
   m_loadingScreen: 
   m_activeScene: 

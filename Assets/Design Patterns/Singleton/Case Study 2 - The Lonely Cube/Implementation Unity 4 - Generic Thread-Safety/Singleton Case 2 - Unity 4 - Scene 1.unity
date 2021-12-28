@@ -134,7 +134,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _scene2
       value: 
-      objectReference: {fileID: 11400000, guid: 300392493da918e46a72cbe7a01b1558,
+      objectReference: {fileID: 11400000, guid: 82b2d17f04699b04d9c6187cece23949,
         type: 2}
     - target: {fileID: 7291283638173033520, guid: 50d1608fecbc4d243861d62f261765fd,
         type: 3}
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1539624882}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c16f2341390c98848ac669d84bba02cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 4fac9485dfc2a41438ca99c1ee79941d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8706203424395976128
@@ -272,7 +272,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8706203424395976128}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c58c81b4b94dee541b469376ddf64d59, type: 3}
+  m_Script: {fileID: 11500000, guid: 899d70692c5c41748b46c35df587b4b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &8706203424395976130

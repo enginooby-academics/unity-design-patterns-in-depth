@@ -34,5 +34,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Design Patterns/Singleton/Case Study 2 - The Lonely Cube/Implementation
       Unity 3 - Generic/Singleton Case 2 - Unity 3 - Scene 2.unity
-    guid: d090befe935947b4a8b7b5f7355e36c2
+    guid: 0f627edd814b0bc4b8549c48c2e7f058
+  - enabled: 1
+    path: Assets/Design Patterns/Singleton/Case Study 2 - The Lonely Cube/Implementation
+      Unity 4 - Generic Thread-Safety/Singleton Case 2 - Unity 4 - Scene 2.unity
+    guid: 5ab58bbc8419a0147947951a12bd1d99
   m_configObjects: {}

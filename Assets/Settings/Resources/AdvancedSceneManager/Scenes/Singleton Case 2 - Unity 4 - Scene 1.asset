@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 143365c1c80370a48a4c89e0b158bf44, type: 3}
-  m_Name: Singleton Case 2 - Unity 3 - Scene 2
+  m_Name: Singleton Case 2 - Unity 4 - Scene 1
   m_EditorClassIdentifier: 
   m_path: Assets/Design Patterns/Singleton/Case Study 2 - The Lonely Cube/Implementation
-    Unity 3 - Generic/Singleton Case 2 - Unity 3 - Scene 2.unity
-  m_assetID: 0f627edd814b0bc4b8549c48c2e7f058
+    Unity 4 - Generic Thread-Safety/Singleton Case 2 - Unity 4 - Scene 1.unity
+  m_assetID: f8b2a58a001281b49806cec35dc6e335

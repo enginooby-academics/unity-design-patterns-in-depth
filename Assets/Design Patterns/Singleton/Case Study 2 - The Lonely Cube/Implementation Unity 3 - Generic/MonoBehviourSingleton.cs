@@ -6,7 +6,7 @@ using UnityEngine;
 // + generic
 
 namespace SingletonPattern.Case2.Unity3 {
-  public class MonoBehaviourSingleton<T> : MonoBehaviour where T : Component {
+  public abstract class MonoBehaviourSingleton<T> : MonoBehaviour where T : Component {
     private static T _instance;
 
     public static T Instance => _instance ??= FindObjectOfType<T>() ?? MakeInstance();

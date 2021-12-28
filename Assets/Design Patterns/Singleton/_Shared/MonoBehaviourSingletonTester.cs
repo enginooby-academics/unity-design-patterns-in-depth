@@ -10,7 +10,7 @@ namespace SingletonPattern {
   /// For testing singleton regarding: uniqueness (old is persistent, new is destroyed), persistance, laziness.
   /// ! Replay after each test.
   /// </summary>
-  public class SingletonTester : MonoBehaviourSingleton<SingletonTester> {
+  public class MonoBehaviourSingletonTester : MonoBehaviourSingleton<MonoBehaviourSingletonTester> {
     [SerializeField]
     [InfoBox("ASM scene can be found in Settings/Resources with the same name of the scene. Scene also needs added in the Build setting.")]
     private Scene _scene2;
