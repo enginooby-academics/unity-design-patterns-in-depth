@@ -4,8 +4,9 @@ using Shared = SingletonPattern.Case2;
 
 namespace SingletonPattern.Case2.Naive2 {
   public class Cube : Shared.Cube {
-    public static Cube Instance;
+    private static Cube _instance;
+    public static Cube Instance => _instance;
 
-    private void Awake() => Instance = this;
+    private void Awake() => _instance = this;
   }
 }

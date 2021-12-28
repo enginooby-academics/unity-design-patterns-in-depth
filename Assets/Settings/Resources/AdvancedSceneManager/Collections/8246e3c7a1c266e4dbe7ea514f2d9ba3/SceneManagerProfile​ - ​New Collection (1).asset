@@ -19,6 +19,8 @@ MonoBehaviour:
     Naive 1 - Static Field/Singleton Case 2 - Naive 1 - Scene 2.unity
   - Assets/Design Patterns/Singleton/Case Study 2 - The Lonely Cube/Implementation
     Naive 2 - Static Instance/Singleton Case 2 - Naive 2 - Scene 2.unity
+  - Assets/Design Patterns/Singleton/Case Study 2 - The Lonely Cube/Implementation
+    Unity 1 - Nonpersistent/Singleton Case 2 - Unity 1 - Scene 2.unity
   m_loadingScreenUsage: 1
   m_loadingScreen: 
   m_activeScene: 

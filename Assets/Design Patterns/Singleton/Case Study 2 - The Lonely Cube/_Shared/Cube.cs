@@ -1,5 +1,7 @@
 using UnityEngine;
 
+// ? MonoBehaviour -> always lazy init instance?
+
 namespace SingletonPattern.Case2 {
   public class Cube : MonoBehaviour {
     protected float _size;

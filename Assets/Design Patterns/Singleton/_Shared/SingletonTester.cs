@@ -29,7 +29,8 @@ namespace SingletonPattern {
     [BoxGroup("Uniqueness Tests")]
     public void TestUniquenessOnCurrentScene() {
       Instantiate(_singleton);
-      TestUniqueness();
+      // ! add a small delay wait for new instance get destroyed
+      Invoke(nameof(TestUniqueness), .2f);
     }
 
     [Button]
