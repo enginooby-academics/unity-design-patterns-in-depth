@@ -2,13 +2,12 @@ using Shared = SingletonPattern.Case2;
 
 // + eager init field
 // ? scene-persistent
-// + unique: no
+// + unique field
 
 namespace SingletonPattern.Case2.Naive1 {
-  public class Cube : Shared.Cube {
-    private static float _staticSize = 3f;
-    public static float StaticSize => _staticSize;
+  public class Cube : Shared.MonoBehaviourCube {
+    public static float StaticSize { get; protected set; }
 
-    private void Awake() => _size = _staticSize;
+    private void Awake() => Size = StaticSize = 3f;
   }
 }

@@ -1,14 +1,13 @@
 using UnityEngine;
-using static SingletonPattern.Case2.Cube;
+using static SingletonPattern.Case2.MonoBehaviourCube;
 
 namespace SingletonPattern.Case2.Unity3 {
   public class Cube : MonoBehaviourSingleton<Cube> {
-    protected float _size;
-    public float Size => _size;
+    public float Size { get; protected set; }
 
     void Start() {
-      if (_size == 0) _size = Random.Range(1f, 5f);
-      Setup(gameObject, _size);
+      if (Size == 0) Size = Random.Range(1f, 5f);
+      Setup(gameObject, Size);
     }
   }
 }

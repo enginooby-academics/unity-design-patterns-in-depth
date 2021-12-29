@@ -1,5 +1,5 @@
 using UnityEngine;
-using static SingletonPattern.Case2.Cube;
+using static SingletonPattern.Case2.MonoBehaviourCube;
 
 namespace SingletonPattern.Case2.Unity4 {
   public class Cube : MonoBehaviourSingleton<Cube> {
