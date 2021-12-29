@@ -18,8 +18,14 @@ namespace SingletonPattern.Case2.Unity3 {
         Destroy(gameObject);
       } else {
         _instance = this as T;
-        DontDestroyOnLoad(gameObject);
+        HandlePersistence();
       }
     }
+
+    protected virtual void HandlePersistence() => DontDestroyOnLoad(gameObject);
+  }
+
+  public abstract class MonoBehaviourSingletonNonPersistent<T> : MonoBehaviourSingleton<T> where T : Component {
+    protected override void HandlePersistence() { }
   }
 }
