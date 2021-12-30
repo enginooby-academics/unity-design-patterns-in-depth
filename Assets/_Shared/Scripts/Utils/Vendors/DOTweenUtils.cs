@@ -2,9 +2,9 @@ using DG.Tweening;
 using UnityEngine;
 
 public static class DOTweenUtils {
-  public static void ShakePosition(this Transform transform) {
+  public static void ShakePosition(this Transform transform, float strength = 1f) {
     // TODO: parameterize
-    transform.DOShakePosition(1f).SetLoops(-1);
+    transform.DOShakePosition(strength).SetLoops(-1);
   }
 
   public static void ShakeRotation(this Transform transform) {

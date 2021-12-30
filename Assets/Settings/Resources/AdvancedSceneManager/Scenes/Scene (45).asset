@@ -9,6 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8f40288c0dc3374488db5198efcec9e, type: 3}
-  m_Name: SceneHelper
+  m_Script: {fileID: 11500000, guid: 143365c1c80370a48a4c89e0b158bf44, type: 3}
+  m_Name: Scene (45)
   m_EditorClassIdentifier: 
+  m_path: Assets/Design Patterns/Visitor/Case Study 1 - Shape Calculators/Implementation
+    Naive 2 [Reflection]/Scene.unity
+  m_assetID: a38d2beee166a9242b14b01cbd556899
