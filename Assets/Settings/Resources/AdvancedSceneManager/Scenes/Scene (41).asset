@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 143365c1c80370a48a4c89e0b158bf44, type: 3}
   m_Name: Scene (41)
   m_EditorClassIdentifier: 
-  m_path: Assets/Design Patterns/Visitor/Case Study 1 - Shape Calculators/Implementation
-    Base 2 [Reflection]/Scene.unity
-  m_assetID: b6ac5a93b76e7784a8c007d49b0a713c
+  m_path: Assets/Design Patterns/Type Object/Case Study 1 - Monster Types/Implementation
+    Base/Scene.unity
+  m_assetID: 23cfbdd013074a645ae23061750d59f6
