@@ -303,13 +303,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40cba5ec7ba3df142923e68c2b8f3061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!222 &812614387 stripped
+CanvasRenderer:
+  m_CorrespondingSourceObject: {fileID: 1140748038807655864, guid: 0d5b5f8c5b39c7e478453b8406a62193,
+    type: 3}
+  m_PrefabInstance: {fileID: 1582782517}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &847687103 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2670005018807422413, guid: 0ac7f36f2e8dcff4aa494d88a7d644b9,
     type: 3}
   m_PrefabInstance: {fileID: 1945407196}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &847687105
+--- !u!114 &847687107
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -318,7 +324,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 847687103}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b18cc096859e86b4188480b612867d25, type: 3}
+  m_Script: {fileID: 11500000, guid: 8c88d7b0fc7367a469429d138f61810c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1582782517
@@ -437,6 +443,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Counter UI (UI Binding)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1140748038807655867, guid: 0d5b5f8c5b39c7e478453b8406a62193,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d5b5f8c5b39c7e478453b8406a62193, type: 3}
@@ -601,24 +612,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 2116884308}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780950e2d36c386418cc6966db366a05, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b6bf1bcb9719c648a1ca29c857cf48b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   OnCountUpEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 812614385}
-        m_TargetAssemblyTypeName: ObserverPattern.Case2.CounterUI, ObserverPattern
-        m_MethodName: SetText
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+    _PersistentCalls:
+    - _Target: {fileID: 812614385}
+      _MethodName: SetText
+      _PersistentArguments:
+      - _Type: 14
+        _Int: 0
+        _String: 
+        _X: 3
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+    - _Target: {fileID: 812614387}
+      _MethodName: SetAlpha
+      _PersistentArguments:
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 0.2
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
 --- !u!4 &2116884310
 Transform:
   m_ObjectHideFlags: 0

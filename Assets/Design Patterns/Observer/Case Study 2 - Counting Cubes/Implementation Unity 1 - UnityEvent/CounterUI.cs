@@ -21,7 +21,7 @@ namespace ObserverPattern.Case2.Unity1 {
       // ! Cons: poor security - observer can modify or invoke subject's UnityEvent
       // ! Solution: private UnityEvent and expose only AddListener() 
       FindObjectOfType<Counter>().OnCountUpEvent.RemoveAllListeners();
-      FindObjectOfType<Counter>().OnCountUpEvent.Invoke(9);
+      FindObjectOfType<Counter>().OnCountUpEvent.Invoke(100);
     }
   }
 }
