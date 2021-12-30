@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 143365c1c80370a48a4c89e0b158bf44, type: 3}
-  m_Name: Scene (42)
+  m_Script: {fileID: 11500000, guid: e8f40288c0dc3374488db5198efcec9e, type: 3}
+  m_Name: SceneHelper
   m_EditorClassIdentifier: 
-  m_path: Assets/Design Patterns/Visitor/Case Study 1 - Shape Calculators/Implementation
-    C# - Extension Method/Scene.unity
-  m_assetID: 8729d1bce3b8fe547bba6975b3d5d302
