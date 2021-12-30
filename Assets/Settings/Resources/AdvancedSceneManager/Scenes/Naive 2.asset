@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 143365c1c80370a48a4c89e0b158bf44, type: 3}
-  m_Name: Scene (47)
+  m_Name: Naive 2
   m_EditorClassIdentifier: 
   m_path: Assets/Design Patterns/Observer/Case Study 2 - Counting Cubes/Implementation
-    Naive 1 - Observer Reference/Scene.unity
-  m_assetID: 07a4fcbb85ca1c24ba1d6246c1a118f4
+    Naive 2 - Subject Tracking/Naive 2.unity
+  m_assetID: e616d473116467c4287f1780f86c4ee2
