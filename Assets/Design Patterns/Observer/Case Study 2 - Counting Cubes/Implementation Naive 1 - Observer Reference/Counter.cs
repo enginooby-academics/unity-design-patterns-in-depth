@@ -5,7 +5,6 @@ namespace ObserverPattern.Case2.Naive1 {
     public override int Count {
       set {
         _count = value;
-        print("hi");
         // ! Tight coupling
         _counterUI.SetText(_count);
       }
