@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using static TypeUtils;
 
 /// <summary>
 /// Concrete type collection of an abstract or interface.
-/// Can be used to quickly construct GameObject (procedurally, however, components are not tuned) when creating instance.
+/// Can be used to quickly construct GameObject (procedurally) when creating instance (however, components are not tuned).
 /// </summary>
 [Serializable, InlineProperty]
 public class ReferenceConcreteType<T> where T : class {
@@ -14,23 +15,37 @@ public class ReferenceConcreteType<T> where T : class {
   [OnValueChanged(nameof(UpdateCurrentType))]
   private String _currentTypeName;
 
+  [SerializeField, HideInInspector]
   private List<String> _typeNames;
-  private List<Type> _types;
-  private Type _currentType;
+
+  [SerializeField, HideInInspector]
+  private List<String> _qualifiedTypeNames;
+
+  [SerializeField, HideInInspector]
+  private String _currentQualifiedTypeName;
+
+  public bool Is<K>() where K : T => Value == typeof(K);
+
 
   // ! guard case: current type is removed
-  public Type Value => _currentType ?? SetAndGetFirstType();
+  public Type Value => Type.GetType(_currentQualifiedTypeName) ?? GetAndSetFirstType();
+
+  private Type GetAndSetFirstType() {
+    GetTypeNames();
+    _currentTypeName = _typeNames[0];
+    _currentQualifiedTypeName = _qualifiedTypeNames[0];
+    return Type.GetType(_currentQualifiedTypeName);
+  }
 
   /// <summary>
-  /// If current type is subclass of MonoBehaviour, create GameObject of the current type with given extra component types.
+  /// If current type is MonoBehaviour, create GameObject of the current type with the given extra component types.
   /// </summary>
   public virtual T CreateInstance(params Type[] extraComponents) {
     if (!Value.IsSubclassOf(typeof(MonoBehaviour)))
       return (T)Activator.CreateInstance(Value);
 
+    // scripting-construction
     var go = new GameObject();
-
-    // construct GameObject procedurally
     foreach (var component in extraComponents) {
       if (component.IsSubclassOf(typeof(Component)))
         go.AddComponent(component);
@@ -40,25 +55,12 @@ public class ReferenceConcreteType<T> where T : class {
   }
 
   private IEnumerable<String> GetTypeNames() {
-    _types = TypeUtils.GetConcreteTypesOf<T>();
-    _typeNames = new List<String>();
-
-    for (int i = 0; i < _types.Count; i++) {
-      _typeNames.Add(_types[i].Name);
-    }
-
-    return _typeNames;
+    _qualifiedTypeNames = GetConcreteTypeQualifiedNamesOf<T>();
+    return _typeNames = GetConcreteTypeNamesOf<T>();
   }
 
   private void UpdateCurrentType() {
-    _currentType = _types[_typeNames.IndexOf(_currentTypeName)];
-  }
-
-  protected Type SetAndGetFirstType() {
-    _types = TypeUtils.GetConcreteTypesOf<T>();
-    _currentTypeName = _types[0].Name;
-    _currentType = _types[0];
-
-    return _currentType;
+    int id = _typeNames.IndexOf(_currentTypeName);
+    _currentQualifiedTypeName = _qualifiedTypeNames[id];
   }
 }

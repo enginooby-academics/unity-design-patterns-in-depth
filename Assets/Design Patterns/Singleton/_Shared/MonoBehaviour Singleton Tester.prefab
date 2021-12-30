@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 7291283638173033523}
   - component: {fileID: 7291283638173033520}
   m_Layer: 0
-  m_Name: Singleton Tester
+  m_Name: MonoBehaviour Singleton Tester
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

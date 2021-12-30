@@ -1,46 +1,46 @@
 using UnityEngine;
 
 public static class VectorUtils {
-  public static Vector3 v000 = Vector3.zero;
+  public static readonly Vector3 v000 = Vector3.zero;
 
   /// <summary>
   /// Vector3.zero
   /// </summary>
-  public static Vector3 v0 = Vector3.zero;
-  public static Vector3 v111 = Vector3.one;
+  public static readonly Vector3 v0 = Vector3.zero;
+  public static readonly Vector3 v111 = Vector3.one;
 
   /// <summary>
   /// Vector3.one
   /// </summary>
-  public static Vector3 v1 = Vector3.one;
-  public static Vector3 v001 = Vector3.forward;
-  public static Vector3 v011 = new Vector3(0, 1, 1);
-  public static Vector3 v101 = new Vector3(1, 0, 1);
-  public static Vector3 v110 = new Vector3(1, 1, 0);
-  public static Vector3 vm10m1 = new Vector3(-1, 0, -1);
-  public static Vector3 vm101 = new Vector3(-1, 0, 1);
+  public static readonly Vector3 v1 = Vector3.one;
+  public static readonly Vector3 v001 = Vector3.forward;
+  public static readonly Vector3 v011 = new Vector3(0, 1, 1);
+  public static readonly Vector3 v101 = new Vector3(1, 0, 1);
+  public static readonly Vector3 v110 = new Vector3(1, 1, 0);
+  public static readonly Vector3 vm10m1 = new Vector3(-1, 0, -1);
+  public static readonly Vector3 vm101 = new Vector3(-1, 0, 1);
 
   /// <summary>
   /// Vector3(-1, 1, 0)
   /// </summary>
-  public static Vector3 vm110 = new Vector3(-1, 1, 0);
+  public static readonly Vector3 vm110 = new Vector3(-1, 1, 0);
 
   /// <summary>
   /// Vector3(1, -1, 0)
   /// </summary>
-  public static Vector3 v1m10 = new Vector3(1, -1, 0);
+  public static readonly Vector3 v1m10 = new Vector3(1, -1, 0);
 
   /// <summary>
   /// Vector3(-1, -1, 0)
   /// </summary>
-  public static Vector3 vm1m10 = new Vector3(-1, -1, 0);
+  public static readonly Vector3 vm1m10 = new Vector3(-1, -1, 0);
 
-  public static Vector3 v10m1 = new Vector3(1, 0, -1);
-  public static Vector3 v00m1 = Vector3.back;
-  public static Vector3 v010 = Vector3.up;
-  public static Vector3 v0m10 = Vector3.down;
-  public static Vector3 vm100 = Vector3.left;
-  public static Vector3 v100 = Vector3.right;
+  public static readonly Vector3 v10m1 = new Vector3(1, 0, -1);
+  public static readonly Vector3 v00m1 = Vector3.back;
+  public static readonly Vector3 v010 = Vector3.up;
+  public static readonly Vector3 v0m10 = Vector3.down;
+  public static readonly Vector3 vm100 = Vector3.left;
+  public static readonly Vector3 v100 = Vector3.right;
 
   /// <summary>Return true if Vector2.zero, used to treat unset Vector as infinite Vector (e.g. in Boundary)</summary>
   public static bool ContainsIgnoreZero(this Vector2 vect, float value) {

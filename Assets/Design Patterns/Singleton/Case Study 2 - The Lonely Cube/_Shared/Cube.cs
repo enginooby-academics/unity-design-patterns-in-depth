@@ -1,27 +1,22 @@
+using System;
 using UnityEngine;
 
-// ? MonoBehaviour -> always lazy init instance?
-
 namespace SingletonPattern.Case2 {
-  public class Cube : MonoBehaviour {
-    protected float _size;
+  public abstract class Cube {
+    private float _size;
+
     public float Size => _size;
 
-    void Start() {
-      if (_size == 0) _size = Random.Range(1f, 5f);
-      Setup(gameObject, _size);
-    }
+    private GameObject _gameObject;
+    private int _count;
 
-    /// <summary>
-    /// Separate static function for reusing without inheritance in generic singleton.
-    /// </summary>
-    public static void Setup(GameObject go, float size) {
-      go.transform.ResetPosition();
-      go.TryAddComponent<MeshFilter>();
-      go.TryAddComponent<MeshRenderer>();
-      go.SetPrimitiveMesh(PrimitiveType.Cube);
-      go.SetMaterialColor(Random.ColorHSV());
-      go.SetScale(size);
+    protected void Init() {
+      _gameObject = new GameObject("Cube");
+      if (_size == 0) _size = UnityEngine.Random.Range(1f, 5f);
+      MonoBehaviourCube.Setup(_gameObject, _size);
+
+      int delay = 5 - DateTime.Now.Second;
+      new System.Threading.Timer(o => Debug.Log(_count++), null, delay * 1000, 3000);
     }
   }
 }

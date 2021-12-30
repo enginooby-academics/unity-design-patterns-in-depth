@@ -1,8 +1,9 @@
 using UnityEngine;
+using static PrimitiveUtils;
 
 namespace AbstractFactoryPattern.Case1 {
   /// <summary>
-  /// * [A 'Abstract Product']
+  /// * [An 'Abstract Product']
   /// </summary>
   public abstract class Sphere {
     protected float _radius;
@@ -10,7 +11,7 @@ namespace AbstractFactoryPattern.Case1 {
 
     protected Sphere(float radius, Color color) {
       _radius = radius;
-      _gameObject = PrimitiveUtils.CreatePrimitive(PrimitiveType.Sphere, color);
+      _gameObject = CreatePrimitive(PrimitiveType.Sphere, color);
       _gameObject.SetScale(_radius);
     }
 

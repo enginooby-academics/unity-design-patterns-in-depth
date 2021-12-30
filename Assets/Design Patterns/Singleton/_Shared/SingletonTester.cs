@@ -10,35 +10,32 @@ namespace SingletonPattern {
   /// For testing singleton regarding: uniqueness (old is persistent, new is destroyed), persistence, laziness.
   /// ! Replay after each test.
   /// </summary>
-  // TIP: Customize script title in the Inspector
-  [AddComponentMenu("SingletonPattern/MonoBehaviour Singleton Tester")]
-  public class MonoBehaviourSingletonTester : MonoBehaviourSingleton<MonoBehaviourSingletonTester> {
+  public abstract class SingletonTester<T> : MonoBehaviourSingleton<SingletonTester<T>> where T : class {
     private readonly float TEST_DELAY = .2f;
-
     [SerializeField]
     [InfoBox("ASM scene can be found in Settings/Resources with the same name of the scene. Scene also needs added in the Build setting.")]
     private Scene _scene2;
 
-    [SerializeField]
-    private GameObject _singleton;
+    private T _singleton;
 
     private string singletonName;
 
-    private void Start() => singletonName = _singleton.name;
+    private void Start() {
+      // singletonName = _singleton.name;
+    }
 
     [Button]
-    [LabelText("In-Scene")]
-    [HorizontalGroup("Split", 0.5f)]
-    [BoxGroup("Split/Uniqueness Tests")]
+    [LabelText("In Current Scene")]
+    [BoxGroup("Uniqueness Tests")]
     public void TestUniquenessOnCurrentScene() {
-      Instantiate(_singleton);
+      System.Activator.CreateInstance(typeof(T), nonPublic: true);
       // ! add a small delay wait for new instance get destroyed
       Invoke(nameof(TestUniqueness), TEST_DELAY);
     }
 
     [Button]
-    [LabelText("Across-Scene")]
-    [BoxGroup("Split/Uniqueness Tests")]
+    [LabelText("On Scene 2 Additively Loaded")]
+    [BoxGroup("Uniqueness Tests")]
     public void TestUniquenessOnLoadScene2Additively() {
       // ! temperory solution: add a small delay to ensure Testuniqueness is performed after new scene is opened.
       Invoke(nameof(TestUniqueness), TEST_DELAY);
@@ -58,13 +55,12 @@ namespace SingletonPattern {
     }
 
     [Button]
-    [LabelText("Reload Scene")]
-    [BoxGroup("Split/Persistence Tests")]
+    [LabelText("On Current Scene Reloaded")]
+    [BoxGroup("Persistence Tests")]
     public void TestPersistenceOnReloadCurrentScene() {
       StartCoroutine(TestPersistenceOnReloadCurrentSceneCoroutine());
-      // alternative:
       // Invoke(nameof(TestPersistence), TEST_DELAY);
-      // LoadScene(GetActiveScene().name);
+      // TestPersistence();
     }
 
     public IEnumerator TestPersistenceOnReloadCurrentSceneCoroutine() {
@@ -74,8 +70,8 @@ namespace SingletonPattern {
     }
 
     [Button]
-    [LabelText("Change Scene")]
-    [BoxGroup("Split/Persistence Tests")]
+    [LabelText("On Scene 2 Loaded")]
+    [BoxGroup("Persistence Tests")]
     public void TestPersistenceOnLoadScene2() {
       Invoke(nameof(TestPersistence), TEST_DELAY);
       UnloadSceneAsync(GetActiveScene());
@@ -83,8 +79,8 @@ namespace SingletonPattern {
     }
 
     [Button]
-    [LabelText("Add Scene")]
-    [BoxGroup("Split/Persistence Tests")]
+    [LabelText("On Scene 2 Additively Loaded")]
+    [BoxGroup("Persistence Tests")]
     // ? always pass if TestUniquenessOnCurrentScene() fails
     public void TestPersistenceOnLoadScene2Additively() {
       Invoke(nameof(TestPersistence), TEST_DELAY);

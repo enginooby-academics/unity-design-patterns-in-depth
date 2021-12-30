@@ -1,8 +1,9 @@
 using UnityEngine;
+using static PrimitiveUtils;
 
 namespace AbstractFactoryPattern.Case1 {
   /// <summary>
-  /// * [A 'Abstract Product']
+  /// * [An 'Abstract Product']
   /// </summary>
   public abstract class Cube {
     protected float _size;
@@ -10,7 +11,7 @@ namespace AbstractFactoryPattern.Case1 {
 
     protected Cube(float size, Color color) {
       _size = size;
-      _gameObject = PrimitiveUtils.CreatePrimitive(PrimitiveType.Cube, color);
+      _gameObject = CreatePrimitive(PrimitiveType.Cube, color);
       _gameObject.SetScale(_size);
     }
 
