@@ -4,7 +4,8 @@
     "references": [
         "ProceduralUIImage",
         "UltEvents",
-        "Library"
+        "Library",
+        "Unity.TextMeshPro"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
