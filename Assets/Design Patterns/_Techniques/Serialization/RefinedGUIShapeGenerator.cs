@@ -13,6 +13,7 @@ namespace GOConstruction.GUI {
     }
   }
 
+  // !
   [System.Serializable]
   public class IShapeContainer : IUnifiedContainer<IShape> { }
 }
