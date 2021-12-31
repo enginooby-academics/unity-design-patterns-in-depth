@@ -6,7 +6,7 @@ namespace ObserverPattern.Case2.Alternative1 {
     [SerializeField]
     private IntVariable _countVar;
 
-    public override int Count { set => _countVar.Value = value; }
+    public override int Count { set => _count = _countVar.Value = value; }
 
     // Since SO data is persistent, manually reset when stop game
     private void OnApplicationQuit() => _countVar.Value = 0;
