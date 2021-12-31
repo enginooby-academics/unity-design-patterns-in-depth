@@ -10,8 +10,8 @@ namespace ObserverPattern.Case2.CSharp {
     public static event System.Action<int> OnCountUpEvent;
 
     // ! 2: Use Delegate: can have return type
-    // public delegate string OnCountUpCallBack(int number);
-    // public static event OnCountUpCallBack OnCountUpEvent;
+    // public delegate string OnCountUpEventHandler(int number);
+    // public static event OnCountUpEventHandler OnCountUpEvent;
 
     // ! 3: Use Func: can have return type
     // public static System.Func<int, string> OnCountUpEvent;

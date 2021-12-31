@@ -16,9 +16,9 @@ namespace ObserverPattern.Case2.CSharp {
     // private void OnEnable() => Counter.OnCountUpEvent += SetTextAndReturnWord;
     // private void OnDisable() => Counter.OnCountUpEvent -= SetTextAndReturnWord;
 
-    public string SetTextAndReturnWord(int count) {
-      SetText(count);
-      return count.ToWord();
-    }
+    // public string SetTextAndReturnWord(int count) {
+    //   SetText(count);
+    //   return count.ToWord();
+    // }
   }
 }
