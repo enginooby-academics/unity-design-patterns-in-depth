@@ -2,6 +2,8 @@ using UnityEngine;
 
 namespace ObserverPattern.Case2 {
   public class Cube : MonoBehaviour {
+    protected virtual Counter Counter => Counter.Instance;
+
     private void Start() {
       Appear();
       transform.ShakeRotation();
@@ -14,7 +16,7 @@ namespace ObserverPattern.Case2 {
 
     private void OnMouseDown() {
       Appear();
-      Counter.Instance.Count++;
+      Counter.Count++;
     }
   }
 }

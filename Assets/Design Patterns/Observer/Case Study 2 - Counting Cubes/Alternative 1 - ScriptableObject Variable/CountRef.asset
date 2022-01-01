@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0ac61530004dd44b8be799dd7a9fd60, type: 3}
   m_Name: CountRef
   m_EditorClassIdentifier: 
+  _isValuePersistent: 0
+  _initialValue: 0
   Value: 0
