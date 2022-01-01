@@ -462,7 +462,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1c14031f3e368142a7306869d07cfba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _count: {fileID: 11400000, guid: 0421b06a37a4e684bb66006a37b96898, type: 2}
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 0421b06a37a4e684bb66006a37b96898, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: CountRef
+      Entry: 10
+      Data: 0
 --- !u!4 &2116884310
 Transform:
   m_ObjectHideFlags: 0

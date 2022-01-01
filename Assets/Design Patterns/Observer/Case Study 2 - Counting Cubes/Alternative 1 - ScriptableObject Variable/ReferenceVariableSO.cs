@@ -6,6 +6,7 @@ using UnityEditor;
 #endif
 
 // TODO: Move to Library
+// + Implement static value (!= ref value)
 
 namespace ObserverPattern.Case2.Alternative1 {
   public class ReferenceVariableSO<T> : ScriptableObject where T : IEquatable<T> {

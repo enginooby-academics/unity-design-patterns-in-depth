@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace ObserverPattern.Case2 {
-  public class Counter : MonoBehaviourSingleton<Counter> {
+  public class Counter : SerializedMonoBehaviourSingleton<Counter> {
     protected int _count;
 
     [HideInInspector]

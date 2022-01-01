@@ -8,6 +8,9 @@ namespace ObserverPattern.Case2.Alternative1 {
     [SerializeField]
     private ReferenceIntSO _countRef;
 
+    // ! Alternative: get countRef from the Counter w/o SerializeField (coupling)
+    // void Start() => _countRef = FindObjectOfType<Counter>().CountRef;
+
     // ! Costly-performance for tracking SO state, esp. with expensive Action
     // void Update() => SetText(_countVar.Value);
 

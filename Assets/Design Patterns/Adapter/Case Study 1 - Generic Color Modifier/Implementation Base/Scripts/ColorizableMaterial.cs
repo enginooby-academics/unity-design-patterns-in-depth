@@ -1,13 +1,13 @@
 using UnityEngine;
 
-namespace Adapter.Base {
-  public class ColorizableMaterial : IColorizable {
-    private Material _material;
+namespace AdapterPattern.Case1.Base1 {
+  public class ColorizableMaterial : ColorizableObject<Material, MeshRenderer> {
+    public ColorizableMaterial() { }
 
-    public ColorizableMaterial(Material material) {
-      _material = material;
+    public ColorizableMaterial(MeshRenderer component) : base(component) {
+      _object = _component.material;
     }
 
-    public Color Color { get => _material.color; set => _material.color = value; }
+    public override Color Color { get => _object.color; set => _object.color = value; }
   }
 }

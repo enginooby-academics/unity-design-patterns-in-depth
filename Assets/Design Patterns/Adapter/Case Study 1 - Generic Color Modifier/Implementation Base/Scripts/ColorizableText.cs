@@ -1,14 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Adapter.Base {
-  public class ColorizableText : IColorizable {
-    private Text _text;
+namespace AdapterPattern.Case1.Base1 {
+  public class ColorizableText : ColorizableObject<Text> {
+    public ColorizableText() { }
 
-    public ColorizableText(Text text) {
-      _text = text;
-    }
+    public ColorizableText(Text component) : base(component) { }
 
-    public Color Color { get => _text.color; set => _text.color = value; }
+    public override Color Color { get => _object.color; set => _object.color = value; }
   }
 }

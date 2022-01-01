@@ -29,6 +29,7 @@ public class ReferenceConcreteType<T> where T : class {
 
   // ! guard case: current type is removed
   public Type Value => Type.GetType(_currentQualifiedTypeName) ?? GetAndSetFirstType();
+  public T ValueT => Type.GetType(_currentQualifiedTypeName) as T;
 
   private Type GetAndSetFirstType() {
     GetTypeNames();
@@ -50,6 +51,23 @@ public class ReferenceConcreteType<T> where T : class {
       if (component.IsSubclassOf(typeof(Component)))
         go.AddComponent(component);
     }
+
+    return go.AddComponent(Value) as T;
+  }
+
+  /// <summary>
+  /// Create instance by constructor with params for non-MonoBehaviour type.
+  /// </summary>
+  public virtual T CreateInstanceWithParams(params object[] paramArray) {
+    if (!Value.IsSubclassOf(typeof(MonoBehaviour)))
+      return (T)Activator.CreateInstance(Value, args: paramArray);
+
+    // scripting-construction
+    var go = new GameObject();
+    // foreach (var component in extraComponents) {
+    //   if (component.IsSubclassOf(typeof(Component)))
+    //     go.AddComponent(component);
+    // }
 
     return go.AddComponent(Value) as T;
   }

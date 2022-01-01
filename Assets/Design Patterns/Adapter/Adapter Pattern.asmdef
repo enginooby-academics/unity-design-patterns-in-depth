@@ -1,7 +1,9 @@
 {
     "name": "AdapterPattern",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:b6c19ef8de785f64e9e14f726b9b446b"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

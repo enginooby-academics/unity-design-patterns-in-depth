@@ -1,14 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Adapter.Base {
-public class ColorizableImage : IColorizable {
-  private Image _image;
+namespace AdapterPattern.Case1.Base1 {
+  public class ColorizableImage : ColorizableObject<Image> {
+    public ColorizableImage() { }
 
-  public ColorizableImage(Image image) {
-    _image = image;
+    public ColorizableImage(Image component) : base(component) { }
+
+    public override Color Color { get => _object.color; set => _object.color = value; }
   }
-
-  public Color Color { get => _image.color; set => _image.color = value; }
-}
 }
