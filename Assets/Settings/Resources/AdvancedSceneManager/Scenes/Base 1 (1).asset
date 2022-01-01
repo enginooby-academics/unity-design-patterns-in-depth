@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 143365c1c80370a48a4c89e0b158bf44, type: 3}
-  m_Name: Scene 1
+  m_Name: Base 1 (1)
   m_EditorClassIdentifier: 
   m_path: Assets/Design Patterns/Adapter/Case Study 1 - Generic Color Modifier/Implementation
-    Base/Scene 1.unity
+    Base/Base 1.unity
   m_assetID: 7ee3b4d8e44a9054a972db2b09e94ce4
