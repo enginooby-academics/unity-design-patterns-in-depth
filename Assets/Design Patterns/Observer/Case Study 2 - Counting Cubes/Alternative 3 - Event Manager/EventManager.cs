@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Events;
 
 // ? What is the point of EventManager when we can just use Action
 namespace ObserverPattern.Case2.Alternative3 {
   using ObservingAction = Action<Dictionary<string, object>>; // paramName + value
-  // + pass method like Action
   public class EventManager : MonoBehaviourSingleton<EventManager> {
-    // ? use static events, no need singleton
     private Dictionary<EventBase, ObservingAction> events = new Dictionary<EventBase, ObservingAction>();
 
     public static void StartListening(EventBase eventId, ObservingAction observingAction) {
@@ -69,15 +66,15 @@ namespace ObserverPattern.Case2.Alternative3 {
     [HideInInspector]
     public string Param = "";
 
-    [SerializeField]
-    private UnityEvent<T0> _unityEvent = new UnityEvent<T0>();
-    public UnityEvent<T0> UnityEvent => _unityEvent;
+    // [SerializeField]
+    // private UnityEvent<T0> _unityEvent = new UnityEvent<T0>();
+    // public UnityEvent<T0> UnityEvent => _unityEvent;
 
-    [Button]
-    public void InspectUnityEvent() {
-      UnityEvent.GetPersistentEventCount().Log();
-      UnityEvent.GetPersistentMethodName(0).Log();
-      UnityEvent.GetPersistentTarget(0).Log();
-    }
+    // [Button]
+    // public void InspectUnityEvent() {
+    //   UnityEvent.GetPersistentEventCount().Log();
+    //   UnityEvent.GetPersistentMethodName(0).Log();
+    //   UnityEvent.GetPersistentTarget(0).Log();
+    // }
   }
 }

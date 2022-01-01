@@ -6,9 +6,12 @@ namespace ObserverPattern.Case2.Alternative1 {
   [RequireComponent(typeof(TextMeshProUGUI))]
   public class CounterUI : Shared.CounterUI {
     [SerializeField]
-    private IntVariable _countVar;
+    private ReferenceIntSO _countVar;
 
-    // ! Costly-performance for tracking SO state
-    void Update() => SetText(_countVar.Value);
+    // ! Costly-performance for tracking SO state, esp. with expensive Action
+    // void Update() => SetText(_countVar.Value);
+
+    // Improve performance
+    void Update() => _countVar.PerformOnValueChanged(SetText);
   }
 }

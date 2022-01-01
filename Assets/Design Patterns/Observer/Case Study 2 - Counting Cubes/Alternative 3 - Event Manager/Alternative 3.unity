@@ -457,6 +457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnCountUpEvent:
+    Param: 
     _unityEvent:
       m_PersistentCalls:
         m_Calls:
@@ -472,7 +473,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    Param: 
 --- !u!4 &2116884310
 Transform:
   m_ObjectHideFlags: 0

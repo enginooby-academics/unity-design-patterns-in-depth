@@ -4,7 +4,7 @@ using Shared = ObserverPattern.Case2;
 namespace ObserverPattern.Case2.Alternative1 {
   public class Counter : Shared.Counter {
     [SerializeField]
-    private IntVariable _countVar;
+    private ReferenceIntSO _countVar;
 
     public override int Count { set => _count = _countVar.Value = value; }
 

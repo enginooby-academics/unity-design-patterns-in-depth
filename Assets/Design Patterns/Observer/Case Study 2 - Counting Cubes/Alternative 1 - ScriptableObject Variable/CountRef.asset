@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0237b8f1309e30442ab29db9b1853a10, type: 3}
-  m_Name: CountVariable
+  m_Script: {fileID: 11500000, guid: f0ac61530004dd44b8be799dd7a9fd60, type: 3}
+  m_Name: CountRef
   m_EditorClassIdentifier: 
-  InitialValue: 1
+  Value: 0
