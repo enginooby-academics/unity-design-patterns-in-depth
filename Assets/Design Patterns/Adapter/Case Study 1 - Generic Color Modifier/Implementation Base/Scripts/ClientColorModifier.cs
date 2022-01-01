@@ -1,35 +1,35 @@
 using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace AdapterPattern.Case1.Base1 {
+  /// <summary>
+  /// Individual color modifier for each GameObject.
+  /// </summary>
   public class ClientColorModifier : MonoBehaviour {
+    [SerializeField, HideLabel, OnValueChanged(nameof(UpdateColor))]
+    private Color _color = Color.red;
+
     [SerializeReference, HideInInspector]
     private IColorizable _colorizableObject;
-
-    [SerializeField]
-    private Color _color = Color.red;
 
     private bool _isInitialized;
 
     private void Reset() {
       var colorizableTypes = TypeUtils.GetConcreteTypesOf<IColorizable>();
       colorizableTypes.ForEach(type => TrySetupWith(type));
+      if (!_isInitialized) Debug.LogError($"There is no colorizable component/object on the GameObject.");
     }
 
     private void TrySetupWith(Type colorizableType) {
       if (_isInitialized) return;
 
-      var colorizableInstance = (IColorizable)Activator.CreateInstance(colorizableType);
-      var componentType = colorizableInstance.ComponentType;
+      var colorizable = (IColorizable)Activator.CreateInstance(colorizableType);
+      var componentType = colorizable.ComponentType;
 
       if (TryGetComponent(componentType, out var component)) {
         _colorizableObject = CreateInstance(colorizableType, component);
         _isInitialized = true;
-        Debug.Log($"Component {componentType.ToString()} retrieved.");
-      } else {
-        Debug.LogError($"Component {componentType.ToString()} not found.");
       }
     }
 
@@ -37,8 +37,7 @@ namespace AdapterPattern.Case1.Base1 {
       return (IColorizable)Activator.CreateInstance(colorizableType, args: paramArray);
     }
 
-    [Button]
-    public void UpdateColor() {
+    private void UpdateColor() {
       if (!_isInitialized) Reset();
       _colorizableObject.Color = _color;
     }

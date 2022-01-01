@@ -9,6 +9,7 @@ using UnityEditor;
 // + Implement static value (!= ref value)
 
 namespace ObserverPattern.Case2.Alternative1 {
+  [InitializeOnLoad]
   public class ReferenceVariableSO<T> : ScriptableObject where T : IEquatable<T> {
     [SerializeField, OnValueChanged(nameof(SetToInitValue))]
     private bool _isValuePersistent = true;
