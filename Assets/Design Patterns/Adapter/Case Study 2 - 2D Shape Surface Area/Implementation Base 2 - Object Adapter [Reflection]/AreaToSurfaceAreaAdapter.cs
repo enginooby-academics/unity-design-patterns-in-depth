@@ -1,8 +1,10 @@
-namespace AdapterPattern.Case2.Base1 {
+using UnityEngine;
+
+namespace AdapterPattern.Case2.Base2 {
   /// <summary>
   /// * [The 'Adapter' base class]
   /// </summary>
-  public abstract class AreaToSurfaceAreaAdapter : ISurfaceArea {
+  public abstract class AreaToSurfaceAreaAdapter : MonoBehaviour, ISurfaceArea {
     protected readonly IArea _shape2d;
 
     public AreaToSurfaceAreaAdapter(IArea shape2d) {

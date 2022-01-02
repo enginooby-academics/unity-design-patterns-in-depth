@@ -1,15 +1,15 @@
-namespace AdapterPattern.Case2.Base1 {
+namespace AdapterPattern.Case2.Base2 {
   /// <summary>
   /// * [An 'Adapter' class]
-  /// Rule: surface area of a 2D shape is the total area of exposed faces = 2 * area
+  /// Rule: surface area of a 2D shape is the total area of exposed faces = area * 2
   /// </summary>
   public class AreaToSurfaceAreaAdapterA : AreaToSurfaceAreaAdapter {
-    // ! Option 1: tradditional approach, client shouldn't know about adapter
+    // ! Option 1: pass adaptee to constructor
     public AreaToSurfaceAreaAdapterA(IArea shape2d) : base(shape2d) { }
 
     public override double GetSurfaceArea() => _shape2d.GetArea() * 2;
 
-    // ! Option 2: client knows about adapter
+    // ! Option 2: pass adaptee to method
     // public AreaToSurfaceAreaAdapterA() {}
 
     // public double GetSurfaceArea(IArea shape2d) => shape2d.GetArea() * 2;

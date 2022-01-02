@@ -1,8 +1,14 @@
 using UnityEngine;
 using Shared = AdapterPattern.Case2;
 
-namespace AdapterPattern.Case2.Base1 {
+namespace AdapterPattern.Case2.Base2 {
+  /// <summary>
+  /// Using Reflection. Client is aware of adapter.
+  /// </summary>
   public class ClientSurfaceAreaCalculator : Shared.ClientSurfaceAreaCalculator {
+    [SerializeField]
+    protected GameObject _shape;
+
     [SerializeField]
     private ReferenceConcreteType<AreaToSurfaceAreaAdapter> _adapterType;
 
@@ -16,13 +22,13 @@ namespace AdapterPattern.Case2.Base1 {
       if (_shape.TryGetComponent(typeof(IArea), out var shape2dComponent)) {
         // result = (shape2dComponent as IArea).GetArea();
 
-        // ! With option 1
-        // var adapted2dShape = new AreaToSurfaceAreaAdapterA(shape2dComponent as IArea);
-        // result = adapted2dShape.GetSurfaceArea();
-
         // ! With option 1: reflection
         var adapted2dShape = _adapterType.CreateInstanceWithParams(shape2dComponent as IArea);
         result = adapted2dShape.GetSurfaceArea();
+
+        // ! With option 1
+        // var adapted2dShape = new AreaToSurfaceAreaAdapterA(shape2dComponent as IArea);
+        // result = adapted2dShape.GetSurfaceArea();
 
         // ! With option 2
         // var adapter = new Shape2DAdapterA();

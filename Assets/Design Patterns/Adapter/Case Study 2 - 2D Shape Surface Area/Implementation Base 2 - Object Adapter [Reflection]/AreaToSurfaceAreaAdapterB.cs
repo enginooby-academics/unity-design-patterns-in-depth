@@ -1,4 +1,4 @@
-namespace AdapterPattern.Case2.Base1 {
+namespace AdapterPattern.Case2.Base2 {
   /// <summary>
   /// * [An 'Adapter' class]
   /// Rule: surface area of a 2D shape is the area
