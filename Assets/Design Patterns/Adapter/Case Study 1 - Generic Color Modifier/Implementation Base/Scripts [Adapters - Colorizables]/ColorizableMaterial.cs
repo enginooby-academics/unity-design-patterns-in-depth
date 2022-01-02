@@ -1,6 +1,10 @@
 using UnityEngine;
 
 namespace AdapterPattern.Case1.Base1 {
+  /// <summary>
+  /// * [An 'Adapter' class]
+  /// For Adaptee class: Material
+  /// </summary>
   public class ColorizableMaterial : ColorizableObject<Material, MeshRenderer> {
     public ColorizableMaterial() { }
 

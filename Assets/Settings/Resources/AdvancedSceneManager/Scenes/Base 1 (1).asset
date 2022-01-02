@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 143365c1c80370a48a4c89e0b158bf44, type: 3}
   m_Name: Base 1 (1)
   m_EditorClassIdentifier: 
-  m_path: Assets/Design Patterns/Adapter/Case Study 1 - Generic Color Modifier/Implementation
-    Base/Base 1.unity
-  m_assetID: 7ee3b4d8e44a9054a972db2b09e94ce4
+  m_path: Assets/Design Patterns/Adapter/Case Study 2 - 2D Shape Surface Area/Implementation
+    Base 1 - Object Adapter/Base 1.unity
+  m_assetID: 37d96c0c0f8dd934f87eaa6b5b9c05d8
