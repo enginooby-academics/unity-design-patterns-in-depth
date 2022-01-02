@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace VisitorPattern.Case1.Base2 {
   /// <summary>
-  /// * [The 'Abstract Visitable Element' class]
+  /// * The 'Abstract Visitable Element' class
   /// </summary>
   public abstract class ProceduralShape : MonoBehaviour, ICalculatable {
     public double ProcessCalculation(Calculator calculator) => calculator.Calculate(this);
