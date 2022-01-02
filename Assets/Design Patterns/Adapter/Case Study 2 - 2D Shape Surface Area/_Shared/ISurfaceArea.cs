@@ -5,4 +5,7 @@ namespace AdapterPattern.Case2 {
   public interface ISurfaceArea {
     double GetSurfaceArea();
   }
+
+  [System.Serializable]
+  public class ISurfaceAreaContainer : IUnifiedContainer<ISurfaceArea> { }
 }

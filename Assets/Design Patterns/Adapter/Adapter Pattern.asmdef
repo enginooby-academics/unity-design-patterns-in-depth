@@ -2,7 +2,8 @@
     "name": "AdapterPattern",
     "rootNamespace": "",
     "references": [
-        "GUID:b6c19ef8de785f64e9e14f726b9b446b"
+        "GUID:b6c19ef8de785f64e9e14f726b9b446b",
+        "GUID:1489fce023244a84bb7cc7aed59db2d5"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -5,4 +5,7 @@ namespace AdapterPattern.Case2 {
   public interface IArea {
     double GetArea();
   }
+
+  [System.Serializable]
+  public class IAreaContainer : IUnifiedContainer<IArea> { }
 }
