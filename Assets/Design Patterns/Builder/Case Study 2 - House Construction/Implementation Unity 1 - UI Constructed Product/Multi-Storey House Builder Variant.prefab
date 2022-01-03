@@ -1,0 +1,155 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4518122771581210782
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2892187046195505471, guid: 2a3622f21ac573d459fc95385fd2bb73,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332324379821861730, guid: 2a3622f21ac573d459fc95385fd2bb73,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649188728349907836, guid: 2a3622f21ac573d459fc95385fd2bb73,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649188729001166488, guid: 2a3622f21ac573d459fc95385fd2bb73,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649188729570080445, guid: 2a3622f21ac573d459fc95385fd2bb73,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649188729647870278, guid: 2a3622f21ac573d459fc95385fd2bb73,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649188729647870278, guid: 2a3622f21ac573d459fc95385fd2bb73,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649188729647870278, guid: 2a3622f21ac573d459fc95385fd2bb73,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649188729647870278, guid: 2a3622f21ac573d459fc95385fd2bb73,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649188729647870278, guid: 2a3622f21ac573d459fc95385fd2bb73,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649188729647870278, guid: 2a3622f21ac573d459fc95385fd2bb73,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649188729647870278, guid: 2a3622f21ac573d459fc95385fd2bb73,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649188729647870278, guid: 2a3622f21ac573d459fc95385fd2bb73,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649188729647870278, guid: 2a3622f21ac573d459fc95385fd2bb73,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649188729647870278, guid: 2a3622f21ac573d459fc95385fd2bb73,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649188729647870278, guid: 2a3622f21ac573d459fc95385fd2bb73,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649188729647870279, guid: 2a3622f21ac573d459fc95385fd2bb73,
+        type: 3}
+      propertyPath: m_Name
+      value: Multi-Storey House Builder
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649188729897839112, guid: 2a3622f21ac573d459fc95385fd2bb73,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2a3622f21ac573d459fc95385fd2bb73, type: 3}
+--- !u!1 &9094637081163637209 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4649188729647870279, guid: 2a3622f21ac573d459fc95385fd2bb73,
+    type: 3}
+  m_PrefabInstance: {fileID: 4518122771581210782}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9094637081316883094 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4649188729897839112, guid: 2a3622f21ac573d459fc95385fd2bb73,
+    type: 3}
+  m_PrefabInstance: {fileID: 4518122771581210782}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9094637080972469795 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4649188729570080445, guid: 2a3622f21ac573d459fc95385fd2bb73,
+    type: 3}
+  m_PrefabInstance: {fileID: 4518122771581210782}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9094637079768878050 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4649188728349907836, guid: 2a3622f21ac573d459fc95385fd2bb73,
+    type: 3}
+  m_PrefabInstance: {fileID: 4518122771581210782}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9094637080468706822 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4649188729001166488, guid: 2a3622f21ac573d459fc95385fd2bb73,
+    type: 3}
+  m_PrefabInstance: {fileID: 4518122771581210782}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1625945092987271585 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2892187046195505471, guid: 2a3622f21ac573d459fc95385fd2bb73,
+    type: 3}
+  m_PrefabInstance: {fileID: 4518122771581210782}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4649188729940897441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9094637081163637209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e76b78e3286cc1d49905088e85d6e945, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: Multi-Storey House
+  _base: {fileID: 9094637080468706822}
+  _roof: {fileID: 1625945092987271585}
+  _door: {fileID: 9094637079768878050}
+  _windows: {fileID: 9094637081316883094}
+  _chymney: {fileID: 9094637080972469795}
