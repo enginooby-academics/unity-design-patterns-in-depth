@@ -11,7 +11,7 @@ namespace BuilderPattern.Case1.Base {
     }
 
     public void BuildDoors() {
-      // We don't need no doors.
+      // We don't need doors for motorcylce.
     }
 
     public void BuildEngine() {
