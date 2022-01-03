@@ -2,6 +2,29 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public static class GameObjectUtils {
+  public static GameObject WithPosition(this GameObject go, float x, float y, float z) {
+    go.transform.position = new Vector3(x, y, z);
+    return go;
+  }
+
+  public static GameObject WithScale(this GameObject go, float x, float y, float z) {
+    go.transform.localScale = new Vector3(x, y, z);
+    return go;
+  }
+
+  /// <summary>
+  /// Set local rotation in degree.
+  /// </summary>
+  public static GameObject WithRotation(this GameObject go, float x, float y, float z) {
+    go.transform.localEulerAngles = new Vector3(x, y, z);
+    return go;
+  }
+
+  public static GameObject WithMaterial(this GameObject go, Color color) {
+    go.SetMaterialColor(color);
+    return go;
+  }
+
   public static void ToggleActive(this GameObject go) {
     go.SetActive(!go.activeInHierarchy); // ? activeSelf or activeInHierarchy
   }
