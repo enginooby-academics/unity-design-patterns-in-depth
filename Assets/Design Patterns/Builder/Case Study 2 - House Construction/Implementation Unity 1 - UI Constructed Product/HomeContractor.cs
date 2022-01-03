@@ -20,11 +20,11 @@ namespace BuilderPattern.Case2.Unity1 {
 
     [Button]
     public void Construct() {
+      _houseBuilder.Container = new GameObject(_houseName);
       StartCoroutine(ConstructCoroutine());
     }
 
     public IEnumerator ConstructCoroutine() {
-      _houseBuilder.Container = new GameObject(_houseName);
       yield return StartCoroutine(_houseBuilder.BuildBase(_speed));
       yield return StartCoroutine(_houseBuilder.BuildRoof(_speed));
       yield return StartCoroutine(_houseBuilder.BuildDoor(_speed));

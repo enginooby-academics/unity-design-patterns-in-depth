@@ -16,17 +16,21 @@ namespace BuilderPattern.Case2.Unity2 {
     [SerializeField]
     private string _houseName = "House";
 
-    public void Construct(MonoBehaviour monoBehaviour) {
-      monoBehaviour.StartCoroutine(ConstructCoroutine(monoBehaviour));
+    public void Construct() {
+      _houseData.Container = new GameObject(_houseName);
+      StartCoroutine(ConstructCoroutine());
     }
 
-    public IEnumerator ConstructCoroutine(MonoBehaviour monoBehaviour) {
-      _houseData.Container = new GameObject(_houseName);
-      yield return monoBehaviour.StartCoroutine(_houseData.BuildBase(_speed));
-      yield return monoBehaviour.StartCoroutine(_houseData.BuildRoof(_speed));
-      yield return monoBehaviour.StartCoroutine(_houseData.BuildDoor(_speed));
-      yield return monoBehaviour.StartCoroutine(_houseData.BuildWindows(_speed));
-      yield return monoBehaviour.StartCoroutine(_houseData.BuildChimney(_speed));
+    private Coroutine StartCoroutine(IEnumerator routine) {
+      return Worker.Instance.StartCoroutine(routine);
+    }
+
+    public IEnumerator ConstructCoroutine() {
+      yield return StartCoroutine(_houseData.BuildBase(_speed));
+      yield return StartCoroutine(_houseData.BuildRoof(_speed));
+      yield return StartCoroutine(_houseData.BuildDoor(_speed));
+      yield return StartCoroutine(_houseData.BuildWindows(_speed));
+      yield return StartCoroutine(_houseData.BuildChimney(_speed));
     }
   }
 }

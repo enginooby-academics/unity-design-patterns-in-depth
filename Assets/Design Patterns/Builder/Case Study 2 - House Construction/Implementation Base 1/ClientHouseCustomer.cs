@@ -7,6 +7,6 @@ namespace BuilderPattern.Case2.Base1 {
     private HomeContractor _homeContractor;
 
     [Button]
-    public void BuyHouse() => _homeContractor.Construct(this);
+    public void BuyHouse() => _homeContractor.Construct();
   }
 }

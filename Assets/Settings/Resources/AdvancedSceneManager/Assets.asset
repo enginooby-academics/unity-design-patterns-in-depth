@@ -15,7 +15,6 @@ MonoBehaviour:
   profiles:
   - {fileID: 11400000, guid: 8246e3c7a1c266e4dbe7ea514f2d9ba3, type: 2}
   scenes:
-  - {fileID: 11400000, guid: 419c6bdb3b4930448adae76941244932, type: 2}
   - {fileID: 11400000, guid: d02605aaca1803b45ae5350dee4eacdd, type: 2}
   - {fileID: 11400000, guid: 25296d44645974a44805fec3767d4907, type: 2}
   - {fileID: 11400000, guid: 7cab0d359c059084eb067c29b075f208, type: 2}
@@ -46,6 +45,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d595847a7cfc19a4d9df4a767c42179e, type: 2}
   - {fileID: 11400000, guid: 26082afadeb2a374590aab2588f9ee25, type: 2}
   - {fileID: 11400000, guid: a9f85b96a84089b4e81fcd3099366522, type: 2}
+  - {fileID: 11400000, guid: 419c6bdb3b4930448adae76941244932, type: 2}
   - {fileID: 11400000, guid: 11c0775008809394a814cb321602c0cb, type: 2}
   - {fileID: 11400000, guid: 1ff331dbf2f0b1e4fae326522e2433a0, type: 2}
   - {fileID: 11400000, guid: 831d3aa79b22077488acb2064a4e59ca, type: 2}

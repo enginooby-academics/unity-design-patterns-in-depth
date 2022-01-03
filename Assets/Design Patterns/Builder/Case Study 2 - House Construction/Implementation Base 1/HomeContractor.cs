@@ -16,17 +16,20 @@ namespace BuilderPattern.Case2.Base1 {
     [SerializeReference]
     private IHouseBuilder _houseBuilder;
 
-    public void Construct(MonoBehaviour monoBehaviour) {
-      monoBehaviour.StartCoroutine(ConstructCoroutine(monoBehaviour));
+    public void Construct() {
+      StartCoroutine(ConstructCoroutine());
     }
 
-    // TODO: Create common static MonoBehaviour to start coroutines
-    public IEnumerator ConstructCoroutine(MonoBehaviour monoBehaviour) {
-      yield return monoBehaviour.StartCoroutine(_houseBuilder.BuildBase(_speed));
-      yield return monoBehaviour.StartCoroutine(_houseBuilder.BuildRoof(_speed));
-      yield return monoBehaviour.StartCoroutine(_houseBuilder.BuildDoor(_speed));
-      yield return monoBehaviour.StartCoroutine(_houseBuilder.BuildWindows(_speed));
-      yield return monoBehaviour.StartCoroutine(_houseBuilder.BuildChimney(_speed));
+    private Coroutine StartCoroutine(IEnumerator routine) {
+      return Worker.Instance.StartCoroutine(routine);
+    }
+
+    public IEnumerator ConstructCoroutine() {
+      yield return StartCoroutine(_houseBuilder.BuildBase(_speed));
+      yield return StartCoroutine(_houseBuilder.BuildRoof(_speed));
+      yield return StartCoroutine(_houseBuilder.BuildDoor(_speed));
+      yield return StartCoroutine(_houseBuilder.BuildWindows(_speed));
+      yield return StartCoroutine(_houseBuilder.BuildChimney(_speed));
     }
   }
 }
