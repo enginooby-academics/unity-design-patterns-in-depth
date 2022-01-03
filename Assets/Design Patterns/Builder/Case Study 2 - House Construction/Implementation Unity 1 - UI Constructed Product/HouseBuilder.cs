@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace BuilderPattern.Case2.Unity1 {
@@ -6,21 +7,25 @@ namespace BuilderPattern.Case2.Unity1 {
   /// </summary>
   public class HouseBuilder : MonoBehaviour {
     [SerializeField]
-    private GameObject _base, _roof, _door, _windows, _chymney;
+    private GameObject _base, _roof, _door, _windows, _chimney;
 
+    [HideInInspector]
     public GameObject Container;
 
-    private void Build(GameObject part) {
-      if (!part) return;
+    private IEnumerator Build(GameObject part, float speed) {
+      if (!part) yield break;
+
       var partGo = Instantiate(part);
       partGo.transform.SetParent(Container.transform);
       partGo.SetActive(true);
+      yield return new WaitForSeconds(100 / speed);
     }
 
-    public void BuildBase() => Build(_base);
-    public void BuildRoof() => Build(_roof);
-    public void BuildDoor() => Build(_door);
-    public void BuildWindows() => Build(_windows);
-    public void BuildChymney() => Build(_chymney);
+    // ? Necessary
+    public IEnumerator BuildBase(float speed) => Build(_base, speed);
+    public IEnumerator BuildRoof(float speed) => Build(_roof, speed);
+    public IEnumerator BuildDoor(float speed) => Build(_door, speed);
+    public IEnumerator BuildWindows(float speed) => Build(_windows, speed);
+    public IEnumerator BuildChimney(float speed) => Build(_chimney, speed);
   }
 }

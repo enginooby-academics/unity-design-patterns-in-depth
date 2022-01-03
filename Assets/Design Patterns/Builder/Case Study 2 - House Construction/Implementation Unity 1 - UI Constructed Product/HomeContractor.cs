@@ -20,20 +20,16 @@ namespace BuilderPattern.Case2.Unity1 {
 
     [Button]
     public void Construct() {
-      _houseBuilder.StartCoroutine(ConstructCoroutine());
+      StartCoroutine(ConstructCoroutine());
     }
 
     public IEnumerator ConstructCoroutine() {
       _houseBuilder.Container = new GameObject(_houseName);
-      _houseBuilder.BuildBase();
-      yield return new WaitForSeconds(100 / _speed);
-      _houseBuilder.BuildRoof();
-      yield return new WaitForSeconds(100 / _speed);
-      _houseBuilder.BuildDoor();
-      yield return new WaitForSeconds(100 / _speed);
-      _houseBuilder.BuildWindows();
-      yield return new WaitForSeconds(100 / _speed);
-      _houseBuilder.BuildChymney();
+      yield return StartCoroutine(_houseBuilder.BuildBase(_speed));
+      yield return StartCoroutine(_houseBuilder.BuildRoof(_speed));
+      yield return StartCoroutine(_houseBuilder.BuildDoor(_speed));
+      yield return StartCoroutine(_houseBuilder.BuildWindows(_speed));
+      yield return StartCoroutine(_houseBuilder.BuildChimney(_speed));
     }
   }
 }

@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36354e6be22650a42856476dcd946c72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 166
+  _speed: 200
   _houseBuilder: {fileID: 3061811349378904179, guid: 3406ceeebff7e4041a390a2bc05f96a0,
     type: 3}
   _houseName: Simple House
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36354e6be22650a42856476dcd946c72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 300
+  _speed: 200
   _houseBuilder: {fileID: 4649188729940897441, guid: e62671ba86a24b14fa9dcdcbbc798e11,
     type: 3}
   _houseName: Multi-Storey House

@@ -90,7 +90,7 @@ PrefabInstance:
     - target: {fileID: 4649188729647870279, guid: 2a3622f21ac573d459fc95385fd2bb73,
         type: 3}
       propertyPath: m_Name
-      value: Multi-Storey House Builder
+      value: Multi-Storey House Builder Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4649188729897839112, guid: 2a3622f21ac573d459fc95385fd2bb73,
         type: 3}
@@ -147,9 +147,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e76b78e3286cc1d49905088e85d6e945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Multi-Storey House
   _base: {fileID: 9094637080468706822}
   _roof: {fileID: 1625945092987271585}
   _door: {fileID: 9094637079768878050}
   _windows: {fileID: 9094637081316883094}
-  _chymney: {fileID: 9094637080972469795}
+  _chimney: {fileID: 9094637080972469795}
+  Container: {fileID: 0}
