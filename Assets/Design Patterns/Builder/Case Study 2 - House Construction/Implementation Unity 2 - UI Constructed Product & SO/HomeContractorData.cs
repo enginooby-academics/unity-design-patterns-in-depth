@@ -16,6 +16,10 @@ namespace BuilderPattern.Case2.Unity2 {
     [SerializeField]
     private string _houseName = "House";
 
+    public void Construct(MonoBehaviour monoBehaviour) {
+      monoBehaviour.StartCoroutine(ConstructCoroutine(monoBehaviour));
+    }
+
     public IEnumerator ConstructCoroutine(MonoBehaviour monoBehaviour) {
       _houseData.Container = new GameObject(_houseName);
       yield return monoBehaviour.StartCoroutine(_houseData.BuildBase(_speed));

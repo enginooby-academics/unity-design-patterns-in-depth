@@ -20,17 +20,12 @@ namespace BuilderPattern.Case2.Base1 {
       StartCoroutine(ConstructCoroutine());
     }
 
-    // TODO shared
     public IEnumerator ConstructCoroutine() {
-      _houseBuilder.BuildBase();
-      yield return new WaitForSeconds(100 / _speed);
-      _houseBuilder.BuildRoof();
-      yield return new WaitForSeconds(100 / _speed);
-      _houseBuilder.BuildDoor();
-      yield return new WaitForSeconds(100 / _speed);
-      _houseBuilder.BuildWindows();
-      yield return new WaitForSeconds(100 / _speed);
-      _houseBuilder.BuildChymney();
+      yield return StartCoroutine(_houseBuilder.BuildBase(_speed));
+      yield return StartCoroutine(_houseBuilder.BuildRoof(_speed));
+      yield return StartCoroutine(_houseBuilder.BuildDoor(_speed));
+      yield return StartCoroutine(_houseBuilder.BuildWindows(_speed));
+      yield return StartCoroutine(_houseBuilder.BuildChimney(_speed));
     }
   }
 }

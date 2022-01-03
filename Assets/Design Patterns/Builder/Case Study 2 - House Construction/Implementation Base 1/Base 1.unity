@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fa43de53f9c5ec4b8603d8c424eb381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 300
+  _speed: 300
   _houseBuilder:
     id: 0
   references:
@@ -295,7 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fa43de53f9c5ec4b8603d8c424eb381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 155
+  _speed: 145
   _houseBuilder:
     id: 0
   references:

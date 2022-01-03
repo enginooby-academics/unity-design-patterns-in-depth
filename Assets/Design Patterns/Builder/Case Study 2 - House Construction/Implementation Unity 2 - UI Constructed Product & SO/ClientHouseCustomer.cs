@@ -7,6 +7,6 @@ namespace BuilderPattern.Case2.Unity2 {
     private HomeContractorData _homeContractor;
 
     [Button]
-    public void BuyHouse() => StartCoroutine(_homeContractor.ConstructCoroutine(this));
+    public void BuyHouse() => _homeContractor.Construct(this);
   }
 }
