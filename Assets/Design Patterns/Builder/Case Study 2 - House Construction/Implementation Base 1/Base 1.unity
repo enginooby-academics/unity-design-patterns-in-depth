@@ -123,56 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &520907012
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 520907014}
-  - component: {fileID: 520907013}
-  m_Layer: 0
-  m_Name: Fast Multi-Storey House Contractor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &520907013
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 520907012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fa43de53f9c5ec4b8603d8c424eb381, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 300
-  _houseBuilder:
-    id: 0
-  references:
-    version: 1
-    00000000:
-      type: {class: MultiStoreyHouseBuilder, ns: BuilderPattern.Case2.Base1, asm: BuilderPattern}
---- !u!4 &520907014
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 520907012}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &977345628
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,56 +216,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &1148835062
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1148835064}
-  - component: {fileID: 1148835063}
-  m_Layer: 0
-  m_Name: Slow Simple House Contractor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1148835063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1148835062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fa43de53f9c5ec4b8603d8c424eb381, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 145
-  _houseBuilder:
-    id: 0
-  references:
-    version: 1
-    00000000:
-      type: {class: SimpleHouseBuilder, ns: BuilderPattern.Case2.Base1, asm: BuilderPattern}
---- !u!4 &1148835064
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1148835062}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1457440257
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -414,7 +314,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8adb4eaf2b73236488789ef05a423cd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _homeContractor: {fileID: 520907013}
+  _homeContractor:
+    _speed: 300
+    _houseBuilder:
+      id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: MultiStoreyHouseBuilder, ns: BuilderPattern.Case2.Base1, asm: BuilderPattern}
 --- !u!4 &2082123659
 Transform:
   m_ObjectHideFlags: 0
@@ -427,5 +334,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

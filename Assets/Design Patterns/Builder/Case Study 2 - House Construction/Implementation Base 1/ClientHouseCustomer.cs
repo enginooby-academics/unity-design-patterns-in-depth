@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace BuilderPattern.Case2.Base1 {
   public class ClientHouseCustomer : MonoBehaviour {
-    [SerializeField]
+    [SerializeField, HideLabel]
     private HomeContractor _homeContractor;
 
     [Button]
-    public void BuyHouse() => _homeContractor.Construct();
+    public void BuyHouse() => _homeContractor.Construct(this);
   }
 }
