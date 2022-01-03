@@ -11,6 +11,7 @@ namespace BuilderPattern.Case2.Unity1 {
     public GameObject Container;
 
     private void Build(GameObject part) {
+      if (!part) return;
       var partGo = Instantiate(part);
       partGo.transform.SetParent(Container.transform);
       partGo.SetActive(true);

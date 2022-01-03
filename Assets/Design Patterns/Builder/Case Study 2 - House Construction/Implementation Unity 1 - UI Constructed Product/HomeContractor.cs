@@ -10,7 +10,7 @@ namespace BuilderPattern.Case2.Unity1 {
     [SerializeField]
     [Range(50f, 300f)]
     [SuffixLabel("%")]
-    private float speed = 200f;
+    private float _speed = 200f;
 
     [SerializeField]
     private HouseBuilder _houseBuilder;
@@ -20,19 +20,19 @@ namespace BuilderPattern.Case2.Unity1 {
 
     [Button]
     public void Construct() {
-      _houseBuilder.Container = new GameObject(_houseName);
-      StartCoroutine(ConstructCoroutine());
+      _houseBuilder.StartCoroutine(ConstructCoroutine());
     }
 
     public IEnumerator ConstructCoroutine() {
+      _houseBuilder.Container = new GameObject(_houseName);
       _houseBuilder.BuildBase();
-      yield return new WaitForSeconds(100 / speed);
+      yield return new WaitForSeconds(100 / _speed);
       _houseBuilder.BuildRoof();
-      yield return new WaitForSeconds(100 / speed);
+      yield return new WaitForSeconds(100 / _speed);
       _houseBuilder.BuildDoor();
-      yield return new WaitForSeconds(100 / speed);
+      yield return new WaitForSeconds(100 / _speed);
       _houseBuilder.BuildWindows();
-      yield return new WaitForSeconds(100 / speed);
+      yield return new WaitForSeconds(100 / _speed);
       _houseBuilder.BuildChymney();
     }
   }

@@ -10,7 +10,7 @@ namespace BuilderPattern.Case2.Base1 {
     [SerializeField]
     [Range(50f, 300f)]
     [SuffixLabel("%")]
-    private float speed = 200f;
+    private float _speed = 200f;
 
     [SerializeReference]
     private IHouseBuilder _houseBuilder;
@@ -20,15 +20,16 @@ namespace BuilderPattern.Case2.Base1 {
       StartCoroutine(ConstructCoroutine());
     }
 
+    // TODO shared
     public IEnumerator ConstructCoroutine() {
       _houseBuilder.BuildBase();
-      yield return new WaitForSeconds(100 / speed);
+      yield return new WaitForSeconds(100 / _speed);
       _houseBuilder.BuildRoof();
-      yield return new WaitForSeconds(100 / speed);
+      yield return new WaitForSeconds(100 / _speed);
       _houseBuilder.BuildDoor();
-      yield return new WaitForSeconds(100 / speed);
+      yield return new WaitForSeconds(100 / _speed);
       _houseBuilder.BuildWindows();
-      yield return new WaitForSeconds(100 / speed);
+      yield return new WaitForSeconds(100 / _speed);
       _houseBuilder.BuildChymney();
     }
   }
