@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 143365c1c80370a48a4c89e0b158bf44, type: 3}
   m_Name: Base 1 (2)
   m_EditorClassIdentifier: 
-  m_path: Assets/Design Patterns/Builder/Case Study 2 - House Construction/Implementation
-    Base 1/Base 1.unity
+  m_path: "Assets/Design Patterns/Builder/\u2606 Case Study 2 - House Construction/Implementation
+    Base 1/Base 1.unity"
   m_assetID: 8962c6f45befc7547a5f4c66016bb7e2
