@@ -12,7 +12,7 @@ namespace BuilderPattern.Case2.Unity1 {
     [SuffixLabel("%")]
     private float _speed = 200f;
 
-    [SerializeField]
+    [SerializeField, EnumToggleButtons]
     private HouseBuilder _houseBuilder;
 
     [SerializeField]

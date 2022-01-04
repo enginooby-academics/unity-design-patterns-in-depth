@@ -14,6 +14,7 @@ namespace BuilderPattern.Case2.Naive1 {
     }
 
     // ! Contract building methods
+    // ? Make speed a field of House class
     public abstract IEnumerator BuildBase(float speed);
     public abstract IEnumerator BuildRoof(float speed);
     public abstract IEnumerator BuildDoor(float speed);
