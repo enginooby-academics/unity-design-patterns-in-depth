@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 364ac437d5ff8544c97e89d40435ec10, type: 3}
   m_Name: Slow Simple Home Contractor
   m_EditorClassIdentifier: 
-  _speed: 100
+  _speed: 126
   _houseData: {fileID: 11400000, guid: f2f5f1fee6f56b04787748232839d778, type: 2}
   _houseName: Simple House

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BuilderPattern.Case2.Unity1 {
   /// <summary>
-  /// * The 'Director' class (optional)
+  /// * The MonoBehaviour 'Director' class (optional)
   /// </summary>
   public class HomeContractor : MonoBehaviour {
     [SerializeField]

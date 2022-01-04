@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace BuilderPattern.Case2.Unity2 {
   [CreateAssetMenu(fileName = "New Home Contractor Data", menuName = "Patterns/Builder/HomeContractorData", order = 0)]
+  /// <summary>
+  /// * The SO 'Director' class
+  /// </summary>
   public class HomeContractorData : ScriptableObject {
     [SerializeField]
     [Range(50f, 300f)]

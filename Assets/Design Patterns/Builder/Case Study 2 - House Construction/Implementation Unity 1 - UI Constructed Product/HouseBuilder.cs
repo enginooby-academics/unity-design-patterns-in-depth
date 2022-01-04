@@ -6,6 +6,7 @@ namespace BuilderPattern.Case2.Unity1 {
   /// * The MonoBehaviour 'Builder' class
   /// </summary>
   public class HouseBuilder : MonoBehaviour {
+    // TIP: single declare statement for related variables
     [SerializeField]
     private GameObject _base, _roof, _door, _windows, _chimney;
 
