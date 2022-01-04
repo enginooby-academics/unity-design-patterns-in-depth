@@ -3,7 +3,7 @@ using static UnityEngine.PrimitiveType;
 using static UnityEngine.GameObject;
 using System.Collections;
 
-namespace BuilderPattern.Case2.Naive1 {
+namespace BuilderPattern.Case2.Naive2 {
   public class SimpleHouse : House {
     public SimpleHouse() : base("Simple House") { }
 

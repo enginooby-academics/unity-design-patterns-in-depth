@@ -2,7 +2,7 @@ using System.Collections;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace BuilderPattern.Case2.Naive2 {
+namespace BuilderPattern.Case2.Naive1 {
   [System.Serializable, InlineProperty]
   public class HomeContractor {
     [SerializeField]

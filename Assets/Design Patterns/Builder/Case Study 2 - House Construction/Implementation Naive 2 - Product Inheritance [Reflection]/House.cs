@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace BuilderPattern.Case2.Naive1 {
+namespace BuilderPattern.Case2.Naive2 {
   public abstract class House {
     public GameObject Container { get; private set; }
 

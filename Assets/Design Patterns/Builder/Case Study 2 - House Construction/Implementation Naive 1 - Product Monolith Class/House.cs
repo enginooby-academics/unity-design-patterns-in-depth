@@ -3,7 +3,7 @@ using UnityEngine;
 using static UnityEngine.PrimitiveType;
 using static UnityEngine.GameObject;
 
-namespace BuilderPattern.Case2.Naive2 {
+namespace BuilderPattern.Case2.Naive1 {
   public class House {
     public enum Type { Simple, MultiStorey }
     private Type _type;

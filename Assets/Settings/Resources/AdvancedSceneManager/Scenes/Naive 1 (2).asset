@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 143365c1c80370a48a4c89e0b158bf44, type: 3}
-  m_Name: Naive 1
+  m_Name: Naive 1 (2)
   m_EditorClassIdentifier: 
-  m_path: Assets/Design Patterns/Observer/Case Study 2 - Counting Cubes/Implementation
-    Naive 1 - Observer Reference/Naive 1.unity
-  m_assetID: 07a4fcbb85ca1c24ba1d6246c1a118f4
+  m_path: Assets/Design Patterns/Builder/Case Study 2 - House Construction/Implementation
+    Naive 1 - Product Monolith Class/Naive 1.unity
+  m_assetID: 566c8c903f72e1248b1b9db9b774a5f6

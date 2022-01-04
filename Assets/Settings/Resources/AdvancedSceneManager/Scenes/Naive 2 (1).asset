@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 143365c1c80370a48a4c89e0b158bf44, type: 3}
   m_Name: Naive 2 (1)
   m_EditorClassIdentifier: 
-  m_path: Assets/Design Patterns/Builder/Case Study 2 - House Construction/Implementation
-    Naive 2 - Product Monolith Class/Naive 2.unity
-  m_assetID: 566c8c903f72e1248b1b9db9b774a5f6
+  m_path: Assets/Design Patterns/Observer/Case Study 2 - Counting Cubes/Implementation
+    Naive 2 - Subject Tracking/Naive 2.unity
+  m_assetID: e616d473116467c4287f1780f86c4ee2
