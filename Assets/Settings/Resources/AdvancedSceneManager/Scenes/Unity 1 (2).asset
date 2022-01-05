@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 143365c1c80370a48a4c89e0b158bf44, type: 3}
   m_Name: Unity 1 (2)
   m_EditorClassIdentifier: 
-  m_path: Assets/Design Patterns/Bridge/Case Study 1 - Shape, Size & Skin/Implementation
-    Unity 1 - UI Constructed Abstraction & Dimensions/Unity 1.unity
-  m_assetID: e19b9a1b1db514e47bb653a9943494e8
+  m_path: Assets/Design Patterns/Observer/Case Study 2 - Counting Cubes/Implementation
+    Unity 1 - UnityEvent/Unity 1.unity
+  m_assetID: 0f6e9c008c0ea71428e4aa2366f15d94

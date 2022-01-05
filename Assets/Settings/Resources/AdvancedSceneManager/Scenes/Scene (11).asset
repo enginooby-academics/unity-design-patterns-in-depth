@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 143365c1c80370a48a4c89e0b158bf44, type: 3}
-  m_Name: Unity 1
+  m_Name: Scene (11)
   m_EditorClassIdentifier: 
-  m_path: Assets/Design Patterns/Bridge/Case Study 1 - Shape, Size & Skin/Implementation
-    Unity 1 - UI Constructed Abstraction & Dimensions/Unity 1.unity
-  m_assetID: e19b9a1b1db514e47bb653a9943494e8
+  m_path: Assets/Design Patterns/Bridge/Case Study 1 - Shape, Size & Skin/With Abstract
+    Factory/Implementation Base - Naive [Reflection]/Implementation/Scene.unity
+  m_assetID: 3be4b45dabc72cb4dbd96878b92aa0ec
