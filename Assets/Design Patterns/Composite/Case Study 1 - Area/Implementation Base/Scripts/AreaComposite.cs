@@ -7,7 +7,7 @@ using UnityEngine;
 namespace CompositePattern.Case1.Base {
   [Serializable, InlineProperty]
   /// <summary>
-  /// The 'Composite' class.
+  /// * The 'Composite' class.
   /// </summary>
   public class AreaComposite : Area {
     [SerializeField, SerializeReference]

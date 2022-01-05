@@ -2,9 +2,14 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public static class GameObjectUtils {
+  // ? Rename to SetPosition, reserver With... for duplication operations
   public static GameObject WithPosition(this GameObject go, float x, float y, float z) {
     go.transform.position = new Vector3(x, y, z);
     return go;
+  }
+
+  public static void SetPosition(this GameObject go, Vector3 value) {
+    go.transform.position = value;
   }
 
   public static GameObject WithScale(this GameObject go, float x, float y, float z) {
