@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace BridgePattern.Case1.Unity1 {
+namespace BridgePattern.Case1.Unity2 {
   [DisallowMultipleComponent]
-  public abstract class ProceduralShape : MonoBehaviour {
+  public abstract class Shape : MonoBehaviour {
     [SerializeField]
     private ReferenceConcreteType<Size> _sizeType;
 
