@@ -16,6 +16,7 @@ namespace CompositePattern.Case2.Base1 {
   /// Optionally extends Leaf base class.
   /// </summary>
   [Serializable, InlineProperty]
+  // ? Rename to CompositeShape
   public class CompoundShape : Shape {
     [SerializeField, EnumToggleButtons, OnValueChanged(nameof(UpdateShapeType))]
     private ShapeType _shapeType = ShapeType.Cube;

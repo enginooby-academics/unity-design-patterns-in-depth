@@ -6,7 +6,7 @@ namespace CompositePattern.Case2.Unity1 {
     void Awake() {
       IShape root = new GameObject().AddComponent<CompoundShape>();
       (root as MonoBehaviour).gameObject.name = "Root";
-      (root as MonoBehaviour).gameObject.transform.SetParent(transform);
+      (root as MonoBehaviour).transform.SetParent(transform);
     }
   }
 }
