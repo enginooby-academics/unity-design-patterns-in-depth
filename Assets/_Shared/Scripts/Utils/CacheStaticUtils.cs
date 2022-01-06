@@ -65,8 +65,13 @@ public static class CacheStaticUtils {
   /// </summary>
   public static void SetMaterialColor(this GameObject go, Color color, bool isMaterialShared = false) {
     void PerformAction(UnityEngine.Object component) {
-      if (isMaterialShared) (component as MeshRenderer).sharedMaterial.color = color;
-      else (component as MeshRenderer).material.color = color;
+      if ((component as MeshRenderer).material == null)
+        (component as MeshRenderer).material = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+
+      if (isMaterialShared)
+        (component as MeshRenderer).sharedMaterial.color = color;
+      else
+        (component as MeshRenderer).material.color = color;
     }
 
     ProcessActionWithCaching(go, PerformAction, typeof(MeshRenderer));

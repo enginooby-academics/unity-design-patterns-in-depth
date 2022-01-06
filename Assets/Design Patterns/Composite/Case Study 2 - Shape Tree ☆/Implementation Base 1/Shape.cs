@@ -20,6 +20,7 @@ namespace CompositePattern.Case2.Base1 {
       _scale = UnityEngine.Random.Range(.5f, 2f);
       _gameObject = GameObject.CreatePrimitive(type);
       _gameObject.SetScale(_scale);
+      _gameObject.SetMaterialColor(Color.green);
     }
 
     public abstract double GetVolume();
