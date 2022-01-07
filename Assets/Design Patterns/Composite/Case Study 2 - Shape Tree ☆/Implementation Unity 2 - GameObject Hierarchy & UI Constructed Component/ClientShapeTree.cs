@@ -7,9 +7,9 @@ namespace CompositePattern.Case2.Unity2 {
     private IShapeContainer _rootPrefab;
 
     void Awake() {
-      IShape root = Instantiate(_rootPrefab.Object) as IShape;
-      (root as MonoBehaviour).transform.SetParent(transform);
-      (root as MonoBehaviour).gameObject.name = "Root";
+      var root = Instantiate(_rootPrefab.Object) as MonoBehaviour;
+      root.transform.SetParent(transform);
+      root.gameObject.name = "Root";
     }
   }
 }
