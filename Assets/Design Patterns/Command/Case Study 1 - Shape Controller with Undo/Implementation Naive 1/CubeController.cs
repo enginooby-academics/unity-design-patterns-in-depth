@@ -3,23 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
-
-// TODO
-// + Switch receiver
-// + Boundary
-// + Movement trait
-// + Implement un-concurrent command
+using UnityEngine.UI;
 
 namespace CommandPattern.Case1.Naive1 {
-  /// <summary>
-  /// * The 'Invoker' class
-  /// </summary>
+  public enum Command { MoveUp, MoveDown, MoveLeft, MoveRight }
+
   public class CubeController : MonoBehaviour {
     [SerializeField]
     private Cube _cube;
+    [SerializeField]
+    private Button _moveUpButton;
 
-    public enum Command { MoveUp, MoveDown, MoveLeft, MoveRight }
-    private List<Command> _commandHistory = new List<Command>();
+    private static List<Command> _commandHistory = new List<Command>();
+
+    private void OnEnable() {
+      _moveUpButton.onClick.AddListener(() => {
+        _cube.MoveY(1f);
+        _commandHistory.Add(Command.MoveUp);
+      });
+    }
 
     void Update() {
       if (Input.GetKeyDown(KeyCode.W)) {
@@ -40,7 +42,7 @@ namespace CommandPattern.Case1.Naive1 {
       }
     }
 
-    [Button]
+    [Button, HorizontalGroup]
     public void Rewind() => StartCoroutine(RewindCoroutine());
 
     // = Undo all
@@ -69,7 +71,7 @@ namespace CommandPattern.Case1.Naive1 {
       _commandHistory.Remove(command);
     }
 
-    [Button]
+    [Button, HorizontalGroup]
     public void Undo() {
       if (_commandHistory.IsUnset()) return;
 

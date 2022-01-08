@@ -21,9 +21,9 @@ namespace CommandPattern.Case1.Base1 {
     private List<MoveCommand> _commandHistory = new List<MoveCommand>(); // ! can use Stack
 
 
-    void Start() => CommandRegister.Instance.SetReceiver(_cube);
+    void Start() => CommandRegistry.Instance.SetReceiver(_cube);
 
-    void Update() => CommandRegister.Instance.Commands.ForEach(ProcessCommand);
+    void Update() => CommandRegistry.Instance.Commands.ForEach(ProcessCommand);
 
     private void ProcessCommand(MoveCommand command) {
       if (!command.CanExecute) return;
@@ -31,7 +31,7 @@ namespace CommandPattern.Case1.Base1 {
       _commandHistory.Add(command);
     }
 
-    [Button]
+    [Button, HorizontalGroup]
     public void Rewind() => StartCoroutine(RewindCoroutine());
 
     public IEnumerator RewindCoroutine() {
@@ -43,7 +43,7 @@ namespace CommandPattern.Case1.Base1 {
       }
     }
 
-    [Button]
+    [Button, HorizontalGroup]
     public void Undo() {
       if (_commandHistory.IsUnset()) return;
 

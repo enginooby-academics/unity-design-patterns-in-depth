@@ -11,8 +11,8 @@ namespace CommandPattern.Case1.Unity1 {
   public class CubeController : MonoBehaviour {
     [SerializeField]
     private Cube _cube;
-    [SerializeField]
-    private CommandRegister _commandRegister;
+    [SerializeField, InlineEditor]
+    private CommandRegistry _commandRegister;
 
     private List<MoveCommand> _commandHistory = new List<MoveCommand>(); // ! can use Stack
 
@@ -25,7 +25,7 @@ namespace CommandPattern.Case1.Unity1 {
       _commandHistory.Add(command);
     }
 
-    [Button]
+    [Button, HorizontalGroup]
     public void Rewind() => StartCoroutine(RewindCoroutine());
 
     public IEnumerator RewindCoroutine() {
@@ -37,7 +37,7 @@ namespace CommandPattern.Case1.Unity1 {
       }
     }
 
-    [Button]
+    [Button, HorizontalGroup]
     public void Undo() {
       if (_commandHistory.IsUnset()) return;
 

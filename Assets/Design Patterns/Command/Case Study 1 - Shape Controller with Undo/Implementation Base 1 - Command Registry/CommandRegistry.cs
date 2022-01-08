@@ -3,25 +3,10 @@ using UnityEngine;
 
 namespace CommandPattern.Case1.Base1 {
   /// <summary>
-  /// * The 'Abstract Command' class
+  /// Usually, we only need an instance of each Command type.
   /// </summary>
-  // ? Use singleton
-  public abstract class MoveCommand {
-    public Cube Cube;
-    public KeyCode KeyCode;
-
-    public MoveCommand(KeyCode keyCode) => KeyCode = keyCode;
-
-    public bool CanExecute => Input.GetKeyDown(KeyCode);
-
-    public abstract void Execute();
-    public abstract void Undo();
-  }
-
-  /// <summary>
-  /// Usually, we only need an instance of each Command type
-  /// </summary>
-  public class CommandRegister : MonoBehaviourSingleton<CommandRegister> {
+  // ! Can be non-MonoBehaviour singleton
+  public class CommandRegistry : MonoBehaviourSingleton<CommandRegistry> {
     public List<MoveCommand> Commands;
 
     public override void AwakeSingleton() {
