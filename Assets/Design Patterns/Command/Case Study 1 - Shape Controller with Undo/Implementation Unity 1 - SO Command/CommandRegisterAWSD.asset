@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed9b68c9f9be407448653ac28ff671de, type: 3}
+  m_Name: CommandRegisterAWSD
+  m_EditorClassIdentifier: 
+  _commands:
+  - {fileID: 11400000, guid: fe0e7649eff6c944788e40d26b2e07e1, type: 2}
+  - {fileID: 11400000, guid: 64a8305cd64871b44a9423c4c2315486, type: 2}
+  - {fileID: 11400000, guid: 4e2b16eee4600ae4eaed1ab6fcbae06d, type: 2}
+  - {fileID: 11400000, guid: c3157fa3cf138784d9edd2b17c7e6b12, type: 2}
