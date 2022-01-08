@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Collections.Generic;
 using System;
 
+// ? Rename to ReflectionUtils
 public static class TypeUtils {
   public static List<Type> GetConcreteTypesOf<T>() {
     return GetTypesOf<T>(isClass: true, isAbstract: false);

@@ -27,6 +27,12 @@ public class MonoBehaviourSingleton<T> : MonoBehaviour where T : Component {
     } else {
       _instance = this as T;
       DontDestroyOnLoad(gameObject);
+      AwakeSingleton();
     }
   }
+
+  /// <summary>
+  /// Override to add addictional Awake logic for the singleton.
+  /// </summary>
+  public virtual void AwakeSingleton() { }
 }

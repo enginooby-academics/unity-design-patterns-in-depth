@@ -5,7 +5,6 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 
 // TODO
-// + Switch receiver
 // + Boundary
 // + Movement trait
 // + Implement un-concurrent command
@@ -19,19 +18,12 @@ namespace CommandPattern.Case1.Base1 {
     [SerializeField]
     private Cube _cube;
 
-    private List<MoveCommand> _cubeCommands = new List<MoveCommand>(); // ? create static instances
     private List<MoveCommand> _commandHistory = new List<MoveCommand>(); // ! can use Stack
 
-    void Start() {
-      _cubeCommands = new List<MoveCommand> {
-        new MoveUpCommand(_cube, KeyCode.W),
-        new MoveDownCommand(_cube, KeyCode.S),
-        new MoveLeftCommand(_cube, KeyCode.A),
-        new MoveRightCommand(_cube, KeyCode.D),
-      };
-    }
 
-    void Update() => _cubeCommands.ForEach(ProcessCommand);
+    void Start() => CommandRegister.Instance.SetReceiver(_cube);
+
+    void Update() => CommandRegister.Instance.Commands.ForEach(ProcessCommand);
 
     private void ProcessCommand(MoveCommand command) {
       if (!command.CanExecute) return;

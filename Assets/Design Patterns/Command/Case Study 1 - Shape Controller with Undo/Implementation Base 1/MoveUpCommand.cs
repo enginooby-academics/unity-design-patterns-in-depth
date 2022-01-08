@@ -5,9 +5,10 @@ namespace CommandPattern.Case1.Base1 {
   /// * A 'Concrete Command' class
   /// </summary>
   public class MoveUpCommand : MoveCommand {
-    public MoveUpCommand(Cube cube, KeyCode keyCode) : base(cube, keyCode) { }
+    public MoveUpCommand() : base(KeyCode.W) { }
 
     public override void Execute() => Cube.MoveY(1f);
+
     public override void Undo() => Cube.MoveY(-1f);
   }
 }
