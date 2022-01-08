@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 143365c1c80370a48a4c89e0b158bf44, type: 3}
   m_Name: Base 1 (3)
   m_EditorClassIdentifier: 
-  m_path: Assets/Design Patterns/Command/Case Study 1 - Shape Controller with Undo/Implementation
+  m_path: Assets/Design Patterns/Command/Case Study 1 - Undoable Cube Controller/Implementation
     Base 1 - Command Registry/Base 1.unity
   m_assetID: b59c133e42c788b4bb997ed6f9917627

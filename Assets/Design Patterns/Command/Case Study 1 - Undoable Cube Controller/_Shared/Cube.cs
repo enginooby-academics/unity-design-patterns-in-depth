@@ -4,6 +4,7 @@ using DG.Tweening;
 namespace CommandPattern.Case1 {
   /// <summary>
   /// * A 'Receiver' class
+  /// Should define sufficient methods to implement all commands.
   /// </summary>
   public class Cube : MonoBehaviour {
     public void MoveX(float amount) {

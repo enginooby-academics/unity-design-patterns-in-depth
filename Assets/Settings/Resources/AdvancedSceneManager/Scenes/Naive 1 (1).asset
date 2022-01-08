@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 143365c1c80370a48a4c89e0b158bf44, type: 3}
   m_Name: Naive 1 (1)
   m_EditorClassIdentifier: 
-  m_path: Assets/Design Patterns/Command/Case Study 1 - Shape Controller with Undo/Implementation
+  m_path: Assets/Design Patterns/Command/Case Study 1 - Undoable Cube Controller/Implementation
     Naive 1/Naive 1.unity
   m_assetID: 8d5aa06cdcb495240a53fc2224f7e1fc
