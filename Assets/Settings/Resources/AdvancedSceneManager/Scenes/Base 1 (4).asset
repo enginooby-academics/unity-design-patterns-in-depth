@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 143365c1c80370a48a4c89e0b158bf44, type: 3}
   m_Name: Base 1 (4)
   m_EditorClassIdentifier: 
-  m_path: Assets/Design Patterns/Observer/Case Study 2 - Counting Cubes/Implementation
-    Base 1 [Interface Serialization]/Base 1.unity
-  m_assetID: 72d98cff51a8ab646b760bc7822e9798
+  m_path: "Assets/Design Patterns/Composite/Case Study 2 - Shape Tree \u2606/Implementation
+    Base 1/Base 1.unity"
+  m_assetID: 5cafd93d78ab4c349b1408ce61d2b4d4

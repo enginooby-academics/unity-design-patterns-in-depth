@@ -57,8 +57,14 @@ public static class CollectionUtils {
     return list[previous];
   }
 
-  public static T GetLast<T>(this List<T> list) {
+  public static T GetLast<T>(this IList<T> list) {
     return list[list.Count - 1];
+  }
+
+  public static void RemoveLast<T>(this IList<T> list) {
+    if (!list.IsSet()) return;
+
+    list.RemoveAt(list.Count - 1);
   }
 
   public static T GetRandom<T>(this List<T> list) {
