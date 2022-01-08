@@ -1,5 +1,3 @@
-using System;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace CommandPattern.Case1.Base1 {
@@ -7,7 +5,6 @@ namespace CommandPattern.Case1.Base1 {
   /// * The 'Abstract Command' class
   /// </summary>
   // ? Use singleton
-  [Serializable, InlineProperty]
   public abstract class MoveCommand {
     public Cube Cube;
     public KeyCode KeyCode { get; protected set; }

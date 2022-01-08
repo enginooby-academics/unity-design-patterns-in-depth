@@ -170,5 +170,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a25d3de3edaa14e409907af03c8f47dc, type: 2}
   - {fileID: 0}
   - {fileID: 11400000, guid: efc90d5955ed3fb479b05289df42aa7a, type: 2}
+  - {fileID: 11400000, guid: d53711604aff44847ba481f25b2b45b8, type: 2}
   collections:
   - {fileID: 11400000, guid: 5a4a525e301735143a7224ec1c6e0a03, type: 2}

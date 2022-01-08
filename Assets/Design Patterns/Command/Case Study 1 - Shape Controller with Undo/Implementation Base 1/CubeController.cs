@@ -10,6 +10,7 @@ using UnityEngine;
 // + Movement trait
 // + Implement un-concurrent command
 
+// + Implement UI controller to demonstrate duplicated implementation in naive impl
 namespace CommandPattern.Case1.Base1 {
   /// <summary>
   /// * The 'Invoker' class
@@ -17,7 +18,7 @@ namespace CommandPattern.Case1.Base1 {
   public class CubeController : MonoBehaviour {
     [SerializeField]
     private Cube _cube;
-    [SerializeField]
+
     private List<MoveCommand> _cubeCommands = new List<MoveCommand>(); // ? create static instances
     private List<MoveCommand> _commandHistory = new List<MoveCommand>(); // ! can use Stack
 
