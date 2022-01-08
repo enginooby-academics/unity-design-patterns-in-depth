@@ -1,8 +1,10 @@
 using UnityEngine;
 using DG.Tweening;
 
-namespace CommandPattern.Case1.Naive1 {
-  // TODO: Shared with Base1
+namespace CommandPattern.Case1 {
+  /// <summary>
+  /// * A 'Receiver' class
+  /// </summary>
   public class Cube : MonoBehaviour {
     public void MoveX(float amount) {
       float newX = transform.position.x + amount;
