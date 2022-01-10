@@ -1,22 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Extend MonoBehaviourOperator if T is MonoBehaviour.
+/// </summary>
 public abstract class ComponentOperator<T> : MonoBehaviourBase where T : Component { // Behaviour
-  [SerializeField] protected T component;
+  [SerializeField]
+  protected T _component;
 
-  public virtual void DisableComponent() {
-    if (typeof(T) == typeof(Behaviour))
-      // ! canot cast, return null
-      (component as Behaviour).enabled = false;
+  // public virtual void Awake(){
+  //  Reset();
+  // }
+
+  protected virtual void Reset() {
+    // ! ??= operator does not work
+    if (!_component) _component = gameObject.TryAddComponent<T>();
   }
+}
 
-  void Start() {
-    Reset();
-  }
-
-
-  private void Reset() {
-    component ??= GetComponent<T>();
-  }
+public abstract class MonoBehaviourOperator<T> : ComponentOperator<T> where T : MonoBehaviour {
+  public void DisableComponent() => _component.enabled = false;
 }

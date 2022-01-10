@@ -1,4 +1,5 @@
 // * Display game stat UI
+
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System;
@@ -6,7 +7,7 @@ using TMPro;
 using UnityEngine.UI;
 using DG.Tweening;
 
-// TODO: Separate different UI types to classes implementing IStatUI
+// REFACTOR: Separate different UI types to classes implementing IStatUI
 [Serializable, InlineProperty]
 public class StatUI {
   [HideInInspector]

@@ -1,3 +1,5 @@
+// ? Use SO Enum instead of string enum
+
 public enum StatName : int {
   [StringValue(nameof(Health))]
   Health,

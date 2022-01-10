@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using System;
 using System.Linq;
 using UnityEngine.Pool; // ! Pool API requires Unity 2021.1+
 
@@ -21,7 +20,7 @@ public class Spawner : MonoBehaviourBase {
 
   private void Reset() {
     if (enablePool) InitPool();
-    spawningArea.SetComponentOwner(gameObject);
+    spawningArea.SetGameObject(gameObject);
   }
   private void Start() {
     // Reset();

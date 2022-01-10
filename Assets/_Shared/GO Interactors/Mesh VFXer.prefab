@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8860069505338676470}
   - component: {fileID: 8860069505338676465}
   m_Layer: 0
-  m_Name: Vfxer
+  m_Name: Mesh VFXer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

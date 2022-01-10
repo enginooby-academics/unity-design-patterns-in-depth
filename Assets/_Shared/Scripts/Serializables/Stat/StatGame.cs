@@ -3,8 +3,7 @@ using Sirenix.OdinInspector;
 using System;
 using UnityEngine.Events;
 
-// ? Make generics for int/float
-// TODO: Extend from Stat
+// TODO: Extend from Stat, couple w/ GameManager for quick prototyping
 [Serializable, InlineProperty]
 public class StatGame {
   [HideInInspector] public string statName;

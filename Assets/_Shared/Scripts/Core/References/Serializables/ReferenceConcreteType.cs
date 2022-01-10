@@ -14,13 +14,10 @@ public class ReferenceConcreteType<T> where T : class {
   [ValueDropdown(nameof(GetTypeNames))]
   [OnValueChanged(nameof(UpdateCurrentType))]
   private String _currentTypeName;
-
   [SerializeField, HideInInspector]
   private List<String> _typeNames;
-
   [SerializeField, HideInInspector]
   private List<String> _qualifiedTypeNames;
-
   [SerializeField, HideInInspector]
   private String _currentQualifiedTypeName;
 

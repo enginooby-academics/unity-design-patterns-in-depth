@@ -3,4 +3,4 @@
 + Component Operators
 + Switchers
 
-Not categorize by language types (Enum, Interface, Serializable, ScriptableObject, etc) but by domains (UI, Graphics, Audio, Stats, etc)
+Categorize by domains/features (UI, Graphics, Audio, Stats, etc) instead of language/file types (Enum, Interface, Serializable, ScriptableObject, etc).

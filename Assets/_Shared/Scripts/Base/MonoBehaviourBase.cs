@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
@@ -13,7 +11,7 @@ using Sirenix.OdinInspector;
 /// </summary>
 public abstract class MonoBehaviourBase : MonoBehaviour {
   [FoldoutGroup("MonoBehaviour Common")]
-  [Button]
+  // [Button]
   public void GetAutoReferences() {
 #if UNITY_EDITOR
     UnityEditor.EditorApplication.ExecuteMenuItem("Tools/AutoRefs/Set AutoRefs");
@@ -24,9 +22,8 @@ public abstract class MonoBehaviourBase : MonoBehaviour {
   [FoldoutGroup("MonoBehaviour Common")]
   [SerializeField, Min(0f)] float lifespan;
 
-  public void DisableForSecs(float seconds) {
-    this.Disable(seconds);
-  }
+  public void DisableForSecs(float seconds) => this.Disable(seconds);
+
 
   public void ToggleActive() {
 

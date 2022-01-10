@@ -8,11 +8,11 @@ using System;
 [Serializable, InlineProperty]
 public class Area : SerializableBase, IArea {
 
-  protected override void OnComponentOwnerChange() {
-    areaPoint.origin.componentOwner = componentOwner;
-    areaAxis.componentOwner = componentOwner;
-    areaCircular.SetComponentOwner(componentOwner);
-    area2DFuncPoint.SetComponentOwner(componentOwner);
+  protected override void OnGameObjectChanged() {
+    areaPoint.origin.GameObject = GameObject;
+    areaAxis.GameObject = GameObject;
+    areaCircular.SetGameObject(GameObject);
+    area2DFuncPoint.SetGameObject(GameObject);
   }
 
   // ? Use flag enum to enable multiple area types at the same time

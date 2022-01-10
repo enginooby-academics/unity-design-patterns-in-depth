@@ -2,7 +2,6 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System;
-using System.Collections.Generic;
 
 [Serializable, InlineProperty]
 public class AreaRange : SerializableBase, IArea {
@@ -13,9 +12,9 @@ public class AreaRange : SerializableBase, IArea {
   [BoxGroup("$label")]
   public float length = 10f;
 
-  public override void SetComponentOwner(GameObject componentOwner) {
-    base.SetComponentOwner(componentOwner);
-    origin.SetComponentOwner(componentOwner);
+  public override void SetGameObject(GameObject componentOwner) {
+    base.SetGameObject(componentOwner);
+    origin.SetGameObject(componentOwner);
     origin.GameObject = componentOwner;
   }
 

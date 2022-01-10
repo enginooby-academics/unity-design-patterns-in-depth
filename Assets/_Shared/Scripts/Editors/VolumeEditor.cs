@@ -3,11 +3,17 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using Sirenix.OdinInspector;
 
+// TODO: Rename to VolumeProfileVariation extending SO
+// + Move to Graphics
 [ExecuteInEditMode]
 [RequireComponent(typeof(Volume))]
 public class VolumeEditor : MonoBehaviour {
-  [SerializeField] private List<VolumeProfile> profiles;
-  [ValueDropdown("profiles")] [SerializeField] private VolumeProfile currentProfile;
+  [SerializeField]
+  private List<VolumeProfile> profiles;
+  [ValueDropdown("profiles")]
+  [SerializeField]
+  private VolumeProfile currentProfile;
+
   private Volume volume;
 
   // Execute when Play & Stop 

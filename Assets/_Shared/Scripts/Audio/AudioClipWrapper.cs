@@ -4,6 +4,9 @@ using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
 
+// TODO: Extend SO
+// + Rename to AudioClipData
+
 namespace Enginoobz.Audio {
   [Serializable, InlineProperty]
   public class AudioClipWrapper {
@@ -35,6 +38,7 @@ namespace Enginoobz.Audio {
     public void PlayInEditMode() {
       if (_audioClip) PlayClip(_audioClip);
     }
+
     public void Play(AudioSource audioSource) {
       audioSource.volume = _volumeRange.Random();
       audioSource.pitch = _pitchRange.Random();

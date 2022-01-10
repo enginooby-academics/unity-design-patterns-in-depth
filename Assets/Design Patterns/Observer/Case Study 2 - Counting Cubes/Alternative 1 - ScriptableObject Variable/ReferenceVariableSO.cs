@@ -8,15 +8,14 @@ using UnityEditor;
 // TODO: Move to Library
 // + Implement static value (!= ref value)
 
+// Link to Library/Core/Reference
 namespace ObserverPattern.Case2.Alternative1 {
   [InitializeOnLoad]
   public class ReferenceVariableSO<T> : ScriptableObject where T : IEquatable<T> {
     [SerializeField, OnValueChanged(nameof(SetToInitValue))]
     private bool _isValuePersistent = true;
-
     [SerializeField, OnValueChanged(nameof(SetToInitValue))]
     private T _initialValue;
-
     [DisplayAsString, LabelText("Current Value")]
     public T Value;
 

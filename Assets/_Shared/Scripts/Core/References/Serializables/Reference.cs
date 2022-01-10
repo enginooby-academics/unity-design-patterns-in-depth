@@ -5,6 +5,7 @@ using System;
 
 // ? Derived classes: ReferenceVector3/ReferenceTag has additional Vector3 targetVect/string tag attribute... 
 // ? Filter
+// ? Rename to ReferenceGameObject
 [Serializable, InlineProperty]
 public class Reference : SerializableBase {
   public enum FindMethod { Ref, Tag, Name, Type }
@@ -26,8 +27,8 @@ public class Reference : SerializableBase {
   }
 
   private void SetSelfAsTarget() {
-    if (!componentOwner) return;
-    _gameObjectRef = componentOwner;
+    if (!base.GameObject) return;
+    _gameObjectRef = base.GameObject;
   }
 
   [EnableIf(nameof(_enableGameObjectReference))]
@@ -35,12 +36,10 @@ public class Reference : SerializableBase {
   [NaughtyAttributes.Tag]
   [HideLabel, SerializeField]
   private string _tag = "Player";
-
   [EnableIf(nameof(_enableGameObjectReference))]
   [ShowIf(nameof(findMethod), FindMethod.Name)]
   [HideLabel, SerializeField]
   private string _name = "Player";
-
   [EnableIf(nameof(_enableGameObjectReference))]
   [ShowIf(nameof(findMethod), FindMethod.Type)]
   [HideLabel, SerializeField]
@@ -54,7 +53,7 @@ public class Reference : SerializableBase {
   [EnumToggleButtons, HideLabel]
   public FindMethod findMethod;
 
-  public GameObject GameObject {
+  public new GameObject GameObject {
     get {
       if (!_gameObjectRef) FindTarget();
       return _gameObjectRef;

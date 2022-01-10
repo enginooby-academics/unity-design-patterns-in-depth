@@ -1,3 +1,9 @@
+// * Alternative: Var Reference SO
+
+// ? Make generic for int/float...
+// ? Create subclasses (or Bridge pattern) for: StatWithEvent, StatWithUI, StatWithEventAndUI, Stat (w/o event, UI)
+// ? Partial classes
+
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System;
@@ -5,7 +11,6 @@ using UnityEngine.Events;
 using System.Collections.Generic;
 using System.Collections;
 
-// ? Make generics for int/float
 [Serializable, InlineProperty]
 public class Stat {
   [HideInInspector] public string statName;
@@ -78,8 +83,8 @@ public class Stat {
   [HorizontalGroup("$statName/Value"), LabelWidth(LABEL_WIDTH_1)]
   [PropertySpace(SpaceAfter = 10, SpaceBefore = 0)]
   public int MaxValue = 100;
-  private bool EnableStatAndMax() { return enable && enableMax; }
-  private bool EnableStatAndDisableMax() { return enable && !enableMax; }
+  private bool EnableStatAndMax() => enable && enableMax;
+  private bool EnableStatAndDisableMax() => enable && !enableMax;
   #endregion ===================================================================================================================================
 
   // TODO: Implement multiple UIs (? scriptable objects)
@@ -101,13 +106,16 @@ public class Stat {
   }
 
   #region EVENTS ===================================================================================================================================
+  // TIP: Declare both public C# event and private serialized UnityEvent 
+  // -> Use C# event (bind in script) instead of UnityEvent (bind in Inspector) for better performance.
+
+  // ? Rename events: changed, increased, decreased 
+
   // [ToggleGroup(nameof(enable))]
   // [FoldoutGroup("enable/Manual Events")]
   [FoldoutGroup("$statName"), ShowIf(nameof(enable))]
   [FoldoutGroup("$statName/Events")]
   public UnityEvent OnStatChange = new UnityEvent();
-
-  // TIP: Create both C# event and UnityEvent -> Use C# event (bind in script) instead of UnityEvent (bind in Inspector) for better performance.
   public event Action OnStatChangeEvent;
 
   // [ToggleGroup(nameof(enable))]
@@ -115,8 +123,6 @@ public class Stat {
   [FoldoutGroup("$statName"), ShowIf(nameof(enable))]
   [FoldoutGroup("$statName/Events")]
   public UnityEvent OnStatIncrease = new UnityEvent();
-
-  // TIP: Create both C# event and UnityEvent -> Use C# event (bind in script) instead of UnityEvent (bind in Inspector) for better performance.
   public event Action OnStatIncreaseEvent;
 
   // [ToggleGroup(nameof(enable))]
@@ -150,16 +156,17 @@ public class Stat {
 
   #region PUBLIC METHODS ===================================================================================================================================
   // ? Rename to Add()
+  [ObsoleteAttribute("This is obsolete. Use Add instead.", false)]
   public void Update(int amountToAdd) {
     Set(CurrentValue + amountToAdd);
   }
 
-  public void Add(int amount) {
-    Update(amount);
-  }
+  public void Add(int amount) => Set(CurrentValue + amount);
 
+  // ? Use a singleton MonoBehaviour instead, w/ extension method: Coroutine.Start()
   /// <summary>
-  /// Add temporarily for a period of time, then return to the previous value. Provide MonoBehaviour component to start coroutine.
+  /// Add temporarily for a period of time, then return to the previous value. 
+  /// Provide MonoBehaviour to start coroutine.
   /// </summary>
   public void Add(int amount, float duration, MonoBehaviour monoBehaviour) {
     monoBehaviour.StartCoroutine(AddCoroutine(amount, duration));
@@ -174,19 +181,19 @@ public class Stat {
   /// <summary>
   /// Increase current stat value by 1.
   /// </summary>
-  public void Increase() {
-    Update(1);
-  }
+  public void Increase() => Add(1);
 
   /// <summary>
   /// Descrease current stat value by 1.
   /// </summary>
-  public void Descrease() {
-    Update(-1);
-  }
+  public void Descrease() => Add(-1);
+
+  public void SetZero() => Set(0);
+  public void SetMin() => Set(MinValue);
+  public void SetMax() => Set(MaxValue);
 
   /// <summary>
-  /// Constraint the given amount in range of min-max (if enable) then set current stat value.
+  /// Constraint the given amount in range of min-max (if enable) before setting value.
   /// </summary>
   // REFACTOR
   public void Set(int value) {
@@ -198,6 +205,8 @@ public class Stat {
     }
 
     if (value == CurrentValue) return;
+    OnStatChange.Invoke();
+    OnStatChangeEvent?.Invoke();
 
     int oldValue = CurrentValue;
     CurrentValue = value;
@@ -211,8 +220,6 @@ public class Stat {
       OnStatDecrease.Invoke();
       OnStatDecreaseEvent?.Invoke();
     }
-    OnStatChange.Invoke();
-    OnStatChangeEvent?.Invoke();
     if (CurrentValue == 0) {
       OnStatZero.Invoke();
       OnStatZeroEvent?.Invoke();
@@ -225,18 +232,6 @@ public class Stat {
       OnStatMax.Invoke();
       OnStatMaxEvent?.Invoke();
     }
-  }
-
-  public void SetZero() {
-    Set(0);
-  }
-
-  public void SetMin() {
-    Set(MinValue);
-  }
-
-  public void SetMax() {
-    Set(MaxValue);
   }
   #endregion ===================================================================================================================================
 }

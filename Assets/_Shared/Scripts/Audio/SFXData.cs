@@ -3,6 +3,8 @@ using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
 
+// TODO: Rename to SFXVariation
+
 namespace Enginoobz.Audio {
   [CreateAssetMenu(fileName = "SFX_", menuName = "Audio/SFX Data", order = 0)]
   /// <summary>

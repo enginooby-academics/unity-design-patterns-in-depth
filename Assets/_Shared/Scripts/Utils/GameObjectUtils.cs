@@ -63,6 +63,9 @@ public static class GameObjectUtils {
     }
   }
 
+  /// <summary>
+  /// Add component if not exist.
+  /// </summary>
   public static T TryAddComponent<T>(this GameObject go) where T : Component {
     if (go.TryGetComponent<T>(out T component)) return component;
     return go.AddComponent<T>();

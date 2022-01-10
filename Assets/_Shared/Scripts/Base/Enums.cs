@@ -1,5 +1,7 @@
 using System;
 
+// TODO: Separate file
+
 public enum MouseButton { Left, Right, Middle }
 
 // * Use (EnumFlag)1 as None value, e.g., (ModifierKey)1
@@ -59,6 +61,7 @@ public enum ModifierKey {
 
 public enum Axis { X, Y, Z }
 
+// TIP: Add Flag suffix for enum flags.
 [Flags]
 public enum AxisFlag {
   X = 1 << 1, // 1

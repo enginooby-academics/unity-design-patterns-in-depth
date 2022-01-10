@@ -1,8 +1,6 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System;
-using System.Collections.Generic;
-
 
 [Serializable, InlineProperty]
 public abstract class SerializableBase {
@@ -10,16 +8,16 @@ public abstract class SerializableBase {
   /// GameObject of the component containing this Serializable class.
   /// </summary>
   [HideInInspector]
-  [OnValueChanged(nameof(OnComponentOwnerChange))]
-  public GameObject componentOwner;
+  [OnValueChanged(nameof(OnGameObjectChanged))]
+  public GameObject GameObject;
 
   /// <summary>
-  /// Need to invoke in Reset() of the GameObject.
+  /// Invoke in Reset() of the MonoBehaviour.
   /// </summary>
-  public virtual void SetComponentOwner(GameObject componentOwner) {
-    this.componentOwner = componentOwner;
-    OnComponentOwnerChange();
+  public virtual void SetGameObject(GameObject gameObject) {
+    this.GameObject = gameObject;
+    OnGameObjectChanged();
   }
 
-  protected virtual void OnComponentOwnerChange() { }
+  protected virtual void OnGameObjectChanged() { }
 }

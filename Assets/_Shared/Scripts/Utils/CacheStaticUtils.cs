@@ -1,3 +1,4 @@
+// * Cons: hide Unity Object dependencies
 using System.Collections.Generic;
 using System;
 using UnityEngine;

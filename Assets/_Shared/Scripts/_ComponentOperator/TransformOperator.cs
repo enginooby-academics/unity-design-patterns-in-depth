@@ -15,7 +15,7 @@ using static VectorUtils;
 // ? CONSIDER:
 // ? hotkey for enable/disable
 
-public class TransformOperator : MonoBehaviourBase {
+public class TransformOperator : MonoBehaviourOperator<TransformOperator> {
   enum Mode { Auto, Control }
   enum OnBoundaryAction { Stop, LoopMinToMax, LoopMaxToMin, LoopPingPong }
 
@@ -26,13 +26,13 @@ public class TransformOperator : MonoBehaviourBase {
   }
 
   void LateUpdate() {
-    ProcessLookAt();
+    ProcessLooking();
     ProcessTranslating();
     ProcessRotating();
   }
 
   public void Stop() {
-    StopLookAt();
+    StopLooking();
     StopTranslating();
     StopRotating();
   }
@@ -52,7 +52,7 @@ public class TransformOperator : MonoBehaviourBase {
   [SerializeField, LabelText("Target")]
   private Reference _lookAtTarget;
 
-  private void ProcessLookAt() {
+  private void ProcessLooking() {
     if (!_enableLookAt) return;
 
     // TODO: parameterize direction +-X/Y/Z
@@ -60,16 +60,13 @@ public class TransformOperator : MonoBehaviourBase {
     transform.forward = _lookAtTarget.GameObject.transform.forward;
   }
 
-  public void StopLookAt() {
-    _enableLookAt = false;
-  }
+  public void StopLooking() => _enableLookAt = false;
   #endregion ===================================================================================================================================
 
   #region TRANSLATING ===================================================================================================================================
   [ToggleGroup(nameof(_enableTranslating), groupTitle: "Translating")]
   [SerializeField]
   private bool _enableTranslating = true;
-
   [ToggleGroup(nameof(_enableTranslating))]
   [OnValueChanged(nameof(InitTranslation))]
   [SerializeField, LabelText("Speed")]
@@ -85,13 +82,11 @@ public class TransformOperator : MonoBehaviourBase {
   [OnValueChanged(nameof(InitTranslation))]
   [SerializeField, LabelText("Min Position")]
   private Vector3 _translationalMinPos;
-
   [ToggleGroup(nameof(_enableTranslating))]
   [ShowIf(nameof(_translatingMode), Mode.Auto)]
   [OnValueChanged(nameof(InitTranslation))]
   [SerializeField, LabelText("Max Position")]
   private Vector3 _translationalMaxPos;
-
   [ToggleGroup(nameof(_enableTranslating))]
   [ShowIf(nameof(_translatingMode), Mode.Auto)]
   [SerializeField, LabelText("On Reach Boundary")]
@@ -111,21 +106,17 @@ public class TransformOperator : MonoBehaviourBase {
   [ToggleGroup(nameof(_enableTranslating))]
   [SerializeField, LabelText("Acceleration")]
   private Vector3 _translationalAcceleration;
-
   [ToggleGroup(nameof(_enableTranslating))]
   [SerializeField, EnumToggleButtons]
   private Mode _translatingMode = Mode.Auto;
-
   [ToggleGroup(nameof(_enableTranslating))]
   [ShowIf(nameof(_translatingMode), Mode.Control)]
   [SerializeField]
   private InputModifier _xTranslateKey = new InputModifier(inputType: InputModifier.InputType.Axis);
-
   [ToggleGroup(nameof(_enableTranslating))]
   [ShowIf(nameof(_translatingMode), Mode.Control)]
   [SerializeField]
   private InputModifier _yTranslateKey = new InputModifier(inputType: InputModifier.InputType.Axis);
-
   [ToggleGroup(nameof(_enableTranslating))]
   [ShowIf(nameof(_translatingMode), Mode.Control)]
   [SerializeField]
@@ -136,7 +127,7 @@ public class TransformOperator : MonoBehaviourBase {
     IsTranslatingToMaxY = (_translationalSpeed.y > 0);
   }
 
-  void DrawGizmosTranslating() {
+  private void DrawGizmosTranslating() {
     if (!_enableTranslating) return;
 
     gameObject.DrawGizmosDirection(_translationalSpeed);
@@ -146,7 +137,7 @@ public class TransformOperator : MonoBehaviourBase {
     }
   }
 
-  void ProcessTranslating() {
+  private void ProcessTranslating() {
     if (!_enableTranslating) return;
 
     if (_translatingMode == Mode.Auto) {
@@ -174,60 +165,49 @@ public class TransformOperator : MonoBehaviourBase {
     }
   }
 
-  void StopTranslating() {
-    _enableTranslating = false;
-  }
+  void StopTranslating() => _enableTranslating = false;
   #endregion ===================================================================================================================================
 
   #region ROTATING ===================================================================================================================================
   [ToggleGroup(nameof(_enableRotating), groupTitle: "Rotating")]
   [SerializeField]
   private bool _enableRotating;
-
   [ToggleGroup(nameof(_enableRotating))]
   [SerializeField, LabelText("Speed")]
   private Vector3 _rotationalSpeed;
-
   [ToggleGroup(nameof(_enableRotating))]
   [SerializeField, LabelText("Acceleration")]
-  Vector3 rotationalAcceleration;
-
+  private Vector3 _rotationalAcceleration;
   [ToggleGroup(nameof(_enableRotating))]
   [InlineButton(nameof(SetSelfAsRotationPivot), "Self")]
   [SerializeField, LabelText("Pivot")]
   private Transform _rotationPivot;
-
-  private void SetSelfAsRotationPivot() {
-    _rotationPivot = transform;
-  }
-
   [ToggleGroup(nameof(_enableRotating))]
   [SerializeField, EnumToggleButtons]
   private Mode _rotationMode = Mode.Auto;
-
   [ToggleGroup(nameof(_enableRotating))]
   [ShowIf(nameof(_rotationMode), Mode.Control)]
   [SerializeField]
   private InputModifier _xRotateKey = new InputModifier();
-
   [ToggleGroup(nameof(_enableRotating))]
   [ShowIf(nameof(_rotationMode), Mode.Control)]
   [SerializeField]
   private InputModifier _yRotateKey = new InputModifier();
-
   [ToggleGroup(nameof(_enableRotating))]
   [ShowIf(nameof(_rotationMode), Mode.Control)]
   [SerializeField]
   private InputModifier _zRotateKey = new InputModifier();
 
-  void ProcessRotating() {
+  private void SetSelfAsRotationPivot() => _rotationPivot = transform;
+
+  private void ProcessRotating() {
     if (!_enableRotating) return;
 
     if (_rotationPivot) ProcessRotatingWithPivot();
     else ProcessRotatingWithoutPivot();
   }
 
-  void ProcessRotatingWithoutPivot() {
+  private void ProcessRotatingWithoutPivot() {
     if (_rotationMode == Mode.Control) {
       this.RotateX(_rotationalSpeed.x * _xRotateKey.InputValue);
       this.RotateY(_rotationalSpeed.y * _yRotateKey.InputValue);
@@ -237,7 +217,7 @@ public class TransformOperator : MonoBehaviourBase {
     }
   }
 
-  void ProcessRotatingWithPivot() {
+  private void ProcessRotatingWithPivot() {
     if (_rotationMode == Mode.Control) {
       transform.RotateAround(_rotationPivot.position, v100, _rotationalSpeed.x * Time.deltaTime * _xRotateKey.InputValue);
       transform.RotateAround(_rotationPivot.position, v010, _rotationalSpeed.y * Time.deltaTime * _yRotateKey.InputValue);
@@ -249,9 +229,8 @@ public class TransformOperator : MonoBehaviourBase {
     }
   }
 
-  void StopRotating() {
-    _enableRotating = false;
-  }
+  private void StopRotating() => _enableRotating = false;
+
   #endregion ===================================================================================================================================
 
   #region SCALING ===================================================================================================================================

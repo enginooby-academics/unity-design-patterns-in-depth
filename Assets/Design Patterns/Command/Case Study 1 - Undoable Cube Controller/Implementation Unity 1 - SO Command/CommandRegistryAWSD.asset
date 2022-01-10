@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 979ee56fffe9e9f419c489f9f27e8954, type: 3}
-  m_Name: CommandRegisterAWSD
+  m_Name: CommandRegistryAWSD
   m_EditorClassIdentifier: 
   _commands:
   - {fileID: 11400000, guid: fe0e7649eff6c944788e40d26b2e07e1, type: 2}

@@ -24,9 +24,9 @@ public class AreaCircular : SerializableBase, IArea {
   [BoxGroup("$label")]
   public bool gizmosWire;
 
-  public override void SetComponentOwner(GameObject componentOwner) {
-    base.SetComponentOwner(componentOwner);
-    origin.SetComponentOwner(componentOwner);
+  public override void SetGameObject(GameObject componentOwner) {
+    base.SetGameObject(componentOwner);
+    origin.SetGameObject(componentOwner);
     origin.GameObject = componentOwner;
   }
 

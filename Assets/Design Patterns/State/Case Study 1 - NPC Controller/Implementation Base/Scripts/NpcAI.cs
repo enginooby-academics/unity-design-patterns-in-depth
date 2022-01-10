@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using Sirenix.OdinInspector;
@@ -8,19 +6,24 @@ namespace StatePattern.Base {
   public class NpcAI : MonoBehaviour {
     // TIP: private component (of this gameObject) attribute architecture - make private SerializeField, with public getter property
     // TIP: components are check null and get in Start(), this way, attributes are optionally serialized
-    [SerializeField] private Animator _animator;
+    [SerializeField]
+    private Animator _animator;
+    [SerializeField]
+    private NavMeshAgent _navMeshAgent;
+
     public Animator Animator => _animator;
-    [SerializeField] private NavMeshAgent _navMeshAgent;
     public NavMeshAgent NavMeshAgent => _navMeshAgent;
     public Transform player;
 
-    [SerializeField, HideLabel] AreaCircular vision = new AreaCircular(label: "Vision", angle: 30f);
-    [SerializeField, HideLabel] AreaCircular attackableArea = new AreaCircular(label: "Attack Area", angle: 30f, radius: 7f);
-    State currentState;
+    [SerializeField, HideLabel]
+    private AreaCircular vision = new AreaCircular(label: "Vision", angle: 30f);
+    [SerializeField, HideLabel]
+    private AreaCircular attackableArea = new AreaCircular(label: "Attack Area", angle: 30f, radius: 7f);
+    private State currentState;
 
     private void Reset() {
-      vision.SetComponentOwner(gameObject);
-      attackableArea.SetComponentOwner(gameObject);
+      vision.SetGameObject(gameObject);
+      attackableArea.SetGameObject(gameObject);
     }
 
     void Start() {

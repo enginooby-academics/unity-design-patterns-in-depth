@@ -27,7 +27,7 @@ public class PoolObject : MonoBehaviour {
 
   // ? Add Area
 
-  private void Start() {
+  private void Awake() {
     ProcessLifespan();
     _specificPoolObject = GetComponent<IPoolObject>();
   }
