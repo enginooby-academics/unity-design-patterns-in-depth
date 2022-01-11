@@ -10,6 +10,10 @@ using Sirenix.OdinInspector;
 /// * vs. ComponentOperator base is for built-in Unity Components
 /// </summary>
 public abstract class MonoBehaviourBase : MonoBehaviour {
+  // [SerializeField, HideInInspector]
+  // private Vector3? _initalPosition = null;
+  // public Vector3 InitialPosition => _initalPosition ??= transform.position;
+
   [FoldoutGroup("MonoBehaviour Common")]
   // [Button]
   public void GetAutoReferences() {

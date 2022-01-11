@@ -7,7 +7,8 @@ using Sirenix.OdinInspector;
 using UnityEngine.Events;
 using System.Linq;
 
-// ?
+// ? Convert to SO
+// TODO:
 // + AssetType: Prefab, Scene, Both
 // + Create CollectionItem class w/ inline buttons, probability for random mode, isFavorite, customize
 // + FavoriteItems as sublist of items
@@ -31,21 +32,25 @@ public class AssetCollection<T> where T : UnityEngine.Object {
   T currentItem;
 
   public enum CollectionRetrieveMode { Current, Random, Iterate }
-  [SerializeField, EnumToggleButtons, Space(LINE_SPACE)] public CollectionRetrieveMode retrieveMode = CollectionRetrieveMode.Random;
+
+  [SerializeField, EnumToggleButtons, Space(LINE_SPACE)]
+  public CollectionRetrieveMode retrieveMode = CollectionRetrieveMode.Random;
 
   [PropertySpace(SpaceAfter = 10, SpaceBefore = 0)]
   [OnValueChanged(nameof(UpdateDeactivateExceptCurrent))]
   [LabelText("Deactivate In-Scene Items (Excluding Current)")]
-  [SerializeField, ToggleLeft, Space(LINE_SPACE)] public bool deactivateExceptCurrent = false;
+  [SerializeField, ToggleLeft, Space(LINE_SPACE)]
+  public bool deactivateExceptCurrent = false;
 
   #region EVENT
   [ToggleGroup(nameof(enableEvent), groupTitle: "EVENT")]
   public bool enableEvent = true;
   [ToggleGroup(nameof(enableEvent))]
-  [SerializeField] public UnityEvent onCurrentItemChanged = new UnityEvent();
-
+  [SerializeField]
+  public UnityEvent onCurrentItemChanged = new UnityEvent();
   [ToggleGroup(nameof(enableEvent))]
-  [SerializeField] public UnityEvent onItemsChanged = new UnityEvent();
+  [SerializeField]
+  public UnityEvent onItemsChanged = new UnityEvent();
 
   private void UpdateDeactivateExceptCurrent() {
 #if UNITY_EDITOR
@@ -84,26 +89,29 @@ public class AssetCollection<T> where T : UnityEngine.Object {
   public bool enableHotkey = true;
 
   [ToggleGroup(nameof(enableHotkey))]
-
   [InfoBox("If using hotkeys, invoke ProcessCollectionInput() of the collection in Update() of this Component.", InfoMessageType.Warning)]
-  [ShowInInspector, HideLabel, DisplayAsString] private string hotkeyInfoText = "";
+  [ShowInInspector, HideLabel, DisplayAsString]
+  private string hotkeyInfoText = "";
 
   // TODO: Replace by InputModifier
   [ToggleGroup(nameof(enableHotkey))]
   [PropertySpace(SpaceBefore = -20)]
   [HideLabel, Title("Set To Previous Item Key", bold: false, titleAlignment: TitleAlignments.Left)]
   // [LabelText("Set Previous"), LabelWidth(LABEL_WIDTH_KEY)]
-  [SerializeField] KeyCodeModifier switchPreviousKey = new KeyCodeModifier();
+  [SerializeField]
+  KeyCodeModifier switchPreviousKey = new KeyCodeModifier();
 
   [ToggleGroup(nameof(enableHotkey))]
   [HideLabel, Title("Set To Next Item Key", bold: false, titleAlignment: TitleAlignments.Left)]
   // [LabelText("Set Next"), LabelWidth(LABEL_WIDTH_KEY)]
-  [SerializeField] KeyCodeModifier switchNextKey = new KeyCodeModifier();
+  [SerializeField]
+  KeyCodeModifier switchNextKey = new KeyCodeModifier();
 
   [ToggleGroup(nameof(enableHotkey))]
   [HideLabel, Title("Set To Random Item Key", bold: false, titleAlignment: TitleAlignments.Left)]
   // [LabelText("Set Random"), LabelWidth(LABEL_WIDTH_KEY)]
-  [SerializeField] KeyCodeModifier switchRandomKey = new KeyCodeModifier();
+  [SerializeField]
+  KeyCodeModifier switchRandomKey = new KeyCodeModifier();
 
   /// <summary>
   /// Invoke this in Monobehaviour container for quick switching between items using hotkeys

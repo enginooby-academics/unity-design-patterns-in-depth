@@ -21,7 +21,7 @@ Specifically, there are many common base classes, serializable classes, extensio
 + Asset Theme/Context/Collection: ScriptableObject collection of multiple simultaneous asset data or asset data collections for a context/theme/project (e.g., many horror AudioClipCollection form a AudioClipTheme to be used in a horror game). This collection belongs to multiple GameObjects.
 + Collection (vs. Asset Variation?)
 + Switcher (vs. Asset Variation?)
-+ Game Manager: basic, universal manager containing common stats (live, score, etc) and common events (start, over, win) for quick prototyping.
++ Game Manager: basic, universal manager containing common stats (live, score, etc) and common events (start, pause, over, win) for quick prototyping.
 
 Scripts are categorized by domains/features (UI, Graphics, Audio, Stats, etc) instead of language/file types (Enum, Interface, Serializable, ScriptableObject, etc). \
 

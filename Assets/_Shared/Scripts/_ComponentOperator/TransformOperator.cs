@@ -15,7 +15,7 @@ using static VectorUtils;
 // ? CONSIDER:
 // ? hotkey for enable/disable
 
-public class TransformOperator : MonoBehaviourOperator<TransformOperator> {
+public class TransformOperator : ComponentOperator<Transform> {
   enum Mode { Auto, Control }
   enum OnBoundaryAction { Stop, LoopMinToMax, LoopMaxToMin, LoopPingPong }
 
@@ -25,7 +25,7 @@ public class TransformOperator : MonoBehaviourOperator<TransformOperator> {
     InitTranslation();
   }
 
-  void LateUpdate() {
+  private void LateUpdate() {
     ProcessLooking();
     ProcessTranslating();
     ProcessRotating();
@@ -37,7 +37,7 @@ public class TransformOperator : MonoBehaviourOperator<TransformOperator> {
     StopRotating();
   }
 
-  void OnDrawGizmosSelected() {
+  private void OnDrawGizmosSelected() {
     DrawGizmosTranslating();
   }
 

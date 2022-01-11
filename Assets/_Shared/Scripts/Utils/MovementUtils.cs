@@ -3,25 +3,45 @@ using System.Collections;
 using static VectorUtils;
 
 public static class MovementUtils {
+  // ? Use MonoBehaviour or transform
   /// <summary>Add world-space position X to distance</summary>
   public static void MoveXWorld(this MonoBehaviour monoBehaviour, float distance = 1f) {
-    monoBehaviour.transform.Translate(v100 * Time.deltaTime * distance, Space.World);
+    monoBehaviour.transform.MoveXWorld(distance);
   }
 
   /// <summary>Add world-space position Y to distance</summary>
   public static void MoveYWorld(this MonoBehaviour monoBehaviour, float distance = 1f) {
-    monoBehaviour.transform.Translate(v010 * Time.deltaTime * distance, Space.World);
+    monoBehaviour.transform.MoveYWorld(distance);
   }
 
   /// <summary>Add world-space position Z to distance</summary>
   public static void MoveZWorld(this MonoBehaviour monoBehaviour, float distance = 1f) {
-    monoBehaviour.transform.Translate(v001 * Time.deltaTime * distance, Space.World);
+    monoBehaviour.transform.MoveZWorld(distance);
+  }
+
+  /// <summary>Add world-space position X to distance</summary>
+  public static void MoveXWorld(this Transform transform, float distance = 1f) {
+    transform.Translate(v100 * Time.deltaTime * distance, Space.World);
+  }
+
+  /// <summary>Add world-space position Y to distance</summary>
+  public static void MoveYWorld(this Transform transform, float distance = 1f) {
+    transform.Translate(v010 * Time.deltaTime * distance, Space.World);
+  }
+
+  /// <summary>Add world-space position Z to distance</summary>
+  public static void MoveZWorld(this Transform transform, float distance = 1f) {
+    transform.Translate(v001 * Time.deltaTime * distance, Space.World);
   }
 
   public static void MoveWorld(this MonoBehaviour monoBehaviour, Vector3 distances) {
-    monoBehaviour.MoveXWorld(distances.x);
-    monoBehaviour.MoveYWorld(distances.y);
-    monoBehaviour.MoveZWorld(distances.z);
+    monoBehaviour.transform.MoveWorld(distances);
+  }
+
+  public static void MoveWorld(this Transform transform, Vector3 distances) {
+    transform.MoveXWorld(distances.x);
+    transform.MoveYWorld(distances.y);
+    transform.MoveZWorld(distances.z);
   }
 
   /// <summary>
@@ -50,6 +70,28 @@ public static class MovementUtils {
     float posX = monoBehaviour.transform.position.x;
     if (range.Contains(posX)) return;
     monoBehaviour.transform.PosX(Mathf.Clamp(posX, range.x, range.y));
+  }
+
+  ///<summary>Rotates the object around the Y axis by the number of degrees defined by the given angle.</summary>
+  public static void RotateY(this Transform transform, float angle) {
+    transform.Rotate(v010, angle * Time.deltaTime);
+  }
+
+  ///<summary>Rotates the object around the X axis by the number of degrees defined by the given angle.</summary>
+  public static void RotateX(this Transform transform, float angle) {
+    transform.Rotate(v100, angle * Time.deltaTime);
+  }
+
+  ///<summary>Rotates the object around the Z axis by the number of degrees defined by the given angle.</summary>
+  public static void RotateZ(this Transform transform, float angle) {
+    transform.Rotate(v001, angle * Time.deltaTime);
+  }
+
+  ///<summary>Rotates the object around the 3 axes by the number of degrees defined by the given angle.</summary>
+  public static void Rotate(this Transform transform, Vector3 angles) {
+    transform.RotateX(angles.x);
+    transform.RotateY(angles.y);
+    transform.RotateZ(angles.z);
   }
 
   ///<summary>Rotates the object around the Y axis by the number of degrees defined by the given angle.</summary>
