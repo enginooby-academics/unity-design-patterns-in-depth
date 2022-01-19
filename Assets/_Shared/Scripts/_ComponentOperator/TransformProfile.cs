@@ -13,9 +13,9 @@ public class TransformProfile : ScriptableObject {
 
   private Vector3 _originalPos; // ! non-shared data (should move to MonoBehaviour)
 
-  public void Start(Transform transform) {
-    InitTranslation(transform);
-  }
+  // public void Start(Transform transform) {
+  //   InitTranslation(transform);
+  // }
 
   public void LateUpdate(Transform transform) {
     ProcessLooking(transform);
@@ -114,7 +114,7 @@ public class TransformProfile : ScriptableObject {
   [SerializeField]
   private InputModifier _zTranslateKey = new InputModifier(inputType: InputModifier.InputType.Axis, inputAxis: InputAxis.Horizontal);
 
-  private void InitTranslation(Transform transform) {
+  public void InitTranslation(Transform transform) {
     _originalPos = transform.position;
     IsTranslatingToMaxY = (_translationalSpeed.y > 0);
   }

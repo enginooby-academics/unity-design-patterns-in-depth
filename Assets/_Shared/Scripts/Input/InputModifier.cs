@@ -38,9 +38,10 @@ public class InputModifier {
     keyCode = KeyCode.None;
   }
 
-
   [ShowIf(nameof(ShowKeyTriggerEvent))]
-  [HideLabel, EnumToggleButtons, GUIColor(.6f, 1f, .6f, .8f)] public KeyCodeTriggerEvent keyTriggerEvent = KeyCodeTriggerEvent.Down;
+  [HideLabel, EnumToggleButtons, GUIColor(.6f, 1f, .6f, .8f)]
+  public KeyCodeTriggerEvent keyTriggerEvent = KeyCodeTriggerEvent.Down;
+
   private bool ShowKeyTriggerEvent() {
     return inputType == InputType.KeyCode && showMore;
   }

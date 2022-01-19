@@ -4,6 +4,7 @@ using Sirenix.OdinInspector;
 
 namespace Enginoobz.Graphics {
   public class PostFxModifierController : MonoBehaviour {
+    // TODO: Separate all keys into SO
     // [SerializeField] private KeyCodeModifier modifierKey = new KeyCodeModifier(keyCode: KeyCode.LeftShift);
     [SerializeField] private KeyCodeModifier randomizeKey = new KeyCodeModifier(keyCode: KeyCode.LeftBracket);
     [SerializeField] private KeyCodeModifier resetKey = new KeyCodeModifier(keyCode: KeyCode.RightBracket);

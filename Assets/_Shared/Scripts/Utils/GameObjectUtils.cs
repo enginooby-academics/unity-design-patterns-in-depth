@@ -31,7 +31,8 @@ public static class GameObjectUtils {
   }
 
   public static void ToggleActive(this GameObject go) {
-    go.SetActive(!go.activeInHierarchy); // ? activeSelf or activeInHierarchy
+    // go.SetActive(!go.activeInHierarchy); // ? activeSelf or activeInHierarchy
+    go.SetActive(!go.activeSelf); // ? activeSelf or activeInHierarchy
   }
 
   public static void ToggleActive(this List<GameObject> goList) {

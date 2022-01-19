@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 public class MonoBehaviourSingleton<T> : MonoBehaviour where T : Component {
-  private static T _instance;
+  protected static T _instance;
   public static T Instance {
     get {
       if (_instance == null) {
@@ -22,7 +22,8 @@ public class MonoBehaviourSingleton<T> : MonoBehaviour where T : Component {
   }
 
   public virtual void Awake() {
-    if (_instance) {
+    if (DoesInstanceExist) {
+      print("Destroy " + gameObject.name);
       Destroy(gameObject);
     } else {
       _instance = this as T;
@@ -31,8 +32,25 @@ public class MonoBehaviourSingleton<T> : MonoBehaviour where T : Component {
     }
   }
 
+  protected virtual bool DoesInstanceExist => _instance;
+
   /// <summary>
   /// Override to add addictional Awake logic for the singleton.
   /// </summary>
+  // FIX: sometimes is not called
   public virtual void AwakeSingleton() { }
+}
+
+
+public static class Singleton {
+  // ! Cannot use
+  public static T Instance<T>() where T : MonoBehaviourSingleton<T> {
+    T instance = Object.FindObjectOfType<T>();
+
+    if (instance == null) {
+      instance = MonoBehaviourSingleton<T>.Instance;
+    }
+
+    return instance;
+  }
 }

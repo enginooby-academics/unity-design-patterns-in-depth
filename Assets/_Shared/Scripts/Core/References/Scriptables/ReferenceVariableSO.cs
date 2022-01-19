@@ -1,15 +1,10 @@
 using System;
 using UnityEngine;
 using Sirenix.OdinInspector;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
-// + Implement static value (!= ref value)
-
-[InitializeOnLoad]
 // TODO: constraint value type (struct?)
-public class ReferenceVariableSO<T> : ScriptableObject where T : IEquatable<T> {
+// + Implement constant value (!= ref value)
+public class ReferenceVariableSO<T> : ScriptableObjectBase where T : IEquatable<T> {
   [SerializeField, OnValueChanged(nameof(SetToInitValue))]
   private bool _isValuePersistent = true;
   [SerializeField, OnValueChanged(nameof(SetToInitValue))]
@@ -19,7 +14,7 @@ public class ReferenceVariableSO<T> : ScriptableObject where T : IEquatable<T> {
 
   private T _lastValue;
 
-  private void SetToInitValue() => Value = _initialValue;
+  private void SetToInitValue() => Value = _lastValue = _initialValue;
 
   /// <summary>
   /// [Update-safe method] <br/>
@@ -28,38 +23,11 @@ public class ReferenceVariableSO<T> : ScriptableObject where T : IEquatable<T> {
   public void PerformOnValueChanged(Action<T> action) {
     if (Value.Equals(_lastValue)) return;
 
-    action.Invoke(Value);
     _lastValue = Value;
+    action.Invoke(Value);
   }
 
-  private void OnAppStart() {
+  protected override void OnPlayModeChange() {
     if (!_isValuePersistent) SetToInitValue();
-    _lastValue = _initialValue;
   }
-
-  private void OnAppQuit() {
-    if (!_isValuePersistent) SetToInitValue();
-    _lastValue = _initialValue;
-  }
-
-#if UNITY_EDITOR
-    protected void OnEnable() {
-      EditorApplication.playModeStateChanged += OnPlayStateChange;
-    }
-
-    protected void OnDisable() {
-      EditorApplication.playModeStateChanged -= OnPlayStateChange;
-    }
-
-    void OnPlayStateChange(PlayModeStateChange state) {
-      if (state == PlayModeStateChange.EnteredPlayMode) {
-        OnAppStart();
-      } else if (state == PlayModeStateChange.ExitingPlayMode) {
-        OnAppQuit();
-      }
-    }
-#else
-  protected void OnEnable() => OnAppStart();
-  protected void OnDisable() => OnAppQuit();
-#endif
 }

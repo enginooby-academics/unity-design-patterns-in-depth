@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager> {
   private void Setup() {
     SetupStats();
     if (gameOverLabel) gameOverLabel.gameObject.SetActive(false);
-    if(restartButton) restartButton.SetActive(false);
+    if (restartButton) restartButton.SetActive(false);
 
     if (backgroundMusic && audioSource) {
       audioSource.clip = backgroundMusic;
@@ -62,8 +62,9 @@ public class GameManager : MonoBehaviourSingleton<GameManager> {
     gameOver = false;
     if (spawnersToEnableTarget == Target.All) spawnersToEnable = FindObjectsOfType<Spawner>();
     foreach (var obj in spawnersToEnable) {
-      if (!obj.autoSpawnEnabled) return; // only trigger for which spawner is setup enable
-      obj.StartAutoSpawning();
+      // TODO
+      // if (!obj.AutoSpawnMode.) return; // only trigger for which spawner is setup enable
+      // obj.StartAutoSpawning();
     }
     OnGameStart.Invoke();
     if (timerStat.enable) StartCoroutine(TimerEnumerator());
@@ -125,7 +126,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager> {
     if (spawnersToStopTarget == Target.All) spawnersToStop = FindObjectsOfType<Spawner>();
     foreach (var obj in projectilesToStop) obj.Stop();
     foreach (var obj in transformingToStop) obj.Stop();
-    foreach (var obj in spawnersToStop) obj.StopAutoSpawning();
+    foreach (var obj in spawnersToStop) obj.AutoSpawnScheduler.Disable();
     foreach (var obj in objectsToDestroy) Destroy(obj);
     gameOverLabel.gameObject.SetActive(true);
     restartButton.SetActive(true);

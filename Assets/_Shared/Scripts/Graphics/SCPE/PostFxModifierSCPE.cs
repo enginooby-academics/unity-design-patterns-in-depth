@@ -12,7 +12,7 @@ namespace Enginoobz.Graphics {
     private VolumeProfile _profile;
     private string statesDebug; // OPTIM: use StringBuilder
 
-    public Volume Volume => _volume ?? gameObject.GetComponent<Volume>();
+    public Volume Volume => _volume ??= gameObject.GetComponent<Volume>();
     public VolumeProfile Profile => _profile ?? Volume.profile;
 
     void Awake() {

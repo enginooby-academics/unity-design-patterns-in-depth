@@ -5,15 +5,15 @@ using UnityEngine.Pool;
 
 // ? Group PoolObject w/ SpawnWaveObject
 public class PoolObject : MonoBehaviour {
-  public IObjectPool<GameObject> pool;
+  public IObjectPool<GameObject> _pool;
 
   // [BoxGroup("Release Mode")]
   [LabelText("On Became Invisible")]
-  public bool releaseOnBecameInvisible;
+  public bool ReleaseOnBecameInvisible;
 
   // [BoxGroup("Release Mode")]
   [Min(0f)]
-  public float lifespan;
+  public float Lifespan;
 
   /// <summary>
   /// Method 1: Specific pool object (vs. this class as uniform pool object) to add additional logic for cleaning item. Alternative to onCleanForPoolEvent.
@@ -27,23 +27,28 @@ public class PoolObject : MonoBehaviour {
 
   // ? Add Area
 
+  public void Init(IObjectPool<GameObject> pool) {
+    _pool = pool;
+    if (Lifespan != 0) ProcessLifespan();
+  }
+
   private void Awake() {
-    ProcessLifespan();
     _specificPoolObject = GetComponent<IPoolObject>();
   }
 
   private void OnEnable() {
-    ProcessLifespan();
+    if (Lifespan != 0) ProcessLifespan();
     onReuseEvent?.Invoke();
     _specificPoolObject?.OnPoolReuse();
   }
 
   private void ProcessLifespan() {
-    if (lifespan != 0) StartCoroutine(ReleaseToPoolCoroutine(lifespan));
+    // print("ProcessLifespan");
+    StartCoroutine(ReleaseToPoolCoroutine(Lifespan));
   }
 
   private void OnBecameInvisible() {
-    if (releaseOnBecameInvisible) ReleaseToPool();
+    if (ReleaseOnBecameInvisible) ReleaseToPool();
   }
 
   private IEnumerator ReleaseToPoolCoroutine(float delay) {
@@ -54,7 +59,7 @@ public class PoolObject : MonoBehaviour {
   public void ReleaseToPool() {
     // print("Release to pool");
     if (!CanReleaseToPool) return;
-    pool?.Release(gameObject);
+    _pool?.Release(gameObject);
   }
 
   public bool CanReleaseToPool => gameObject.activeInHierarchy && gameObject && gameObject.activeSelf;

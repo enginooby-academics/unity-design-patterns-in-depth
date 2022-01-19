@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 96168876244411485}
-  - component: {fileID: 2195286729618978152}
-  - component: {fileID: 2195286729618978155}
   m_Layer: 0
   m_Name: PostFX Controller
   m_TagString: Untagged
@@ -32,64 +30,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2195286729618978152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2195286729618978153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4684e836866c924096453770758baeb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  modifierKey: 324
-  randomizeKey: 91
-  resetKey: 93
-  disableBeautifyKey: 117
-  toggleCompareModeKey: 105
-  toggleBlurKey: 54
-  toggleSharpenKey: 55
-  toggleVignetteKey: 56
-  toggleNightVisionKey: 57
-  toggleOutlineKey: 48
-  toggleSketchKey: 49
-  toggleKuwaharaKey: 50
-  toggleEdgeDetectionKey: 51
-  toggleMosaicKey: 0
-  toggleHueShift3dKey: 52
-  toggleColorizeKey: 53
-  doubleVisionKey: 0
-  tiltShiftKey: 0
-  radialBlurKey: 0
-  lensFlaresKey: 0
-  lightStreaksKey: 0
-  colorSplitKey: 0
-  ditheringKey: 0
-  pixelizeKey: 0
-  posterizeKey: 0
-  scanlinesKey: 0
-  blackBarsKey: 0
-  dangerKey: 0
-  gradientKey: 0
-  refractionKey: 0
-  ripplesKey: 0
-  speedLinesKey: 0
-  tubeDistortionKey: 0
-  kaleidoscopeKey: 0
-  toggleCloudShadowsKey: 0
-  toggleCausticsKey: 0
-  toggleFogKey: 0
---- !u!114 &2195286729618978155
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2195286729618978153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac7b5c6d869be474282a930c5e173b8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

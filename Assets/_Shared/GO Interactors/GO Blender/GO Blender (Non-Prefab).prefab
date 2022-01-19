@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3885227433736865205
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3885227433736865203}
+  - component: {fileID: 4750960889516313804}
+  - component: {fileID: 518611480746100729}
+  m_Layer: 0
+  m_Name: GO Blender (Non-Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3885227433736865203
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3885227433736865205}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -239.74774, y: 7.9387264, z: -15.3680525}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4750960889516313804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3885227433736865205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce18bbb1fe1055045b2db65f03d793a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactorType:
+    _currentTypeName: 
+    _typeNames: []
+    _qualifiedTypeNames: []
+    _currentQualifiedTypeName: 
+  _interactor: {fileID: 0}
+  _selector: {fileID: 0}
+  _keyPreset: {fileID: 11400000, guid: 749f5c8ed6600f8449d1e540b93611c2, type: 2}
+  _isGeneral: 0
+  _tInteractor: {fileID: 518611480746100729}
+--- !u!114 &518611480746100729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3885227433736865205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdc4cca08e9ee9a4491c7ce84ca19173, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effect: 0

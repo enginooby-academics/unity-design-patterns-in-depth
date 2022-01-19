@@ -56,7 +56,10 @@ public static class ComponentUtils {
   }
 
 
-  /// <summary> Return a linked copy of the component. When the copy changes, the component will update and vice versa</summary>
+  /// <summary> 
+  /// [Reflection] <br/>
+  /// Return a linked copy of the component. When the copy changes, the component will update and vice versa.
+  /// </summary>
   public static T GetLinkedCopyOf<T>(this Component comp, T other) where T : Component {
     Type type = comp.GetType();
     if (type != other.GetType()) return null; // type mis-match
@@ -83,7 +86,7 @@ public static class ComponentUtils {
     theRb = monoBehaviour.gameObject.AddComponent<Rigidbody>();
     theRb.useGravity = useGravity;
     theRb.mass = mass;
-    // TODO: constrain
+    // TODO: constraint
     return theRb;
   }
 
@@ -94,7 +97,7 @@ public static class ComponentUtils {
     theRb.useGravity = useGravity;
     theRb.mass = mass;
     theRb.isKinematic = isKinematic;
-    // TODO: constrain
+    // TODO: constraint
     return theRb;
   }
 

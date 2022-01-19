@@ -6,7 +6,7 @@ public class TransformProfileOperator : ComponentOperator<Transform> {
   private TransformProfile _transformProfile;
 
   private void Start() {
-    _transformProfile?.Start(transform);
+    _transformProfile?.InitTranslation(transform);
   }
 
   private void LateUpdate() {

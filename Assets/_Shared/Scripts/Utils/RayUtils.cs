@@ -8,12 +8,34 @@ public static class RayUtils {
   public static Ray MouseRay => Camera.main.ScreenPointToRay(Input.mousePosition);
 
   /// <summary>
-  /// If ray casted from main camera to mouse position hit anything.
+  /// If ray casted from main camera to mouse position hit any collider.
   /// </summary>
   public static bool IsMouseRayHit => Physics.Raycast(MouseRay);
 
   /// <summary>
-  /// Hits from the ray casted from main camera to mouse position.
+  /// Return the list of GameObjects lie between this GameObject and main camera.
+  /// </summary>
+  // FIX: not working
+  public static List<GameObject> GetHitsFromCameraRay(this GameObject go) {
+    var gos = new List<GameObject>();
+    Ray goToCameraRay = Camera.main.ScreenPointToRay(go.transform.position);
+    // RaycastHit[] hits = Physics.RaycastAll(goToCameraRay);
+    RaycastHit[] hits = Physics.RaycastAll(goToCameraRay);
+
+    foreach (var hit in hits) {
+      gos.Add(hit.transform.gameObject);
+    }
+
+    return gos;
+  }
+
+  public static void DrawRayToCamera(this GameObject go) {
+    var dirTocamera = Camera.main.transform.position - go.transform.position;
+    Debug.DrawRay(go.transform.position, dirTocamera, Color.yellow);
+  }
+
+  /// <summary>
+  /// Hits from the ray casted from main camera to mouse position. GameObject needs Collider to be hit.
   /// </summary>
   public static RaycastHit[] HitsFromMouseRay => Physics.RaycastAll(MouseRay);
 

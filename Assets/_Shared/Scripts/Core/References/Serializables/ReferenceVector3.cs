@@ -2,6 +2,8 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using System;
 
+// ? Rename to ReferencePosition - wrapper for: gameObject.position, Vector3, Vector3 SO
+
 [Serializable, InlineProperty]
 public class ReferenceVector3 : Reference {
   [HorizontalGroup("Vector 3")]

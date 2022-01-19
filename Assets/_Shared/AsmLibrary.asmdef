@@ -15,7 +15,9 @@
         "ch.giezi.tools.ScriptableObjectVariant",
         "AsmIUnified",
         "ALINE",
-        "Unity.Mathematics"
+        "Unity.Mathematics",
+        "Elringus.BlendModes.Runtime",
+        "AsmMegaFiers"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

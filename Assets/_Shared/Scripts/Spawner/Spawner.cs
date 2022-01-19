@@ -1,9 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using System.Linq;
-using UnityEngine.Pool; // ! Pool API requires Unity 2021.1+
 
 // ? Implement generic
 // ? Events
@@ -14,18 +12,23 @@ public enum GizmosMode { OnSelected, Always }
 /// Spawner usages: gun, repeating backgrounds, enemy/obstacle waves
 /// </summary>
 public class Spawner : MonoBehaviourBase {
+  // TODO: integrate pool w/ wave spawning mode
+  [SerializeField, HideLabel]
+  private Pool _pool;
+
   private void Awake() {
-    if (enablePool) InitPool();
+    if (_pool.IsEnabled) _pool.Init(currentPrefab);
   }
 
   private void Reset() {
-    if (enablePool) InitPool();
+    if (_pool.IsEnabled) _pool.Init(currentPrefab);
     spawningArea.SetGameObject(gameObject);
   }
+
   private void Start() {
     // Reset();
+    _autoSpawnScheduler.Init(actionOwner: this, action: () => Spawn());
     saveSpawnedObjects = false; // FIX: enable this and Destroy spawned objects by Boundary cause error
-    if (autoSpawnEnabled) Invoke(nameof(StartAutoSpawning), autoSpawnDelay);
     activeCurrentAmount = activeMaxAmount;
     if (enableAdjacentSpawning) previousSpawnedSize = GetPrefabSize(assetCollection.Retrieve());
     if (enableWaveSpawning) InitWaveSpawning();
@@ -63,8 +66,10 @@ public class Spawner : MonoBehaviourBase {
     Quaternion rotation = (keepPrefabRotation) ? currentPrefab.transform.rotation : Quaternion.identity;
 
     GameObject spawnedObject = null;
-    if (enablePool) {
-      spawnedObject = GetInstanceFromPool(pos, keepPrefabRotation);
+    if (_pool.IsEnabled) {
+      _pool.Prefab = currentPrefab;
+      // spawnedObject = GetInstanceFromPool(pos, keepPrefabRotation);
+      spawnedObject = _pool.GetInstance(pos);
     } else {
       spawnedObject = InstantiateUtils.Instantiate(pos: pos, prefab: currentPrefab, keepPrefabPos: keepPrefabPosition, parent: parentObject, rotation: rotation);
     }
@@ -225,8 +230,6 @@ public class Spawner : MonoBehaviourBase {
 
     if (pointSpawnMode == PointSpawnMode.Iterate) {
       pointCurrentIterate = points.NavNext(pointCurrentIterate);
-      // print(pointCurrentIterate.position);
-      // print(pointCurrentIterate.name);
       newSpawnedObjects.Add(SpawnIndividual(pointCurrentIterate.position, keepPrefabRotation: keepPrefabRotation));
     }
 
@@ -323,37 +326,12 @@ public class Spawner : MonoBehaviourBase {
   }
   #endregion ===================================================================================================================================
 
+
   #region AUTO SPAWNING - spawning by intervals ===================================================================================================================================
-  [PropertySpace(SpaceBefore = SECTION_SPACE)]
-  [HideLabel, DisplayAsString(false), ShowInInspector]
-  const string AUTO_SPAWNING_SPACE = "";
+  [SerializeField, HideLabel]
+  private IntervalActionScheduler _autoSpawnScheduler;
 
-  [TabGroup("Spawning Mode", "Auto Spawning")]
-  [SerializeField] public bool autoSpawnEnabled = false;
-  [TabGroup("Spawning Mode", "Auto Spawning")]
-  [ShowIf(nameof(autoSpawnEnabled))]
-  [SerializeField]
-  [MinMaxSlider(0, 100, true)]
-  private Vector2 autoSpawnRateRange = Vector2.one;
-  // TODO: rate acceleration & max rates
-
-  [TabGroup("Spawning Mode", "Auto Spawning")]
-  [SuffixLabel("(seconds)", Overlay = true), Min(0f)]
-  [ShowIf(nameof(autoSpawnEnabled))] [SerializeField] private float autoSpawnDelay = 1f;
-  public void StartAutoSpawning() {
-    autoSpawnEnabled = true;
-    StartCoroutine(nameof(AutoSpawnEnumerator));
-  }
-
-  private IEnumerator AutoSpawnEnumerator() {
-    Spawn();
-    yield return new WaitForSeconds(autoSpawnRateRange.Random());
-    if (autoSpawnEnabled) StartCoroutine(nameof(AutoSpawnEnumerator));
-  }
-
-  public void StopAutoSpawning() {
-    autoSpawnEnabled = false;
-  }
+  public IntervalActionScheduler AutoSpawnScheduler => _autoSpawnScheduler;
   #endregion ===================================================================================================================================
 
   #region ACTIVE SPAWNING - spawning by player ===================================================================================================================================
@@ -420,15 +398,21 @@ public class Spawner : MonoBehaviourBase {
 
   // Increment mode
   [TabGroup("Spawning Mode", "Wave Spawning")]
-  [SerializeField, Min(0), LabelText("Delay first wave")] int waveSpawningDelayFirst;
+  [SerializeField, Min(0), LabelText("Delay first wave")]
+  int waveSpawningDelayFirst;
   [TabGroup("Spawning Mode", "Wave Spawning")]
-  [SerializeField, Min(0), LabelText("Delay between waves")] int waveSpawningDelay;
+  [SerializeField, Min(0), LabelText("Delay between waves")]
+  int waveSpawningDelay;
   [TabGroup("Spawning Mode", "Wave Spawning")]
-  [SerializeField, Min(0), LabelText("Delay between objects")] int waveObjectSpawningDelay;
+  [SerializeField, Min(0), LabelText("Delay between objects")]
+  int waveObjectSpawningDelay;
   [TabGroup("Spawning Mode", "Wave Spawning")]
-  [SerializeField, Min(1)] int firstWaveAmount;
+  [SerializeField, Min(1)]
+  int firstWaveAmount;
   [TabGroup("Spawning Mode", "Wave Spawning")]
-  [SerializeField, MinMaxSlider(0, 20, true)] Vector2Int amountIncrementRange;
+  [SerializeField, MinMaxSlider(0, 20, true)]
+  Vector2Int amountIncrementRange;
+
   private List<GameObject> currentWaveSpawnedObjects;
   private int currentWaveAmount;
   private int currentWaveCount;
@@ -465,110 +449,6 @@ public class Spawner : MonoBehaviourBase {
   }
   #endregion
 
-  // TODO: integrate pool w/ wave spawning mode
-  #region POOL CONFIG ===================================================================================================================================
-  [PropertySpace(SpaceBefore = SECTION_SPACE)]
-  [HideLabel, DisplayAsString(false), ShowInInspector]
-  const string POOL_CONFIG_SPACE = "";
-
-  // [ToggleGroup(nameof(enablePool), groupTitle: "Pool Config")]
-  [FoldoutGroup("Pool Config")]
-  [OnValueChanged(nameof(OnPoolEnabled))]
-  [SerializeField] bool enablePool = true;
-
-  private void OnPoolEnabled() {
-    if (enablePool) enableLifeTime = false;
-  }
-
-  // [ToggleGroup(nameof(enablePool))]
-  [FoldoutGroup("Pool Config")]
-  [SerializeField, LabelText("Collision Check")] bool poolCollisionCheck = true;
-
-  // [ToggleGroup(nameof(enablePool))]
-  [FoldoutGroup("Pool Config")]
-  [SerializeField, LabelText("Release On Invisible")] bool poolObjectReleaseOnBecameInvisible;
-
-  // [ToggleGroup(nameof(enablePool))]
-  [FoldoutGroup("Pool Config")]
-  [Tooltip("Value 0 means disable lifespan.")]
-  [SerializeField, Min(0), LabelText("Release By Lifespan")] float poolObjectReleaseByLifespan;
-
-  // [ToggleGroup(nameof(enablePool))]
-  [FoldoutGroup("Pool Config")]
-  [SerializeField, Min(1), LabelText("Max Size")] int poolMaxSize = 20;
-
-  // [ToggleGroup(nameof(enablePool))]
-  [FoldoutGroup("Pool Config")]
-  [SerializeField, Min(1), LabelText("Default Capacity")] int poolDefaultCapacity = 1000;
-
-  private IObjectPool<GameObject> pool;
-
-  private void InitPool() {
-    pool = new ObjectPool<GameObject>(
-      SpawnIndividualByPool,
-      OnPoolGet,
-      OnPoolRelease,
-      OnPoolDestroy,
-      maxSize: poolMaxSize,
-      defaultCapacity: poolDefaultCapacity
-    );
-  }
-
-  private GameObject SpawnIndividualByPool() {
-    GameObject instance = Instantiate(currentPrefab);
-    // float poolObjectLifespan = poolObjectReleaseByLifespan;
-
-    PoolObject poolObject = instance.GetComponent<PoolObject>(); ;
-    if (poolObject != null) {
-      // respect pre-setup params from the PoolObject component
-    } else {
-      poolObject = instance.AddComponent<PoolObject>();
-      // print("add new pool object component");
-      poolObject.lifespan = poolObjectReleaseByLifespan;
-      poolObject.releaseOnBecameInvisible = poolObjectReleaseOnBecameInvisible;
-    }
-
-    poolObject.pool = pool;
-
-    return instance;
-  }
-
-  // ! Get() from Pool does not respect Retrieve Mode of Collection
-  private GameObject GetInstanceFromPool(Vector3 pos, bool keepPrefabRotation) {
-    if (pool == null) InitPool();
-    GameObject instance = pool.Get();
-    instance.transform.position = pos;
-    // instance.transform.rotation = rot;
-    instance.transform.UpdatePosOnAxis(target: instance.transform, axis: keepPrefabPosition);
-    if (parentObject && instance) instance.transform.SetParent(parentObject);
-
-    return instance;
-  }
-
-  private bool CanObjectReleasedToPool(GameObject poolObject) {
-    return poolObject.activeInHierarchy && poolObject;
-  }
-
-  private void OnPoolRelease(GameObject poolObject) {
-    if (!CanObjectReleasedToPool(poolObject)) return;
-    poolObject.SetActive(false);
-  }
-
-  private IEnumerator ReleaseToPoolCoroutine(GameObject poolObject, float delay) {
-    yield return new WaitForSeconds(delay);
-    OnPoolRelease(poolObject);
-  }
-
-  private void OnPoolGet(GameObject poolObject) {
-    poolObject.SetActive(true);
-  }
-
-  private void OnPoolDestroy(GameObject poolObject) {
-    // DestroyImmediate(poolObject); // TODO: for Edit Mode
-    Destroy(poolObject);
-  }
-
-  #endregion ===================================================================================================================================
 
   #region SPAWNER CONFIG ===================================================================================================================================
   [BoxGroup("Spawner Config")]
