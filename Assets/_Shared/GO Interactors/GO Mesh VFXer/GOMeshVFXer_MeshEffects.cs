@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class GOMeshVFXer : GOI_ComponentIsEffect<GOMeshVFXer, PSMeshRendererUpdater> {
+public class GOMeshVFXer_MeshEffects : GOI_ComponentIsEffect<GOMeshVFXer_MeshEffects, PSMeshRendererUpdater> {
   // Add a small delay when changing effect 
   // to prevent destroying the previous effect also destroy the material of the next effect
   const float TRANSITION_DELAY = 0.2f;

@@ -83,6 +83,17 @@ public static class TransformUtils {
     transform.localScale = target.localScale;
   }
 
+
+  /// <summary>
+  /// Copy localPosition, localRotation & localScale values from target Transform.
+  /// </summary>
+  public static void CopyLocal(this Transform transform, Transform target) {
+    transform.localPosition = target.localPosition;
+    transform.localRotation = target.localRotation;
+    transform.localScale = target.localScale;
+  }
+
+
   /// <summary>
   /// Copy position, rotation & localScale values from target GameObject's Transform.
   /// </summary>

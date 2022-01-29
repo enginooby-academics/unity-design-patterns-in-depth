@@ -1,11 +1,10 @@
-// * Effect type is enum <=> effect is indicate by an enum. 
+// * Effect type is enum <=> effect is indicated by an enum. 
 // * Interactor singleton don't need to be created in scene.
 
 using UnityEngine;
 
 public abstract partial class GOI_EffectIsEnum<TSelf, TComponent, TEffectEnum, TCache> {
-  [SerializeField]
-  protected TEffectEnum _effect;
+  [SerializeField] protected TEffectEnum _effect;
 
   protected virtual TEffectEnum InitEffectEnum() => default(TEffectEnum);
 

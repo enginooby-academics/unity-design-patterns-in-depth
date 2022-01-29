@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class TestIInteractable : MonoBehaviour, IInteractable<GOMeshVFXer> {
+public class TestIInteractable : MonoBehaviour, IInteractable<GOMeshVFXer_MeshEffects> {
   public PSMeshRendererUpdater Effect;
 
   public GameObject GameObject => gameObject;
 
   public void OnInteracted() {
-    GOMeshVFXer.Instance.Interact(gameObject, Effect);
+    GOMeshVFXer_MeshEffects.Instance.Interact(gameObject, Effect);
   }
 }

@@ -6,6 +6,6 @@ public class TestGOMeshVFXer : MonoBehaviour {
 
   private void OnMouseDown() {
     if (!Enable) return;
-    MonoBehaviourSingleton<GOMeshVFXer>.Instance.Interact(gameObject, Effect);
+    MonoBehaviourSingleton<GOMeshVFXer_MeshEffects>.Instance.Interact(gameObject, Effect);
   }
 }

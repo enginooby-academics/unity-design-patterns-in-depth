@@ -133,6 +133,15 @@ public static class ComponentUtils {
     monoBehaviour.StartCoroutine(EnableCoroutine(monoBehaviour, delay: timePeriod));
   }
 
+  /// <summary>
+  /// Temporarily disable the component for a given period.
+  /// </summary>
+  public static void Disable(this IList<MonoBehaviour> monoBehaviours, float timePeriod) {
+    foreach (var monoBehaviour in monoBehaviours) {
+      monoBehaviour.Disable(timePeriod);
+    }
+  }
+
   private static IEnumerator EnableCoroutine(MonoBehaviour monoBehaviour, float delay) {
     yield return new WaitForSeconds(delay);
     monoBehaviour.enabled = true;

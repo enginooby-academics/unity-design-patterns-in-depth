@@ -1,2 +1,2 @@
-public class GOMeshVFXerController : GOIController<GOMeshVFXerController, GOMeshVFXer> {
+public class GOMeshVFXerController : GOIController<GOMeshVFXerController, GOMeshVFXer_MeshEffects> {
 }

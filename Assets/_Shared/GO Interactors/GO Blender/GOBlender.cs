@@ -8,7 +8,7 @@ using BlendModes;
 /// <summary>
 /// * Use cases: colorize GOs, see through, un-highlight
 /// </summary>
-public class GOBlender : GOI_EffectIsEnum<GOBlender, BlendModeEffect, BlendMode, Material> {
+public partial class GOBlender : GOI_EffectIsEnum<GOBlender, BlendModeEffect, BlendMode, Material> {
   protected override BlendMode InitEffectEnum() => BlendMode.Divide;
 
   protected override void OnComponentAdded(GameObject go, BlendModeEffect component) {
