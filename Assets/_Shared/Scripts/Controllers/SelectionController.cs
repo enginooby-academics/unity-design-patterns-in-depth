@@ -1,4 +1,3 @@
-using QFSW.QC;
 using UnityEngine;
 
 public class SelectionController : MonoBehaviour {
@@ -10,6 +9,7 @@ public class SelectionController : MonoBehaviour {
   [SerializeField] private KeyCodeModifier enablePreviousVfxKey = new KeyCodeModifier(keyCode: KeyCode.R);
   [SerializeField] private KeyCodeModifier enableNextVfxKey = new KeyCodeModifier(keyCode: KeyCode.Y);
 
+#if ASSET_MESH_EFFECTS
   [Header("[Directors]")]
   [SerializeField] private Selector selector;
   [SerializeField] private Highlighter highlighter;
@@ -51,4 +51,5 @@ public class SelectionController : MonoBehaviour {
     if (effectId == -1) vfxer?.AddFireMeshEffect(selector.CurrentSelectedObject);
     else vfxer?.AddFireMeshEffect(selector.CurrentSelectedObject, effectId);
   }
+#endif
 }

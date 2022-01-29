@@ -1,4 +1,5 @@
-// * Dependencies: Mesh Effects
+#if ASSET_MESH_EFFECTS
+
 using System.Collections;
 using UnityEngine;
 
@@ -42,3 +43,4 @@ public class GOMeshVFXer_MeshEffects : GOI_ComponentIsEffect<GOMeshVFXer_MeshEff
     }
   }
 }
+#endif

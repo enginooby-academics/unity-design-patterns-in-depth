@@ -1,4 +1,4 @@
-// Dependencies: Mesh Effects
+#if ASSET_MESH_EFFECTS
 
 using System.Collections;
 using System.Collections.Generic;
@@ -112,3 +112,4 @@ public class Vfxer : MonoBehaviour {
   //   return Array.Find(meshUpdaters, element => element.gameObject.name.Contains(effectName));
   // }
 }
+#endif

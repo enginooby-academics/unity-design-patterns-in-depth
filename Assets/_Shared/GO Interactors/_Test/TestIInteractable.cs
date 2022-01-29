@@ -1,3 +1,4 @@
+#if ASSET_MESH_EFFECTS
 using UnityEngine;
 
 public class TestIInteractable : MonoBehaviour, IInteractable<GOMeshVFXer_MeshEffects> {
@@ -9,3 +10,4 @@ public class TestIInteractable : MonoBehaviour, IInteractable<GOMeshVFXer_MeshEf
     GOMeshVFXer_MeshEffects.Instance.Interact(gameObject, Effect);
   }
 }
+#endif
