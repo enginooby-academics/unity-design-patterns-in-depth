@@ -39,14 +39,14 @@ public class SelectionController : MonoBehaviour {
     if (enableNextVfxKey.IsTriggering) vfxer?.AddNextMeshEffect(selection);
   }
 
-  [Command(CommandPrefix.Selection + "mvfx")]
-  [Command(CommandPrefix.MeshVfx + CommandTarget.Selection)]
+  [QFSW.QC.Command(CommandPrefix.Selection + "mvfx")]
+  [QFSW.QC.Command(CommandPrefix.MeshVfx + CommandTarget.Selection)]
   public void AddMeshEffectToSelection(int effectId) {
     vfxer?.AddMeshEffect(selector.CurrentSelectedObject, effectId);
   }
 
-  [Command(CommandPrefix.Selection + "mvfx-fire")]
-  [Command(CommandPrefix.MeshVfx + CommandTarget.Selection + "-fire")]
+  [QFSW.QC.Command(CommandPrefix.Selection + "mvfx-fire")]
+  [QFSW.QC.Command(CommandPrefix.MeshVfx + CommandTarget.Selection + "-fire")]
   public void AddFireMeshEffectToSelection(int effectId = -1) {
     if (effectId == -1) vfxer?.AddFireMeshEffect(selector.CurrentSelectedObject);
     else vfxer?.AddFireMeshEffect(selector.CurrentSelectedObject, effectId);

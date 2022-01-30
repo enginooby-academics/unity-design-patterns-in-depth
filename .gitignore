@@ -86,9 +86,9 @@ Assets/Plugins/Rewired/Internal/Assets
 
 ### 3RD-PARTY ASSETS ###
 # Extensions folder (personal convention) contains productivity assets (editor)
-/Assets/Extensions/ 
 **/_Demo*
+/Assets/Extensions/ 
 /Assets/Asset Packs/ 
 /Assets/Plugins/ 
 /Assets/Procedural/
-#/Assets/Systems/ 
+/Assets/Systems/ 
