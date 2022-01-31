@@ -29,6 +29,13 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.editorcoroutines": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
     "com.unity.ext.nunit": {
       "version": "1.0.6",
       "depth": 1,
@@ -209,6 +216,20 @@
         "com.unity.modules.physics2d": "1.0.0"
       },
       "url": "https://packages.unity.com"
+    },
+    "plugin.asm.package-manager": {
+      "version": "https://github.com/Lazy-Solutions/plugin.asm.package-manager.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "6409bcbcffcf907efef39057f1b73953a16c87ae"
+    },
+    "utility.lazy.coroutines": {
+      "version": "https://github.com/Lazy-Solutions/Unity.CoroutineUtility.git#asm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "89bb947efeb6e40ced5f902ddc5f870f779c4cb6"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

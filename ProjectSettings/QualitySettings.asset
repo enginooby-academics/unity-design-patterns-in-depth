@@ -117,4 +117,6 @@ QualitySettings:
     customRenderPipeline: {fileID: 11400000, guid: 70198248d4aa75a44aa64b0762ecb43e,
       type: 2}
     excludedTargetPlatforms: []
-  m_PerPlatformDefaultQuality: {}
+  m_PerPlatformDefaultQuality:
+    Standalone: 2
+    WebGL: 2

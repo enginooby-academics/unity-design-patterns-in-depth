@@ -2,8 +2,8 @@
     "name": "IteratorPattern",
     "rootNamespace": "",
     "references": [
-        "AsmIUnified",
-        "Library"
+        "Library",
+        "ASM_IUnified"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

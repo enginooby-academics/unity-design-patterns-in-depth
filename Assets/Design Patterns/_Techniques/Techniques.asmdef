@@ -3,7 +3,7 @@
     "rootNamespace": "",
     "references": [
         "Library",
-        "AsmIUnified"
+        "ASM_IUnified"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

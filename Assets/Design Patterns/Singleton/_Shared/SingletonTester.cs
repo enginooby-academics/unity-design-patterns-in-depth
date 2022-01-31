@@ -1,3 +1,4 @@
+#if ASM
 using UnityEngine;
 using Sirenix.OdinInspector;
 using AdvancedSceneManager.Models;
@@ -96,3 +97,4 @@ namespace SingletonPattern {
     }
   }
 }
+#endif

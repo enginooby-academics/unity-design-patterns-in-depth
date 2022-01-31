@@ -1,3 +1,4 @@
+#if ASM
 using UnityEngine;
 using Sirenix.OdinInspector;
 using AdvancedSceneManager.Models;
@@ -17,3 +18,4 @@ namespace SingletonPattern {
     public void LoadScene2Additively() => _scene2.Open();
   }
 }
+#endif

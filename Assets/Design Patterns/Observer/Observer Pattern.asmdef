@@ -6,7 +6,7 @@
         "UltEvents",
         "Library",
         "Unity.TextMeshPro",
-        "AsmIUnified"
+        "ASM_IUnified"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

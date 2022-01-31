@@ -3,9 +3,9 @@
     "rootNamespace": "",
     "references": [
         "Library",
-        "AsmIUnified",
         "ALINE",
-        "Unity.Mathematics"
+        "Unity.Mathematics",
+        "ASM_IUnified"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

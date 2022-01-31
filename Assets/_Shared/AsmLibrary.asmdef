@@ -13,13 +13,14 @@
         "GUID:94d560f8faca52c43ab2b520a118f7dc",
         "GUID:11d65877b2dba3c4ba99f674fa02d7fb",
         "GUID:6e24b47e76ea62f4bb81b0aae4434fc4",
-        "AsmIUnified",
         "GUID:de4e6084e6d474788bb8c799d6b461ec",
         "GUID:d8b63aba1907145bea998dd612889d6b",
         "GUID:1a9e74e42ceb2fb47af7cd53f553c423",
         "GUID:6d502ccf31eb1894bb981d327879ea26",
         "GUID:ba0bbadd7a72f8449992626ece723566",
-        "GUID:6afce46ecc5d16f49b5cd75bc014500a"
+        "GUID:6afce46ecc5d16f49b5cd75bc014500a",
+        "GUID:1049b7fc5e738c04487da86600973798",
+        "GUID:2c6f01f5d27984343bd2e98e1116e8fd"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -1,3 +1,5 @@
+#if ASM
+// TODO: Create wrapper for Scene class from ASM
 using UnityEngine;
 using Sirenix.OdinInspector;
 using AdvancedSceneManager.Models;
@@ -100,3 +102,4 @@ namespace SingletonPattern {
     }
   }
 }
+#endif
