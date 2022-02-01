@@ -1,4 +1,5 @@
-﻿/* Use cases: fly camera
+﻿#if ASSET_REWIRED
+/* Use cases: fly camera
 
 [wasdqe] : basic movement
 hold [shift] : Accelerate speed
@@ -88,3 +89,4 @@ public class RewiredFlyingMovementController : MonoBehaviour {
     movementStaysFlat = player.GetButton("Stay Flat");
   }
 }
+#endif
