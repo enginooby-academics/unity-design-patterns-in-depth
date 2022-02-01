@@ -1,4 +1,4 @@
-using BlendModes;
+#if ASSET_BLEND_MODES
 using UnityEngine;
 
 public class TestGOBlender : MonoBehaviour {
@@ -11,3 +11,4 @@ public class TestGOBlender : MonoBehaviour {
     GOBlender.Instance.Interact(gameObject, BlendMode); // thanks to overided Instance in base
   }
 }
+#endif

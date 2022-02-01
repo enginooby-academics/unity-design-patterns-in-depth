@@ -1,6 +1,8 @@
 using UnityEngine;
 using SCPE;
+#if ASSET_QUANTUM_CONSOLE
 using QFSW.QC;
+#endif
 
 namespace Enginoobz.Graphics {
   public partial class PostFxModifierSCPE : MonoBehaviour {
@@ -45,13 +47,17 @@ namespace Enginoobz.Graphics {
       if (edgeDetection.active) statesDebug += "edgeDetection ";
       if (mosaic.active) statesDebug += "mosaic ";
     }
-
+#if ASSET_QUANTUM_CONSOLE
+    // TODO: Create fallback attribute when asset is not available (could be wrapper?)
     [Command(CommandPrefix.PostFx + "sketch-toggle")]
+#endif
     public void ToggleSketch() {
       sketch.active = !sketch.active;
     }
 
+#if ASSET_QUANTUM_CONSOLE
     [Command(CommandPrefix.PostFx + "kuwahara-toggle")]
+#endif
     public void ToggleKuwahara() {
       kuwahara.active = !kuwahara.active;
     }
@@ -60,12 +66,16 @@ namespace Enginoobz.Graphics {
       kuwahara.active = isActive;
     }
 
+#if ASSET_QUANTUM_CONSOLE
     [Command(CommandPrefix.PostFx + "edge-detection-toggle")]
+#endif
     public void ToggleEdgeDetection() {
       edgeDetection.active = !edgeDetection.active;
     }
 
+#if ASSET_QUANTUM_CONSOLE
     [Command(CommandPrefix.PostFx + "mosaic-toggle")]
+#endif
     public void ToggleMosaic() {
       mosaic.active = !mosaic.active;
     }

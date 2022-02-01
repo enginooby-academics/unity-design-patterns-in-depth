@@ -1,7 +1,7 @@
 using UnityEngine;
 using Beautify.Universal;
 using UnityEngine.Rendering;
-using QFSW.QC;
+// using QFSW.QC;
 
 namespace Enginoobz.Graphics {
   // Collection of functions for modifying important parameters of Beautify FX setting
@@ -40,17 +40,17 @@ namespace Enginoobz.Graphics {
       Settings.compareMode.overrideState = !Settings.compareMode.overrideState;
     }
 
-    [Command(CommandPrefix.PostFx + "blur-toggle")]
+    // [Command(CommandPrefix.PostFx + "blur-toggle")]
     public void ToggleBlur() {
       Settings.blurIntensity.overrideState = !Settings.blurIntensity.overrideState;
     }
 
-    [Command(CommandPrefix.PostFx + "sharpen-toggle")]
+    // [Command(CommandPrefix.PostFx + "sharpen-toggle")]
     public void ToggleSharpen() {
       Settings.sharpenIntensity.overrideState = !Settings.sharpenIntensity.overrideState;
     }
 
-    [Command(CommandPrefix.PostFx + "vignette-toggle")]
+    // [Command(CommandPrefix.PostFx + "vignette-toggle")]
     public void ToggleVignette() {
       Settings.vignettingOuterRing.overrideState = !Settings.vignettingOuterRing.overrideState;
       Settings.vignettingInnerRing.overrideState = !Settings.vignettingInnerRing.overrideState;
@@ -61,12 +61,12 @@ namespace Enginoobz.Graphics {
       Settings.vignettingInnerRing.overrideState = isActive;
     }
 
-    [Command(CommandPrefix.PostFx + "night-vision-toggle")]
+    // [Command(CommandPrefix.PostFx + "night-vision-toggle")]
     public void ToggleNightVision() {
       Settings.nightVision.overrideState = !Settings.nightVision.overrideState;
     }
 
-    [Command(CommandPrefix.PostFx + "outline-toggle")]
+    // [Command(CommandPrefix.PostFx + "outline-toggle")]
     public void ToggleOutline() {
       Settings.outline.overrideState = !Settings.outline.overrideState;
     }
@@ -90,7 +90,6 @@ namespace Enginoobz.Graphics {
       if (Random.value < .5f) ToggleVignette();
       if (Random.value < .2f) ToggleNightVision();
       if (Random.value < .5f) ToggleSharpen();
-
     }
   }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 using SCPE;
-using QFSW.QC;
+// using QFSW.QC;
 
 namespace Enginoobz.Graphics {
   public partial class PostFxModifierSCPE : MonoBehaviour {
@@ -53,12 +53,12 @@ namespace Enginoobz.Graphics {
       Profile.TryGet<Scanlines>(out scanlines);
     }
 
-    [Command(CommandPrefix.PostFx + "color-split-toggle")]
+    // [Command(CommandPrefix.PostFx + "color-split-toggle")]
     public void ToggleColorSplit() {
       colorSplit.active = !colorSplit.active;
     }
 
-    [Command(CommandPrefix.PostFx + "dithering-toggle")]
+    // [Command(CommandPrefix.PostFx + "dithering-toggle")]
     public void ToggleDithering() {
       dithering.active = !dithering.active;
     }
@@ -67,12 +67,12 @@ namespace Enginoobz.Graphics {
       dithering.active = isActive;
     }
 
-    [Command(CommandPrefix.PostFx + "pixelize-toggle")]
+    // [Command(CommandPrefix.PostFx + "pixelize-toggle")]
     public void TogglePixelize() {
       pixelize.active = !pixelize.active;
     }
 
-    [Command(CommandPrefix.PostFx + "posterize-toggle")]
+    // [Command(CommandPrefix.PostFx + "posterize-toggle")]
     public void TogglePosterize() {
       posterize.active = !posterize.active;
     }
@@ -81,7 +81,7 @@ namespace Enginoobz.Graphics {
       posterize.active = isActive;
     }
 
-    [Command(CommandPrefix.PostFx + "scanlines-toggle")]
+    // [Command(CommandPrefix.PostFx + "scanlines-toggle")]
     public void ToggleScanlines() {
       scanlines.active = !scanlines.active;
     }

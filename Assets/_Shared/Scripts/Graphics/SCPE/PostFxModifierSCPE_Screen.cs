@@ -1,6 +1,6 @@
 using UnityEngine;
 using SCPE;
-using QFSW.QC;
+// using QFSW.QC;
 
 namespace Enginoobz.Graphics {
   public partial class PostFxModifierSCPE : MonoBehaviour {
@@ -69,37 +69,37 @@ namespace Enginoobz.Graphics {
       Profile.TryGet<Kaleidoscope>(out kaleidoscope);
     }
 
-    [Command(CommandPrefix.PostFx + "tube-distortion-toggle")]
+    // [Command(CommandPrefix.PostFx + "tube-distortion-toggle")]
     public void ToggleTubeDistortion() {
       tubeDistortion.active = !tubeDistortion.active;
     }
 
-    [Command(CommandPrefix.PostFx + "speed-lines-toggle")]
+    // [Command(CommandPrefix.PostFx + "speed-lines-toggle")]
     public void ToggleSpeedLines() {
       speedLines.active = !speedLines.active;
     }
 
-    [Command(CommandPrefix.PostFx + "ripples-toggle")]
+    // [Command(CommandPrefix.PostFx + "ripples-toggle")]
     public void ToggleRipples() {
       ripples.active = !ripples.active;
     }
 
-    [Command(CommandPrefix.PostFx + "refraction-toggle")]
+    // [Command(CommandPrefix.PostFx + "refraction-toggle")]
     public void ToggleRefraction() {
       refraction.active = !refraction.active;
     }
 
-    [Command(CommandPrefix.PostFx + "gradient-toggle")]
+    // [Command(CommandPrefix.PostFx + "gradient-toggle")]
     public void ToggleGradient() {
       gradient.active = !gradient.active;
     }
 
-    [Command(CommandPrefix.PostFx + "danger-toggle")]
+    // [Command(CommandPrefix.PostFx + "danger-toggle")]
     public void ToggleDanger() {
       danger.active = !danger.active;
     }
 
-    [Command(CommandPrefix.PostFx + "black-bars-toggle")]
+    // [Command(CommandPrefix.PostFx + "black-bars-toggle")]
     public void ToggleBlackBars() {
       blackBars.active = !blackBars.active;
     }
@@ -108,7 +108,7 @@ namespace Enginoobz.Graphics {
       blackBars.active = isActive;
     }
 
-    [Command(CommandPrefix.PostFx + "kaleidoscope-toggle")]
+    // [Command(CommandPrefix.PostFx + "kaleidoscope-toggle")]
     public void ToggleKaleidoscope() {
       kaleidoscope.ToggleState();
     }

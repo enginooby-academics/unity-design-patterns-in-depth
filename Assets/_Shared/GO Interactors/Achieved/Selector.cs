@@ -22,9 +22,11 @@ public class Selector : MonoBehaviour {
   [SerializeField]
   private SelectEffect selectEffect = SelectEffect.Highlight;
 
+#if URP_OUTLINE
   [ShowIf(nameof(selectEffect), SelectEffect.Highlight)]
   [SerializeField]
   private Highlighter highlighter;
+#endif
 
   #region FILTERS - Decide which object is selectable based on tags, layers, events
   [Header("ON LEFT MOUSE CLICK (OLMC)")]
@@ -50,7 +52,9 @@ public class Selector : MonoBehaviour {
   private void Awake() {
     Instance = this;
     mainCamera = Camera.main;
+#if URP_OUTLINE
     highlighter ??= FindObjectOfType<Highlighter>();
+#endif
   }
 
   void Update() {
@@ -103,7 +107,9 @@ public class Selector : MonoBehaviour {
     switch (selectEffect) {
       case SelectEffect.Highlight:
       default:
+#if URP_OUTLINE
         highlighter.Highlight(target);
+#endif
         break;
     }
 
@@ -118,7 +124,9 @@ public class Selector : MonoBehaviour {
     switch (selectEffect) {
       case SelectEffect.Highlight:
       default:
+#if URP_OUTLINE
         highlighter.Unhighlight(target);
+#endif
         break;
     }
     CurrentSelectedObject = null;

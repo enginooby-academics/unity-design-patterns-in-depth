@@ -1,6 +1,6 @@
 using UnityEngine;
 using SCPE;
-using QFSW.QC;
+// using QFSW.QC;
 
 namespace Enginoobz.Graphics {
   public partial class PostFxModifierSCPE : MonoBehaviour {
@@ -39,17 +39,17 @@ namespace Enginoobz.Graphics {
       Profile.TryGet<RadialBlur>(out radialBlur);
     }
 
-    [Command(CommandPrefix.PostFx + "double-vision-toggle")]
+    // [Command(CommandPrefix.PostFx + "double-vision-toggle")]
     public void ToggleDoubleVision() {
       doubleVision.active = !doubleVision.active;
     }
 
-    [Command(CommandPrefix.PostFx + "tilt-shift-toggle")]
+    // [Command(CommandPrefix.PostFx + "tilt-shift-toggle")]
     public void ToggleTiltShift() {
       tiltShift.active = !tiltShift.active;
     }
 
-    [Command(CommandPrefix.PostFx + "blur-radial-toggle")]
+    // [Command(CommandPrefix.PostFx + "blur-radial-toggle")]
     public void ToggleRadialBlur() {
       radialBlur.active = !radialBlur.active;
     }

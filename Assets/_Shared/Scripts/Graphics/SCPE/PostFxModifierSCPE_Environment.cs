@@ -1,6 +1,6 @@
 using UnityEngine;
 using SCPE;
-using QFSW.QC;
+// using QFSW.QC;
 
 namespace Enginoobz.Graphics {
   public partial class PostFxModifierSCPE : MonoBehaviour {
@@ -24,17 +24,17 @@ namespace Enginoobz.Graphics {
       Profile.TryGet<Fog>(out fog);
     }
 
-    [Command(CommandPrefix.Environment + "cloud-shadows-toggle")]
+    // [Command(CommandPrefix.Environment + "cloud-shadows-toggle")]
     public void ToggleCloudShadows() {
       cloudShadows.active = !cloudShadows.active;
     }
 
-    [Command(CommandPrefix.Environment + "caustics-toggle")]
+    // [Command(CommandPrefix.Environment + "caustics-toggle")]
     public void ToggleCaustics() {
       caustics.active = !caustics.active;
     }
 
-    [Command(CommandPrefix.Environment + "fog-toggle")]
+    // [Command(CommandPrefix.Environment + "fog-toggle")]
     public void ToggleFog() {
       fog.active = !fog.active;
     }

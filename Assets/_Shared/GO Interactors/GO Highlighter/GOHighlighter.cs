@@ -1,3 +1,4 @@
+#if URP_OUTLINE
 using EPOOutline;
 using UnityEngine;
 
@@ -30,3 +31,4 @@ public class GOHighlighter : GOI_ComponentIsEffect_CacheEffect<GOHighlighter, Ou
     }
   }
 }
+#endif

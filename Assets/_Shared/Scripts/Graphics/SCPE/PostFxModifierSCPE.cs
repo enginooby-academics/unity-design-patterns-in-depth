@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 
 namespace Enginoobz.Graphics {
+  // ? Rename to PFX_SCPE
   // Collection of functions for modifying important parameters of Beautify FX setting
   // Usage: for short keys (controller) or UI
   // TODO: experiment inclusive/exclusive settings (settings which look good/bad when combine together)

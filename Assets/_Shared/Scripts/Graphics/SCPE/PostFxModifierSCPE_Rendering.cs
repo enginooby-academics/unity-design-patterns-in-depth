@@ -1,6 +1,6 @@
 using UnityEngine;
 using SCPE;
-using QFSW.QC;
+// using QFSW.QC;
 
 namespace Enginoobz.Graphics {
   public partial class PostFxModifierSCPE : MonoBehaviour {
@@ -32,12 +32,12 @@ namespace Enginoobz.Graphics {
       Profile.TryGet<LightStreaks>(out lightStreaks);
     }
 
-    [Command(CommandPrefix.PostFx + "len-flares-toggle")]
+    // [Command(CommandPrefix.PostFx + "len-flares-toggle")]
     public void ToggleLenFlares() {
       lensFlares.active = !lensFlares.active;
     }
 
-    [Command(CommandPrefix.PostFx + "light-streaks-toggle")]
+    // [Command(CommandPrefix.PostFx + "light-streaks-toggle")]
     public void ToggleLightStreaks() {
       lightStreaks.active = !lightStreaks.active;
     }

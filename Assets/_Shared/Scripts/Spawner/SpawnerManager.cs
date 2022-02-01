@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using QFSW.QC;
+// using QFSW.QC;
 
-[CommandPrefix("sp.")]
+// [CommandPrefix("sp.")]
 public class SpawnerManager : MonoBehaviour {
   [SerializeField] private Spawner butterflySpawner;
   [SerializeField] private Spawner spellSpawner;
@@ -29,22 +27,22 @@ public class SpawnerManager : MonoBehaviour {
     return Resources.Load<Spawner>($"Spawners/{spawnerName}");
   }
 
-  [Command("butterfly-at-selection")]
+  // [Command("butterfly-at-selection")]
   public void SpawnButterflyAtSelection(int prefabId = -1, bool asChild = false) {
     butterflySpawner?.Spawn(target: selector.CurrentSelectedObject, prefabId: prefabId, asChild: asChild);
   }
 
-  [Command("butterfly-at-camera")]
+  // [Command("butterfly-at-camera")]
   public void SpawnButterflyAtPlayer(int prefabId = -1) {
     butterflySpawner?.Spawn(target: currentCamera.gameObject, prefabId: prefabId, asChild: false);
   }
 
-  [Command("spell-at-selection")]
+  // [Command("spell-at-selection")]
   public void SpawnSpellAtSelection(int prefabId = -1, bool asChild = false) {
     spellSpawner?.Spawn(target: selector.CurrentSelectedObject, prefabId: prefabId, asChild: asChild);
   }
 
-  [Command("spell-at-camera")]
+  // [Command("spell-at-camera")]
   public void SpawnSpellAtPlayer(int prefabId = -1) {
     spellSpawner?.Spawn(target: currentCamera.gameObject, prefabId: prefabId, asChild: false);
   }

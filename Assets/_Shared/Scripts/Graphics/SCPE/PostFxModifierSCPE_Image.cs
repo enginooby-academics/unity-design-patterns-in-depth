@@ -1,6 +1,6 @@
 using UnityEngine;
 using SCPE;
-using QFSW.QC;
+// using QFSW.QC;
 
 namespace Enginoobz.Graphics {
   public partial class PostFxModifierSCPE : MonoBehaviour {
@@ -32,12 +32,12 @@ namespace Enginoobz.Graphics {
       Profile.TryGet<HueShift3D>(out hueShift3D);
     }
 
-    [Command(CommandPrefix.PostFx + "colorize-toggle")]
+    // [Command(CommandPrefix.PostFx + "colorize-toggle")]
     public void ToggleColorize() {
       colorize.active = !colorize.active;
     }
 
-    [Command(CommandPrefix.PostFx + "hue-shift-toggle")]
+    // [Command(CommandPrefix.PostFx + "hue-shift-toggle")]
     public void ToggleHueShift3D() {
       hueShift3D.active = !hueShift3D.active;
     }

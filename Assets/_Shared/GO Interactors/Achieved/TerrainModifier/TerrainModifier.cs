@@ -1,5 +1,4 @@
-/* Dependencies: Digger Pro */
-
+#if __DIGGER__
 using UnityEngine;
 using Digger;
 
@@ -89,4 +88,4 @@ public class TerrainModifier : MonoBehaviour {
 #endif
   }
 }
-
+#endif

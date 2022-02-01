@@ -1,5 +1,5 @@
 using UnityEngine;
-using QFSW.QC;
+// using QFSW.QC;
 using Sirenix.OdinInspector;
 
 namespace Enginoobz.Graphics {
@@ -114,13 +114,13 @@ namespace Enginoobz.Graphics {
       beautifyModifier.Reset();
     }
 
-    [Command(CommandPrefix.PostFx + "random")]
+    // [Command(CommandPrefix.PostFx + "random")]
     private void Randomize() {
       beautifyModifier.Randomize();
       scpeModifier.Randomize();
     }
 
-    [Command(CommandPrefix.PostFx + "reset")]
+    // [Command(CommandPrefix.PostFx + "reset")]
     private void Reset() {
       beautifyModifier.Reset();
       scpeModifier.Reset();

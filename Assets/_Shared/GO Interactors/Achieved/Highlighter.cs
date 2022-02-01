@@ -1,10 +1,9 @@
-// Dependencies: EPOOutline
-
+#if URP_OUTLINE
 using UnityEngine;
 using EPOOutline;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
-using QFSW.QC;
+// using QFSW.QC;
 
 public class Highlighter : MonoBehaviour {
   // TODO: Replace by Collection
@@ -46,7 +45,7 @@ public class Highlighter : MonoBehaviour {
     // Destroy(outlinable);
   }
 
-  [Command(CommandPrefix.Highlight + "tag")]
+  // [Command(CommandPrefix.Highlight + "tag")]
   public void HighlightByTag(string tag) {
     Highlight(GameObject.FindGameObjectsWithTag(tag));
   }
@@ -79,3 +78,4 @@ public class Highlighter : MonoBehaviour {
     outlinable.BackParameters.FillPass.SetColor("_PublicColor", template.BackParameters.FillPass.GetColor("_PublicColor"));
   }
 }
+#endif
