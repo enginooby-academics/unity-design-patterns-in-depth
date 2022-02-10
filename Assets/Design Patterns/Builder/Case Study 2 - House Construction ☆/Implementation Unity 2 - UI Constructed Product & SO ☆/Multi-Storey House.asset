@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 305f943fe2180da48bd0996a103eaf42, type: 3}
+  m_Name: Multi-Storey House
+  m_EditorClassIdentifier: 
+  _base: {fileID: 6649105858954758291, guid: 798b1b465c6dcb344895b64c54901b33, type: 3}
+  _roof: {fileID: 679462379401423041, guid: 90bc9e38e0c4743428b493c1b8f436b3, type: 3}
+  _door: {fileID: 8999399261786241761, guid: 4785ae60896bb9c4c8d9122aae9331ce, type: 3}
+  _windows: {fileID: 8655258998742156922, guid: ad17b6f22ba271c4b954f4b0bc9f2f30,
+    type: 3}
+  _chimney: {fileID: 3046140262818832202, guid: 93d716affd147464395e884c4f8026c6,
+    type: 3}
+  Container: {fileID: 0}

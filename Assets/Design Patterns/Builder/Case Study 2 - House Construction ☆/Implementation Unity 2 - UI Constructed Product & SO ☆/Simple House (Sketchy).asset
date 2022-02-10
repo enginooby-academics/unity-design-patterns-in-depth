@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 305f943fe2180da48bd0996a103eaf42, type: 3}
+  m_Name: Simple House (Sketchy)
+  m_EditorClassIdentifier: 
+  _base: {fileID: 1681871073005060890, guid: 17c3c72ad88b3be4083f9c271dc4837d, type: 3}
+  _roof: {fileID: 3549210904858030088, guid: c5b94bf0c47c83546b033ab0d7e37469, type: 3}
+  _door: {fileID: 0}
+  _windows: {fileID: 0}
+  _chimney: {fileID: 0}
+  Container: {fileID: 0}
