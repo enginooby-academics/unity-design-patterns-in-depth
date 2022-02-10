@@ -1,6 +1,12 @@
 // * Wrapper for UnityEngine.Vector2 to provide extra functions/properties, helper inline buttons in Inspector
-using UnityEngine;
+
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
+using UnityEngine;
 using System;
 using UnityEngine.Events;
 

@@ -1,9 +1,11 @@
 // * Usage: mostly for moving objects (projectiles) & controller to restrain/destroy/disable when is out of range
-using System.Collections;
-using System.Collections.Generic;
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
 using UnityEngine;
-using System;
 
 // TODO: integrate serializable Area
 namespace Enginoobz {

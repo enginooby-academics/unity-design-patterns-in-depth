@@ -1,4 +1,9 @@
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
 using UnityEngine;
 // ! Utils below are core, not likely to change so can couple w/ sandbox subclasses
 using static VectorUtils;

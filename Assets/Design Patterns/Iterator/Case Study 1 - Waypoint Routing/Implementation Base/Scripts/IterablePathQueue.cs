@@ -1,6 +1,12 @@
+#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+using Enginoobz.Core;
+#endif
+
 using System.Linq;
 using System.Collections.Generic;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace IteratorPattern.Case1.Base {

@@ -1,8 +1,11 @@
-using System.Collections;
+#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
 using System.Collections.Generic;
 using UnityEngine;
-using Sirenix.OdinInspector;
-using System.Linq;
 
 namespace StatePattern.Base {
   public class Environment : MonoBehaviourSingleton<Environment> {

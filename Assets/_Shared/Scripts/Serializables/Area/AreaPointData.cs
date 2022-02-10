@@ -1,7 +1,13 @@
-using UnityEngine;
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
-using System.Collections.Generic;
 using Sirenix.Serialization;
+#else
+using Enginoobz.Attribute;
+using Enginoobz.Core;
+#endif
+
+using UnityEngine;
+using System.Collections.Generic;
 
 // ? Rename to CollectionVector3
 [CreateAssetMenu(fileName = "New Area Point", menuName = "Area/Area Point", order = 0)]

@@ -1,6 +1,11 @@
+#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
 using System;
 using UnityEngine;
-using Sirenix.OdinInspector;
 
 // TODO: constraint value type (struct?)
 // + Implement constant value (!= ref value)

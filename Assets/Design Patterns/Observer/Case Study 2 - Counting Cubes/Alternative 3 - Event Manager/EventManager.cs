@@ -1,7 +1,12 @@
+#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 // ? What is the point of EventManager when we can just use Action

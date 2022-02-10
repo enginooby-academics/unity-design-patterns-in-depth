@@ -1,7 +1,12 @@
 // Wrapper for Keycode (decrete value 0 & 1), Input Manager Axis (continous value -1 <-> 1) + Modifier key (while holding)
 
-using UnityEngine;
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
+using UnityEngine;
 using System;
 using static InputUtils;
 

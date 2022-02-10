@@ -1,5 +1,10 @@
-using UnityEngine;
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
+using UnityEngine;
 using System;
 
 namespace BridgePattern.Case1.Base.WithAbstractFactory.Naive {

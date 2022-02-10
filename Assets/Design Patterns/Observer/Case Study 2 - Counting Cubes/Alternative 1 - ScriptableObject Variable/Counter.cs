@@ -1,4 +1,9 @@
+#if ODIN_INSPECTOR
 using Sirenix.Serialization;
+#else
+using Enginoobz.Attribute;
+#endif
+
 using Shared = ObserverPattern.Case2;
 
 namespace ObserverPattern.Case2.Alternative1 {

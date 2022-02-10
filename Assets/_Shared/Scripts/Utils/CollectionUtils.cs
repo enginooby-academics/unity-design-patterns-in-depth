@@ -195,9 +195,8 @@ public static class CollectionUtils {
   }
 
   // ! not pass by ref => not modify original list
-  public static IList<UnityEngine.Object> OrderByName(this IList<UnityEngine.Object> list) {
-    list = list.OrderBy(item => item.name).ToList();
-    return list;
+  public static List<T> OrderByName<T>(this IList<T> list) where T : UnityEngine.Object {
+    return list.OrderBy(item => item.name).ToList();
   }
 
   public static void RemoveNullEntries<T>(this IList<T> list) where T : class {

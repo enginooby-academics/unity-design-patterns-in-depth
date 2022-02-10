@@ -1,7 +1,12 @@
+#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
-using Sirenix.OdinInspector;
 
 namespace AdapterPattern.Case1.Base1 {
   /// <summary>

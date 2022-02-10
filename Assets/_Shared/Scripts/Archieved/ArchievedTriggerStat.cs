@@ -1,10 +1,12 @@
 /// Usage: setup areas to trigger any stat of any Singleton (esp. Game Manager)
 
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
-using System;
+#else
+using Enginoobz.Attribute;
+#endif
+
+using UnityEngine;
 
 public abstract class ArchievedTriggerStat<T> : ArchievedTrigger {
   [PropertyOrder(-1)]

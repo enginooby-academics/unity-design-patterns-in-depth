@@ -1,7 +1,12 @@
 // * Use cases: for simple transformations (w/ its loop & constrain). E.g: bullet, non-physical controller
 // * For complex movements, use path tools such as Simple Waypoint System
-using UnityEngine;
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
+using UnityEngine;
 using static VectorUtils;
 
 // ? TransformProfile (SO) + Operator Vs. TransformOperator

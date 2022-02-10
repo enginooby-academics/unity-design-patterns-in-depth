@@ -1,8 +1,12 @@
 // * Manage all events of each GameObject
+#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+#else
+#endif
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Sirenix.OdinInspector;
 
 using Enginoobz;
 // ! Cannot bind events in Inspector if the listener is Prefab Asset. Workaround: only use Scene Prefab

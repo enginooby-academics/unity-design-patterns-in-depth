@@ -1,5 +1,10 @@
-using Drawing;
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
+using Drawing;
 using UnityEngine;
 
 namespace CompositePattern.Case1.Base {

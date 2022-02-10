@@ -1,8 +1,13 @@
 ﻿// * Usage: invoke Select() or assign tag and add collider on target
 
+#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
 using System.Collections.Generic;
 using UnityEngine;
-using Sirenix.OdinInspector;
 
 // TODO: implement on right mouse click, layers, disable all tags/layers, enable all tags/layers, toggle/unselect mode
 public class Selector : MonoBehaviour {

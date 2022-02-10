@@ -1,10 +1,14 @@
 // ! Replace by TriggerManager
+#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using Sirenix.OdinInspector;
-using System;
 
 // TODO
 // + SFX/VFX according to event

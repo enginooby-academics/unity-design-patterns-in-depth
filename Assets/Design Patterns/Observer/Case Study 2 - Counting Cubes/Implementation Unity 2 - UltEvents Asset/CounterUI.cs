@@ -1,7 +1,12 @@
+#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
 using UnityEngine;
 using TMPro;
 using Shared = ObserverPattern.Case2;
-using Sirenix.OdinInspector;
 using UltEvents;
 
 namespace ObserverPattern.Case2.Unity2 {

@@ -1,8 +1,12 @@
 // * Define decrete area on 3 axes
-using UnityEngine;
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
+using UnityEngine;
 using System;
-using System.Collections.Generic;
 
 [Serializable, InlineProperty]
 public class AreaAxisPoint : AreaPoint {

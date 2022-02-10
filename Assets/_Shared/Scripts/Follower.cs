@@ -1,8 +1,12 @@
 // * Use case: Camera following w/ offset, enemy chasing
 // * Alternative: Cinematic, NavMesh
-using UnityEngine;
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
-using System;
+#else
+using Enginoobz.Attribute;
+#endif
+
+using UnityEngine;
 
 // ? CONSIDER: Separate classes for 2 methods if they don't communicate
 [RequireComponent(typeof(Rigidbody))]

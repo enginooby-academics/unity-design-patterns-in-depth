@@ -1,6 +1,11 @@
+#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
 using System;
 using Drawing;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace CompositePattern.Case2.Unity2 {

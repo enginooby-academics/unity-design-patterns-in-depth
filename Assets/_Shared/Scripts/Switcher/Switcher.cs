@@ -1,5 +1,10 @@
-using UnityEngine;
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
+using UnityEngine;
 
 // FIX: not work in Edit Mode anymore after exit Play Mode
 public abstract class Switcher<T> : MonoBehaviour where T : UnityEngine.Object {

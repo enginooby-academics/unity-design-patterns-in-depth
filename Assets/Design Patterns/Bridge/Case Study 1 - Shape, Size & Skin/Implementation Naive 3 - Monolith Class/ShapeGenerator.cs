@@ -1,5 +1,10 @@
-using System;
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
+using System;
 using UnityEngine;
 using static UnityEngine.GameObject;
 

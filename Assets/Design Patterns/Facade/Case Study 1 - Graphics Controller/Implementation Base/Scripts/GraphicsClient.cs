@@ -1,4 +1,9 @@
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
 using UnityEngine;
 
 namespace FacadePattern.Case1.Base {

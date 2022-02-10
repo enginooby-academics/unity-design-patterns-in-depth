@@ -1,6 +1,11 @@
+#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
 using System.Collections.Generic;
 using UnityEngine;
-using Sirenix.OdinInspector;
 
 namespace Flyweight.Unity.Prefab {
   public class BoidsController : Flyweight.BoidsController {

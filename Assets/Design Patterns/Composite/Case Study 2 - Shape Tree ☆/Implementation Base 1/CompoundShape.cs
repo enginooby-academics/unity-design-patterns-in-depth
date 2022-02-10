@@ -1,8 +1,13 @@
+#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Drawing;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using DG.Tweening;
 using static UnityEngine.Mathf;

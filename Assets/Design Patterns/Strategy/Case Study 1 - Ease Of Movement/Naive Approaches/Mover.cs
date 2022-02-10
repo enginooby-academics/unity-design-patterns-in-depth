@@ -1,8 +1,5 @@
-using System.Collections.Generic;
-using System;
 using UnityEngine;
 using static RayUtils;
-using Sirenix.OdinInspector;
 using DG.Tweening;
 
 namespace Strategy.Naive {

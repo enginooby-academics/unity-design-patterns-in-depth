@@ -1,4 +1,9 @@
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
 using UnityEngine;
 
 namespace TypeObjectPattern.Case1.Base {
@@ -15,11 +20,13 @@ namespace TypeObjectPattern.Case1.Base {
     }
 
     [Button]
+    [ContextMenu(nameof(Attack))]
     public void Attack() {
       print($"Monster {name} attacked with {_type.Strength} damages.");
     }
 
     [Button]
+    [ContextMenu(nameof(Move))]
     public void Move() {
       print($"Monster {name} is moving with {_type.Speed} speed.");
     }

@@ -1,8 +1,10 @@
-using UnityEngine;
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
-using System.Collections.Generic;
+#else
+using Enginoobz.Attribute;
+#endif
+
 using System;
-using UnityEngine.Events;
 
 [Serializable, InlineProperty]
 public class OnMouseDownEvent : TriggerEvent { }

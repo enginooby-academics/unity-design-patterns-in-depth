@@ -1,18 +1,20 @@
-﻿using System.Collections;
+﻿#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
 using System.Collections.Generic;
 using UnityEngine;
 #if UNITY_EDITOR
-using UnityEditor;
 #endif
-using UnityEngine.SceneManagement;
-using Sirenix.OdinInspector;
 
 [ExecuteInEditMode]
 public class ModelSwitchManager : MonoBehaviour {
   [Range(0, 2)] [SerializeField] int globalActiveModelIndex = 0;
 
-  [Space]
   [InlineEditor(InlineEditorModes.GUIOnly)]
+  [Space]
   [SerializeField] List<ModelSwitchEditor> prefabs;
 
   // Start is called before the first frame update

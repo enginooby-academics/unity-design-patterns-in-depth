@@ -1,9 +1,14 @@
 /// Use cases: random bullets/vfx/sfx, postfx profile/character switcher in Play/Edit Mode
 
+#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using Sirenix.OdinInspector;
 using UnityEngine.Events;
 using System.Linq;
 

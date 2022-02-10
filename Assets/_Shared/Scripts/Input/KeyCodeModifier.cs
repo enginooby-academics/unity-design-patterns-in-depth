@@ -1,5 +1,10 @@
-using UnityEngine;
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
+using UnityEngine;
 using System;
 
 [Flags] public enum KeyTriggerEvent { Up = 1 << 1, Down = 1 << 2, Hold = 1 << 3 }

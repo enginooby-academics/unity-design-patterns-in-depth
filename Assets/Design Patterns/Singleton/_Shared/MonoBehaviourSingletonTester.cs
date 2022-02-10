@@ -1,7 +1,12 @@
 #if ASM
 // TODO: Create wrapper for Scene class from ASM
-using UnityEngine;
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
+using UnityEngine;
 using AdvancedSceneManager.Models;
 using System.Collections;
 using static UnityEngine.SceneManagement.SceneManager;

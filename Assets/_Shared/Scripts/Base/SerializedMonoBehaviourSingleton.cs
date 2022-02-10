@@ -1,4 +1,9 @@
-﻿using Sirenix.OdinInspector;
+﻿#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+#else
+using Enginoobz.Core;
+#endif
+
 using UnityEngine;
 
 public class SerializedMonoBehaviourSingleton<T> : SerializedMonoBehaviour where T : Component {

@@ -1,9 +1,14 @@
+#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using TMPro;
-using Sirenix.OdinInspector;
 using UnityEngine.SceneManagement;
 
 // ? CONSIDER

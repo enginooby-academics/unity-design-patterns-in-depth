@@ -1,5 +1,10 @@
-using System.Collections.Generic;
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
+using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 

@@ -1,5 +1,10 @@
-using UnityEngine;
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
+using UnityEngine;
 using System;
 
 // ? Rename to ReferencePosition - wrapper for: gameObject.position, Vector3, Vector3 SO

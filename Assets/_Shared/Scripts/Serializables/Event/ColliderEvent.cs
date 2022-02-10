@@ -1,6 +1,11 @@
 // * Base class for events happening on interaction of Collider components such as Trigger/Collision
-using UnityEngine;
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
+using UnityEngine;
 using System.Collections.Generic;
 using System;
 

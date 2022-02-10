@@ -1,6 +1,11 @@
+#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
 using UnityEngine;
 using UnityEngine.AI;
-using Sirenix.OdinInspector;
 
 namespace StatePattern.Base {
   public class NpcAI : MonoBehaviour {

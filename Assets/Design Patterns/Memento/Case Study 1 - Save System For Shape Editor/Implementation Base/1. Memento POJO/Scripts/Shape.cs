@@ -1,4 +1,10 @@
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+using Enginoobz.Core;
+#endif
+
 using UnityEngine;
 
 namespace MementoPattern.Case1.Base {

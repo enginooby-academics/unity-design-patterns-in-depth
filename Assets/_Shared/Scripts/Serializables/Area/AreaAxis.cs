@@ -1,7 +1,12 @@
 // * Define area from axes (results in line/face/box)
 // * basically a Vector3Range with position origins
-using UnityEngine;
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
+using UnityEngine;
 using System;
 using System.Collections.Generic;
 

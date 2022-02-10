@@ -1,7 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable, InlineProperty]
@@ -30,11 +34,13 @@ public class UnionType<T1, T2> {
   private bool IsT1 => _currentType.Equals(typeof(T1).Name);
   private bool IsT2 => _currentType.Equals(typeof(T2).Name);
 
-  private IEnumerable Types = new ValueDropdownList<string>()
+#if ODIN_INSPECTOR
+  private System.Collections.IEnumerable Types = new ValueDropdownList<string>()
 {
     { typeof(T1).Name, typeof(T1).Name},
     { typeof(T2).Name, typeof(T2).Name},
 };
+#endif
 
   private List<string> TypeNames => new List<string> { typeof(T1).Name, typeof(T2).Name };
 }

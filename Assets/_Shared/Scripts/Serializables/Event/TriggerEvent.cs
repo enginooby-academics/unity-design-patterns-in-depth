@@ -1,6 +1,10 @@
-using UnityEngine;
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
-using System.Collections.Generic;
+#else
+using Enginoobz.Attribute;
+#endif
+
+using UnityEngine;
 using System;
 using UnityEngine.Events;
 
@@ -33,7 +37,9 @@ public class TriggerEvent {
 
   [EnableIf(nameof(enable))]
   [BoxGroup("After Action")]
+#if ODIN_INSPECTOR
   [ValidateInput(nameof(ValidDestroyTarget), "Destroy target is not proper to the current event!", InfoMessageType.Warning)]
+#endif
   [EnumToggleButtons, LabelText("Destroy")] public DestroyTarget destroyAfterInvoked;
   private bool ValidDestroyTarget() {
     // if (eventType == EventType.OnMouseDown && destroyAfterInvoked.HasFlag(DestroyTarget.Other)) {

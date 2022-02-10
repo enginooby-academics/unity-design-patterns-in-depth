@@ -1,9 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
-using static VectorUtils;
-using UnityEngine.Events;
+#else
+using Enginoobz.Attribute;
+#endif
+
+using UnityEngine;
 
 // TODO:
 // + Area boundary for each movement

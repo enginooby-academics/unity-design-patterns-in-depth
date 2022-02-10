@@ -1,6 +1,11 @@
+#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
 using System.Collections;
 using UnityEngine;
-using Sirenix.OdinInspector;
 using UnityEngine.Pool;
 
 // ? Group PoolObject w/ SpawnWaveObject

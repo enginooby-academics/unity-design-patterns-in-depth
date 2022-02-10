@@ -1,6 +1,12 @@
+#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+using Enginoobz.Core;
+#endif
+
 using UnityEngine;
 using DG.Tweening;
-using Sirenix.OdinInspector;
 
 namespace IteratorPattern.Case1.Base {
   public class Traveller : SerializedMonoBehaviour {

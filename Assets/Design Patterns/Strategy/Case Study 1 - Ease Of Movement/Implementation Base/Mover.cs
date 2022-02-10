@@ -1,8 +1,12 @@
+#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
 using System.Collections.Generic;
-using System;
 using UnityEngine;
 using static RayUtils;
-using Sirenix.OdinInspector;
 
 namespace Strategy.Base {
   public class Mover : MonoBehaviour {

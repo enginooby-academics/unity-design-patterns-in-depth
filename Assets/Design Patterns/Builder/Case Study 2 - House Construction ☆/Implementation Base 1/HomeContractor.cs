@@ -1,5 +1,10 @@
-using System.Collections;
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
+using System.Collections;
 using UnityEngine;
 
 namespace BuilderPattern.Case2.Base1 {

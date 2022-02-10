@@ -1,7 +1,12 @@
+#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
-using Sirenix.OdinInspector;
 
 // TODO: Rename to VolumeProfileVariation extending SO
 // + Move to Graphics

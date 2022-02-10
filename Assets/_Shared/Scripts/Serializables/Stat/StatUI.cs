@@ -1,7 +1,12 @@
 // * Display game stat UI
 
-using UnityEngine;
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
+using UnityEngine;
 using System;
 using TMPro;
 using UnityEngine.UI;

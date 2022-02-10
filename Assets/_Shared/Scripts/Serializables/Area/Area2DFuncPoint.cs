@@ -1,8 +1,12 @@
 // * Define decrete area using function of 2 variables
-using UnityEngine;
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
+using UnityEngine;
 using System;
-using System.Collections.Generic;
 using System.Text;
 
 [Serializable, InlineProperty]

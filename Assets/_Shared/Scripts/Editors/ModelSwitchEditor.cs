@@ -1,11 +1,14 @@
-﻿using System.Collections;
+﻿#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
+#if UNITY_EDITOR
+#endif
+
 using System.Collections.Generic;
 using UnityEngine;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
-using System;
-using Sirenix.OdinInspector;
 
 [ExecuteInEditMode]
 public class ModelSwitchEditor : MonoBehaviour {

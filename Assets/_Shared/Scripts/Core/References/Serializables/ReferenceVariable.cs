@@ -1,7 +1,12 @@
 // * Alternative: generic SO class as in SO Architecture asset
 
-using System;
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
+using System;
 using UnityEngine;
 
 [System.Serializable, InlineProperty]
@@ -28,11 +33,16 @@ public class ReferenceVariable<T> where T : IEquatable<T> {
   // Solution: create ReferenceInt class w/ ReferenceIntSO field.
   private ReferenceVariableSO<T> _variable;
 
+
+#if ODIN_INSPECTOR
   private ValueDropdownList<bool> valueList = new ValueDropdownList<bool>()
     {
         {"Value", true },
         {"Reference",false },
     };
+#else
+  private int valueList;
+#endif
 
   public T Value {
     get => _useConstant ? _constantValue : _variable.Value;

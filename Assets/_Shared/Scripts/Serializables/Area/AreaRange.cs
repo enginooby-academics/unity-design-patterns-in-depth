@@ -1,6 +1,11 @@
 // * Define area from line segment. Use case: attackable/shootable range
-using UnityEngine;
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+#else
+using Enginoobz.Attribute;
+#endif
+
+using UnityEngine;
 using System;
 
 [Serializable, InlineProperty]
