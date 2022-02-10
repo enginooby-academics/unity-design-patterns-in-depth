@@ -1,1 +1,0 @@
-Reference: https://github.com/Naphier/unity-design-patterns
