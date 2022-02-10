@@ -1,4 +1,5 @@
 #if ASSET_BLEND_MODES
+using BlendModes;
 using UnityEngine;
 
 public class TestGOBlender : MonoBehaviour {

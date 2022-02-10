@@ -1,7 +1,6 @@
 using UnityEngine;
 
 public static class AudioUtils {
-
   /// <summary>
   /// Play by AudioSource from GameManager
   /// </summary>

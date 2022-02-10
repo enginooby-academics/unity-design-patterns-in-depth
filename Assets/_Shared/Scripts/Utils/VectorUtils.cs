@@ -1,6 +1,7 @@
 using UnityEngine;
 
 public static class VectorUtils {
+  // TODO: Rename to SNAKE_CASE and use Lazy
   public static readonly Vector3 v000 = Vector3.zero;
 
   /// <summary>

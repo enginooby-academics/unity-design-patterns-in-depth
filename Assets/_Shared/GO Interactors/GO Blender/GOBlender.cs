@@ -1,4 +1,5 @@
 #if ASSET_BLEND_MODES
+using BlendModes;
 using UnityEngine;
 
 // REFACTOR: create wrapper for 3rd party asset if using muliple similar assets

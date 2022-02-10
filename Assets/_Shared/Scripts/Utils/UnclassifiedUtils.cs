@@ -1,11 +1,6 @@
-using System;
 using UnityEngine;
 
 public static class UnclassifiedUtils {
-  public static bool EqualIgnoreCase(this string string1, string string2) {
-    return string.Equals(string1, string2, StringComparison.OrdinalIgnoreCase);
-  }
-
   /// <summary>
   /// Return true if value just below min, false if value just above max, null if value in range.
   /// </summary>
@@ -22,6 +17,14 @@ public static class UnclassifiedUtils {
     if (transform.position.y <= min) return true;
     if (transform.position.y >= max) return false;
     return null;
+  }
+
+  public static Rect GetHalfTop(this Rect rect) {
+    return new Rect(rect.x, rect.y, rect.width, rect.height / 2);
+  }
+
+  public static Rect GetHalfBottom(this Rect rect) {
+    return new Rect(rect.x, rect.y + rect.height / 2, rect.width, rect.height / 2);
   }
 }
 

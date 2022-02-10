@@ -1,28 +1,14 @@
+using System.Collections.Generic;
 using System;
-using System.Reflection;
 
 public static class EnumUtils {
-  /// <summary>
-  /// [For EnumString]
-  /// Will get the string value for a given enums value, this will
-  /// only work if you assign the StringValue attribute to
-  /// the items in your enum.
-  /// </summary>
-  public static string ToString(this Enum value) {
-    Type type = value.GetType();
-    FieldInfo fieldInfo = type.GetField(value.ToString());
-    StringValueAttribute[] attribs = fieldInfo.GetCustomAttributes(
-        typeof(StringValueAttribute), false) as StringValueAttribute[];
-
-    // Return the first if there was a match.
-    return attribs.Length > 0 ? attribs[0].StringValue : null;
-  }
-
+  #region CONVERSION ----------------------------------------------------------------------------------------------------------------------------
   /// <summary>
   /// If non enum string match the given string, return the first enum.
   /// </summary>
   public static T ToEnumString<T>(this string value) where T : Enum {
     var enumValues = (T[])Enum.GetValues(typeof(T));
+
     foreach (var enumValue in enumValues) {
       if (value.EqualIgnoreCase(enumValue.ToString())) return enumValue;
     }
@@ -31,25 +17,73 @@ public static class EnumUtils {
   }
 
   /// <summary>
-  /// Increment (loop) enum value.
+  /// Returns the underlying character value.
   /// </summary>
-  public static T Next<T>(this T src) where T : struct {
-    if (!typeof(T).IsEnum) throw new ArgumentException(String.Format("Argument {0} is not an Enum", typeof(T).FullName));
+  public static char ToChar<T>(this T enumValue) where T : Enum {
+    if (enumValue == null)
+      throw new ArgumentNullException(nameof(enumValue));
 
-    T[] Arr = (T[])Enum.GetValues(src.GetType());
-    int j = Array.IndexOf<T>(Arr, src) + 1;
-    return (Arr.Length == j) ? Arr[0] : Arr[j];
+    if (!typeof(char).IsAssignableFrom(Enum.GetUnderlyingType(typeof(T))))
+      throw new ArgumentException("Underlying type of enum value isn't char.");
+
+    return (char)(object)enumValue;
   }
 
   /// <summary>
-  /// Decrement (loop) enum value.
+  /// Returns the underlying byte value.
   /// </summary>
-  public static T Previous<T>(this T src) where T : struct {
-    if (!typeof(T).IsEnum) throw new ArgumentException(String.Format("Argument {0} is not an Enum", typeof(T).FullName));
+  public static byte ToByte<T>(this T enumValue) where T : Enum {
+    if (enumValue == null)
+      throw new ArgumentNullException(nameof(enumValue));
 
-    T[] Arr = (T[])Enum.GetValues(src.GetType());
-    int j = Array.IndexOf<T>(Arr, src) - 1;
-    return (j <= -1) ? Arr[Arr.Length - 1] : Arr[j];
+    if (!typeof(byte).IsAssignableFrom(Enum.GetUnderlyingType(typeof(T))))
+      throw new ArgumentException("Underlying type of enum value isn't byte.");
+
+    return (byte)(object)enumValue;
+  }
+
+  /// <summary>
+  /// Returns the underlying integer value.
+  /// </summary>
+  public static int ToInt<T>(this T enumValue) where T : Enum {
+    if (enumValue == null)
+      throw new ArgumentNullException(nameof(enumValue));
+
+    if (!typeof(int).IsAssignableFrom(Enum.GetUnderlyingType(typeof(T))))
+      throw new ArgumentException("Underlying type of enum value isn't int.");
+
+    return (int)(object)enumValue;
+  }
+  #endregion CONVERSION -------------------------------------------------------------------------------------------------------------------------
+
+  /// <summary>
+  /// Returns the next value in the enum value sequence. 
+  /// Will loop back to the first value if the value is 
+  /// the last. 
+  /// </summary>
+  public static T Next<T>(this T @enum) where T : Enum {
+    // if (!typeof(T).IsEnum) throw new ArgumentException(String.Format("Argument {0} is not an Enum", typeof(T).FullName));
+    T[] enums = (T[])Enum.GetValues(@enum.GetType());
+    int i = Array.IndexOf<T>(enums, @enum) + 1;
+    return (enums.Length >= i) ? enums[0] : enums[i];
+  }
+
+  /// <summary>
+  /// Returns the previous value in the enum value sequence. 
+  /// Will loop to the last value if the value is the first.
+  /// </summary>
+  public static T Previous<T>(this T @enum) where T : Enum {
+    T[] enums = (T[])Enum.GetValues(@enum.GetType());
+    int i = Array.IndexOf<T>(enums, @enum) - 1;
+    return (i < 0) ? enums.GetLast() : enums[i];
+  }
+
+  public static List<T> GetValuesFromEnum<T>() where T : Enum {
+    return Enum.GetValues(typeof(T)).ToList<T>();
+  }
+
+  public static IList<string> GetValueLabelsFromEnum<T>() where T : Enum {
+    return GetValuesFromEnum<T>().ToStrings();
   }
 }
 

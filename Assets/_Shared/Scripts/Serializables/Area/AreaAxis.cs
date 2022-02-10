@@ -44,7 +44,7 @@ public class AreaAxis : SerializableBase, IArea {
   /// Return a random position lie inside a "box" (determined by Vector3Range) of an origin. Return Vector3.zero if origin index is invalid.
   /// </summary>
   public Vector3 RandomByOrigin(int originIndex) {
-    if (!origins.ValidateIndex(originIndex) || origins.IsUnset()) return Vector3.zero; // ? throw exception instead
+    if (!origins.HasIndex(originIndex) || origins.IsUnset()) return Vector3.zero; // ? throw exception instead
     return origins[originIndex].GameObject.transform.position + box.Random;
   }
 

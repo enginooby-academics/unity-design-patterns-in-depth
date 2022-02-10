@@ -1,3 +1,4 @@
+#if ASSET_DOTWEEN
 using DG.Tweening;
 using UnityEngine;
 
@@ -15,3 +16,4 @@ public static class DOTweenUtils {
     transform.DOShakeScale(1f).SetLoops(-1);
   }
 }
+#endif

@@ -1,4 +1,5 @@
 // TIP: "Menu" file to review relationships in complex generic class hierarchy 
+using System;
 using UnityEngine;
 
 public abstract partial class GOI : MonoBehaviourSingleton<GOI> { }
@@ -71,5 +72,5 @@ public abstract partial class GOI_EffectIsEnum<TSelf, TComponent, TEffectEnum, T
 : GOI<TSelf, TComponent, GOIEffect<TEffectEnum>, TCache>
 where TSelf : GOI_EffectIsEnum<TSelf, TComponent, TEffectEnum, TCache>
 where TComponent : MonoBehaviour
-where TEffectEnum : struct
-where TCache : Object { }
+where TEffectEnum : Enum
+where TCache : UnityEngine.Object { }

@@ -5,7 +5,9 @@ using Sirenix.OdinInspector;
 using System;
 using TMPro;
 using UnityEngine.UI;
+#if ASSET_DOTWEEN
 using DG.Tweening;
+#endif
 
 // REFACTOR: Separate different UI types to classes implementing IStatUI
 [Serializable, InlineProperty]
@@ -99,7 +101,9 @@ public class StatUI {
       case UIType.Slider:
         if (maxValue.HasValue && _slider) {
           float fraction = (float)currentValue / (float)maxValue.Value;
+#if ASSET_DOTWEEN
           _slider.DOValue(fraction, _sliderUpdateSpeed).SetSpeedBased(true);
+#endif
           if (_enableSliderFillGradient && _sliderFillImage) {
             _sliderFillImage.color = _sliderFillGradient.Evaluate(fraction);
           }

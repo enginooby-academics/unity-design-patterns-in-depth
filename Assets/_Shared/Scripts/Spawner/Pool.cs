@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Pool;
+using UnityEngine.Pool; // TODO: Add Unity 2022 version directive
 
 // TODO: Generics - GameObject...
 [Serializable, InlineProperty]

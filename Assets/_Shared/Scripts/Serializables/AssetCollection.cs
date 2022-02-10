@@ -24,6 +24,7 @@ public class AssetCollection<T> where T : UnityEngine.Object {
 
   [OnValueChanged(nameof(OnItemsChanged))]
   public List<T> items = new List<T>();
+
   [OnValueChanged(nameof(OnCurrentItemChanged))]
   [InlineButton(nameof(GetAndSetToRandomItem), "?")]
   [InlineButton(nameof(GetAndSetToNextItem), ">")]

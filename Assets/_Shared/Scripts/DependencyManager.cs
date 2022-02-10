@@ -6,5 +6,7 @@
 [assembly: OptionalDependency("QFSW.QC.CommandAttribute", "ASSET_QUANTUM_CONSOLE")]
 [assembly: OptionalDependency("MegaFiers.MegaModifier", "ASSET_MEGA_FIERS")]
 [assembly: OptionalDependency("Rewired.Player", "ASSET_REWIRED")]
+[assembly: OptionalDependency("DG.Tweening.DOTweenAnimation", "ASSET_DOTWEEN")]
+// [assembly: OptionalDependency("EnviroSkyMgr", "ASSET_ENVIRO")] //  ENVIRO_LW || ENVIRO_HD
 // [assembly: OptionalDependency("EPOOutline.Outlinable", "ASSET_EPO_OUTLINE")] // URP_OUTLINE
 public class DependencyManager { }

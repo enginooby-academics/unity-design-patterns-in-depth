@@ -1,4 +1,5 @@
 // * Cons: hide Unity Object dependencies
+// * Alternative: lazy local component caches in MonoBehaviourBase
 using System.Collections.Generic;
 using System;
 using UnityEngine;

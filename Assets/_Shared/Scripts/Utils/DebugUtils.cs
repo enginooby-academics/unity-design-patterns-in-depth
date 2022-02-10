@@ -1,47 +1,39 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public static class DebugUtils {
-  //   public static void Log<T>(this T value) where T : struct, IComparable, IFormattable, IConvertible, IComparable<T>, IEquatable<T> {
-  // #if UNITY_EDITOR
-  //     Debug.Log(value);
-  // #endif
-  //   }
-
-  //   public static void Log(this string value) {
-  // #if UNITY_EDITOR
-  //     Debug.Log(value);
-  // #endif
-  //   }
-
-  public static void Log(this System.Object value) {
+  // TIP: IFormattable for all types with ToString()
+  public static void Log<T>(this IList<T> list) where T : IFormattable {
 #if UNITY_EDITOR
-    // IMPL: get name of passing variable
+    foreach (var item in list) {
+      Debug.Log(item.ToString());
+    }
+#endif
+  }
+
+  public static void Log<T>(this T value) where T : IFormattable {
+#if UNITY_EDITOR
     Debug.Log(value.ToString());
 #endif
   }
 
+  public static void Log(this string value) {
+#if UNITY_EDITOR
+    Debug.Log(value);
+#endif
+  }
+
   // REFACTOR
-  public static void LogNames(this List<GameObject> gameObjects) {
-    // TIP: Wrap all in-editor method implementations in #if UNITY_EDITOR
+  public static void LogNames(this IList<UnityEngine.Object> objects) {
 #if UNITY_EDITOR
-    gameObjects.ForEach(gameObject => gameObject.name.Log());
+    foreach (var obj in objects) {
+      obj.name.Log();
+    }
 #endif
   }
 
-  public static void LogNames(this List<Transform> components) {
-#if UNITY_EDITOR
-    components.ForEach(component => component.name.Log());
-#endif
-  }
-
-  public static void LogNames(this List<Component> components) {
-#if UNITY_EDITOR
-    components.ForEach(component => component.name.Log());
-#endif
-  }
-
-  public static void LogNames(this Component[] components) {
+  public static void LogNames(this UnityEngine.Object[] components) {
 #if UNITY_EDITOR
     foreach (var component in components) {
       component.name.Log();
