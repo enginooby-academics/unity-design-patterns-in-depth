@@ -1,6 +1,8 @@
 using UnityEngine;
-using DG.Tweening;
 using Drawing;
+#if ASSET_DOTWEEN
+using DG.Tweening;
+#endif
 
 namespace SubclassSandboxPattern.Case1.Base {
   /// <summary>
@@ -48,15 +50,21 @@ namespace SubclassSandboxPattern.Case1.Base {
     }
 
     protected void ShakePosition(GameObject gameObject) {
+#if ASSET_DOTWEEN
       gameObject.transform.DOShakePosition(1f).SetLoops(-1);
+#endif
     }
 
     protected void ShakeRotation(GameObject gameObject) {
+#if ASSET_DOTWEEN
       gameObject.transform.DOShakeRotation(1f).SetLoops(-1);
+#endif
     }
 
     protected void ShakeScale(GameObject gameObject) {
+#if ASSET_DOTWEEN
       gameObject.transform.DOShakeScale(1f).SetLoops(-1);
+#endif
     }
   }
 }

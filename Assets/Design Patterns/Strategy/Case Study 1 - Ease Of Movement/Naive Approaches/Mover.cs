@@ -1,6 +1,8 @@
 using UnityEngine;
 using static RayUtils;
+#if ASSET_DOTWEEN
 using DG.Tweening;
+#endif
 
 namespace Strategy.Naive {
   public enum EaseMovement { Linear, InBounce, InSine }
@@ -38,17 +40,23 @@ namespace Strategy.Naive {
 
     private void MoveLinear(Vector3 dest, float speed) {
       Debug.Log("Moving with linear ease");
+#if ASSET_DOTWEEN
       transform.DOMove(dest, speed).SetSpeedBased(true).SetEase(Ease.Linear);
+#endif
     }
 
     private void MoveInBounce(Vector3 dest, float speed) {
       Debug.Log("Moving with in-bounce ease");
+#if ASSET_DOTWEEN
       transform.DOMove(dest, speed).SetSpeedBased(true).SetEase(Ease.InBounce);
+#endif
     }
 
     private void MoveInSine(Vector3 dest, float speed) {
       Debug.Log("Moving with in-sine ease");
+#if ASSET_DOTWEEN
       transform.DOMove(dest, speed).SetSpeedBased(true).SetEase(Ease.InSine);
+#endif
     }
   }
 }

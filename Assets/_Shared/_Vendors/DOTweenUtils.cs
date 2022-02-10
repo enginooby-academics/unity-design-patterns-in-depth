@@ -22,4 +22,16 @@ public static class DOTweenUtils {
     transform.DOShakeScale(1f).SetLoops(-1);
 #endif
   }
+
+  public static void MoveX(this Transform transform, float endValue, float duration) {
+#if ASSET_DOTWEEN
+    transform.DOMoveX(endValue, duration);
+#endif
+  }
+
+  public static void MoveY(this Transform transform, float endValue, float duration) {
+#if ASSET_DOTWEEN
+    transform.DOMoveY(endValue, duration);
+#endif
+  }
 }

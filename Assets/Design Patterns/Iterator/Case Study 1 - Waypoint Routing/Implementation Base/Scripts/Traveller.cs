@@ -5,8 +5,11 @@ using Enginoobz.Attribute;
 using Enginoobz.Core;
 #endif
 
-using UnityEngine;
+#if ASSET_DOTWEEN
 using DG.Tweening;
+#endif
+
+using UnityEngine;
 
 namespace IteratorPattern.Case1.Base {
   public class Traveller : SerializedMonoBehaviour {
@@ -42,9 +45,11 @@ namespace IteratorPattern.Case1.Base {
 
     [Button]
     public void MoveOnPath() {
+#if ASSET_DOTWEEN
       if (_iterator.HasNext())
         transform.DOMove(_iterator.GetNext().transform.position, 2)
           .OnComplete(() => MoveOnPath()); ;
+#endif
     }
   }
 }

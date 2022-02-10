@@ -134,8 +134,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _scene2
       value: 
-      objectReference: {fileID: 11400000, guid: 76b8171081e98c742905425ed590245a,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 7291283638173033520, guid: 50d1608fecbc4d243861d62f261765fd,
         type: 3}
       propertyPath: _singleton

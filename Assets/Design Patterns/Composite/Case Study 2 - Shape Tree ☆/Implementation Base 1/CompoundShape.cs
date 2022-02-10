@@ -4,12 +4,15 @@ using Sirenix.OdinInspector;
 using Enginoobz.Attribute;
 #endif
 
+#if ASSET_DOTWEEN
+using DG.Tweening;
+#endif
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Drawing;
 using UnityEngine;
-using DG.Tweening;
 using static UnityEngine.Mathf;
 
 
@@ -38,7 +41,9 @@ namespace CompositePattern.Case2.Base1 {
 
       for (int i = 0; i < children.Count; i++) {
         Vector3 newPos = pos.OffsetY(-2).OffsetX(2 - 2 * children.Count + i * 4);
+#if ASSET_DOTWEEN
         children[i].GameObject.transform.DOMove(newPos, .4f).SetEase(Ease.InOutQuint); ;
+#endif
         children[i].GameObject.transform.SetParent(GameObject.transform);
       }
     }

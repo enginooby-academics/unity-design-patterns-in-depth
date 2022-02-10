@@ -1,7 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+#if ASSET_DOTWEEN
 using DG.Tweening;
+#endif
 
 namespace StatePattern.Base {
   public class NpcAttackState : NpcState {
@@ -23,7 +23,9 @@ namespace StatePattern.Base {
 
     public override void Update() {
       Debug.Log("Attacking");
+#if ASSET_DOTWEEN
       npc.transform.DOLookAt(player.position, rotationSpeed, AxisConstraint.Y);
+#endif
 
       if (!CanAttackPlayer) {
         incommingState = new NpcIdleState(npc, animator, navMeshAgent, player, vision, attackableArea);
