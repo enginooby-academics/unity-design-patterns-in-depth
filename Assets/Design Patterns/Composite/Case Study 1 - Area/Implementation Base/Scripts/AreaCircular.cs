@@ -4,12 +4,13 @@ using Sirenix.OdinInspector;
 using Enginoobz.Attribute;
 #endif
 
+#if ASSET_ALINE
+using Drawing;
+#endif
+
 using UnityEngine;
 using System;
-using Drawing;
 using Unity.Mathematics;
-#if UNITY_EDITOR
-#endif
 
 namespace CompositePattern.Case1.Base {
   // ? Rename to AreaArc3D or AreaSphericalSector
@@ -70,6 +71,7 @@ namespace CompositePattern.Case1.Base {
       var arcStart = (float3)origin.Value + new float3(Mathf.Cos(a1), 0, Mathf.Sin(a1)) * _radius;
       var arcEnd = (float3)origin.Value + new float3(Mathf.Cos(a2), 0, Mathf.Sin(a2)) * _radius;
 
+#if ASSET_ALINE
       using (Draw.WithLineWidth(_gizmosWidth)) {
         if (_gizmosMode == GizmosMode.Solid) {
           Draw.SolidArc(origin.Value, arcStart, arcEnd, _gizmosColor);
@@ -77,6 +79,7 @@ namespace CompositePattern.Case1.Base {
           Draw.Arc(origin.Value, arcStart, arcEnd, _gizmosColor);
         }
       }
+#endif
     }
   }
 }

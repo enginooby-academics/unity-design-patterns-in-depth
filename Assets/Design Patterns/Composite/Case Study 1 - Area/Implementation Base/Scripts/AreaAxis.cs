@@ -4,9 +4,12 @@ using Sirenix.OdinInspector;
 using Enginoobz.Attribute;
 #endif
 
+#if ASSET_ALINE
+using Drawing;
+#endif
+
 using UnityEngine;
 using System;
-using Drawing;
 
 // TODO: Exclusive area
 namespace CompositePattern.Case1.Base {
@@ -46,6 +49,7 @@ namespace CompositePattern.Case1.Base {
       Vector3 center = GetBoxOriginPos(origin);
       Vector3 size = _box.Size;
 
+#if ASSET_ALINE
       // REFACTOR
       if (_gizmosDisplay.HasFlag(GizmosDisplay.InGame)) {
         using (Draw.ingame.WithLineWidth(_gizmosWidth)) {
@@ -66,6 +70,7 @@ namespace CompositePattern.Case1.Base {
           }
         }
       }
+#endif
     }
 
     private Vector3 GetBoxOriginPos(ReferenceVector3 origin) {

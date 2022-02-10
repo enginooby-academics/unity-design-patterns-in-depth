@@ -4,7 +4,6 @@ using Sirenix.OdinInspector;
 using Enginoobz.Attribute;
 #endif
 
-using Drawing;
 using UnityEngine;
 
 namespace CompositePattern.Case1.Base {

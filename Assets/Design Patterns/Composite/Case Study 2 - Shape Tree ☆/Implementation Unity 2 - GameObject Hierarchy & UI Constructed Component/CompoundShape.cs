@@ -8,9 +8,12 @@ using Enginoobz.Attribute;
 using DG.Tweening;
 #endif
 
+#if ASSET_ALINE
+using Drawing;
+#endif
+
 using System;
 using System.Collections.Generic;
-using Drawing;
 using UnityEngine;
 using static UnityEngine.Mathf;
 
@@ -62,11 +65,13 @@ namespace CompositePattern.Case2.Unity2 {
     }
 
     public void DrawLink() {
+#if ASSET_ALINE
       using (Draw.ingame.WithLineWidth(2f)) {
         foreach (Transform child in transform) {
           Draw.ingame.Line(transform.position, child.position);
         }
       }
+#endif
     }
 
     public override void DrawGizmos() => DrawLink();

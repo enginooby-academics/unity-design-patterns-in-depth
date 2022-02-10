@@ -5,7 +5,6 @@ using Enginoobz.Attribute;
 #endif
 
 using System;
-using Drawing;
 using UnityEngine;
 
 namespace CompositePattern.Case2.Unity3 {

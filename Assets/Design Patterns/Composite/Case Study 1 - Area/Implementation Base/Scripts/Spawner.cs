@@ -5,7 +5,6 @@ using Enginoobz.Attribute;
 #endif
 
 using UnityEngine;
-using Drawing;
 
 namespace CompositePattern.Case1.Base {
   public class Spawner : MonoBehaviourGizmos {

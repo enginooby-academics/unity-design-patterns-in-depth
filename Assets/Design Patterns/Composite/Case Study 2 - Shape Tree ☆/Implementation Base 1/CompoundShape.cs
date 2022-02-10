@@ -8,10 +8,13 @@ using Enginoobz.Attribute;
 using DG.Tweening;
 #endif
 
+#if ASSET_ALINE
+using Drawing;
+#endif
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Drawing;
 using UnityEngine;
 using static UnityEngine.Mathf;
 
@@ -49,12 +52,14 @@ namespace CompositePattern.Case2.Base1 {
     }
 
     public void DrawLink() {
+#if ASSET_ALINE
       using (Draw.ingame.WithLineWidth(2f)) {
         foreach (var child in children) {
           Draw.ingame.Line(GameObject.transform.position, child.GameObject.transform.position);
           if (child.GetType() == typeof(CompoundShape)) (child as CompoundShape).DrawLink();
         }
       }
+#endif
     }
 
     public override double GetVolume() {

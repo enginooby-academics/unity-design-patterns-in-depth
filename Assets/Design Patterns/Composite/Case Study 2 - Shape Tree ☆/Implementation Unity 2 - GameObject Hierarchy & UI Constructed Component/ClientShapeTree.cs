@@ -1,4 +1,3 @@
-using Drawing;
 using UnityEngine;
 
 namespace CompositePattern.Case2.Unity2 {

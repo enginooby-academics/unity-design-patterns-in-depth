@@ -1,5 +1,4 @@
 using UnityEngine;
-using Drawing;
 #if ASSET_DOTWEEN
 using DG.Tweening;
 #endif
