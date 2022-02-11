@@ -15,7 +15,7 @@ public class TransformProfileOperator : ComponentOperator<Transform> {
   }
 
   private void LateUpdate() {
-    _transformProfile?.LateUpdate(transform);
+    _transformProfile?.OnLateUpdate(transform);
   }
 
   public void Stop() {

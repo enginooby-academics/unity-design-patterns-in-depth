@@ -22,7 +22,7 @@ public class TransformProfile : ScriptableObject {
   //   InitTranslation(transform);
   // }
 
-  public void LateUpdate(Transform transform) {
+  public void OnLateUpdate(Transform transform) {
     ProcessLooking(transform);
     ProcessTranslating(transform);
     ProcessRotating(transform);
