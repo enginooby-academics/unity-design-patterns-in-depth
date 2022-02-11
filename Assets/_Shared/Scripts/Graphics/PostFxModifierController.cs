@@ -1,3 +1,4 @@
+#if ASSET_SCPE && ASSET_BEAUTIFY
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
@@ -14,7 +15,7 @@ namespace Enginoobz.Graphics {
     [SerializeField] private KeyCodeModifier randomizeKey = new KeyCodeModifier(keyCode: KeyCode.LeftBracket);
     [SerializeField] private KeyCodeModifier resetKey = new KeyCodeModifier(keyCode: KeyCode.RightBracket);
 
-    #region BEAUTIFY
+#region BEAUTIFY
     [Header("[Beautify]")]
     [SerializeField] private KeyCodeModifier disableBeautifyKey = new KeyCodeModifier(keyCode: KeyCode.U);
     [SerializeField] private KeyCodeModifier toggleCompareModeKey = new KeyCodeModifier(keyCode: KeyCode.I);
@@ -46,7 +47,7 @@ namespace Enginoobz.Graphics {
       if (toggleNightVisionKey.IsTriggering) beautifyModifier.ToggleNightVision();
       if (toggleOutlineKey.IsTriggering) beautifyModifier.ToggleOutline();
     }
-    #endregion
+#endregion
 
     [Header("[Stylized]")]
     [SerializeField] private KeyCodeModifier toggleSketchKey = new KeyCodeModifier(keyCode: KeyCode.Alpha1);
@@ -132,3 +133,4 @@ namespace Enginoobz.Graphics {
     }
   }
 }
+#endif

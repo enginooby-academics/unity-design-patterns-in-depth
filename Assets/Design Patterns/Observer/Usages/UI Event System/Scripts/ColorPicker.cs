@@ -1,10 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems; // !
 using UnityEngine.UI; // !
-using UnityEngine.UI.ProceduralImage; // !
 
 namespace ObserverPattern.UIEventSystem {
   public class ColorPicker : MonoBehaviour {
@@ -24,9 +22,11 @@ namespace ObserverPattern.UIEventSystem {
 
     private void HandleSelectSwatch() {
       foreach (RaycastResult swatch in GetSwatchesUnderMouse()) {
-        var image = swatch.gameObject.GetComponent<ProceduralImage>();
+#if ASSET_PROCEDURAL_IMAGE
+        var image = swatch.gameObject.GetComponent<UnityEngine.UI.ProceduralImage.ProceduralImage>();
         if (!image) return;
         onSwatchSelected.Invoke(image.color);
+#endif
       }
     }
 

@@ -1,3 +1,4 @@
+#if ASSET_SCPE
 using UnityEngine;
 using SCPE;
 #if ASSET_QUANTUM_CONSOLE
@@ -81,3 +82,4 @@ namespace Enginoobz.Graphics {
     }
   }
 }
+#endif

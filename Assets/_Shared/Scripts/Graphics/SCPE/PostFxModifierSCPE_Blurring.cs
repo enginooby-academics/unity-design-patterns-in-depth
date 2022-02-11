@@ -1,3 +1,4 @@
+#if ASSET_SCPE
 using UnityEngine;
 using SCPE;
 // using QFSW.QC;
@@ -55,3 +56,4 @@ namespace Enginoobz.Graphics {
     }
   }
 }
+#endif

@@ -8,6 +8,9 @@
 [assembly: OptionalDependency("Rewired.Player", "ASSET_REWIRED")]
 [assembly: OptionalDependency("DG.Tweening.DOTweenAnimation", "ASSET_DOTWEEN")]
 [assembly: OptionalDependency("Drawing.MonoBehaviourGizmos", "ASSET_ALINE")]
+[assembly: OptionalDependency("Beautify.Universal.Beautify", "ASSET_BEAUTIFY")]
+[assembly: OptionalDependency("SCPE.DoubleVision", "ASSET_SCPE")]
+[assembly: OptionalDependency("UnityEngine.UI.ProceduralImage.ProceduralImage", "ASSET_PROCEDURAL_IMAGE")]
 // [assembly: OptionalDependency("EnviroSkyMgr", "ASSET_ENVIRO")] //  ENVIRO_LW || ENVIRO_HD
 // [assembly: OptionalDependency("EPOOutline.Outlinable", "ASSET_EPO_OUTLINE")] // URP_OUTLINE
 public class DependencyManager { }

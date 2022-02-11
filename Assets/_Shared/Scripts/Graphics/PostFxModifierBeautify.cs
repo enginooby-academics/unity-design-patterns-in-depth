@@ -1,3 +1,4 @@
+#if ASSET_BEAUTIFY
 using UnityEngine;
 using Beautify.Universal;
 using UnityEngine.Rendering;
@@ -93,3 +94,4 @@ namespace Enginoobz.Graphics {
     }
   }
 }
+#endif

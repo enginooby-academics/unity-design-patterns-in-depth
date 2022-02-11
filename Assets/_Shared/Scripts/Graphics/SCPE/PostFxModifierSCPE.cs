@@ -1,4 +1,4 @@
-// Dependencies: SC Post Effects
+#if ASSET_SCPE
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -66,3 +66,4 @@ namespace Enginoobz.Graphics {
     }
   }
 }
+#endif
