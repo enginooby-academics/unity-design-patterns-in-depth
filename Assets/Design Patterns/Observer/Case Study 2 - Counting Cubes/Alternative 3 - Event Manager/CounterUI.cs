@@ -1,5 +1,5 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using Shared = ObserverPattern.Case2;
 
 namespace ObserverPattern.Case2.Alternative3 {
@@ -8,6 +8,6 @@ namespace ObserverPattern.Case2.Alternative3 {
   /// * [An 'Observer' class]
   /// </summary>
   public class CounterUI : Shared.CounterUI {
-    void OnEnable() => EventManager.StartListening(FindObjectOfType<Counter>().OnCountUpEvent, SetText);
+    private void OnEnable() => EventManager.StartListening(FindObjectOfType<Counter>().OnCountUpEvent, SetText);
   }
 }

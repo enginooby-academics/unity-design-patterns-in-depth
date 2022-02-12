@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace CommandPattern.Case1.Base1 {
   /// <summary>
-  /// * The 'Abstract Command' class
+  ///   * The 'Abstract Command' class
   /// </summary>
   // ? Use singleton
   public abstract class MoveCommand {

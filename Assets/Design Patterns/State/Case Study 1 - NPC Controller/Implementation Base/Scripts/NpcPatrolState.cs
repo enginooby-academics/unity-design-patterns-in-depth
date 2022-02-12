@@ -1,14 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace StatePattern.Base {
   public class NpcPatrolState : NpcState {
-    GameObject currentCheckpoint;
+    private GameObject currentCheckpoint;
 
-    public NpcPatrolState(GameObject npc, Animator animator, UnityEngine.AI.NavMeshAgent navMeshAgent, Transform player, AreaCircular vision = null, AreaCircular attackableArea = null)
-    : base(npc, animator, navMeshAgent, player, vision, attackableArea) {
-      name = NpcState.Name.Patrol;
+    public NpcPatrolState(GameObject npc, Animator animator, NavMeshAgent navMeshAgent, Transform player,
+      AreaCircular vision = null, AreaCircular attackableArea = null)
+      : base(npc, animator, navMeshAgent, player, vision, attackableArea) {
+      name = Name.Patrol;
       navMeshAgent.speed = 2;
       navMeshAgent.isStopped = false;
     }
@@ -25,9 +25,8 @@ namespace StatePattern.Base {
         incommingState = new NpcPursueState(npc, animator, navMeshAgent, player, vision, attackableArea);
         stage = Stage.Exit;
       }
-      if (navMeshAgent.remainingDistance < 1) {
-        MoveToNextCheckpoint();
-      }
+
+      if (navMeshAgent.remainingDistance < 1) MoveToNextCheckpoint();
     }
 
     private void MoveToNextCheckpoint() {

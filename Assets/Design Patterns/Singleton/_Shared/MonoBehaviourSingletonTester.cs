@@ -6,28 +6,28 @@ using Sirenix.OdinInspector;
 using Enginoobz.Attribute;
 #endif
 
-using UnityEngine;
-using AdvancedSceneManager.Models;
 using System.Collections;
-using static UnityEngine.SceneManagement.SceneManager;
 using System.Linq;
+using AdvancedSceneManager.Models;
+using UnityEngine;
+using static UnityEngine.SceneManagement.SceneManager;
 
 namespace SingletonPattern {
   /// <summary>
-  /// For testing singleton regarding: uniqueness (old is persistent, new is destroyed), persistence, laziness.
-  /// ! Replay after each test.
+  ///   For testing singleton regarding: uniqueness (old is persistent, new is destroyed), persistence, laziness.
+  ///   ! Replay after each test.
   /// </summary>
   // TIP: Customize script title in the Inspector
   [AddComponentMenu("SingletonPattern/MonoBehaviour Singleton Tester")]
   public class MonoBehaviourSingletonTester : MonoBehaviourSingleton<MonoBehaviourSingletonTester> {
-    private readonly float TEST_DELAY = .2f;
-
     [SerializeField]
-    [InfoBox("ASM scene can be found in Settings/Resources with the same name of the scene. Scene also needs added in the Build setting.")]
+    [InfoBox(
+      "ASM scene can be found in Settings/Resources with the same name of the scene. Scene also needs added in the Build setting.")]
     private Scene _scene2;
 
-    [SerializeField]
-    private GameObject _singleton;
+    [SerializeField] private GameObject _singleton;
+
+    private readonly float TEST_DELAY = .2f;
 
     private string singletonName;
 
@@ -54,14 +54,13 @@ namespace SingletonPattern {
 
     private void TestUniqueness() {
       var singletons = Resources.FindObjectsOfTypeAll<GameObject>()
-                              .Where(go => go.name.Contains(singletonName))
-                              .ToArray();
+        .Where(go => go.name.Contains(singletonName))
+        .ToArray();
 
-      if (singletons.Length > 1) {
+      if (singletons.Length > 1)
         print("Failed");
-      } else {
+      else
         print("Passed");
-      }
     }
 
     [Button]
@@ -99,11 +98,10 @@ namespace SingletonPattern {
     }
 
     private void TestPersistence() {
-      if (_singleton == null) {
+      if (_singleton == null)
         print("Failed");
-      } else {
+      else
         print("Passed");
-      }
     }
   }
 }

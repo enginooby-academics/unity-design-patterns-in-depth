@@ -1,19 +1,21 @@
+using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
 using Enginoobz.Attribute;
 #endif
 
-using UnityEngine;
-
 namespace IteratorPattern.Case1.Base {
   public class Waypoint : MonoBehaviour {
-    public enum Color { Green, Red }
+    public enum Color {
+      Green,
+      Red
+    }
 
-    [SerializeField, OnValueChanged(nameof(UpdateColor)), EnumToggleButtons]
+    [SerializeField] [OnValueChanged(nameof(UpdateColor))] [EnumToggleButtons]
     private Color _color;
 
-    [SerializeField, OnValueChanged(nameof(UpdateSize)), Range(.5f, 2f)]
+    [SerializeField] [OnValueChanged(nameof(UpdateSize))] [Range(.5f, 2f)]
     private float _size = 1f;
 
     public float GetSize() => _size;
@@ -21,8 +23,8 @@ namespace IteratorPattern.Case1.Base {
 
     // IMPL
     private void UpdateColor() {
-      Material mat = GetComponent<MeshRenderer>().sharedMaterial;
-      mat.color = (_color == Color.Green) ? UnityEngine.Color.green : UnityEngine.Color.red;
+      var mat = GetComponent<MeshRenderer>().sharedMaterial;
+      mat.color = _color == Color.Green ? UnityEngine.Color.green : UnityEngine.Color.red;
     }
 
     private void UpdateSize() {

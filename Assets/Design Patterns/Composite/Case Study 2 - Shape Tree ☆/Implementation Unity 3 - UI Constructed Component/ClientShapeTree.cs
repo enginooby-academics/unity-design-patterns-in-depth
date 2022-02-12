@@ -1,20 +1,17 @@
+using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
 using Enginoobz.Attribute;
 #endif
 
-using UnityEngine;
-
 namespace CompositePattern.Case2.Unity3 {
   public class ClientShapeTree : MonoBehaviourGizmos {
-    [SerializeField]
-    private IShapeContainer _rootPrefab;
+    [SerializeField] private IShapeContainer _rootPrefab;
 
-    [ShowInInspector]
-    private IShape _root;
+    [ShowInInspector] private IShape _root;
 
-    void Awake() {
+    private void Awake() {
       _root = Instantiate(_rootPrefab.Object) as IShape;
       (_root as MonoBehaviour).transform.SetParent(transform);
       (_root as MonoBehaviour).gameObject.name = "Root";

@@ -3,31 +3,25 @@ using UnityEngine;
 
 namespace Flyweight {
   public abstract class BoidsController : MonoBehaviourSingleton<BoidsController> {
-    [Header("BOID PARAMETERS")]
-    [SerializeField] protected int boidAmount = 100;
+    [Header("BOID PARAMETERS")] [SerializeField]
+    protected int boidAmount = 100;
+
     public float boidSpeed = 10;
     public float boidPerceptionRadius = 10;
 
-    [Header("FORCE PARAMETERS")]
-    public float separationWeight = 1;
+    [Header("FORCE PARAMETERS")] public float separationWeight = 1;
+
     public float cohesionWeight = 1;
     public float alignmentWeight = 1;
 
-    [Header("CAGE PARAMETERS")]
-    public float cageSize = 100;
+    [Header("CAGE PARAMETERS")] public float cageSize = 100;
+
     public float avoidWallsWeight = 10;
     public float avoidWallsTurnDist = 10;
 
     protected List<Boid> _boids = new List<Boid>();
 
     public List<Boid> Boids => _boids;
-
-    private void Awake() {
-      // _boids?.Clear();
-      SpawnBoids();
-    }
-
-    protected abstract void SpawnBoids();
 
     // protected virtual void SpawnBoids() {
     //   for (int i = 0; i < boidAmount; i++) {
@@ -63,14 +57,23 @@ namespace Flyweight {
 
 
     // HELPER
-    public Vector3 RandomPosInCage => new Vector3(Random.Range(-cageSize / 2f, cageSize / 2f), Random.Range(-cageSize / 2f, cageSize / 2f), Random.Range(-cageSize / 2f, cageSize / 2f));
+    public Vector3 RandomPosInCage => new Vector3(Random.Range(-cageSize / 2f, cageSize / 2f),
+      Random.Range(-cageSize / 2f, cageSize / 2f), Random.Range(-cageSize / 2f, cageSize / 2f));
 
     // HELPER
-    public Quaternion RandomRot => Quaternion.Euler(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
+    public Quaternion RandomRot =>
+      Quaternion.Euler(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
+
+    private void Awake() {
+      // _boids?.Clear();
+      SpawnBoids();
+    }
 
     private void OnDrawGizmos() {
       Gizmos.color = Color.red;
       Gizmos.DrawWireCube(Vector3.zero, new Vector3(cageSize, cageSize, cageSize));
     }
+
+    protected abstract void SpawnBoids();
   }
 }

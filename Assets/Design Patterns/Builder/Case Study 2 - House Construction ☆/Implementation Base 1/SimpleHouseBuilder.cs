@@ -1,11 +1,11 @@
+using System.Collections;
 using UnityEngine;
 using static UnityEngine.PrimitiveType;
 using static UnityEngine.GameObject;
-using System.Collections;
 
 namespace BuilderPattern.Case2.Base1 {
   /// <summary>
-  /// * A 'Concrete Builder' class
+  ///   * A 'Concrete Builder' class
   /// </summary>
   public class SimpleHouseBuilder : IHouseBuilder {
     private House _house;

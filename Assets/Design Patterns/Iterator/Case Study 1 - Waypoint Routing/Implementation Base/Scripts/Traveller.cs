@@ -1,3 +1,4 @@
+using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
@@ -9,15 +10,17 @@ using Enginoobz.Core;
 using DG.Tweening;
 #endif
 
-using UnityEngine;
-
 namespace IteratorPattern.Case1.Base {
   public class Traveller : SerializedMonoBehaviour {
-    [SerializeField, OnValueChanged(nameof(CreateIterator))]
+    [SerializeField] [OnValueChanged(nameof(CreateIterator))]
     private IIterableContainer<Waypoint> _path = new IIterableContainer<Waypoint>();
 
-    [SerializeField, InlineEditor, SerializeReference]
+    [SerializeField] [InlineEditor] [SerializeReference]
     private IIterator<Waypoint> _iterator; // ! not serialized, has to init in Start()
+
+    private void Start() {
+      CreateIterator();
+    }
 
 
     // IMPL: Reflection for iterator types
@@ -39,16 +42,13 @@ namespace IteratorPattern.Case1.Base {
       _iterator = _path.Result.GetIterator();
     }
 
-    private void Start() {
-      CreateIterator();
-    }
-
     [Button]
     public void MoveOnPath() {
 #if ASSET_DOTWEEN
       if (_iterator.HasNext())
         transform.DOMove(_iterator.GetNext().transform.position, 2)
-          .OnComplete(() => MoveOnPath()); ;
+          .OnComplete(() => MoveOnPath());
+      ;
 #endif
     }
   }

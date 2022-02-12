@@ -1,14 +1,13 @@
+using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
 using Enginoobz.Attribute;
 #endif
 
-using UnityEngine;
-
 namespace CompositePattern.Case1.Base {
   public class Spawner : MonoBehaviourGizmos {
-    [SerializeField, SerializeReference, HideLabel]
+    [SerializeField] [SerializeReference] [HideLabel]
     private Area _spawnArea = new AreaComposite();
 
     private void Reset() {
@@ -24,7 +23,7 @@ namespace CompositePattern.Case1.Base {
 
     [Button]
     public void SpawnRandom() {
-      GameObject obj = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+      var obj = GameObject.CreatePrimitive(PrimitiveType.Sphere);
       obj.transform.position = _spawnArea.RandomPoint;
     }
   }

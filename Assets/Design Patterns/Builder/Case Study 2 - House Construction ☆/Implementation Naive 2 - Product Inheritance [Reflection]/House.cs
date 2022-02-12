@@ -3,11 +3,9 @@ using UnityEngine;
 
 namespace BuilderPattern.Case2.Naive2 {
   public abstract class House {
-    public GameObject Container { get; private set; }
+    public House(string name) => Container = new GameObject(name);
 
-    public House(string name) {
-      Container = new GameObject(name);
-    }
+    public GameObject Container { get; }
 
     public void Add(GameObject part) {
       part.transform.SetParent(Container.transform);

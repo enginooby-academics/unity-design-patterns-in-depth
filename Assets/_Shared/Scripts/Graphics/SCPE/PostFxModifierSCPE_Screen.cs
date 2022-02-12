@@ -1,25 +1,27 @@
 #if ASSET_SCPE
-using UnityEngine;
 using SCPE;
+using UnityEngine;
+using Gradient = SCPE.Gradient;
+
 // using QFSW.QC;
 
 namespace Enginoobz.Graphics {
   public partial class PostFxModifierSCPE : MonoBehaviour {
     private BlackBars blackBars;
-    private Danger danger;
-    private SCPE.Gradient gradient;
-    private Refraction refraction;
-    private Ripples ripples;
-    private SpeedLines speedLines;
-    private TubeDistortion tubeDistortion;
-    private Kaleidoscope kaleidoscope;
 
     private bool blackBarsOriginalState;
+    private Danger danger;
     private bool dangerOriginalState;
+    private Gradient gradient;
     private bool gradientOriginalState;
+    private Kaleidoscope kaleidoscope;
+    private Refraction refraction;
     private bool refractionOriginalState;
+    private Ripples ripples;
     private bool ripplesOriginalState;
+    private SpeedLines speedLines;
     private bool speedLinesOriginalState;
+    private TubeDistortion tubeDistortion;
     private bool tubeDistortionOriginalState;
 
     private void GetScreenOriginalStates() {
@@ -60,14 +62,14 @@ namespace Enginoobz.Graphics {
     }
 
     private void GetScreenSettings() {
-      Profile.TryGet<BlackBars>(out blackBars);
-      Profile.TryGet<Danger>(out danger);
-      Profile.TryGet<SCPE.Gradient>(out gradient);
-      Profile.TryGet<Refraction>(out refraction);
-      Profile.TryGet<Ripples>(out ripples);
-      Profile.TryGet<SpeedLines>(out speedLines);
-      Profile.TryGet<TubeDistortion>(out tubeDistortion);
-      Profile.TryGet<Kaleidoscope>(out kaleidoscope);
+      Profile.TryGet(out blackBars);
+      Profile.TryGet(out danger);
+      Profile.TryGet(out gradient);
+      Profile.TryGet(out refraction);
+      Profile.TryGet(out ripples);
+      Profile.TryGet(out speedLines);
+      Profile.TryGet(out tubeDistortion);
+      Profile.TryGet(out kaleidoscope);
     }
 
     // [Command(CommandPrefix.PostFx + "tube-distortion-toggle")]

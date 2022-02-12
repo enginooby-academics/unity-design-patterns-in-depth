@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UltEvents; // !
+using UltEvents;
+
+// !
 
 namespace ObserverPattern.UltEvents {
   public class GameManager : ObserverPattern.GameManager {

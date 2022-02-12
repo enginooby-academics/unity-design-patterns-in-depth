@@ -1,29 +1,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.EventSystems; // !
-using UnityEngine.UI; // !
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using UnityEngine.UI.ProceduralImage;
+// !
+
+// !
 
 namespace ObserverPattern.UIEventSystem {
   public class ColorPicker : MonoBehaviour {
     public UnityEvent<Color> onSwatchSelected = new UnityEvent<Color>();
-    private GraphicRaycaster raycaster;
-    private PointerEventData pointerEventData;
     private EventSystem eventSystem;
+    private PointerEventData pointerEventData;
+    private GraphicRaycaster raycaster;
 
-    void Start() {
+    private void Start() {
       raycaster = GetComponent<GraphicRaycaster>();
       eventSystem = GetComponent<EventSystem>();
     }
 
-    void Update() {
+    private void Update() {
       if (MouseButton.Left.IsDown()) HandleSelectSwatch();
     }
 
     private void HandleSelectSwatch() {
-      foreach (RaycastResult swatch in GetSwatchesUnderMouse()) {
+      foreach (var swatch in GetSwatchesUnderMouse()) {
 #if ASSET_PROCEDURAL_IMAGE
-        var image = swatch.gameObject.GetComponent<UnityEngine.UI.ProceduralImage.ProceduralImage>();
+        var image = swatch.gameObject.GetComponent<ProceduralImage>();
         if (!image) return;
         onSwatchSelected.Invoke(image.color);
 #endif

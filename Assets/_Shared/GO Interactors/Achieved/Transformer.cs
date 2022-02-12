@@ -1,20 +1,18 @@
 using UnityEngine;
 
 public class Transformer : MonoBehaviour {
-  [SerializeField]
-  MonoBehaviour currentPlayer;
-  [SerializeField]
-  Rigidbody objectRigidbody;
+  [SerializeField] private MonoBehaviour currentPlayer;
+
+  [SerializeField] private Rigidbody objectRigidbody;
 
   private Vector3 previousPlayerPos;
   private Selector selector;
 
-  void Start() {
+  private void Start() {
     selector = FindObjectOfType<Selector>();
   }
 
-  void Update() {
-
+  private void Update() {
   }
 
   // TODO: Process dest so that player do not collide w/ target
@@ -46,7 +44,7 @@ public class Transformer : MonoBehaviour {
   // the target must setup rigidbody to force updating physics engine
   public void FixMovedObjectForSelector(GameObject target) {
     // Rigidbody rb = target.GetComponent<Rigidbody>() ?? target.AddComponent<Rigidbody>();
-    Rigidbody rb = target.GetComponent<Rigidbody>();
+    var rb = target.GetComponent<Rigidbody>();
     if (!rb) {
       rb = target.AddComponent<Rigidbody>();
       rb.useGravity = false; // optional

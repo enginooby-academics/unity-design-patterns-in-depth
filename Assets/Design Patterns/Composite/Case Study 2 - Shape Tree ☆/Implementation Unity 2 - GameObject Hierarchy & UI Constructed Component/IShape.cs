@@ -1,11 +1,14 @@
+using System;
+
 namespace CompositePattern.Case2.Unity2 {
   /// <summary>
-  /// * The 'Component' interface
+  ///   * The 'Component' interface
   /// </summary>
   public interface IShape {
     double GetVolume();
   }
 
-  [System.Serializable]
-  public class IShapeContainer : IUnifiedContainer<IShape> { }
+  [Serializable]
+  public class IShapeContainer : IUnifiedContainer<IShape> {
+  }
 }

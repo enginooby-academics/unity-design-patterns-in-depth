@@ -4,10 +4,10 @@ namespace VisitorPattern.Case1.Naive2 {
   public abstract class Calculator {
     public double Calculate(ProceduralShape shape) {
       var shapeType = shape.GetType();
-      var calculatorType = this.GetType();
-      var calculatingMethod = calculatorType.GetNonPublicMethod(nameof(Calculate), paramType: shapeType);
+      var calculatorType = GetType();
+      var calculatingMethod = calculatorType.GetNonPublicMethod(nameof(Calculate), shapeType);
 
-      return (double)calculatingMethod?.Invoke(this, new[] { shape });
+      return (double) calculatingMethod?.Invoke(this, new[] {shape});
 
       throw new NotImplementedException();
     }

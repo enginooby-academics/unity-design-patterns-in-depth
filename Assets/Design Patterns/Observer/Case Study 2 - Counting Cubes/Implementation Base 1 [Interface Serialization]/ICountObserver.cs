@@ -1,11 +1,14 @@
+using System;
+
 namespace ObserverPattern.Case2.Base1 {
   /// <summary>
-  /// * [The 'Observer' contract]
+  ///   * [The 'Observer' contract]
   /// </summary>
   public interface ICountObserver {
     void OnCountChanged(int count);
   }
 
-  [System.Serializable]
-  public class ICountObserverContainer : IUnifiedContainer<ICountObserver> { }
+  [Serializable]
+  public class ICountObserverContainer : IUnifiedContainer<ICountObserver> {
+  }
 }

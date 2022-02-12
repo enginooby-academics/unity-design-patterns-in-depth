@@ -3,11 +3,11 @@ using static PrimitiveUtils;
 
 namespace AbstractFactoryPattern.Case1 {
   /// <summary>
-  /// * [An 'Abstract Product']
+  ///   * [An 'Abstract Product']
   /// </summary>
   public abstract class Sphere {
-    protected float _radius;
     protected GameObject _gameObject;
+    protected float _radius;
 
     protected Sphere(float radius, Color color) {
       _radius = radius;

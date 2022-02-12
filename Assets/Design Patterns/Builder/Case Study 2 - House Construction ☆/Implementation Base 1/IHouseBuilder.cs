@@ -1,7 +1,8 @@
 using System.Collections;
+
 namespace BuilderPattern.Case2.Base1 {
   /// <summary>
-  /// * The 'Builder' contract
+  ///   * The 'Builder' contract
   /// </summary>
   public interface IHouseBuilder {
     IEnumerator BuildBase(float speed);

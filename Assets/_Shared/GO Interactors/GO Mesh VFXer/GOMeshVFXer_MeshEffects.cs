@@ -1,5 +1,4 @@
 #if ASSET_MESH_EFFECTS
-
 using System.Collections;
 using UnityEngine;
 
@@ -8,7 +7,8 @@ public class GOMeshVFXer_MeshEffects : GOI_ComponentIsEffect<GOMeshVFXer_MeshEff
   // to prevent destroying the previous effect also destroy the material of the next effect
   const float TRANSITION_DELAY = 0.2f;
 
-  protected override void SetComponentActive(PSMeshRendererUpdater component, bool isActive) => component.IsActive = isActive;
+  protected override void SetComponentActive(PSMeshRendererUpdater component, bool isActive) => component.IsActive =
+ isActive;
   protected override bool GetComponentActive(PSMeshRendererUpdater component) => component.IsActive;
 
   public override void Interact(GameObject go, PSMeshRendererUpdater effect) {

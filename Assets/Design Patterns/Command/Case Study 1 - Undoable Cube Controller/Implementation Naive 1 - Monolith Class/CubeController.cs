@@ -1,25 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.UI;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
 using Enginoobz.Attribute;
 #endif
 
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-using UnityEngine.UI;
-
 namespace CommandPattern.Case1.Naive1 {
-  public enum Command { MoveUp, MoveDown, MoveLeft, MoveRight }
+  public enum Command {
+    MoveUp,
+    MoveDown,
+    MoveLeft,
+    MoveRight
+  }
 
   public class CubeController : MonoBehaviour {
-    [SerializeField]
-    private Cube _cube;
-    [SerializeField]
-    private Button _moveUpButton;
+    private static readonly List<Command> _commandHistory = new List<Command>();
+    [SerializeField] private Cube _cube;
+    [SerializeField] private Button _moveUpButton;
 
-    private static List<Command> _commandHistory = new List<Command>();
+    private void Update() {
+      ProcessCommands();
+    }
 
     private void OnEnable() {
       _moveUpButton.onClick.AddListener(() => {
@@ -28,37 +33,45 @@ namespace CommandPattern.Case1.Naive1 {
       });
     }
 
-    void Update() {
+    private void ProcessCommands() {
       if (Input.GetKeyDown(KeyCode.W)) {
         _cube.MoveY(1f);
         _commandHistory.Add(Command.MoveUp);
       }
+
       if (Input.GetKeyDown(KeyCode.S)) {
         _cube.MoveY(-1f);
         _commandHistory.Add(Command.MoveDown);
       }
+
       if (Input.GetKeyDown(KeyCode.A)) {
         _cube.MoveX(-1f);
         _commandHistory.Add(Command.MoveLeft);
       }
+
       if (Input.GetKeyDown(KeyCode.D)) {
         _cube.MoveX(1f);
         _commandHistory.Add(Command.MoveRight);
       }
     }
 
-    [Button, HorizontalGroup]
+    [Button]
+    [HorizontalGroup]
     public void Rewind() => StartCoroutine(RewindCoroutine());
+
+    [Button]
+    [HorizontalGroup]
+    public void Undo() => UndoACommand(_commandHistory.GetLast());
 
     // = Undo all
     public IEnumerator RewindCoroutine() {
       foreach (var command in Enumerable.Reverse(_commandHistory)) {
-        UndoCommand(command);
+        UndoACommand(command);
         yield return new WaitForSeconds(.5f);
       }
     }
 
-    private void UndoCommand(Command command) {
+    private void UndoACommand(Command command) {
       switch (command) {
         case Command.MoveUp:
           _cube.MoveY(-1f);
@@ -73,14 +86,8 @@ namespace CommandPattern.Case1.Naive1 {
           _cube.MoveX(-1f);
           break;
       }
+
       _commandHistory.Remove(command);
-    }
-
-    [Button, HorizontalGroup]
-    public void Undo() {
-      if (_commandHistory.IsUnset()) return;
-
-      UndoCommand(_commandHistory.GetLast());
     }
   }
 }

@@ -1,3 +1,4 @@
+using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
@@ -5,32 +6,26 @@ using Enginoobz.Attribute;
 using Enginoobz.Core;
 #endif
 
-using UnityEngine;
-
 namespace MementoPattern.Case1.Base {
   /// <summary>
-  /// The 'Originator' class.
+  ///   The 'Originator' class.
   /// </summary>
-
-  public enum ShapeType { Cube, Sphere, Cylinder } // subset of PrimitiveType for this study case
+  public enum ShapeType {
+    Cube,
+    Sphere,
+    Cylinder
+  } // subset of PrimitiveType for this study case
 
   [TypeInfoBox("Modify properties in Play Mode only!")]
   public class Shape : SerializedMonoBehaviour {
-    [SerializeField, OnValueChanged(nameof(UpdateType)), EnumToggleButtons]
+    [SerializeField] [OnValueChanged(nameof(UpdateType))] [EnumToggleButtons]
     private ShapeType _type;
 
-    [SerializeField, OnValueChanged(nameof(UpdateColor))]
+    [SerializeField] [OnValueChanged(nameof(UpdateColor))]
     private Color _color = Color.cyan;
 
-    [SerializeField, OnValueChanged(nameof(UpdateSize)), Range(.5f, 2f)]
+    [SerializeField] [OnValueChanged(nameof(UpdateSize))] [Range(.5f, 2f)]
     private float _size = 1f;
-
-    private void UpdateType() => Type = _type;
-    private void UpdateColor() => Color = _color;
-    private void UpdateSize() => Size = _size;
-
-    [Button]
-    public void ClearAllCaches() => gameObject.ClearCaches();
 
     public ShapeType Type {
       set {
@@ -59,12 +54,20 @@ namespace MementoPattern.Case1.Base {
       UpdateType();
     }
 
+    private void UpdateType() => Type = _type;
+    private void UpdateColor() => Color = _color;
+    private void UpdateSize() => Size = _size;
+
+    [Button]
+    public void ClearAllCaches() => gameObject.ClearCaches();
+
     [Button]
     public void CreateSnapshot(string snapshotName) {
       if (SaveSystem.Instance.CheckSnapshotExist(snapshotName)) {
         Debug.LogError($"Snapshot named {snapshotName} is already existed. Please provide other name.");
         return;
       }
+
       var snapshot = new ShapeSnapshot(snapshotName, _type, _color, _size);
       SaveSystem.Instance.AddSnapshot(snapshot);
     }

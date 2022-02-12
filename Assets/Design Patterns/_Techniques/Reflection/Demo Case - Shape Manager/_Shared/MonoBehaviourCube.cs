@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Reflection.Case1 {
   public class MonoBehaviourCube : MonoBehaviour, IShape {
-    void Start() {
+    private void Start() {
       gameObject.name = "MonoBehaviour Cube";
       gameObject.SetMaterialColor(Color.blue);
       gameObject.SetPrimitiveMesh(PrimitiveType.Cube);

@@ -1,16 +1,15 @@
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
 using Enginoobz.Attribute;
 #endif
 
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-
 namespace AbstractFactoryPattern.Case1 {
   /// <summary>
-  /// Base generator class containing common product usage code for naive and base implementations.
+  ///   Base generator class containing common product usage code for naive and base implementations.
   /// </summary>
   public class ClientShapeGenerator : MonoBehaviour {
     protected List<Cube> generatedCubes = new List<Cube>();
@@ -19,13 +18,13 @@ namespace AbstractFactoryPattern.Case1 {
 
     [Button]
     public void GetTotalDiagonals() {
-      float total = generatedCubes.Sum(cube => cube.GetDiagonal());
+      var total = generatedCubes.Sum(cube => cube.GetDiagonal());
       print("Total diagonal of all generated cubes is: " + total);
     }
 
     [Button]
     public void GetTotalDiameters() {
-      float total = generatedSpheres.Sum(sphere => sphere.GetDiameter());
+      var total = generatedSpheres.Sum(sphere => sphere.GetDiameter());
       print("Total diameter of all generated spheres is: " + total);
     }
   }

@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 using static VectorUtils;
 
 public static class MovementUtils {
@@ -45,21 +45,21 @@ public static class MovementUtils {
   }
 
   /// <summary>
-  /// Translate on local X (included deltaTime).
+  ///   Translate on local X (included deltaTime).
   /// </summary>
   public static void MoveX(this MonoBehaviour monoBehaviour, float distance = 1f) {
     monoBehaviour.transform.MoveX(distance);
   }
 
   /// <summary>
-  /// Translate on local Y (included deltaTime).
+  ///   Translate on local Y (included deltaTime).
   /// </summary>
   public static void MoveY(this MonoBehaviour monoBehaviour, float distance = 1f) {
     monoBehaviour.transform.MoveY(distance);
   }
 
   /// <summary>
-  /// Translate on local Z (included deltaTime).
+  ///   Translate on local Z (included deltaTime).
   /// </summary>
   public static void MoveZ(this MonoBehaviour monoBehaviour, float distance = 1f) {
     monoBehaviour.transform.MoveZ(distance);
@@ -67,7 +67,7 @@ public static class MovementUtils {
 
   public static void MoveXInBound(this MonoBehaviour monoBehaviour, float distance, Vector2 range) {
     monoBehaviour.transform.Translate(v100 * Time.deltaTime * distance);
-    float posX = monoBehaviour.transform.position.x;
+    var posX = monoBehaviour.transform.position.x;
     if (range.Contains(posX)) return;
     monoBehaviour.transform.PosX(Mathf.Clamp(posX, range.x, range.y));
   }
@@ -123,7 +123,8 @@ public static class MovementUtils {
 
   /// <summary>Reset rotation (slerp). Call in Update()</summary>
   public static void RotateTowardsIdentity(this MonoBehaviour monoBehaviour, float speed = .1f) {
-    monoBehaviour.transform.rotation = Quaternion.RotateTowards(monoBehaviour.transform.rotation, Quaternion.identity, speed);
+    monoBehaviour.transform.rotation =
+      Quaternion.RotateTowards(monoBehaviour.transform.rotation, Quaternion.identity, speed);
   }
 
   /// <summary>Move (slerp) to a destination. Using Coroutine so don't invoke in <c>Update()</c></summary>
@@ -132,7 +133,8 @@ public static class MovementUtils {
   }
 
   // FIX: does not move
-  public static void MoveTowardsByRigidBody(this MonoBehaviour monoBehaviour, Vector3 dest, float offset = 0f, float speed = 1f) {
+  public static void MoveTowardsByRigidBody(this MonoBehaviour monoBehaviour, Vector3 dest, float offset = 0f,
+    float speed = 1f) {
     var direction = Vector3.zero;
     if (Vector3.Distance(monoBehaviour.transform.position, dest) > offset) {
       direction = dest - monoBehaviour.transform.position;

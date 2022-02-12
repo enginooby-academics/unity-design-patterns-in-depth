@@ -1,19 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public static class ProceduralUtils {
-  private static List<Vector3> vertices = new List<Vector3>();
-  private static List<int> triangles = new List<int>();
-  private static List<Vector3> normals = new List<Vector3>();
-  private static List<Vector4> tangents = new List<Vector4>();
-  private static List<Vector2> uv = new List<Vector2>();
-  private static List<Vector2> uv2 = new List<Vector2>();
-  private static List<Vector2> uv3 = new List<Vector2>();
-  private static List<Vector2> uv4 = new List<Vector2>();
+  private static readonly List<Vector3> vertices = new List<Vector3>();
+  private static readonly List<int> triangles = new List<int>();
+  private static readonly List<Vector3> normals = new List<Vector3>();
+  private static readonly List<Vector4> tangents = new List<Vector4>();
+  private static readonly List<Vector2> uv = new List<Vector2>();
+  private static readonly List<Vector2> uv2 = new List<Vector2>();
+  private static readonly List<Vector2> uv3 = new List<Vector2>();
+  private static readonly List<Vector2> uv4 = new List<Vector2>();
 
   private static void SetMeshData(Mesh mesh) {
     mesh.Clear();
-    mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt16;
+    mesh.indexFormat = IndexFormat.UInt16;
     mesh.SetVertices(vertices);
     mesh.SetTriangles(triangles, 0, true);
     mesh.SetNormals(normals);
@@ -36,7 +37,7 @@ public static class ProceduralUtils {
   }
 
   public static Mesh CreateCubeMesh(float size = 1f) {
-    Mesh mesh = new Mesh();
+    var mesh = new Mesh();
     ClearMeshData();
     CreateCubeMeshData(size);
     SetMeshData(mesh);
@@ -44,23 +45,23 @@ public static class ProceduralUtils {
   }
 
   private static void CreateCubeMeshData(float size = 1f) {
-    Vector3 width = size * Vector3.right;
-    Vector3 length = size * Vector3.forward;
-    Vector3 height = size * Vector3.up;
+    var width = size * Vector3.right;
+    var length = size * Vector3.forward;
+    var height = size * Vector3.up;
 
-    Vector3 v000 = -width / 2 - length / 2 - height / 2;
-    Vector3 v001 = v000 + height;
-    Vector3 v010 = v000 + width;
-    Vector3 v011 = v000 + width + height;
-    Vector3 v100 = v000 + length;
-    Vector3 v101 = v000 + length + height;
-    Vector3 v110 = v000 + width + length;
-    Vector3 v111 = v000 + width + length + height;
+    var v000 = -width / 2 - length / 2 - height / 2;
+    var v001 = v000 + height;
+    var v010 = v000 + width;
+    var v011 = v000 + width + height;
+    var v100 = v000 + length;
+    var v101 = v000 + length + height;
+    var v110 = v000 + width + length;
+    var v111 = v000 + width + length + height;
 
-    Vector2 uv0 = new Vector2(0, 0);
-    Vector2 uv1 = new Vector2(0, 1);
-    Vector2 uv2 = new Vector2(1, 1);
-    Vector2 uv3 = new Vector2(1, 0);
+    var uv0 = new Vector2(0, 0);
+    var uv1 = new Vector2(0, 1);
+    var uv2 = new Vector2(1, 1);
+    var uv3 = new Vector2(1, 0);
 
     AddQuadUV(v100, v101, v001, v000, Vector3.left, uv0, uv1, uv2, uv3);
     AddQuadUV(v010, v011, v111, v110, Vector3.right, uv0, uv1, uv2, uv3);
@@ -71,7 +72,7 @@ public static class ProceduralUtils {
   }
 
   private static void AddQuadUV(Vector3 vertex0, Vector3 vertex1, Vector3 vertex2, Vector3 vertex3, Vector3 normal,
-     Vector2 uv0, Vector2 uv1, Vector2 uv2, Vector2 uv3) {
+    Vector2 uv0, Vector2 uv1, Vector2 uv2, Vector2 uv3) {
     uv.Add(uv0);
     uv.Add(uv1);
     uv.Add(uv2);
@@ -80,7 +81,7 @@ public static class ProceduralUtils {
   }
 
   private static void AddQuadNormal(Vector3 vertex0, Vector3 vertex1, Vector3 vertex2, Vector3 vertex3,
-          Vector3 normal0, Vector3 normal1, Vector3 normal2, Vector3 normal3) {
+    Vector3 normal0, Vector3 normal1, Vector3 normal2, Vector3 normal3) {
     normals.Add(normal0);
     normals.Add(normal1);
     normals.Add(normal2);

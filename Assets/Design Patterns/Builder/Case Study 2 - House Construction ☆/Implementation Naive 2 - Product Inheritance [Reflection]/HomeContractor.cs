@@ -1,33 +1,29 @@
+using System;
+using System.Collections;
+using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
 using Enginoobz.Attribute;
 #endif
 
-using System.Collections;
-using UnityEngine;
-
 namespace BuilderPattern.Case2.Naive2 {
-  [System.Serializable, InlineProperty]
+  [Serializable]
+  [InlineProperty]
   public class HomeContractor {
-    [SerializeField]
-    [Range(50f, 300f)]
-    [SuffixLabel("%")]
+    [SerializeField] [Range(50f, 300f)] [SuffixLabel("%")]
     private float _speed = 200f;
 
-    [SerializeField]
-    private ReferenceConcreteType<House> _houseType;
+    [SerializeField] private ReferenceConcreteType<House> _houseType;
 
     public void Construct() {
       StartCoroutine(ConstructCoroutine());
     }
 
-    private Coroutine StartCoroutine(IEnumerator routine) {
-      return Worker.Instance.StartCoroutine(routine);
-    }
+    private Coroutine StartCoroutine(IEnumerator routine) => Worker.Instance.StartCoroutine(routine);
 
     public IEnumerator ConstructCoroutine() {
-      House house = _houseType.CreateInstance();
+      var house = _houseType.CreateInstance();
       yield return StartCoroutine(house.BuildBase(_speed));
       yield return StartCoroutine(house.BuildRoof(_speed));
       yield return StartCoroutine(house.BuildDoor(_speed));

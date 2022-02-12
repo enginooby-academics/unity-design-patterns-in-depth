@@ -1,5 +1,5 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using Shared = ObserverPattern.Case2;
 
 namespace ObserverPattern.Case2.CSharp {

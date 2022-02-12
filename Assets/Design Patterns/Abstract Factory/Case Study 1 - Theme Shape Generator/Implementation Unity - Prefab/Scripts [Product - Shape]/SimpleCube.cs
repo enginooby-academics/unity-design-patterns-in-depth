@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace AbstractFactoryPattern.Case1.Unity.Prefab {
   /// <summary>
-  /// * [A 'Concrete Product']
+  ///   * [A 'Concrete Product']
   /// </summary>
   public class SimpleCube : Cube {
     private void Awake() {

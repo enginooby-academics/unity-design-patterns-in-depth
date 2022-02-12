@@ -2,11 +2,9 @@ using UnityEngine;
 
 namespace Flyweight.Unity.Prefab {
   public class Boid : Flyweight.Boid {
-    [SerializeField]
-    private Specie _specie;
+    [SerializeField] private Specie _specie;
 
-    [SerializeField]
-    private EndangeredStatus _endangeredStatus;
+    [SerializeField] private EndangeredStatus _endangeredStatus;
 
 
     protected override void DisplayInfo() {

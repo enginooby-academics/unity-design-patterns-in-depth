@@ -1,26 +1,27 @@
 // * Base class for events happening on interaction of Collider components such as Trigger/Collision
+
+using System;
+using System.Collections.Generic;
+using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
 using Enginoobz.Attribute;
 #endif
 
-using UnityEngine;
-using System.Collections.Generic;
-using System;
-
 namespace Enginoobz {
-
-  [Serializable, InlineProperty]
+  [Serializable]
+  [InlineProperty]
   public class ColliderEvent : TriggerEvent {
-    [PropertyOrder(-1)] public bool enableForAll = false;
+    [PropertyOrder(-1)] public bool enableForAll;
 
-    [DisableIf(nameof(enableForAll))]
-    [PropertyOrder(-1)] public List<Reference> targets = new List<Reference>();
+    [DisableIf(nameof(enableForAll))] [PropertyOrder(-1)]
+    public List<Reference> targets = new List<Reference>();
 
     public List<string> Tags {
       get {
-        List<string> tags = new List<string>();
+        var tags = new List<string>();
         targets.ForEach(target => {
           if (target.findMethod == Reference.FindMethod.Tag) tags.Add(target.Tag);
         });
@@ -29,7 +30,7 @@ namespace Enginoobz {
     }
 
     /// <summary>
-    /// Check if the GameObject is valid by target list to invoke the event
+    ///   Check if the GameObject is valid by target list to invoke the event
     /// </summary>
     public bool IsTriggerBy(GameObject go) {
       if (enableForAll) return true;

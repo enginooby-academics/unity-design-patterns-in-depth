@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ObserverPattern.UltEvents {
-
   public class Player : ObserverPattern.Player {
-    [SerializeField] GameManager gameManager;
+    [SerializeField] private GameManager gameManager;
 
-    void OnEnable() {
+    private void OnEnable() {
       // ! dynamic/script event binding
       gameManager.onLevelIncreasedEvent += UpdateHealthOnNewLevel;
     }

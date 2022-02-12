@@ -6,12 +6,17 @@ using UnityEngine;
 public abstract partial class GOI_EffectIsEnum<TSelf, TComponent, TEffectEnum, TCache> {
   [SerializeField] protected TEffectEnum _effect;
 
-  protected virtual TEffectEnum InitEffectEnum() => default(TEffectEnum);
+  protected virtual TEffectEnum InitEffectEnum() => default;
 
   public abstract void Interact(GameObject go, TEffectEnum effect);
 
-  public override void IncrementEffect() => _effect = _effect.Next();
-  public override void DecrementEffect() => _effect = _effect.Previous();
+  public override void IncrementEffect() {
+    _effect = _effect.Next();
+  }
+
+  public override void DecrementEffect() {
+    _effect = _effect.Previous();
+  }
 
   public override void AwakeSingleton() {
     base.AwakeSingleton();

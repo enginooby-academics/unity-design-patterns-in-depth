@@ -1,14 +1,13 @@
+using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
 using Enginoobz.Attribute;
 #endif
 
-using UnityEngine;
-
 public class SwitcherTexture : Switcher<Texture> {
-  [PropertyOrder(-1)]
-  [SerializeField] private Renderer meshRenderer;
+  [PropertyOrder(-1)] [SerializeField] private Renderer meshRenderer;
 
   public override void Init() {
     meshRenderer = GetComponent<Renderer>();

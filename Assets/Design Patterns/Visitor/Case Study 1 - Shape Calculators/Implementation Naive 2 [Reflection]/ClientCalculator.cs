@@ -1,18 +1,15 @@
+using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
 using Enginoobz.Attribute;
 #endif
 
-using UnityEngine;
-
 namespace VisitorPattern.Case1.Naive2 {
   public class ClientCalculator : MonoBehaviour {
-    [SerializeReference]
-    private Calculator _currentCalculator;
+    [SerializeField] [InlineEditor] private ProceduralShape _currentShape;
 
-    [SerializeField, InlineEditor]
-    private ProceduralShape _currentShape;
+    [SerializeReference] private Calculator _currentCalculator;
 
     [Button]
     public void ProcessCalculationOnCurrentShape() {

@@ -4,7 +4,7 @@ using Shared = ObserverPattern.Case2;
 // TODO: use UnityEvent for UI binding then replace by Action version in Play Mode for performance
 namespace ObserverPattern.Case2.Unity1 {
   /// <summary>
-  /// * [The 'Subject' class]
+  ///   * [The 'Subject' class]
   /// </summary>
   public class Counter : Shared.Counter {
     // ! 1. Declare UnityEvent in the Subject 
@@ -12,17 +12,17 @@ namespace ObserverPattern.Case2.Unity1 {
     // [UnityEngine.SerializeField]
     public UnityEvent<int> OnCountUpEvent = new UnityEvent<int>();
 
-    // Secure UnityEvent while expose AddListener()
-    public void ListenOnCountUpEvent(UnityAction<int> action) {
-      OnCountUpEvent.AddListener(action);
-    }
-
     public override int Count {
       set {
         _count = value;
         // ! 2. Invoke the event
         OnCountUpEvent?.Invoke(_count);
       }
+    }
+
+    // Secure UnityEvent while expose AddListener()
+    public void ListenOnCountUpEvent(UnityAction<int> action) {
+      OnCountUpEvent.AddListener(action);
     }
   }
 }

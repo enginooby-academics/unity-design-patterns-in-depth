@@ -20,32 +20,38 @@ using static UnityEngine.Mathf;
 
 
 namespace CompositePattern.Case2.Base1 {
-  public enum ShapeType { Cube, Sphere }
+  public enum ShapeType {
+    Cube,
+    Sphere
+  }
 
   /// <summary>
-  /// * The 'Composite' class
-  /// Optionally extends Leaf base class.
+  ///   * The 'Composite' class
+  ///   Optionally extends Leaf base class.
   /// </summary>
-  [Serializable, InlineProperty]
+  [Serializable]
+  [InlineProperty]
   // ? Rename to CompositeShape
   public class CompoundShape : Shape {
-    [SerializeField, EnumToggleButtons, OnValueChanged(nameof(UpdateShapeType))]
+    [SerializeField] [EnumToggleButtons] [OnValueChanged(nameof(UpdateShapeType))]
     private ShapeType _shapeType = ShapeType.Cube;
 
-    [SerializeReference, OnCollectionChanged(nameof(SetupChildren))]
+    [SerializeReference] [OnCollectionChanged(nameof(SetupChildren))]
     private List<IShape> children = new List<IShape>();
 
-    public CompoundShape() : base(PrimitiveType.Cube) { }
+    public CompoundShape() : base(PrimitiveType.Cube) {
+    }
 
     private void UpdateShapeType() => GameObject.SetPrimitiveMesh(_shapeType);
 
     private void SetupChildren() {
-      Vector3 pos = GameObject.transform.position;
+      var pos = GameObject.transform.position;
 
-      for (int i = 0; i < children.Count; i++) {
-        Vector3 newPos = pos.OffsetY(-2).OffsetX(2 - 2 * children.Count + i * 4);
+      for (var i = 0; i < children.Count; i++) {
+        var newPos = pos.OffsetY(-2).OffsetX(2 - 2 * children.Count + i * 4);
 #if ASSET_DOTWEEN
-        children[i].GameObject.transform.DOMove(newPos, .4f).SetEase(Ease.InOutQuint); ;
+        children[i].GameObject.transform.DOMove(newPos, .4f).SetEase(Ease.InOutQuint);
+        ;
 #endif
         children[i].GameObject.transform.SetParent(GameObject.transform);
       }
@@ -63,12 +69,11 @@ namespace CompositePattern.Case2.Base1 {
     }
 
     public override double GetVolume() {
-      double childrenVolume = children.Sum(child => child.GetVolume());
-      double selfVolume = _shapeType switch
-      {
+      var childrenVolume = children.Sum(child => child.GetVolume());
+      double selfVolume = _shapeType switch {
         ShapeType.Cube => Pow(_scale, 3),
         ShapeType.Sphere => 4 / 3 * PI * Pow(_scale / 2, 3),
-        _ => throw new System.ArgumentOutOfRangeException(),
+        _ => throw new ArgumentOutOfRangeException()
       };
 
       return childrenVolume + selfVolume;

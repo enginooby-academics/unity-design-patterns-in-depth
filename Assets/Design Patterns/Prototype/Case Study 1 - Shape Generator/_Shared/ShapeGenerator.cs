@@ -3,14 +3,14 @@ using static RayUtils;
 
 namespace Prototype {
   public abstract class ShapeGenerator : MonoBehaviour {
-    public Prototype.ProceduralShape template;
     protected Vector3 _mousePos = Vector3.zero;
+    public ProceduralShape template;
 
-    void Start() {
+    private void Start() {
       GenerateShapes();
     }
 
-    void Update() {
+    private void Update() {
       if (MouseButton.Right.IsDown() && IsMouseRayHit) {
         _mousePos = MousePosOnRayHit.Value;
         CloneTemplate();
@@ -20,6 +20,7 @@ namespace Prototype {
     public abstract void GenerateShapes();
     public abstract void CloneTemplate();
 
-    public void SpawnRandom() { }
+    public void SpawnRandom() {
+    }
   }
 }

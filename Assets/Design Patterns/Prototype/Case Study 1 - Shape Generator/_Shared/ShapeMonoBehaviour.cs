@@ -2,12 +2,12 @@ using UnityEngine;
 
 namespace Prototype {
   /// <summary>
-  /// Add Unity behaviours to generated procedural shapes.
+  ///   Add Unity behaviours to generated procedural shapes.
   /// </summary>
   public class ShapeMonoBehaviour : MonoBehaviour {
     public ProceduralShape shape;
 
-    void Update() {
+    private void Update() {
       shape?.OnUpdate();
     }
 

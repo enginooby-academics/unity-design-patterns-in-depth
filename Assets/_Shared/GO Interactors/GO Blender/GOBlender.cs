@@ -42,4 +42,3 @@ public partial class GOBlender : GOI_EffectIsEnum<GOBlender, BlendModeEffect, Bl
   }
 }
 #endif
-

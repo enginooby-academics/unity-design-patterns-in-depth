@@ -7,11 +7,9 @@ namespace BuilderPattern.Case2.Unity2 {
   /// * The SO 'Builder/Product' class
   /// </summary>
   public class HouseData : ScriptableObject {
-    [SerializeField]
-    private GameObject _base, _roof, _door, _windows, _chimney;
+    [SerializeField] private GameObject _base, _roof, _door, _windows, _chimney;
 
-    [HideInInspector]
-    public GameObject Container;
+    [HideInInspector] public GameObject Container;
 
     private IEnumerator Build(GameObject part, float speed) {
       if (!part) yield break;

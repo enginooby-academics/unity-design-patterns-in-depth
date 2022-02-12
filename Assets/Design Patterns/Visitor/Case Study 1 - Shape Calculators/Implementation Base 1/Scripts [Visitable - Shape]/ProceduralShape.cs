@@ -1,14 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace VisitorPattern.Case1.Base1 {
   /// <summary>
-  /// * [The 'Abstract Visitable Element' class]
+  ///   * [The 'Abstract Visitable Element' class]
   /// </summary>
   public abstract class ProceduralShape : MonoBehaviour, ICalculatable {
     public abstract double ProcessCalculation(Calculator calculator);
 
     #region PROCEDURAL-RELATED =======================================================================================================================================================================
+
     protected List<Vector3> vertices = new List<Vector3>();
     protected List<int> triangles = new List<int>();
     protected List<Vector3> normals = new List<Vector3>();
@@ -37,7 +39,8 @@ namespace VisitorPattern.Case1.Base1 {
       UpdateMeshData();
     }
 
-    protected virtual void CreateMeshData() { }
+    protected virtual void CreateMeshData() {
+    }
 
     private void ClearMeshData() {
       vertices.Clear();
@@ -51,9 +54,9 @@ namespace VisitorPattern.Case1.Base1 {
     }
 
     private void UpdateMeshData() {
-      Mesh _mesh = _meshFilter.mesh;
+      var _mesh = _meshFilter.mesh;
       _mesh.Clear();
-      _mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt16;
+      _mesh.indexFormat = IndexFormat.UInt16;
       _mesh.SetVertices(vertices);
       _mesh.SetTriangles(triangles, 0, true);
       _mesh.SetNormals(normals);
@@ -63,6 +66,7 @@ namespace VisitorPattern.Case1.Base1 {
       _mesh.SetUVs(2, uv3);
       _mesh.SetUVs(3, uv4);
     }
+
     #endregion PROCEDURAL-RELATED ====================================================================================================================================================================
   }
 }

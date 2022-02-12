@@ -1,22 +1,22 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace VisitorPattern.Case1.CSharp {
   /// <summary>
-  /// * [The 'Abstract Visitable Element' class]
+  ///   * [The 'Abstract Visitable Element' class]
   /// </summary>
   public abstract class ProceduralShape : MonoBehaviour {
-    protected List<Vector3> vertices = new List<Vector3>();
-    protected List<int> triangles = new List<int>();
+    protected MeshFilter _meshFilter;
+    protected MeshRenderer _meshRenderer;
     protected List<Vector3> normals = new List<Vector3>();
     protected List<Vector4> tangents = new List<Vector4>();
+    protected List<int> triangles = new List<int>();
     protected List<Vector2> uv = new List<Vector2>();
     protected List<Vector2> uv2 = new List<Vector2>();
     protected List<Vector2> uv3 = new List<Vector2>();
     protected List<Vector2> uv4 = new List<Vector2>();
-
-    protected MeshFilter _meshFilter;
-    protected MeshRenderer _meshRenderer;
+    protected List<Vector3> vertices = new List<Vector3>();
 
     private void Awake() {
       _meshFilter = gameObject.AddComponent<MeshFilter>();
@@ -34,7 +34,8 @@ namespace VisitorPattern.Case1.CSharp {
       UpdateMeshData();
     }
 
-    protected virtual void CreateMeshData() { }
+    protected virtual void CreateMeshData() {
+    }
 
     private void ClearMeshData() {
       vertices.Clear();
@@ -48,9 +49,9 @@ namespace VisitorPattern.Case1.CSharp {
     }
 
     private void UpdateMeshData() {
-      Mesh _mesh = _meshFilter.mesh;
+      var _mesh = _meshFilter.mesh;
       _mesh.Clear();
-      _mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt16;
+      _mesh.indexFormat = IndexFormat.UInt16;
       _mesh.SetVertices(vertices);
       _mesh.SetTriangles(triangles, 0, true);
       _mesh.SetNormals(normals);

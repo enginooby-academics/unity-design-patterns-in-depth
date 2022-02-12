@@ -1,22 +1,21 @@
-#if ODIN_INSPECTOR
-using Sirenix.OdinInspector;
-#else
-using Enginoobz.Attribute;
-#endif
-
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+
+#else
+using Enginoobz.Attribute;
+#endif
 
 // TODO: Rename to VolumeProfileVariation extending SO
 // + Move to Graphics
 [ExecuteInEditMode]
 [RequireComponent(typeof(Volume))]
 public class VolumeEditor : MonoBehaviour {
-  [SerializeField]
-  private List<VolumeProfile> profiles;
-  [ValueDropdown("profiles")]
-  [SerializeField]
+  [SerializeField] private List<VolumeProfile> profiles;
+
+  [ValueDropdown("profiles")] [SerializeField]
   private VolumeProfile currentProfile;
 
   private Volume volume;
@@ -46,10 +45,10 @@ public class VolumeEditor : MonoBehaviour {
   }
 
   public void IncreaseVolumeWeight() {
-    if (volume != null & volume.weight < 1) volume.weight += 0.005f;
+    if ((volume != null) & (volume.weight < 1)) volume.weight += 0.005f;
   }
 
   public void DecreaseVolumeWeight() {
-    if (volume != null & volume.weight > 0) volume.weight -= 0.005f;
+    if ((volume != null) & (volume.weight > 0)) volume.weight -= 0.005f;
   }
 }

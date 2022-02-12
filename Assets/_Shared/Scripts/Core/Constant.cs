@@ -1,4 +1,5 @@
 ﻿// TODO: reference to SO Architecture to organize SO menu
+
 public static class Constant {
   public const int ASSET_MENU_ORDER_VARIABLES = 121;
   public const int ASSET_MENU_ORDER_EVENTS = 122;

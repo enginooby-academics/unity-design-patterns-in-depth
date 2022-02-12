@@ -10,7 +10,8 @@ namespace SingletonPattern.Case1.Unity2 {
     private void Awake() {
       if (Instance) {
         Destroy(gameObject);
-      } else {
+      }
+      else {
         Instance = this;
         DontDestroyOnLoad(gameObject); // !
       }

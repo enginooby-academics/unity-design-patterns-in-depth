@@ -11,21 +11,23 @@ namespace SingletonPattern.Case2.Unity3 {
 
     public static T Instance => _instance ??= FindObjectOfType<T>() ?? MakeInstance();
 
-    private static T MakeInstance() => new GameObject(typeof(T).Name).AddComponent<T>();
-
     public virtual void Awake() {
       if (_instance) {
         Destroy(gameObject);
-      } else {
+      }
+      else {
         _instance = this as T;
         HandlePersistence();
       }
     }
 
+    private static T MakeInstance() => new GameObject(typeof(T).Name).AddComponent<T>();
+
     protected virtual void HandlePersistence() => DontDestroyOnLoad(gameObject);
   }
 
   public abstract class MonoBehaviourSingletonNonPersistent<T> : MonoBehaviourSingleton<T> where T : Component {
-    protected override void HandlePersistence() { }
+    protected override void HandlePersistence() {
+    }
   }
 }

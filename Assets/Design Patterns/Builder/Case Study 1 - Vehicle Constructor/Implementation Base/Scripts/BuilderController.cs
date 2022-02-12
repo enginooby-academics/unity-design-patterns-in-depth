@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace BuilderPattern.Case1.Base {
   public class BuilderController : MonoBehaviour {
-    void Start() {
+    private void Start() {
       // Instantiate the director and builders
       var shopForeman = new ShopForeman();
       var carBuilder = new CarBuilder();
@@ -15,13 +15,13 @@ namespace BuilderPattern.Case1.Base {
       shopForeman.Construct(scooterBuilder);
 
       // Get the vehicles and access their methods.
-      Vehicle car = carBuilder.Vehicle;
+      var car = carBuilder.Vehicle;
       Debug.Log(car.GetPartsList());
 
-      Vehicle motorCycle = motorCycleBuilder.Vehicle;
+      var motorCycle = motorCycleBuilder.Vehicle;
       Debug.Log(motorCycle.GetPartsList());
 
-      Vehicle scooter = scooterBuilder.Vehicle;
+      var scooter = scooterBuilder.Vehicle;
       Debug.Log(scooter.GetPartsList());
 
 

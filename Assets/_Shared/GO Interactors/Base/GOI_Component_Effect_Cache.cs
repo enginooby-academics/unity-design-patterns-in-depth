@@ -3,13 +3,18 @@ using System.Linq;
 using UnityEngine;
 
 public abstract partial class GOI<TSelf, TComponent, TEffect, TCache> {
-  protected new Dictionary<GameObject, GOIStruct<TComponent, TEffect, TCache>> _interactedGos = new Dictionary<GameObject, GOIStruct<TComponent, TEffect, TCache>>();
-  protected override void ClearInteractedGos() => _interactedGos.Clear();
+  protected new Dictionary<GameObject, GOIStruct<TComponent, TEffect, TCache>> _interactedGos =
+    new Dictionary<GameObject, GOIStruct<TComponent, TEffect, TCache>>();
+
   public override List<GameObject> InteractedGos => _interactedGos.Keys.ToList();
+
+  protected override void ClearInteractedGos() {
+    _interactedGos.Clear();
+  }
 
 
   /// <summary>
-  /// Cache necessary Object of the GO to implement reverting method.
+  ///   Cache necessary Object of the GO to implement reverting method.
   /// </summary>
   protected abstract TCache CacheObject(GameObject go);
 
@@ -18,10 +23,11 @@ public abstract partial class GOI<TSelf, TComponent, TEffect, TCache> {
 
     if (_interactedGos.ContainsKey(go)) {
       component = _interactedGos[go].Component;
-    } else {
-      var cachedObject = CacheObject(go) as TCache;
+    }
+    else {
+      var cachedObject = CacheObject(go);
 
-      if (!go.TryGetComponent<TComponent>(out component)) {
+      if (!go.TryGetComponent(out component)) {
         component = go.AddComponent<TComponent>();
         OnComponentAdded(go, component);
       }
@@ -39,7 +45,5 @@ public abstract partial class GOI<TSelf, TComponent, TEffect, TCache> {
 public class GOIStruct<TComponent, TEffect, TCache> : GOIStruct<TComponent, TEffect> {
   public TCache Cache;
 
-  public GOIStruct(TComponent component, TEffect effect, TCache cache) : base(component, effect) {
-    Cache = cache;
-  }
+  public GOIStruct(TComponent component, TEffect effect, TCache cache) : base(component, effect) => Cache = cache;
 }

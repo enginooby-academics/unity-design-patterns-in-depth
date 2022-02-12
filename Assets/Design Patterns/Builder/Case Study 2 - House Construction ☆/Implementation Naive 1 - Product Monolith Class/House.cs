@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using static UnityEngine.PrimitiveType;
@@ -5,59 +6,59 @@ using static UnityEngine.GameObject;
 
 namespace BuilderPattern.Case2.Naive1 {
   public class House {
-    public enum Type { Simple, MultiStorey }
-    private Type _type;
+    public enum Type {
+      Simple,
+      MultiStorey
+    }
 
-    public GameObject Container { get; private set; }
+    private readonly Type _type;
 
     public House(Type type) {
       _type = type;
-      string name = _type == Type.Simple ? "Simple House" : "Multi-Storey House";
+      var name = _type == Type.Simple ? "Simple House" : "Multi-Storey House";
       Container = new GameObject(name);
     }
+
+    public GameObject Container { get; }
 
     public void Add(GameObject part) {
       part.transform.SetParent(Container.transform);
     }
 
     // ? Make speed a field of House class
-    public IEnumerator BuildBase(float speed) => _type switch
-    {
+    public IEnumerator BuildBase(float speed) => _type switch {
       Type.Simple => BuildBaseSimple(speed),
       Type.MultiStorey => BuildBaseMultiStorey(speed),
-      _ => throw new System.ArgumentOutOfRangeException()
+      _ => throw new ArgumentOutOfRangeException()
     };
 
 
-    public IEnumerator BuildRoof(float speed) => _type switch
-    {
+    public IEnumerator BuildRoof(float speed) => _type switch {
       Type.Simple => BuildRoofSimple(speed),
       Type.MultiStorey => BuildRoofMultiStorey(speed),
-      _ => throw new System.ArgumentOutOfRangeException()
+      _ => throw new ArgumentOutOfRangeException()
     };
 
-    public IEnumerator BuildDoor(float speed) => _type switch
-    {
+    public IEnumerator BuildDoor(float speed) => _type switch {
       Type.Simple => BuildDoorSimple(speed),
       Type.MultiStorey => BuildDoorMultiStorey(speed),
-      _ => throw new System.ArgumentOutOfRangeException()
+      _ => throw new ArgumentOutOfRangeException()
     };
 
-    public IEnumerator BuildWindows(float speed) => _type switch
-    {
+    public IEnumerator BuildWindows(float speed) => _type switch {
       Type.Simple => BuildWindowsSimple(speed),
       Type.MultiStorey => BuildWindowsMultiStorey(speed),
-      _ => throw new System.ArgumentOutOfRangeException()
+      _ => throw new ArgumentOutOfRangeException()
     };
 
-    public IEnumerator BuildChimney(float speed) => _type switch
-    {
+    public IEnumerator BuildChimney(float speed) => _type switch {
       Type.Simple => BuildChimneySimple(speed),
       Type.MultiStorey => BuildChimneyMultiStorey(speed),
-      _ => throw new System.ArgumentOutOfRangeException()
+      _ => throw new ArgumentOutOfRangeException()
     };
 
     #region SIMPLE HOUSE ---------------------------------------------------------------------------------------------------------------------------------
+
     private IEnumerator BuildBaseSimple(float speed) {
       Add(CreatePrimitive(Cube)
         .WithMaterial(Color.yellow)
@@ -119,9 +120,11 @@ namespace BuilderPattern.Case2.Naive1 {
 
       yield return new WaitForSeconds(100 / speed);
     }
+
     #endregion SIMPLE HOUSE ---------------------------------------------------------------------------------------------------------------------------------
 
     #region MULTI-STOREY HOUSE ---------------------------------------------------------------------------------------------------------------------------------
+
     public IEnumerator BuildBaseMultiStorey(float speed) {
       Add(CreatePrimitive(Cube)
         .WithMaterial(Color.black)
@@ -168,14 +171,14 @@ namespace BuilderPattern.Case2.Naive1 {
       Add(CreatePrimitive(Cube)
         .WithMaterial(Color.white)
         .WithPosition(5.1f, 5.3f, .7f)
-         .WithRotation(0f, 45f, 25f)
+        .WithRotation(0f, 45f, 25f)
         .WithScale(2f, .2f, 5f));
 
       Add(CreatePrimitive(Cube)
-         .WithMaterial(Color.white)
-         .WithPosition(3.9f, 3.5f, 1.9f)
-         .WithRotation(0f, 45f, 57f)
-         .WithScale(3f, .2f, 5f));
+        .WithMaterial(Color.white)
+        .WithPosition(3.9f, 3.5f, 1.9f)
+        .WithRotation(0f, 45f, 57f)
+        .WithScale(3f, .2f, 5f));
 
       yield return new WaitForSeconds(100 / speed);
     }
@@ -206,13 +209,14 @@ namespace BuilderPattern.Case2.Naive1 {
         .WithScale(1.3f, .9f, .1f));
 
       Add(CreatePrimitive(Cube)
-      .WithMaterial(Color.white)
-      .WithPosition(3.4f, 2.4f, -1.1f)
-      .WithRotation(0f, 44f, 0f)
-      .WithScale(1.3f, .9f, .1f));
+        .WithMaterial(Color.white)
+        .WithPosition(3.4f, 2.4f, -1.1f)
+        .WithRotation(0f, 44f, 0f)
+        .WithScale(1.3f, .9f, .1f));
 
       yield return new WaitForSeconds(100 / speed);
     }
+
     #endregion MULTI-STOREY HOUSE ---------------------------------------------------------------------------------------------------------------------------------
   }
 }

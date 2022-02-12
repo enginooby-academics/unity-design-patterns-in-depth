@@ -1,14 +1,14 @@
+using System;
+using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
 using Enginoobz.Attribute;
 #endif
 
-using UnityEngine;
-
 namespace Reflection.Case1.Reflection {
   /// <summary>
-  /// Refine the ShapeManager using reusable ReferenceConcreteType.
+  ///   Refine the ShapeManager using reusable ReferenceConcreteType.
   /// </summary>
   public class PrefabShapeManager : MonoBehaviour {
     // [SerializeField]
@@ -16,16 +16,16 @@ namespace Reflection.Case1.Reflection {
     // [AssetSelector(FlattenTreeView = true)]
     // private MonoBehaviourCube _monobehavourCube;
 
-    [SerializeField]
-    private IShapeContainer _shapePrefab;
+    [SerializeField] private IShapeContainer _shapePrefab;
 
     [Button]
     public void CreateShape() {
-      IShape shape = Instantiate(_shapePrefab.Object) as IShape;
+      var shape = Instantiate(_shapePrefab.Object) as IShape;
       print("Volume of the newly-created shape is: " + shape.GetVolume());
     }
   }
 
-  [System.Serializable]
-  public class IShapeContainer : IUnifiedContainer<IShape> { }
+  [Serializable]
+  public class IShapeContainer : IUnifiedContainer<IShape> {
+  }
 }

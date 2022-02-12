@@ -3,7 +3,7 @@ using System.Diagnostics;
 using UnityEngine;
 
 namespace Enginoobz.Attribute {
-  [AttributeUsage(AttributeTargets.All, AllowMultiple = false, Inherited = false)]
+  [AttributeUsage(AttributeTargets.All, Inherited = false)]
   [Conditional("UNITY_EDITOR")]
   public class InlineEditorAttribute : PropertyAttribute {
     public InlineEditorAttribute() {
@@ -13,5 +13,8 @@ namespace Enginoobz.Attribute {
     }
   }
 
-  public enum InlineEditorModes { FullEditor, GUIOnly }
+  public enum InlineEditorModes {
+    FullEditor,
+    GUIOnly
+  }
 }

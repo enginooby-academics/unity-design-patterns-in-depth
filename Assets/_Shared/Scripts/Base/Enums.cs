@@ -2,7 +2,11 @@ using System;
 
 // TODO: Separate file
 
-public enum MouseButton { Left, Right, Middle }
+public enum MouseButton {
+  Left,
+  Right,
+  Middle
+}
 
 // * Use (EnumFlag)1 as None value, e.g., (ModifierKey)1
 [Flags]
@@ -11,55 +15,59 @@ public enum ModifierKey {
   // L/R: Left/Right
 
   /// <summary>
-  /// Left Shift key.
+  ///   Left Shift key.
   /// </summary>
   Lshift = 1 << 1,
 
   /// <summary>
-  /// Right Shift key.
+  ///   Right Shift key.
   /// </summary>
   Rshift = 1 << 2,
 
   /// <summary>
-  /// Left Ctrl key.
+  ///   Left Ctrl key.
   /// </summary>
   Lctrl = 1 << 3,
 
   /// <summary>
-  /// Right Ctrl key.
+  ///   Right Ctrl key.
   /// </summary>
   Rctrl = 1 << 4,
 
   Caps = 1 << 5,
 
   /// <summary>
-  /// Left Alt key.
+  ///   Left Alt key.
   /// </summary>
   Lalt = 1 << 6,
 
   /// <summary>
-  /// Right Alt key.
+  ///   Right Alt key.
   /// </summary>
   Ralt = 1 << 7,
 
   /// <summary>
-  /// Left mouse button.
+  ///   Left mouse button.
   /// </summary>
   Lmb = 1 << 8,
 
   /// <summary>
-  /// Right mouse button.
+  ///   Right mouse button.
   /// </summary>
   Rmb = 1 << 9,
 
   /// <summary>
-  /// Middle mouse button.
+  ///   Middle mouse button.
   /// </summary>
-  Mmb = 1 << 10,
+  Mmb = 1 << 10
 }
 
 
-public enum Axis { X, Y, Z }
+public enum Axis {
+  X,
+  Y,
+  Z
+}
 
 // TIP: Add Flag suffix for enum flags.
 [Flags]
@@ -67,17 +75,18 @@ public enum AxisFlag {
   X = 1 << 1, // 1
   Y = 1 << 2, // 2
   Z = 1 << 3, // 4
-  ALL = X | Y | Z
+  All = X | Y | Z
 }
 
 [Flags]
-public enum TriggerEventType { // CONSIDER: OnMouse events
+public enum TriggerEventType {
+  // CONSIDER: OnMouse events
   OnCollisionEnter = 1 << 1,
   OnCollisionExit = 1 << 2,
   OnTriggerEnter = 1 << 3,
   OnTriggerExit = 1 << 4,
   OnDestroy = 1 << 5,
-  OnDisable = 1 << 6,
+  OnDisable = 1 << 6
 }
 
 /* Command constants used for Quantum Console utility */

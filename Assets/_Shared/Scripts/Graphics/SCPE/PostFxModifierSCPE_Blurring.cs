@@ -1,17 +1,17 @@
 #if ASSET_SCPE
-using UnityEngine;
 using SCPE;
+using UnityEngine;
+
 // using QFSW.QC;
 
 namespace Enginoobz.Graphics {
   public partial class PostFxModifierSCPE : MonoBehaviour {
     private DoubleVision doubleVision;
-    private TiltShift tiltShift;
-    private RadialBlur radialBlur;
-
     private bool doubleVisionOriginalState;
-    private bool tiltShiftOriginalState;
+    private RadialBlur radialBlur;
     private bool radialBlurOriginalState;
+    private TiltShift tiltShift;
+    private bool tiltShiftOriginalState;
 
     private void GetBlurringOriginalStates() {
       doubleVisionOriginalState = doubleVision.active;
@@ -35,9 +35,9 @@ namespace Enginoobz.Graphics {
     }
 
     private void GetBlurringSettings() {
-      Profile.TryGet<DoubleVision>(out doubleVision);
-      Profile.TryGet<TiltShift>(out tiltShift);
-      Profile.TryGet<RadialBlur>(out radialBlur);
+      Profile.TryGet(out doubleVision);
+      Profile.TryGet(out tiltShift);
+      Profile.TryGet(out radialBlur);
     }
 
     // [Command(CommandPrefix.PostFx + "double-vision-toggle")]

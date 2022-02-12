@@ -17,19 +17,20 @@ namespace SingletonPattern.Case1.Unity4 {
       }
     }
 
+    private void Awake() {
+      if (_instance) {
+        Destroy(gameObject);
+      }
+      else {
+        _instance = this;
+        DontDestroyOnLoad(gameObject);
+      }
+    }
+
     private static GameManager CreateNewInstance() {
       var go = new GameObject(nameof(GameManager));
       DontDestroyOnLoad(go);
       return go.AddComponent<GameManager>();
-    }
-
-    private void Awake() {
-      if (_instance) {
-        Destroy(gameObject);
-      } else {
-        _instance = this;
-        DontDestroyOnLoad(gameObject);
-      }
     }
   }
 }

@@ -1,15 +1,14 @@
+using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
 using Enginoobz.Attribute;
 #endif
 
-using UnityEngine;
-
 namespace FacadePattern.Case1.Base {
   /// <summary>
-  /// The 'Client' class.
-  /// Makes use of the 'Facade' class to manipulate the overall graphics.
+  ///   The 'Client' class.
+  ///   Makes use of the 'Facade' class to manipulate the overall graphics.
   /// </summary>
   public class GraphicsClient : MonoBehaviour {
     [Button]

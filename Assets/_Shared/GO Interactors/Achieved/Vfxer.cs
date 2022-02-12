@@ -1,5 +1,4 @@
 #if ASSET_MESH_EFFECTS
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

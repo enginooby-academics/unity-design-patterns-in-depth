@@ -1,25 +1,34 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
 using Enginoobz.Attribute;
 #endif
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-
 // ? What is the point of EventManager when we can just use Action
 namespace ObserverPattern.Case2.Alternative3 {
   using ObservingAction = Action<Dictionary<string, object>>; // paramName + value
+
   public class EventManager : MonoBehaviourSingleton<EventManager> {
-    private Dictionary<EventBase, ObservingAction> events = new Dictionary<EventBase, ObservingAction>();
+    private readonly Dictionary<EventBase, ObservingAction> events = new Dictionary<EventBase, ObservingAction>();
+
+    private void OnApplicationQuit() {
+      // foreach loop causes error on modifying
+      for (var i = 0; i < Instance.events.Count; i++) {
+        var @event = Instance.events.ElementAt(i);
+        StopListening(@event.Key, @event.Value);
+      }
+    }
 
     public static void StartListening(EventBase eventId, ObservingAction observingAction) {
       if (Instance.events.TryGetValue(eventId, out var @event)) {
         @event += observingAction;
         Instance.events[eventId] = @event;
-      } else {
+      }
+      else {
         @event += observingAction;
         Instance.events.Add(eventId, @event);
       }
@@ -27,7 +36,7 @@ namespace ObserverPattern.Case2.Alternative3 {
 
     public static void StartListening<T>(EventBase<T> eventId, Action<T> method) {
       void ObservingAction(Dictionary<string, object> message) {
-        var paramValue = (T)message[eventId.Param];
+        var paramValue = (T) message[eventId.Param];
         method.Invoke(paramValue);
       }
 
@@ -41,35 +50,25 @@ namespace ObserverPattern.Case2.Alternative3 {
       }
     }
 
-    private void OnApplicationQuit() {
-      // foreach loop causes error on modifying
-      for (int i = 0; i < Instance.events.Count; i++) {
-        var @event = Instance.events.ElementAt(i);
-        StopListening(@event.Key, @event.Value);
-      }
-    }
-
     public static void TriggerEvent<T>(EventBase<T> eventId, T value) {
       if (Instance.events.TryGetValue(eventId, out var @event)) {
-        var message = new Dictionary<string, object> { { eventId.Param, value } };
+        var message = new Dictionary<string, object> {{eventId.Param, value}};
         @event.Invoke(message);
       }
     }
 
     public static void TriggerEvent(EventBase eventId, Dictionary<string, object> message) {
-      if (Instance.events.TryGetValue(eventId, out var @event)) {
-        @event.Invoke(message);
-      }
+      if (Instance.events.TryGetValue(eventId, out var @event)) @event.Invoke(message);
     }
   }
 
   public class EventBase {
   }
 
-  [Serializable, InlineProperty]
+  [Serializable]
+  [InlineProperty]
   public class EventBase<T0> : EventBase {
-    [HideInInspector]
-    public string Param = "";
+    [HideInInspector] public string Param = "";
 
     // [SerializeField]
     // private UnityEvent<T0> _unityEvent = new UnityEvent<T0>();

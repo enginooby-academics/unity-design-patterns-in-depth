@@ -6,7 +6,7 @@ namespace SingletonPattern.Case2.Unity4 {
     protected float _size;
     public float Size => _size;
 
-    void Start() {
+    private void Start() {
       if (_size == 0) _size = Random.Range(1f, 5f);
       Setup(gameObject, _size);
     }

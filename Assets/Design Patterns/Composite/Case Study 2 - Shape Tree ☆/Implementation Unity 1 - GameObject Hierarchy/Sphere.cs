@@ -3,7 +3,7 @@ using static UnityEngine.Mathf;
 
 namespace CompositePattern.Case2.Unity1 {
   /// <summary>
-  /// * A 'Leaf' class
+  ///   * A 'Leaf' class
   /// </summary>
   public class Sphere : Shape {
     protected override void Start() {

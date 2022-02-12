@@ -1,18 +1,21 @@
 /// Usage: setup areas to trigger any stat of any Singleton (esp. Game Manager)
 
+
+using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
 using Enginoobz.Attribute;
 #endif
-
-using UnityEngine;
 
 public abstract class ArchievedTriggerStat<T> : ArchievedTrigger {
   [PropertyOrder(-1)]
   // TIP: use this attribute for abbreviation names (e.g. VFX w/o this displayed as V F X)    
   [LabelText("$StatLabel")] // FIX: string reference
-  [SerializeField] public T statValue;
+  [SerializeField]
+  public T statValue;
+
   public abstract string StatLabel { get; }
 
 

@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 
 namespace ObserverPattern4 {
   public class GameManager : ObserverPattern.GameManager {
     // ! 1: Use C# Action: no return type
     // ! Use keyword event to secure the action being invoked from outside the subject
-    public static event System.Action<int> onLevelIncreasedAction;
+    public static event Action<int> onLevelIncreasedAction;
 
     // ! 2: Use Delegate: can have return type
     // public delegate string CallbackType(int level);

@@ -1,30 +1,27 @@
+using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
 using Enginoobz.Attribute;
 #endif
 
-using UnityEngine;
-
 namespace Enginoobz.UI {
   [CreateAssetMenu(fileName = "CS_", menuName = "UI/Cusor Data", order = 0)]
   public class CursorData : ScriptableObject {
-    [SerializeField]
-    private CursorName _name;
+    [SerializeField] private CursorName _name;
 
-    [SerializeField, OnValueChanged(nameof(CentralizeHotSpot))]
+    [SerializeField] [OnValueChanged(nameof(CentralizeHotSpot))]
     private Texture2D _texture;
 
-    [SerializeField, InlineButton(nameof(CentralizeHotSpot), label: "Center")]
+    [SerializeField] [InlineButton(nameof(CentralizeHotSpot), "Center")]
     private Vector2 _hotSpot;
 
     public void CentralizeHotSpot() {
       _hotSpot = new Vector2(_texture.width / 2, _texture.height / 2);
     }
 
-    public bool CompareName(CursorName nameTarget) {
-      return _name == nameTarget;
-    }
+    public bool CompareName(CursorName nameTarget) => _name == nameTarget;
 
     public void SetCursor() {
       if (!_texture) return;
@@ -40,6 +37,6 @@ namespace Enginoobz.UI {
     Move = 1,
     Attack = 2,
     UI = 3,
-    Pickup = 4,
+    Pickup = 4
   }
 }

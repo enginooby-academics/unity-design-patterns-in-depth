@@ -1,22 +1,21 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
 using Enginoobz.Attribute;
 #endif
 
-using System.Linq;
-using System;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace CompositePattern.Case1.Base {
-  [Serializable, InlineProperty]
+  [Serializable]
+  [InlineProperty]
   /// <summary>
   /// * The 'Composite' class.
   /// </summary>
   public class AreaComposite : Area {
-    [SerializeField, SerializeReference]
-    private List<Area> _areas = new List<Area>();
+    [SerializeField] [SerializeReference] private List<Area> _areas = new List<Area>();
 
 
     public AreaComposite(List<Area> areas) {
@@ -32,6 +31,8 @@ namespace CompositePattern.Case1.Base {
     public List<Area> Areas => _areas;
     public List<Area> EnableAreas => Areas.Where(area => area.IsEnabled).ToList();
 
+    public override Vector3 RandomPoint => EnableAreas.GetRandom().RandomPoint; // ? Performance
+
     public virtual AreaComposite Add(Area area) {
       _areas.Add(area);
       return this;
@@ -41,18 +42,12 @@ namespace CompositePattern.Case1.Base {
       _areas.Remove(area);
     }
 
-    public override Vector3 RandomPoint {
-      get {
-        return EnableAreas.GetRandom().RandomPoint; // ? Performance
-      }
-    }
-
     public override bool Contains(Vector3 pos) {
       if (!_isEnabled) return false;
 
-      foreach (var area in _areas) {
-        if (area.Contains(pos)) return true;
-      }
+      foreach (var area in _areas)
+        if (area.Contains(pos))
+          return true;
 
       return false;
     }
@@ -60,9 +55,7 @@ namespace CompositePattern.Case1.Base {
     public override void DrawGizmos(Color? color = null) {
       if (_areas.IsUnset()) return;
 
-      foreach (var area in _areas) {
-        area?.DrawGizmos(color);
-      }
+      foreach (var area in _areas) area?.DrawGizmos(color);
     }
 
     protected override void DrawGizmosOnSingleOrigin(ReferenceVector3 origin) {

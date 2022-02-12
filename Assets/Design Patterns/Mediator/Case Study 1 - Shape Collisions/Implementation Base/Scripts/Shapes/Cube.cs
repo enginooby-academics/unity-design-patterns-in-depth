@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace MediatorPattern.Case1.Base {
   /// <summary>
-  /// * A 'Concrete Colleague' class
+  ///   * A 'Concrete Colleague' class
   /// </summary>
   public class Cube : Shape {
     private void Reset() {

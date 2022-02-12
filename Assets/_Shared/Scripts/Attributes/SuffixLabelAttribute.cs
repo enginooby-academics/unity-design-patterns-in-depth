@@ -3,14 +3,12 @@ using System.Diagnostics;
 using UnityEngine;
 
 namespace Enginoobz.Attribute {
-  [AttributeUsage(AttributeTargets.All, AllowMultiple = false, Inherited = false)]
+  [AttributeUsage(AttributeTargets.All, Inherited = false)]
   [Conditional("UNITY_EDITOR")]
   public class SuffixLabelAttribute : PropertyAttribute {
     private string _label;
     public bool Overlay;
 
-    public SuffixLabelAttribute(string label) {
-      _label = label;
-    }
+    public SuffixLabelAttribute(string label) => _label = label;
   }
 }

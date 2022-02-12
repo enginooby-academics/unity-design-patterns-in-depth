@@ -11,32 +11,30 @@ using static TypeUtils;
 
 namespace GOConstruction.Scripting {
   public class ReflectionScriptingShapeGenerator : MonoBehaviour {
-    [SerializeField, LabelText("Current Type")]
+    [SerializeField]
+    [LabelText("Current Type")]
     [ValueDropdown(nameof(GetTypeNames))]
     [OnValueChanged(nameof(UpdateCurrentQualifiedName))]
-    private String _currentTypeName;
+    private string _currentTypeName;
 
-    [SerializeField, HideInInspector]
-    private List<String> _typeNames;
+    [SerializeField] [HideInInspector] private List<string> _typeNames;
 
-    [SerializeField, HideInInspector]
-    private List<String> _qualifiedNames;
+    [SerializeField] [HideInInspector] private List<string> _qualifiedNames;
 
-    [SerializeField, HideInInspector]
-    private String _currentQualifiedName;
-
-    private void UpdateCurrentQualifiedName() {
-      int id = _typeNames.IndexOf(_currentTypeName);
-      _currentQualifiedName = _qualifiedNames[id];
-    }
-
-    private IEnumerable<String> GetTypeNames() {
-      _qualifiedNames = GetConcreteTypeQualifiedNamesOf<IShape>();
-      return _typeNames = GetConcreteTypeNamesOf<IShape>();
-    }
+    [SerializeField] [HideInInspector] private string _currentQualifiedName;
 
     // ! guard case: current type is removed
     public Type CurrentShapeType => Type.GetType(_currentQualifiedName) ?? GetAndSetFirstType();
+
+    private void UpdateCurrentQualifiedName() {
+      var id = _typeNames.IndexOf(_currentTypeName);
+      _currentQualifiedName = _qualifiedNames[id];
+    }
+
+    private IEnumerable<string> GetTypeNames() {
+      _qualifiedNames = GetConcreteTypeQualifiedNamesOf<IShape>();
+      return _typeNames = GetConcreteTypeNamesOf<IShape>();
+    }
 
     private Type GetAndSetFirstType() {
       GetTypeNames();
@@ -47,14 +45,14 @@ namespace GOConstruction.Scripting {
 
     public virtual IShape CreateShapeInstance() {
       if (!CurrentShapeType.IsSubclassOf(typeof(MonoBehaviour)))
-        return (IShape)Activator.CreateInstance(CurrentShapeType);
+        return (IShape) Activator.CreateInstance(CurrentShapeType);
 
       return new GameObject().AddComponent(CurrentShapeType) as IShape;
     }
 
     [Button]
     public void CreateShape() {
-      IShape shape = CreateShapeInstance();
+      var shape = CreateShapeInstance();
       print("Volume of the generated shape is: " + shape.GetVolume());
     }
   }

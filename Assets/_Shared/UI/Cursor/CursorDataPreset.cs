@@ -1,11 +1,11 @@
+using System.Collections.Generic;
+using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
 using Enginoobz.Attribute;
 #endif
-
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace Enginoobz.UI {
   // [SOVariant]
@@ -14,9 +14,7 @@ namespace Enginoobz.UI {
   /// Collection of cursors in a certain style (e.g. pixel, modern), used in a certain game theme (e.g. RPG, racing).
   /// </summary>
   public class CursorDataPreset : ScriptableObject {
-    [InlineEditor]
-    [SerializeField]
-    private List<CursorData> _cursorDatas;
+    [InlineEditor] [SerializeField] private List<CursorData> _cursorDatas;
 
     private CursorData _currentCursor;
 
@@ -26,7 +24,7 @@ namespace Enginoobz.UI {
     }
 
     /// <summary>
-    /// Set to the first cursor in the preset.
+    ///   Set to the first cursor in the preset.
     /// </summary>
     public void Init() {
       // Debug.Log("Init cursor");
@@ -35,9 +33,9 @@ namespace Enginoobz.UI {
     }
 
     /// <summary>
-    /// [Safe-Update method] 
-    /// Change cursor if given cursor name is different than curren's. 
-    /// If not found in the preset, set to the first cursor.
+    ///   [Safe-Update method]
+    ///   Change cursor if given cursor name is different than curren's.
+    ///   If not found in the preset, set to the first cursor.
     /// </summary>
     public void Set(CursorName cursorName) {
       if (!_currentCursor.CompareName(cursorName)) {

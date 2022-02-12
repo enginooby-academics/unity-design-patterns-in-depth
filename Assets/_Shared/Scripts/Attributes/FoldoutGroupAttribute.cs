@@ -8,8 +8,6 @@ namespace Enginoobz.Attribute {
   public class FoldoutGroupAttribute : PropertyAttribute {
     private string _label;
 
-    public FoldoutGroupAttribute(string label) {
-      _label = label;
-    }
+    public FoldoutGroupAttribute(string label) => _label = label;
   }
 }

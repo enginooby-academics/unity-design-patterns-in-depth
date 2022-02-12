@@ -2,14 +2,12 @@ using UnityEngine;
 
 namespace Decorator.Base {
   /// <summary>
-  /// Base class for all bullet enhancements to extend from.
+  ///   Base class for all bullet enhancements to extend from.
   /// </summary>
   public abstract class BulletDecorator<TSelfReferenceType> : MonoBehaviour, IBullet {
     protected IBullet _bullet;
 
-    public BulletDecorator(IBullet bullet) {
-      _bullet = bullet;
-    }
+    public BulletDecorator(IBullet bullet) => _bullet = bullet;
 
     public virtual float Damage => _bullet.Damage;
 

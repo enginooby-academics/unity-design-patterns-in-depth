@@ -1,14 +1,13 @@
+using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
 using Enginoobz.Attribute;
 #endif
 
-using UnityEngine;
-
 public class TransformProfileOperator : ComponentOperator<Transform> {
-  [SerializeField, InlineEditor]
-  private TransformProfile _transformProfile;
+  [SerializeField] [InlineEditor] private TransformProfile _transformProfile;
 
   private void Start() {
     _transformProfile?.InitTranslation(transform);
@@ -18,11 +17,11 @@ public class TransformProfileOperator : ComponentOperator<Transform> {
     _transformProfile?.OnLateUpdate(transform);
   }
 
-  public void Stop() {
-    _transformProfile?.Stop();
+  private void OnDrawGizmosSelected() {
+    _transformProfile?.OnDrawGizmosSelected(gameObject);
   }
 
-  void OnDrawGizmosSelected() {
-    _transformProfile?.OnDrawGizmosSelected(gameObject);
+  public void Stop() {
+    _transformProfile?.Stop();
   }
 }

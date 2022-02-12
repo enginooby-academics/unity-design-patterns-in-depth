@@ -1,28 +1,35 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
 using Enginoobz.Attribute;
 #endif
 
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-
 // ? Implement Decorator for multiple filter combinations
 // ? Extend from Iterator base
 namespace IteratorPattern.Case1.Base {
   /// <summary>
-  /// Iterator loops through all waypoints having match color.
+  ///   Iterator loops through all waypoints having match color.
   /// </summary>
-  [System.Serializable, InlineProperty]
+  [Serializable]
+  [InlineProperty]
   public class IteratorFilterColor : IIterator<Waypoint> {
-    [SerializeField, EnumToggleButtons, OnValueChanged(nameof(UpdateFilteredWaypoints))]
+    [SerializeField] [EnumToggleButtons] [OnValueChanged(nameof(UpdateFilteredWaypoints))]
     private Waypoint.Color _filterColor = Waypoint.Color.Green;
-    private int _current = 0;
+
+    private int _current;
+
+    [ShowInInspector] private List<Waypoint> _filteredWaypoints;
+
     private List<Waypoint> _waypoints;
 
-    [ShowInInspector]
-    private List<Waypoint> _filteredWaypoints;
+    public IteratorFilterColor(List<Waypoint> waypoints) {
+      _waypoints = waypoints;
+      UpdateFilteredWaypoints();
+    }
 
     public List<Waypoint> FilteredWaypoints => _filteredWaypoints;
 
@@ -34,21 +41,12 @@ namespace IteratorPattern.Case1.Base {
       }
     }
 
+    public Waypoint GetNext() => _filteredWaypoints[_current++];
+
+    public bool HasNext() => _current < _filteredWaypoints.Count;
+
     private void UpdateFilteredWaypoints() {
       _filteredWaypoints = _waypoints.Where(waypoint => waypoint.GetColor() == _filterColor).ToList();
-    }
-
-    public IteratorFilterColor(List<Waypoint> waypoints) {
-      _waypoints = waypoints;
-      UpdateFilteredWaypoints();
-    }
-
-    public Waypoint GetNext() {
-      return _filteredWaypoints[_current++];
-    }
-
-    public bool HasNext() {
-      return _current < _filteredWaypoints.Count;
     }
   }
 }

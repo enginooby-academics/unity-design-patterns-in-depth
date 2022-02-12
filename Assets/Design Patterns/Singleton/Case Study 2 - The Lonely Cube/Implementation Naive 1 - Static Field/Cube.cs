@@ -5,7 +5,7 @@ using Shared = SingletonPattern.Case2;
 // + unique field
 
 namespace SingletonPattern.Case2.Naive1 {
-  public class Cube : Shared.MonoBehaviourCube {
+  public class Cube : MonoBehaviourCube {
     public static float StaticSize { get; protected set; }
 
     private void Awake() => Size = StaticSize = 3f;

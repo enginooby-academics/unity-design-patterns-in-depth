@@ -1,28 +1,29 @@
+using System;
+using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
 using Enginoobz.Attribute;
 #endif
 
-using UnityEngine;
-using System;
-
-[Serializable, InlineProperty]
+[Serializable]
+[InlineProperty]
 public abstract class SerializableBase {
   /// <summary>
-  /// GameObject of the component containing this Serializable class.
+  ///   GameObject of the component containing this Serializable class.
   /// </summary>
-  [HideInInspector]
-  [OnValueChanged(nameof(OnGameObjectChanged))]
+  [HideInInspector] [OnValueChanged(nameof(OnGameObjectChanged))]
   public GameObject GameObject;
 
   /// <summary>
-  /// Invoke in Reset() of the MonoBehaviour.
+  ///   Invoke in Reset() of the MonoBehaviour.
   /// </summary>
   public virtual void SetGameObject(GameObject gameObject) {
-    this.GameObject = gameObject;
+    GameObject = gameObject;
     OnGameObjectChanged();
   }
 
-  protected virtual void OnGameObjectChanged() { }
+  protected virtual void OnGameObjectChanged() {
+  }
 }

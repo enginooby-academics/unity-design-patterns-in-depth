@@ -1,7 +1,9 @@
+using UnityEngine;
 #if ASSET_DOTWEEN
 using DG.Tweening;
 #endif
-using UnityEngine;
+
+// TODO: Implement fallbacks if asset is not available
 
 public static class DOTweenUtils {
   public static void ShakePosition(this Transform transform, float strength = 1f) {

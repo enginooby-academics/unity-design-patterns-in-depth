@@ -1,14 +1,15 @@
 // ! Replace by TriggerManager
-#if ODIN_INSPECTOR
-using Sirenix.OdinInspector;
-#else
-using Enginoobz.Attribute;
-#endif
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+
+#else
+using Enginoobz.Attribute;
+#endif
 
 // TODO
 // + SFX/VFX according to event
@@ -27,28 +28,46 @@ using UnityEngine.Events;
 
 
 public abstract class ArchievedTrigger : MonoBehaviour {
-
-  [InfoBox("Destroy after invoked to avoid trigger multiple times at one place causing undesire effect (e.g. Game Over trigger). Cautious: destroy self will also destroy VFX attach with it.")]
-  [SerializeField, EnumToggleButtons] protected DestroyTarget destroyAfterInvoked;
+  [InfoBox(
+    "Destroy after invoked to avoid trigger multiple times at one place causing undesire effect (e.g. Game Over trigger). Cautious: destroy self will also destroy VFX attach with it.")]
+  [SerializeField]
+  [EnumToggleButtons]
+  protected DestroyTarget destroyAfterInvoked;
 
   [Space(10)]
   [EnumToggleButtons]
   // [LabelText("Event")]
-  [SerializeField] protected TriggerEventType triggerEvent = TriggerEventType.OnCollisionEnter;
+  [SerializeField]
+  protected TriggerEventType triggerEvent = TriggerEventType.OnCollisionEnter;
+
+  /// <summary> Main action of the trigger </summary>
+  public void InvokeAction() {
+    InvokeActionImpl();
+    // common procedure after invoking
+    if (destroyAfterInvoked.HasFlag(DestroyTarget.Trigger)) Destroy(this);
+    if (destroyAfterInvoked.HasFlag(DestroyTarget.Self)) Destroy(gameObject);
+  }
+
+  /// <summary> Specific case of the main trigger action in derived classes </summary>
+  public abstract void InvokeActionImpl();
 
   #region ON COLLISION ENTER
+
   [ShowIfGroup(nameof(IsTriggerEventOnCollisionEnter))]
   [BoxGroup(nameof(IsTriggerEventOnCollisionEnter) + "/OnCollisionEnter")]
-  [SerializeField, LabelText("Delay"), Min(0f)] protected float onCollisionEnterDelay;
+  [SerializeField]
+  [LabelText("Delay")]
+  [Min(0f)]
+  protected float onCollisionEnterDelay;
 
-  [BoxGroup(nameof(IsTriggerEventOnCollisionEnter) + "/OnCollisionEnter")]
-  [SerializeField] protected List<string> onCollisionEnterTriggerTags = new List<string>() { "Player" };
+  [BoxGroup(nameof(IsTriggerEventOnCollisionEnter) + "/OnCollisionEnter")] [SerializeField]
+  protected List<string> onCollisionEnterTriggerTags = new List<string> {"Player"};
 
-  [BoxGroup(nameof(IsTriggerEventOnCollisionEnter) + "/OnCollisionEnter")]
-  [SerializeField] UnityEvent onCollisionEnterManualEvent;
+  [BoxGroup(nameof(IsTriggerEventOnCollisionEnter) + "/OnCollisionEnter")] [SerializeField]
+  private UnityEvent onCollisionEnterManualEvent;
 
   // TIP: use Property (get) for quick checking class attribute, rather than use function
-  private bool IsTriggerEventOnCollisionEnter { get => triggerEvent.HasFlag(TriggerEventType.OnCollisionEnter); }
+  private bool IsTriggerEventOnCollisionEnter => triggerEvent.HasFlag(TriggerEventType.OnCollisionEnter);
 
   private IEnumerator OnCollisionEnter(Collision other) {
     if (!IsTriggerEventOnCollisionEnter) yield break;
@@ -58,38 +77,47 @@ public abstract class ArchievedTrigger : MonoBehaviour {
       InvokeAction();
       if (destroyAfterInvoked.HasFlag(DestroyTarget.Other)) Destroy(other.gameObject);
     }
+
     onCollisionEnterManualEvent.Invoke(); // QUESTION: is it delayed for this as well?
   }
+
   #endregion
 
 
   #region ON COLLISION EXIT
-  [TabGroup("OnCollisionExit")]
-  [ShowIf(nameof(IsTriggerEventOnCollisionExit))]
-  [SerializeField] protected List<string> onCollisionExitTriggerTags = new List<string>() { "Player" };
 
-  [TabGroup("OnCollisionExit")]
-  [ShowIf(nameof(IsTriggerEventOnCollisionExit))]
-  [SerializeField] UnityEvent onCollisionExitManualEvent;
+  [TabGroup("OnCollisionExit")] [ShowIf(nameof(IsTriggerEventOnCollisionExit))] [SerializeField]
+  protected List<string> onCollisionExitTriggerTags = new List<string> {"Player"};
 
-  private bool IsTriggerEventOnCollisionExit { get => triggerEvent.HasFlag(TriggerEventType.OnCollisionExit); }
+  [TabGroup("OnCollisionExit")] [ShowIf(nameof(IsTriggerEventOnCollisionExit))] [SerializeField]
+  private UnityEvent onCollisionExitManualEvent;
+
+  private bool IsTriggerEventOnCollisionExit => triggerEvent.HasFlag(TriggerEventType.OnCollisionExit);
+
   #endregion
 
   #region ON TRIGGER ENTER
+
   [ShowIfGroup(nameof(IsTriggerEventOnTriggerEnter))]
   [BoxGroup(nameof(IsTriggerEventOnTriggerEnter) + "/OnTriggerEnter")]
-  [SerializeField, LabelText("Delay"), Min(0f)] protected float onTriggerEnterDelay;
-  [BoxGroup(nameof(IsTriggerEventOnTriggerEnter) + "/OnTriggerEnter")]
-  [SerializeField] [LabelText("VFX")] ParticleSystem onTriggerEnterVfx;
-  [BoxGroup(nameof(IsTriggerEventOnTriggerEnter) + "/OnTriggerEnter")]
-  [SerializeField] [LabelText("SFX")] AudioClip onTriggerEnterSfx;
-  [BoxGroup(nameof(IsTriggerEventOnTriggerEnter) + "/OnTriggerEnter")]
-  [SerializeField] protected List<string> onTriggerEnterTriggerTags = new List<string>() { "Player" };
+  [SerializeField]
+  [LabelText("Delay")]
+  [Min(0f)]
+  protected float onTriggerEnterDelay;
 
-  [BoxGroup(nameof(IsTriggerEventOnTriggerEnter) + "/OnTriggerEnter")]
-  [SerializeField] UnityEvent onTriggerEnterManualEvent;
+  [BoxGroup(nameof(IsTriggerEventOnTriggerEnter) + "/OnTriggerEnter")] [SerializeField] [LabelText("VFX")]
+  private ParticleSystem onTriggerEnterVfx;
 
-  private bool IsTriggerEventOnTriggerEnter { get => triggerEvent.HasFlag(TriggerEventType.OnTriggerEnter); }
+  [BoxGroup(nameof(IsTriggerEventOnTriggerEnter) + "/OnTriggerEnter")] [SerializeField] [LabelText("SFX")]
+  private AudioClip onTriggerEnterSfx;
+
+  [BoxGroup(nameof(IsTriggerEventOnTriggerEnter) + "/OnTriggerEnter")] [SerializeField]
+  protected List<string> onTriggerEnterTriggerTags = new List<string> {"Player"};
+
+  [BoxGroup(nameof(IsTriggerEventOnTriggerEnter) + "/OnTriggerEnter")] [SerializeField]
+  private UnityEvent onTriggerEnterManualEvent;
+
+  private bool IsTriggerEventOnTriggerEnter => triggerEvent.HasFlag(TriggerEventType.OnTriggerEnter);
 
   private IEnumerator OnTriggerEnter(Collider other) {
     if (!IsTriggerEventOnTriggerEnter) yield break;
@@ -106,35 +134,41 @@ public abstract class ArchievedTrigger : MonoBehaviour {
 
   private void PlayTriggerEventVfx(ParticleSystem? vfx) {
     if (!vfx) return;
-    if (destroyAfterInvoked.HasFlag(DestroyTarget.Self)) {
+    if (destroyAfterInvoked.HasFlag(DestroyTarget.Self))
       if (vfx.gameObject.transform.parent = gameObject.transform) {
         vfx.gameObject.transform.parent = gameObject.transform.parent;
         Destroy(vfx.gameObject, 3f);
       }
-    }
+
     vfx.Play();
   }
+
   #endregion
 
 
   #region ON TRIGGER EXIT
-  [ShowIf(nameof(IsTriggerEventOnTriggerExit))]
-  [SerializeField] protected List<string> onTriggerExitTriggerTags = new List<string>() { "Player" };
-  private bool IsTriggerEventOnTriggerExit { get => triggerEvent.HasFlag(TriggerEventType.OnTriggerExit); }
+
+  [ShowIf(nameof(IsTriggerEventOnTriggerExit))] [SerializeField]
+  protected List<string> onTriggerExitTriggerTags = new List<string> {"Player"};
+
+  private bool IsTriggerEventOnTriggerExit => triggerEvent.HasFlag(TriggerEventType.OnTriggerExit);
 
   #endregion
 
 
   #region ON MOUSE ENTER
+
   #endregion
 
 
   #region ON MOUSE EXIT
+
   #endregion
 
 
   #region ON DESTROY
-  private bool IsTriggerEventOnDestroy { get => triggerEvent.HasFlag(TriggerEventType.OnDestroy); }
+
+  private bool IsTriggerEventOnDestroy => triggerEvent.HasFlag(TriggerEventType.OnDestroy);
 
   private void OnDestroy() {
     if (!IsTriggerEventOnDestroy) return;
@@ -145,26 +179,17 @@ public abstract class ArchievedTrigger : MonoBehaviour {
 
 
   #region ON DISABLE
+
   #endregion
 
-  /// <summary> Main action of the trigger </summary>
-  public void InvokeAction() {
-    InvokeActionImpl();
-    // common procedure after invoking
-    if (destroyAfterInvoked.HasFlag(DestroyTarget.Trigger)) Destroy(this);
-    if (destroyAfterInvoked.HasFlag(DestroyTarget.Self)) Destroy(gameObject);
-  }
-
-  /// <summary> Specific case of the main trigger action in derived classes </summary>
-  public abstract void InvokeActionImpl();
-
   #region SETUP HELPERS - common target for interactions
+
   [Button]
   [BoxGroup("Setup Helpers")]
   [GUIColor(.6f, .6f, 1f)]
   private void OnTouchBullet() {
     triggerEvent = TriggerEventType.OnCollisionEnter;
-    onCollisionEnterTriggerTags = new List<string>() { "Bullet" };
+    onCollisionEnterTriggerTags = new List<string> {"Bullet"};
   }
 
   [Button]
@@ -172,16 +197,19 @@ public abstract class ArchievedTrigger : MonoBehaviour {
   [GUIColor(.6f, .6f, 1f)]
   private void OnTouchPlayer() {
     triggerEvent = TriggerEventType.OnCollisionEnter;
-    onCollisionEnterTriggerTags = new List<string>() { "Player" };
+    onCollisionEnterTriggerTags = new List<string> {"Player"};
   }
+
   [Button]
   [BoxGroup("Setup Helpers")]
   [GUIColor(.6f, .6f, 1f)]
   private void OnTouchEnemy() {
     triggerEvent = TriggerEventType.OnCollisionEnter;
-    onCollisionEnterTriggerTags = new List<string>() { "Enemy" };
+    onCollisionEnterTriggerTags = new List<string> {"Enemy"};
   }
-  [InfoBox("If use trigger in child of parent which has other type of trigger, then set RigidBody as Kinematic for child to avoid trigger in child also trigger in parent (Compound Colliders)")]
+
+  [InfoBox(
+    "If use trigger in child of parent which has other type of trigger, then set RigidBody as Kinematic for child to avoid trigger in child also trigger in parent (Compound Colliders)")]
   // ref: https://answers.unity.com/questions/410711/trigger-in-child-object-calls-ontriggerenter-in-pa.html
   [Button]
   [BoxGroup("Setup Helpers")]
@@ -189,5 +217,6 @@ public abstract class ArchievedTrigger : MonoBehaviour {
   private void SetupKinematic() {
     this.AddAndSetupRigidBodyIfNotExist(isKinematic: true);
   }
+
   #endregion
 }

@@ -1,30 +1,33 @@
+using System;
+using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
 using Enginoobz.Attribute;
 #endif
 
-using UnityEngine;
-
 namespace Reflection.Case1.Naive {
   public class ShapeManager : MonoBehaviour {
-    public enum ShapeType { Cube, Sphere, MonoBehaviourCube, MonoBehaviourSphere }
+    public enum ShapeType {
+      Cube,
+      Sphere,
+      MonoBehaviourCube,
+      MonoBehaviourSphere
+    }
 
-    [SerializeField, EnumToggleButtons]
-    private ShapeType _currentShapeType;
+    [SerializeField] [EnumToggleButtons] private ShapeType _currentShapeType;
 
     // [SerializeReference]
     // private Shape _shapeType; // this will immediately create new instance of the selected type
 
     [Button]
     public void CreateShape() {
-      IShape shape = _currentShapeType switch
-      {
+      IShape shape = _currentShapeType switch {
         ShapeType.Cube => new Cube(),
         ShapeType.Sphere => new Sphere(),
         ShapeType.MonoBehaviourCube => CreateMonoBehaviourCube(),
         ShapeType.MonoBehaviourSphere => CreateMonoBehaviourCube(),
-        _ => throw new System.ArgumentOutOfRangeException(),
+        _ => throw new ArgumentOutOfRangeException()
       };
 
       print("Volume of the newly-created shape is: " + shape.GetVolume());

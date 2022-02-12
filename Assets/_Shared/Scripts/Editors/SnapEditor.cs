@@ -1,30 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [ExecuteInEditMode]
 [SelectionBase]
 public class SnapEditor : MonoBehaviour {
-  [SerializeField] TextMesh coordLabel = null;
-  [SerializeField] float gridSize = 10f;
+  [SerializeField] private TextMesh coordLabel;
+  [SerializeField] private float gridSize = 10f;
 
-  [Tooltip("Update object name match with grid coordinates")]
-  [SerializeField] bool coordNamed = true;
-  Vector3 snapPos;
+  [Tooltip("Update object name match with grid coordinates")] [SerializeField]
+  private bool coordNamed = true;
+
+  private Vector3 snapPos;
+
   // Start is called before the first frame update
-  void Start() {
-
+  private void Start() {
   }
 
   // Update is called once per frame
-  void Update() {
-    if (!Application.isPlaying) {
-      SnapToGrid();
-    }
+  private void Update() {
+    if (!Application.isPlaying) SnapToGrid();
 
-    if (coordLabel) {
-      UpdateLabel();
-    }
+    if (coordLabel) UpdateLabel();
   }
 
   private void SnapToGrid() {
@@ -34,7 +29,8 @@ public class SnapEditor : MonoBehaviour {
   }
 
   private void UpdateLabel() {
-    coordLabel.text = Mathf.RoundToInt(transform.position.x / gridSize) + "," + Mathf.RoundToInt(transform.position.z / gridSize);
+    coordLabel.text = Mathf.RoundToInt(transform.position.x / gridSize) + "," +
+                      Mathf.RoundToInt(transform.position.z / gridSize);
     if (coordNamed) name = coordLabel.text;
   }
 }

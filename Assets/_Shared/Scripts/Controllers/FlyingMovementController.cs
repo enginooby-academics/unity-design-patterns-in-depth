@@ -13,29 +13,29 @@ public class FlyingMovementController : MonoBehaviour {
   public float rotateSensitivity = 0.25f; // how sensitive it with mouse
   public bool rotateOnMouseDown = true;
 
-  private Rigidbody m_Rigidbody;
+  private Rigidbody _rigidbody;
+  private bool accelerated; //{Shift}
 
   private Vector3 lastMouse;
-  private float totalRun = 1.0f;
+  private bool movementStaysFlat; //{Space} - Movement on x & z axises only
 
   //input stats
   private Vector3 moveVector; //{AWSDQE} - Horizontal, vertical, QE thing
-  private bool accelerated;   //{Shift}
-  private bool movementStaysFlat; //{Space} - Movement on x & z axises only
+  private float totalRun = 1.0f;
 
-  void Awake() {
+  private void Awake() {
     // ResetCamera();
   }
 
-  void ResetCamera() {
+  private void Update() {
+    GetInput();
+    ProcessInput();
+  }
+
+  private void ResetCamera() {
     Debug.Log("FlyCamera Awake() - RESETTING CAMERA POSITION");
     transform.position = new Vector3(0, 8, -32);
     transform.rotation = Quaternion.Euler(25, 0, 0);
-  }
-
-  void Update() {
-    GetInput();
-    ProcessInput();
   }
 
   private void ProcessInput() {
@@ -48,12 +48,13 @@ public class FlyingMovementController : MonoBehaviour {
     moveVector = moveVector * Time.deltaTime;
 
     if (movementStaysFlat) {
-      Vector3 newPosition = transform.position;
+      var newPosition = transform.position;
       transform.Translate(moveVector);
       newPosition.x = transform.position.x;
       newPosition.z = transform.position.z;
       transform.position = newPosition;
-    } else {
+    }
+    else {
       transform.Translate(moveVector);
     }
   }
@@ -65,18 +66,17 @@ public class FlyingMovementController : MonoBehaviour {
       moveVector.x = Mathf.Clamp(moveVector.x, -maxSpeed, maxSpeed);
       moveVector.y = Mathf.Clamp(moveVector.y, -maxSpeed, maxSpeed);
       moveVector.z = Mathf.Clamp(moveVector.z, -maxSpeed, maxSpeed);
-    } else {
+    }
+    else {
       totalRun = Mathf.Clamp(totalRun * 0.5f, 1f, 1000f);
       moveVector = moveVector * mainSpeed;
     }
   }
 
   private void ProcessRotationInput() {
-    if (Input.GetMouseButtonDown(1)) {
-      lastMouse = Input.mousePosition; // $CTK reset when we begin
-    }
+    if (Input.GetMouseButtonDown(1)) lastMouse = Input.mousePosition; // $CTK reset when we begin
 
-    if (!rotateOnMouseDown || (rotateOnMouseDown && Input.GetMouseButton(1))) {
+    if (!rotateOnMouseDown || rotateOnMouseDown && Input.GetMouseButton(1)) {
       lastMouse = Input.mousePosition - lastMouse;
       lastMouse = new Vector3(-lastMouse.y * rotateSensitivity, lastMouse.x * rotateSensitivity, 0);
       lastMouse = new Vector3(transform.eulerAngles.x + lastMouse.x, transform.eulerAngles.y + lastMouse.y, 0);
@@ -87,24 +87,12 @@ public class FlyingMovementController : MonoBehaviour {
 
   // TODO: use Cross Platform Input or Input System
   private void GetInput() {
-    if (Input.GetKey(KeyCode.W)) {
-      moveVector += new Vector3(0, 0, 1);
-    }
-    if (Input.GetKey(KeyCode.S)) {
-      moveVector += new Vector3(0, 0, -1);
-    }
-    if (Input.GetKey(KeyCode.A)) {
-      moveVector += new Vector3(-1, 0, 0);
-    }
-    if (Input.GetKey(KeyCode.D)) {
-      moveVector += new Vector3(1, 0, 0);
-    }
-    if (Input.GetKey(KeyCode.Q)) {
-      moveVector += new Vector3(0, -1, 0);
-    }
-    if (Input.GetKey(KeyCode.E)) {
-      moveVector += new Vector3(0, 1, 0);
-    }
+    if (Input.GetKey(KeyCode.W)) moveVector += new Vector3(0, 0, 1);
+    if (Input.GetKey(KeyCode.S)) moveVector += new Vector3(0, 0, -1);
+    if (Input.GetKey(KeyCode.A)) moveVector += new Vector3(-1, 0, 0);
+    if (Input.GetKey(KeyCode.D)) moveVector += new Vector3(1, 0, 0);
+    if (Input.GetKey(KeyCode.Q)) moveVector += new Vector3(0, -1, 0);
+    if (Input.GetKey(KeyCode.E)) moveVector += new Vector3(0, 1, 0);
 
     accelerated = Input.GetKey(KeyCode.LeftShift);
     movementStaysFlat = Input.GetKey(KeyCode.Space);

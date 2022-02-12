@@ -1,16 +1,18 @@
 using UnityEngine;
+using UnityEngine.AI;
 #if ASSET_DOTWEEN
 using DG.Tweening;
 #endif
 
 namespace StatePattern.Base {
   public class NpcAttackState : NpcState {
-    float rotationSpeed = 2f;
-    AudioSource shootAudio;
+    private readonly float rotationSpeed = 2f;
+    private readonly AudioSource shootAudio;
 
-    public NpcAttackState(GameObject npc, Animator animator, UnityEngine.AI.NavMeshAgent navMeshAgent, Transform player, AreaCircular vision = null, AreaCircular attackableArea = null)
-    : base(npc, animator, navMeshAgent, player, vision, attackableArea) {
-      name = NpcState.Name.Attack;
+    public NpcAttackState(GameObject npc, Animator animator, NavMeshAgent navMeshAgent, Transform player,
+      AreaCircular vision = null, AreaCircular attackableArea = null)
+      : base(npc, animator, navMeshAgent, player, vision, attackableArea) {
+      name = Name.Attack;
       shootAudio = npc.GetComponent<AudioSource>();
     }
 

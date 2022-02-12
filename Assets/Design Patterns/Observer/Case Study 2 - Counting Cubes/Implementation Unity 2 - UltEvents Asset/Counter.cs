@@ -3,7 +3,7 @@ using Shared = ObserverPattern.Case2;
 
 namespace ObserverPattern.Case2.Unity2 {
   /// <summary>
-  /// * [The 'Subject' class]
+  ///   * [The 'Subject' class]
   /// </summary>
   public class Counter : Shared.Counter {
     // ! Process similar to UnityEvent

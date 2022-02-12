@@ -1,12 +1,12 @@
-#if ODIN_INSPECTOR
-using Sirenix.OdinInspector;
-#else
-using Enginoobz.Attribute;
-#endif
-
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+
+#else
+using Enginoobz.Attribute;
+#endif
 
 // TODO: Rename to SFXCollection/SFXTheme
 
@@ -16,18 +16,17 @@ namespace Enginoobz.Audio {
   /// Centralization for all SFXData.
   /// </summary>
   public class SFXDataPreset : ScriptableObject {
-    [SerializeField, InlineEditor]
-    private List<SFXData> _sfxDatas = new List<SFXData>();
+    [SerializeField] [InlineEditor] private List<SFXData> _sfxDatas = new List<SFXData>();
 
     public void PlayRandom(AudioSource audioSource, SFXTarget sfxTarget, SFXAction sfxAction) {
-      SFXData sfxData = _sfxDatas.Find(sfxData => sfxData.Target == sfxTarget && sfxData.Action == sfxAction)
-                      ?? _sfxDatas.Find(sfxData => sfxData.Target == SFXTarget.Any && sfxData.Action == sfxAction)
-                      ?? _sfxDatas.Find(sfxData => sfxData.Action == sfxAction);
-      if (!sfxData) {
-        Debug.LogError("No SFXData found for " + Enum.GetName(typeof(SFXTarget), sfxTarget) + " " + Enum.GetName(typeof(SFXAction), sfxAction));
-      } else {
+      var sfxData = _sfxDatas.Find(sfxData => sfxData.Target == sfxTarget && sfxData.Action == sfxAction)
+                    ?? _sfxDatas.Find(sfxData => sfxData.Target == SFXTarget.Any && sfxData.Action == sfxAction)
+                    ?? _sfxDatas.Find(sfxData => sfxData.Action == sfxAction);
+      if (!sfxData)
+        Debug.LogError("No SFXData found for " + Enum.GetName(typeof(SFXTarget), sfxTarget) + " " +
+                       Enum.GetName(typeof(SFXAction), sfxAction));
+      else
         sfxData.PlayRandom(audioSource);
-      }
     }
   }
 }

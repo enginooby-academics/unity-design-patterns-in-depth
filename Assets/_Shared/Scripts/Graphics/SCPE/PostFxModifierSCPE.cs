@@ -9,17 +9,26 @@ namespace Enginoobz.Graphics {
   // TODO: experiment inclusive/exclusive settings (settings which look good/bad when combine together)
   [RequireComponent(typeof(Volume))]
   public partial class PostFxModifierSCPE : MonoBehaviour {
-    private Volume _volume;
     private VolumeProfile _profile;
+    private Volume _volume;
     private string statesDebug; // OPTIM: use StringBuilder
 
     public Volume Volume => _volume ??= gameObject.GetComponent<Volume>();
     public VolumeProfile Profile => _profile ?? Volume.profile;
 
-    void Awake() {
+    private void Awake() {
       _volume = gameObject.GetComponent<Volume>();
       GetScpeSettings();
       GetScpeOriginalStates();
+    }
+
+    public void Reset() {
+      ResetStylizedSettings();
+      ResetImageSettings();
+      ResetBlurringSettings();
+      ResetRenderingSettings();
+      ResetRetroSettings();
+      ResetScreenSettings();
     }
 
     private void GetScpeSettings() {
@@ -41,15 +50,6 @@ namespace Enginoobz.Graphics {
       GetRenderingOriginalStates();
       GetRetroOriginalStates();
       GetScreenOriginalStates();
-    }
-
-    public void Reset() {
-      ResetStylizedSettings();
-      ResetImageSettings();
-      ResetBlurringSettings();
-      ResetRenderingSettings();
-      ResetRetroSettings();
-      ResetScreenSettings();
     }
 
     public void Randomize() {

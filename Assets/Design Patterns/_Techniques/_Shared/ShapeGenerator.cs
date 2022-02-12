@@ -1,18 +1,22 @@
+using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
 using Enginoobz.Attribute;
 #endif
 
-using UnityEngine;
-
 namespace GOConstruction {
-  public enum ShapeType { RotatingCube, ShakingCube, RotatingSphere, ShakingSphere }
+  public enum ShapeType {
+    RotatingCube,
+    ShakingCube,
+    RotatingSphere,
+    ShakingSphere
+  }
 
   public abstract class ShapeGenerator : MonoBehaviour {
-    [SerializeField, EnumToggleButtons]
-    protected ShapeType _shapeType;
+    [SerializeField] [EnumToggleButtons] protected ShapeType _shapeType;
 
-    [Button] public abstract void CreateShape();
+    [Button]
+    public abstract void CreateShape();
   }
 }

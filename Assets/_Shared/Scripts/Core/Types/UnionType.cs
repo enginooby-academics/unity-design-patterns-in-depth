@@ -1,25 +1,32 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
 using Enginoobz.Attribute;
 #endif
 
-using System;
-using System.Collections.Generic;
-using UnityEngine;
-
-[Serializable, InlineProperty]
+[Serializable]
+[InlineProperty]
 public class UnionType<T1, T2> {
-  [SerializeField, ValueDropdown(nameof(Types)), HideLabel]
+  [SerializeField] [ValueDropdown(nameof(Types))] [HideLabel]
   private string _currentType;
 
-  [ShowIf(nameof(IsT1))]
-  [SerializeField, LabelText("Value")]
+  [ShowIf(nameof(IsT1))] [SerializeField] [LabelText("Value")]
   private T1 _valueT1;
 
-  [ShowIf(nameof(IsT2))]
-  [SerializeField, LabelText("Value")]
+  [ShowIf(nameof(IsT2))] [SerializeField] [LabelText("Value")]
   private T2 _valueT2;
+
+#if ODIN_INSPECTOR
+  private IEnumerable Types = new ValueDropdownList<string> {
+    {typeof(T1).Name, typeof(T1).Name},
+    {typeof(T2).Name, typeof(T2).Name}
+  };
+#endif
 
   public Type Type => IsT1 ? typeof(T1) : typeof(T2);
 
@@ -34,23 +41,19 @@ public class UnionType<T1, T2> {
   private bool IsT1 => _currentType.Equals(typeof(T1).Name);
   private bool IsT2 => _currentType.Equals(typeof(T2).Name);
 
-#if ODIN_INSPECTOR
-  private System.Collections.IEnumerable Types = new ValueDropdownList<string>()
-{
-    { typeof(T1).Name, typeof(T1).Name},
-    { typeof(T2).Name, typeof(T2).Name},
-};
-#endif
-
-  private List<string> TypeNames => new List<string> { typeof(T1).Name, typeof(T2).Name };
+  private List<string> TypeNames => new List<string> {typeof(T1).Name, typeof(T2).Name};
 }
 
 
-[Serializable, InlineProperty]
+[Serializable]
+[InlineProperty]
 public class UnionStructType<T1, T2> : UnionType<T1, T2>
-where T1 : struct
-where T2 : struct { }
+  where T1 : struct
+  where T2 : struct {
+}
 
 
-[Serializable, InlineProperty]
-public class VectorType : UnionType<Vector2, Vector3> { }
+[Serializable]
+[InlineProperty]
+public class VectorType : UnionType<Vector2, Vector3> {
+}

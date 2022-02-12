@@ -1,12 +1,12 @@
-#if ODIN_INSPECTOR
-using Sirenix.OdinInspector;
-#else
-using Enginoobz.Attribute;
-#endif
-
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+
+#else
+using Enginoobz.Attribute;
+#endif
 
 // TODO: Rename to SFXVariation
 
@@ -18,49 +18,29 @@ namespace Enginoobz.Audio {
   public class SFXData : ScriptableObject {
     // TODO: Turn mode: random, random iterate, iterate, random other than last
 
-    [HorizontalGroup("SFX Filter", LabelWidth = 45)]
-    [SerializeField]
+    [HorizontalGroup("SFX Filter", LabelWidth = 45)] [SerializeField]
     private SFXTarget _target;
 
-    [HorizontalGroup("SFX Filter", LabelWidth = 45)]
-    [SerializeField]
+    [HorizontalGroup("SFX Filter", LabelWidth = 45)] [SerializeField]
     private SFXAction _action;
 
-    [SerializeField, MinMaxSlider(0, 1, true), OnValueChanged(nameof(UpdateGlobalVolumeRange))]
+    [SerializeField]
+    [MinMaxSlider(0, 1, true)]
+    [OnValueChanged(nameof(UpdateGlobalVolumeRange))]
     [LabelText("Global Volume")]
     private Vector2 _globalVolumeRange = Vector2.one;
-    private void UpdateGlobalVolumeRange() {
-      _audioClipWrappers.ForEach(element => element.VolumeRange = _globalVolumeRange);
-    }
 
-    [SerializeField, MinMaxSlider(-3, 3, true), OnValueChanged(nameof(UpdateGlobalPitchRange))]
+    [SerializeField]
+    [MinMaxSlider(-3, 3, true)]
+    [OnValueChanged(nameof(UpdateGlobalPitchRange))]
     [LabelText("Global Pitch")]
     private Vector2 _globalPitchRange = Vector2.one;
-    private void UpdateGlobalPitchRange() {
-      _audioClipWrappers.ForEach(element => element.PitchRange = _globalPitchRange);
-    }
 
-    [SerializeField, HideLabel]
-    private List<AudioClipWrapper> _audioClipWrappers = new List<AudioClipWrapper>();
+    [SerializeField] [HideLabel] private List<AudioClipWrapper> _audioClipWrappers = new List<AudioClipWrapper>();
 
     private AudioClipWrapper _lastClipWrapper;
 
     private AudioSource _previewAudioSource;
-
-    private void OnEnable() {
-      _previewAudioSource = EditorUtility
-        .CreateGameObjectWithHideFlags("Audio Preview", HideFlags.HideAndDontSave,
-        typeof(AudioSource)).GetComponent<AudioSource>();
-    }
-
-    private void OnDisable() {
-      DestroyImmediate(_previewAudioSource);
-    }
-
-    [Button]
-    public void Preview() {
-      PlayRandom(_previewAudioSource);
-    }
 
     // [SerializeField]
     // [InlineEditor]
@@ -72,6 +52,29 @@ namespace Enginoobz.Audio {
 
     public SFXTarget Target => _target;
     public SFXAction Action => _action;
+
+    private void OnEnable() {
+      _previewAudioSource = EditorUtility
+        .CreateGameObjectWithHideFlags("Audio Preview", HideFlags.HideAndDontSave,
+          typeof(AudioSource)).GetComponent<AudioSource>();
+    }
+
+    private void OnDisable() {
+      DestroyImmediate(_previewAudioSource);
+    }
+
+    private void UpdateGlobalVolumeRange() {
+      _audioClipWrappers.ForEach(element => element.VolumeRange = _globalVolumeRange);
+    }
+
+    private void UpdateGlobalPitchRange() {
+      _audioClipWrappers.ForEach(element => element.PitchRange = _globalPitchRange);
+    }
+
+    [Button]
+    public void Preview() {
+      PlayRandom(_previewAudioSource);
+    }
 
     public void PlayRandom(AudioSource audioSource) {
       _lastClipWrapper = _audioClipWrappers.GetRandomOtherThan(_lastClipWrapper);
@@ -86,12 +89,12 @@ namespace Enginoobz.Audio {
   public enum SFXTarget {
     Any = 0,
     Player = 1,
-    Enemy = 2,
+    Enemy = 2
   }
 
   public enum SFXAction {
     Damaged = 0,
     Die = 1,
-    Attack = 2,
+    Attack = 2
   }
 }

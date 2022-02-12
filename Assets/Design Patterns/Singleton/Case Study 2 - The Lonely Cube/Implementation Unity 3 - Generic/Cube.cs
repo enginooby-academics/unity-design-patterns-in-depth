@@ -5,7 +5,7 @@ namespace SingletonPattern.Case2.Unity3 {
   public class Cube : MonoBehaviourSingleton<Cube> {
     public float Size { get; protected set; }
 
-    void Start() {
+    private void Start() {
       if (Size == 0) Size = Random.Range(1f, 5f);
       Setup(gameObject, Size);
     }

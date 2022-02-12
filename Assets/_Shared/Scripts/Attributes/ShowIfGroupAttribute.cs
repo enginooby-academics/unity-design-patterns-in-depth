@@ -3,7 +3,7 @@ using System.Diagnostics;
 using UnityEngine;
 
 namespace Enginoobz.Attribute {
-  [AttributeUsage(AttributeTargets.All, AllowMultiple = true, Inherited = true)]
+  [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
   [Conditional("UNITY_EDITOR")]
   public class ShowIfGroupAttribute : PropertyAttribute {
     private string _condition;
@@ -14,8 +14,6 @@ namespace Enginoobz.Attribute {
       _optionalValue = optionalValue;
     }
 
-    public ShowIfGroupAttribute(string condition) {
-      _condition = condition;
-    }
+    public ShowIfGroupAttribute(string condition) => _condition = condition;
   }
 }

@@ -4,7 +4,8 @@ using Digger;
 
 public class TerrainModifier : MonoBehaviour {
   // TODO: automate setup in script
-  [TextArea] public string setupGuide = "To use this component, add Digger Master (Tools -> Digger -> Setup terrains) & Digger Master Runtime (Setup for runtime)";
+  [TextArea] public string setupGuide =
+ "To use this component, add Digger Master (Tools -> Digger -> Setup terrains) & Digger Master Runtime (Setup for runtime)";
   [SerializeField] private Camera currentCamera;
 
   [Header("Async parameters")]

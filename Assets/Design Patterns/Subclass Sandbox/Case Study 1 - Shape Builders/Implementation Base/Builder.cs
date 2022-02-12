@@ -5,14 +5,14 @@ using DG.Tweening;
 
 namespace SubclassSandboxPattern.Case1.Base {
   /// <summary>
-  /// * [The 'Sandbox' base class] 
-  /// Couple with ProceduralUtils, VFXs, TransformOperator component, DOTween asset
+  ///   * [The 'Sandbox' base class]
+  ///   Couple with ProceduralUtils, VFXs, TransformOperator component, DOTween asset
   /// </summary>
   public abstract class Builder : MonoBehaviourGizmos {
     // Subsystems
     // load vfxs from resources
 
-    void Start() {
+    private void Start() {
       Build();
     }
 
@@ -24,12 +24,12 @@ namespace SubclassSandboxPattern.Case1.Base {
     }
 
     /// <summary>
-    /// Create primitive shape with the given local position.
+    ///   Create primitive shape with the given local position.
     /// </summary>
     protected GameObject AddCube(Vector3 localPos, float size = 1f, string name = "Primitive", Color? color = null) {
-      GameObject primitive = new GameObject(name);
-      MeshFilter meshFilter = primitive.AddComponent<MeshFilter>();
-      MeshRenderer meshRenderer = primitive.AddComponent<MeshRenderer>();
+      var primitive = new GameObject(name);
+      var meshFilter = primitive.AddComponent<MeshFilter>();
+      var meshRenderer = primitive.AddComponent<MeshRenderer>();
 
       meshFilter.mesh = ProceduralUtils.CreateCubeMesh(size);
       meshRenderer.material = new Material(Shader.Find("Universal Render Pipeline/Lit"));
@@ -41,11 +41,9 @@ namespace SubclassSandboxPattern.Case1.Base {
     }
 
     protected void AddSphere() {
-
     }
 
     protected void AddCylinder() {
-
     }
 
     protected void ShakePosition(GameObject gameObject) {

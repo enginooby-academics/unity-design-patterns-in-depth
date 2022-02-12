@@ -3,8 +3,7 @@ using UnityEngine;
 
 namespace SingletonPattern.Case1 {
   public class GameManager : MonoBehaviour {
-    private int _level = 1;
-    public int Level => _level;
+    public int Level { get; private set; } = 1;
 
     private void Start() {
       StartCoroutine(IncreaseLevelCourotine());
@@ -12,9 +11,9 @@ namespace SingletonPattern.Case1 {
 
     private IEnumerator IncreaseLevelCourotine() {
       while (true) {
-        int randomPeriod = Random.Range(2, 5);
+        var randomPeriod = Random.Range(2, 5);
         yield return new WaitForSeconds(randomPeriod);
-        Debug.Log("Current level: " + (++_level));
+        Debug.Log("Current level: " + ++Level);
       }
     }
   }

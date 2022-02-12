@@ -1,11 +1,11 @@
+using System;
+using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
 using Enginoobz.Attribute;
 #endif
 
-using System;
-using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -17,11 +17,13 @@ using UnityEditor;
 namespace ObserverPattern.Case2.Alternative1 {
   [InitializeOnLoad]
   public class ReferenceVariableSO<T> : ScriptableObject where T : IEquatable<T> {
-    [SerializeField, OnValueChanged(nameof(SetToInitValue))]
+    [SerializeField] [OnValueChanged(nameof(SetToInitValue))]
     private bool _isValuePersistent = true;
-    [SerializeField, OnValueChanged(nameof(SetToInitValue))]
+
+    [SerializeField] [OnValueChanged(nameof(SetToInitValue))]
     private T _initialValue;
-    [DisplayAsString, LabelText("Current Value")]
+
+    [DisplayAsString] [LabelText("Current Value")]
     public T Value;
 
     private T _lastValue;
@@ -29,8 +31,8 @@ namespace ObserverPattern.Case2.Alternative1 {
     private void SetToInitValue() => Value = _initialValue;
 
     /// <summary>
-    /// [Update-safe method] <br/>
-    /// Only perform the given action on value changed.
+    ///   [Update-safe method] <br />
+    ///   Only perform the given action on value changed.
     /// </summary>
     public void PerformOnValueChanged(Action<T> action) {
       if (Value.Equals(_lastValue)) return;
@@ -58,12 +60,10 @@ namespace ObserverPattern.Case2.Alternative1 {
       EditorApplication.playModeStateChanged -= OnPlayStateChange;
     }
 
-    void OnPlayStateChange(PlayModeStateChange state) {
-      if (state == PlayModeStateChange.EnteredPlayMode) {
+    private void OnPlayStateChange(PlayModeStateChange state) {
+      if (state == PlayModeStateChange.EnteredPlayMode)
         OnAppStart();
-      } else if (state == PlayModeStateChange.ExitingPlayMode) {
-        OnAppQuit();
-      }
+      else if (state == PlayModeStateChange.ExitingPlayMode) OnAppQuit();
     }
 #else
         protected void OnEnable() => OnAppStart();

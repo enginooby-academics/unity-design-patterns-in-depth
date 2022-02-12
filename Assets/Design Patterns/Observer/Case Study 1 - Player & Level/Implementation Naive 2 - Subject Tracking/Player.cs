@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ObserverPattern2 {
@@ -14,16 +12,16 @@ namespace ObserverPattern2 {
       currentLevel = gameManager.Level;
     }
 
+    private void Update() {
+      TrackGameLevel();
+    }
+
     // ! 3: validate caching continously: high cpu usage
     private void TrackGameLevel() {
       if (currentLevel != gameManager.Level) {
         currentLevel = gameManager.Level;
         UpdateHealthOnNewLevel(currentLevel);
       }
-    }
-
-    void Update() {
-      TrackGameLevel();
     }
   }
 }

@@ -3,9 +3,8 @@ using Sirenix.OdinInspector;
 #else
 using Enginoobz.Attribute;
 #endif
-
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using Shared = ObserverPattern.Case2;
 
 namespace ObserverPattern.Case2.Unity1 {
@@ -19,7 +18,7 @@ namespace ObserverPattern.Case2.Unity1 {
     // Cannot access OnCountUpEvent via singleton Instance which returns super singleton class
     // ! Still couple with the subject but ok in this case
     // void Start() => FindObjectOfType<Counter>().OnCountUpEvent.AddListener(SetText);
-    void Start() => FindObjectOfType<Counter>().ListenOnCountUpEvent(SetText);
+    private void Start() => FindObjectOfType<Counter>().ListenOnCountUpEvent(SetText);
 
     [Button]
     public void ExploitUnityEvent() {

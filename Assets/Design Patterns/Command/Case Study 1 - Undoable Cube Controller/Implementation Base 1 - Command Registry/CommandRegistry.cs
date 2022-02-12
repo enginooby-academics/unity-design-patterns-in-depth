@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace CommandPattern.Case1.Base1 {
   /// <summary>
-  /// Usually, we only need an instance of each Command type.
+  ///   Usually, we only need an instance of each Command type.
   /// </summary>
   // ! Can be non-MonoBehaviour singleton
   public class CommandRegistry : MonoBehaviourSingleton<CommandRegistry> {
@@ -14,9 +14,7 @@ namespace CommandPattern.Case1.Base1 {
     }
 
     public void SetReceiver(Cube cube) {
-      foreach (var command in Commands) {
-        command.Cube = cube;
-      }
+      foreach (var command in Commands) command.Cube = cube;
     }
 
     public void SetKeyCodeFor<T>(KeyCode keyCode) where T : MoveCommand {

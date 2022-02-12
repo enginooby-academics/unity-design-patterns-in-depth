@@ -2,7 +2,7 @@ using static UnityEngine.Mathf;
 
 namespace VisitorPattern.Case1.CSharp {
   /// <summary>
-  /// * [A 'Concrete Visitor' class]
+  ///   * [A 'Concrete Visitor' class]
   /// </summary>
   public class VolumeCalculator : Calculator {
     protected override double Calculate(ProceduralCube cube) => Pow(cube.Size, 3);

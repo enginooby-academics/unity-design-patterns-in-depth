@@ -1,11 +1,12 @@
+using System.Collections;
 using UnityEngine;
 using static UnityEngine.PrimitiveType;
 using static UnityEngine.GameObject;
-using System.Collections;
 
 namespace BuilderPattern.Case2.Naive2 {
   public class SimpleHouse : House {
-    public SimpleHouse() : base("Simple House") { }
+    public SimpleHouse() : base("Simple House") {
+    }
 
     public override IEnumerator BuildBase(float speed) {
       Add(CreatePrimitive(Cube)

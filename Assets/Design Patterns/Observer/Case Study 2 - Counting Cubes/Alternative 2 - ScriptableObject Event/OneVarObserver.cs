@@ -4,6 +4,7 @@ using UnityEngine.Events;
 namespace ObserverPattern.Case2.Alternative2 {
   public class OneVarObserver<T> : MonoBehaviour {
     public OneVarEventSO<T> Event;
+
     // public UltEvent<T> Response;
     public UnityEvent<T> Response;
 

@@ -1,22 +1,23 @@
+using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
 using Enginoobz.Attribute;
 #endif
 
-using System;
-using UnityEngine;
-
 namespace CompositePattern.Case2.Unity1 {
   /// <summary>
-  /// * The 'Leaf' base class
+  ///   * The 'Leaf' base class
   /// </summary>
-  [Serializable, InlineProperty]
+  [Serializable]
+  [InlineProperty]
   public abstract class Shape : MonoBehaviourGizmos, IShape {
     protected float _scale;
 
     protected virtual void Start() {
-      _scale = UnityEngine.Random.Range(.5f, 1.5f);
+      _scale = Random.Range(.5f, 1.5f);
       gameObject.SetScale(_scale);
       gameObject.AddComponent<MeshFilter>();
       gameObject.AddComponent<MeshRenderer>();
@@ -24,8 +25,8 @@ namespace CompositePattern.Case2.Unity1 {
       gameObject.SetMaterialColor(Color.green);
     }
 
-    public abstract double GetVolume();
-
     private void OnMouseDown() => GetVolume().Log();
+
+    public abstract double GetVolume();
   }
 }

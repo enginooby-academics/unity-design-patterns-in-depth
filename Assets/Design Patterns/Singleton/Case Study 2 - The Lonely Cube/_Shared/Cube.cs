@@ -1,22 +1,23 @@
 using System;
+using System.Threading;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace SingletonPattern.Case2 {
   public abstract class Cube {
-    private float _size;
-
-    public float Size => _size;
+    private int _count;
 
     private GameObject _gameObject;
-    private int _count;
+
+    public float Size { get; private set; }
 
     protected void Init() {
       _gameObject = new GameObject("Cube");
-      if (_size == 0) _size = UnityEngine.Random.Range(1f, 5f);
-      MonoBehaviourCube.Setup(_gameObject, _size);
+      if (Size == 0) Size = Random.Range(1f, 5f);
+      MonoBehaviourCube.Setup(_gameObject, Size);
 
-      int delay = 5 - DateTime.Now.Second;
-      new System.Threading.Timer(o => Debug.Log(_count++), null, delay * 1000, 3000);
+      var delay = 5 - DateTime.Now.Second;
+      new Timer(o => Debug.Log(_count++), null, delay * 1000, 3000);
     }
   }
 }

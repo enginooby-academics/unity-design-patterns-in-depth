@@ -1,14 +1,15 @@
 #if ASSET_SCPE
-using UnityEngine;
 using SCPE;
+using UnityEngine;
+
 // using QFSW.QC;
 
 namespace Enginoobz.Graphics {
   public partial class PostFxModifierSCPE : MonoBehaviour {
     private LensFlares lensFlares;
-    private LightStreaks lightStreaks;
 
     private bool lensFlaresOriginalState;
+    private LightStreaks lightStreaks;
     private bool lightStreaksOriginalState;
 
     private void GetRenderingOriginalStates() {
@@ -29,8 +30,8 @@ namespace Enginoobz.Graphics {
     }
 
     private void GetRederingSettings() {
-      Profile.TryGet<LensFlares>(out lensFlares);
-      Profile.TryGet<LightStreaks>(out lightStreaks);
+      Profile.TryGet(out lensFlares);
+      Profile.TryGet(out lightStreaks);
     }
 
     // [Command(CommandPrefix.PostFx + "len-flares-toggle")]

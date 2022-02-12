@@ -10,26 +10,28 @@ using static GeometryUtils;
 
 namespace SubclassSandboxPattern.Case1.Base {
   /// <summary>
-  /// * [The 'Sandbox Subclass'] 
+  ///   * [The 'Sandbox Subclass']
   /// </summary>
   public class SquareBuilder : Builder {
-    [SerializeField, OnValueChanged(nameof(Rebuild)), Range(2f, 6f)]
+    [SerializeField] [OnValueChanged(nameof(Rebuild))] [Range(2f, 6f)]
     private float _size = 4f;
 
-    [SerializeField, OnValueChanged(nameof(Rebuild)), Range(0f, 10f)]
+    [SerializeField]
+    [OnValueChanged(nameof(Rebuild))]
+    [Range(0f, 10f)]
     [Tooltip("Number of points on each side excluding 2 corner points.")]
     private int _sidePoints = 2;
 
-    [SerializeField, OnValueChanged(nameof(Rebuild)), Range(0f, 10f)]
-    private int _diagonalPoints = 0;
+    [SerializeField] [OnValueChanged(nameof(Rebuild))] [Range(0f, 10f)]
+    private int _diagonalPoints;
 
-    [SerializeField, OnValueChanged(nameof(Rebuild))]
+    [SerializeField] [OnValueChanged(nameof(Rebuild))]
     private Color _sideColor = Color.blue;
 
-    [SerializeField, OnValueChanged(nameof(Rebuild))]
+    [SerializeField] [OnValueChanged(nameof(Rebuild))]
     private Color _cornerColor = Color.green;
 
-    [SerializeField, OnValueChanged(nameof(Rebuild))]
+    [SerializeField] [OnValueChanged(nameof(Rebuild))]
     private Color _diagonalColor = Color.red;
 
     // IMPL
@@ -57,7 +59,7 @@ namespace SubclassSandboxPattern.Case1.Base {
       PositionsInBetween(corner4, corner1, _sidePoints).ForEach(pos => AddCube(pos, color: _sideColor));
 
       // diagonal points
-      Vector3 centroidPos = transform.position;
+      var centroidPos = transform.position;
       PositionsInBetween(centroidPos, corner1, _diagonalPoints / 2).ForEach(pos => AddCube(pos, color: _diagonalColor));
       PositionsInBetween(centroidPos, corner2, _diagonalPoints / 2).ForEach(pos => AddCube(pos, color: _diagonalColor));
       PositionsInBetween(centroidPos, corner3, _diagonalPoints / 2).ForEach(pos => AddCube(pos, color: _diagonalColor));

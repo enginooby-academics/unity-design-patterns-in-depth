@@ -1,27 +1,22 @@
+using System.Collections;
+using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
 using Enginoobz.Attribute;
 #endif
 
-using System.Collections;
-using UnityEngine;
-
 namespace BuilderPattern.Case2.Unity1 {
   /// <summary>
-  /// * The MonoBehaviour 'Director' class (optional)
+  ///   * The MonoBehaviour 'Director' class (optional)
   /// </summary>
   public class HomeContractor : MonoBehaviour {
-    [SerializeField]
-    [Range(50f, 300f)]
-    [SuffixLabel("%")]
+    [SerializeField] [Range(50f, 300f)] [SuffixLabel("%")]
     private float _speed = 200f;
 
-    [SerializeField, EnumToggleButtons]
-    private HouseBuilder _houseBuilder;
+    [SerializeField] [EnumToggleButtons] private HouseBuilder _houseBuilder;
 
-    [SerializeField]
-    private string _houseName = "House";
+    [SerializeField] private string _houseName = "House";
 
     [Button]
     public void Construct() {

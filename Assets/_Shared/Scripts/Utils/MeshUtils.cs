@@ -2,11 +2,11 @@ using UnityEngine;
 
 public static class MeshUtils {
   /// <summary>
-  /// ! This can change primitive mesh permantly. Use WithScale() to get a new Mesh w/o affecting primitive mesh.
+  ///   ! This can change primitive mesh permantly. Use WithScale() to get a new Mesh w/o affecting primitive mesh.
   /// </summary>
   public static void Scale(this Mesh mesh, float factor) {
-    Vector3[] baseVertices = mesh.vertices;
-    Vector3[] vertices = new Vector3[baseVertices.Length];
+    var baseVertices = mesh.vertices;
+    var vertices = new Vector3[baseVertices.Length];
 
     for (var i = 0; i < vertices.Length; i++) {
       var vertex = baseVertices[i];
@@ -22,12 +22,12 @@ public static class MeshUtils {
   }
 
   /// <summary>
-  /// Return a copied mesh with the specified scale in the specified axis from the original mesh.
+  ///   Return a copied mesh with the specified scale in the specified axis from the original mesh.
   /// </summary>
-  public static Mesh WithScale(this Mesh mesh, float factor, AxisFlag axis = AxisFlag.ALL) {
-    Mesh newMesh = Object.Instantiate<Mesh>(mesh);
-    Vector3[] baseVertices = mesh.vertices;
-    Vector3[] vertices = new Vector3[baseVertices.Length];
+  public static Mesh WithScale(this Mesh mesh, float factor, AxisFlag axis = AxisFlag.All) {
+    var newMesh = Object.Instantiate(mesh);
+    var baseVertices = mesh.vertices;
+    var vertices = new Vector3[baseVertices.Length];
 
     for (var i = 0; i < vertices.Length; i++) {
       var vertex = baseVertices[i];

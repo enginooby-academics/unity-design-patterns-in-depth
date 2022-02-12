@@ -1,14 +1,11 @@
+using System;
 using Shared = ObserverPattern.Case2;
 
 namespace ObserverPattern.Case2.CSharp {
   /// <summary>
-  /// * [The 'Subject' class]
+  ///   * [The 'Subject' class]
   /// </summary>
   public class Counter : Shared.Counter {
-    // ! 1: Use C# Action: no return type
-    // ! Use keyword event to secure the action being invoked from outside the subject
-    public static event System.Action<int> OnCountUpEvent;
-
     // ! 2: Use Delegate: can have return type
     // public delegate string OnCountUpEventHandler(int number);
     // public static event OnCountUpEventHandler OnCountUpEvent;
@@ -23,5 +20,9 @@ namespace ObserverPattern.Case2.CSharp {
         // OnCountUpEvent?.Invoke(_count).Log();
       }
     }
+
+    // ! 1: Use C# Action: no return type
+    // ! Use keyword event to secure the action being invoked from outside the subject
+    public static event Action<int> OnCountUpEvent;
   }
 }

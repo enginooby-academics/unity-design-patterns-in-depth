@@ -3,27 +3,21 @@ using Sirenix.OdinInspector;
 #else
 using Enginoobz.Attribute;
 #endif
-
 using System;
 using UnityEngine;
 using Shared = AbstractFactoryPattern.Case1;
 
 namespace AbstractFactoryPattern.Case1.Naive {
   public class ClientShapeGenerator : Shared.ClientShapeGenerator {
-    // ! need to modify if new theme is added
-    public enum Theme { Simple, Shaking }
-
-    [SerializeField, EnumToggleButtons]
-    private Theme _currentTheme;
+    [EnumToggleButtons] [SerializeField] private Theme _currentTheme;
 
     [Button]
     public void CreateCube() {
       // ! tightly coupled w/ concrete product classes
-      Cube cube = _currentTheme switch
-      {
+      Cube cube = _currentTheme switch {
         Theme.Simple => new SimpleCube(),
         Theme.Shaking => new ShakingCube(),
-        _ => throw new ArgumentOutOfRangeException(),
+        _ => throw new ArgumentOutOfRangeException()
       };
       cube.SetPos(RandomPos);
       generatedCubes.Add(cube);
@@ -31,14 +25,19 @@ namespace AbstractFactoryPattern.Case1.Naive {
 
     [Button]
     public void CreateSphere() {
-      Sphere sphere = _currentTheme switch
-      {
+      Sphere sphere = _currentTheme switch {
         Theme.Simple => new SimpleSphere(),
         Theme.Shaking => new ShakingSphere(),
-        _ => throw new ArgumentOutOfRangeException(),
+        _ => throw new ArgumentOutOfRangeException()
       };
       sphere.SetPos(RandomPos);
       generatedSpheres.Add(sphere);
+    }
+
+    // ! need to modify if new theme is added
+    private enum Theme {
+      Simple,
+      Shaking
     }
   }
 }

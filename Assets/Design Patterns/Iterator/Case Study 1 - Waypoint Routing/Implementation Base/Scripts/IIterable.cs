@@ -9,5 +9,6 @@ namespace IteratorPattern.Case1.Base {
   /// <summary>
   /// Interface wrapper to serialize in the Inspector.
   /// </summary>
-  public class IIterableContainer<T> : IUnifiedContainer<IIterable<T>> where T : class { }
+  public class IIterableContainer<T> : IUnifiedContainer<IIterable<T>> where T : class {
+  }
 }

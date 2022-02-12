@@ -3,15 +3,13 @@ using UnityEngine;
 
 namespace BuilderPattern.Case2.Unity1 {
   /// <summary>
-  /// * The MonoBehaviour 'Builder' class
+  ///   * The MonoBehaviour 'Builder' class
   /// </summary>
   public class HouseBuilder : MonoBehaviour {
     // TIP: single declare statement for related variables
-    [SerializeField]
-    private GameObject _base, _roof, _door, _windows, _chimney;
+    [SerializeField] private GameObject _base, _roof, _door, _windows, _chimney;
 
-    [HideInInspector]
-    public GameObject Container;
+    [HideInInspector] public GameObject Container;
 
     private IEnumerator Build(GameObject part, float speed) {
       if (!part) yield break;

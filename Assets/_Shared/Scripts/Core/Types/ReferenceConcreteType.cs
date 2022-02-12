@@ -10,28 +10,28 @@ using UnityEngine;
 using static TypeUtils;
 
 /// <summary>
-/// Concrete type collection of an abstract or interface.
-/// Can be used to quickly construct GameObject (procedurally) when creating instance (however, components are not tuned).
+///   Concrete type collection of an abstract or interface.
+///   Can be used to quickly construct GameObject (procedurally) when creating instance (however, components are not
+///   tuned).
 /// </summary>
-[Serializable, InlineProperty]
+[Serializable]
+[InlineProperty]
 public class ReferenceConcreteType<T> where T : class {
-  [SerializeField, HideLabel]
-  [ValueDropdown(nameof(GetTypeNames))]
-  [OnValueChanged(nameof(UpdateCurrentType))]
-  private String _currentTypeName;
-  [SerializeField, HideInInspector]
-  private List<String> _typeNames;
-  [SerializeField, HideInInspector]
-  private List<String> _qualifiedTypeNames;
-  [SerializeField, HideInInspector]
-  private String _currentQualifiedTypeName;
+  [SerializeField] [HideLabel] [ValueDropdown(nameof(GetTypeNames))] [OnValueChanged(nameof(UpdateCurrentType))]
+  private string _currentTypeName;
 
-  public bool Is<K>() where K : T => Value == typeof(K);
+  [SerializeField] [HideInInspector] private List<string> _typeNames;
+
+  [SerializeField] [HideInInspector] private List<string> _qualifiedTypeNames;
+
+  [SerializeField] [HideInInspector] private string _currentQualifiedTypeName;
 
 
   // ! guard case: current type is removed
   public Type Value => Type.GetType(_currentQualifiedTypeName) ?? GetAndSetFirstType();
   public T ValueT => Type.GetType(_currentQualifiedTypeName) as T;
+
+  public bool Is<K>() where K : T => Value == typeof(K);
 
   private Type GetAndSetFirstType() {
     GetTypeNames();
@@ -41,28 +41,27 @@ public class ReferenceConcreteType<T> where T : class {
   }
 
   /// <summary>
-  /// If current type is MonoBehaviour, create GameObject of the current type with the given extra component types.
+  ///   If current type is MonoBehaviour, create GameObject of the current type with the given extra component types.
   /// </summary>
   public virtual T CreateInstance(params Type[] extraComponents) {
     if (!Value.IsSubclassOf(typeof(MonoBehaviour)))
-      return (T)Activator.CreateInstance(Value);
+      return (T) Activator.CreateInstance(Value);
 
     // scripting-construction
     var go = new GameObject();
-    foreach (var component in extraComponents) {
+    foreach (var component in extraComponents)
       if (component.IsSubclassOf(typeof(Component)))
         go.AddComponent(component);
-    }
 
     return go.AddComponent(Value) as T;
   }
 
   /// <summary>
-  /// Create instance by constructor with params for non-MonoBehaviour type.
+  ///   Create instance by constructor with params for non-MonoBehaviour type.
   /// </summary>
   public virtual T CreateInstanceWithParams(params object[] paramArray) {
     if (!Value.IsSubclassOf(typeof(MonoBehaviour)))
-      return (T)Activator.CreateInstance(Value, args: paramArray);
+      return (T) Activator.CreateInstance(Value, paramArray);
 
     // scripting-construction
     var go = new GameObject();
@@ -74,13 +73,13 @@ public class ReferenceConcreteType<T> where T : class {
     return go.AddComponent(Value) as T;
   }
 
-  private IEnumerable<String> GetTypeNames() {
+  private IEnumerable<string> GetTypeNames() {
     _qualifiedTypeNames = GetConcreteTypeQualifiedNamesOf<T>();
     return _typeNames = GetConcreteTypeNamesOf<T>();
   }
 
   private void UpdateCurrentType() {
-    int id = _typeNames.IndexOf(_currentTypeName);
+    var id = _typeNames.IndexOf(_currentTypeName);
     _currentQualifiedTypeName = _qualifiedTypeNames[id];
   }
 }

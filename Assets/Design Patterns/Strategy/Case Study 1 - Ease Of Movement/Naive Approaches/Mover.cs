@@ -5,17 +5,19 @@ using DG.Tweening;
 #endif
 
 namespace Strategy.Naive {
-  public enum EaseMovement { Linear, InBounce, InSine }
+  public enum EaseMovement {
+    Linear,
+    InBounce,
+    InSine
+  }
 
   public class Mover : MonoBehaviour {
-    [SerializeField]
-    private float _speed = 5f;
+    [SerializeField] private float _speed = 5f;
 
-    [SerializeField]
-    private EaseMovement _movementEase;
+    [SerializeField] private EaseMovement _movementEase;
 
 
-    void Update() {
+    private void Update() {
       HandleMovement();
     }
 
@@ -23,7 +25,7 @@ namespace Strategy.Naive {
     // ! Need to modify this source file if adding new type of eases
     private void HandleMovement() {
       if (MouseButton.Left.IsDown()) {
-        Vector3 mousePosOnGround = MousePosOnRayHit.Value.WithY(0);
+        var mousePosOnGround = MousePosOnRayHit.Value.WithY(0);
         switch (_movementEase) {
           case EaseMovement.Linear:
             MoveLinear(mousePosOnGround, _speed);

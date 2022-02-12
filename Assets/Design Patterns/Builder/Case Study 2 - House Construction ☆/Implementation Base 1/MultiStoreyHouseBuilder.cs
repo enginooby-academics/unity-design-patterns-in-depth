@@ -5,7 +5,7 @@ using static UnityEngine.GameObject;
 
 namespace BuilderPattern.Case2.Base1 {
   /// <summary>
-  /// * A 'Concrete Builder' class
+  ///   * A 'Concrete Builder' class
   /// </summary>
   public class MultiStoreyHouseBuilder : IHouseBuilder {
     private House _house;
@@ -57,14 +57,14 @@ namespace BuilderPattern.Case2.Base1 {
       House.Add(CreatePrimitive(Cube)
         .WithMaterial(Color.white)
         .WithPosition(5.1f, 5.3f, .7f)
-         .WithRotation(0f, 45f, 25f)
+        .WithRotation(0f, 45f, 25f)
         .WithScale(2f, .2f, 5f));
 
       House.Add(CreatePrimitive(Cube)
-         .WithMaterial(Color.white)
-         .WithPosition(3.9f, 3.5f, 1.9f)
-         .WithRotation(0f, 45f, 57f)
-         .WithScale(3f, .2f, 5f));
+        .WithMaterial(Color.white)
+        .WithPosition(3.9f, 3.5f, 1.9f)
+        .WithRotation(0f, 45f, 57f)
+        .WithScale(3f, .2f, 5f));
 
       yield return new WaitForSeconds(100 / speed);
     }
@@ -95,10 +95,10 @@ namespace BuilderPattern.Case2.Base1 {
         .WithScale(1.3f, .9f, .1f));
 
       House.Add(CreatePrimitive(Cube)
-      .WithMaterial(Color.white)
-      .WithPosition(3.4f, 2.4f, -1.1f)
-      .WithRotation(0f, 44f, 0f)
-      .WithScale(1.3f, .9f, .1f));
+        .WithMaterial(Color.white)
+        .WithPosition(3.4f, 2.4f, -1.1f)
+        .WithRotation(0f, 44f, 0f)
+        .WithScale(1.3f, .9f, .1f));
 
       yield return new WaitForSeconds(100 / speed);
     }

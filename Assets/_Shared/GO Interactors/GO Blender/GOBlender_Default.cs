@@ -34,3 +34,4 @@
 // //   public static new TSelf Instance => MonoBehaviourSingleton<TSelf>.Instance;
 // //   protected override bool DoesInstanceExist => _instance && _instance.GetType() == typeof(TSelf);
 // // }
+

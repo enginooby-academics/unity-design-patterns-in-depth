@@ -1,5 +1,5 @@
 namespace GOConstruction.Scripting {
   public class RotatingSphere : Sphere {
-    public RotatingSphere() : base() => _gameObject.AddComponent<Rotating>();
+    public RotatingSphere() => _gameObject.AddComponent<Rotating>();
   }
 }

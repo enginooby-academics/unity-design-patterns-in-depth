@@ -8,11 +8,10 @@ namespace SingletonPattern.Case1.Unity1 {
     public static GameManager Instance;
 
     private void Awake() {
-      if (Instance) {
+      if (Instance)
         Destroy(gameObject);
-      } else {
+      else
         Instance = this;
-      }
     }
   }
 }

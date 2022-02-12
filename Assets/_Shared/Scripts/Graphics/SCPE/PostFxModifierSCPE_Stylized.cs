@@ -1,6 +1,6 @@
 #if ASSET_SCPE
-using UnityEngine;
 using SCPE;
+using UnityEngine;
 #if ASSET_QUANTUM_CONSOLE
 using QFSW.QC;
 #endif
@@ -18,10 +18,10 @@ namespace Enginoobz.Graphics {
     private bool mosaicOriginalState;
 
     private void GetStylizedSettings() {
-      Profile.TryGet<Sketch>(out sketch);
-      Profile.TryGet<Kuwahara>(out kuwahara);
-      Profile.TryGet<EdgeDetection>(out edgeDetection);
-      Profile.TryGet<Mosaic>(out mosaic);
+      Profile.TryGet(out sketch);
+      Profile.TryGet(out kuwahara);
+      Profile.TryGet(out edgeDetection);
+      Profile.TryGet(out mosaic);
     }
 
     private void GetStylizedOriginalStates() {

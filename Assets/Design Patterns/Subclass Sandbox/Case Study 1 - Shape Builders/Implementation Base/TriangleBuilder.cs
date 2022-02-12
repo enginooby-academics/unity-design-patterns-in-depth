@@ -4,27 +4,29 @@ using Sirenix.OdinInspector;
 using Enginoobz.Attribute;
 #endif
 
-using UnityEngine;
 // ! Utils below are core, not likely to change so can couple w/ sandbox subclasses
+using UnityEngine;
 using static VectorUtils;
 using static GeometryUtils;
 
 namespace SubclassSandboxPattern.Case1.Base {
   /// <summary>
-  /// * [The 'Sandbox Subclass'] 
+  ///   * [The 'Sandbox Subclass']
   /// </summary>
   public class TriangleBuilder : Builder {
-    [SerializeField, OnValueChanged(nameof(Rebuild)), Range(2f, 6f)]
+    [SerializeField] [OnValueChanged(nameof(Rebuild))] [Range(2f, 6f)]
     private float _height = 4f;
 
-    [SerializeField, OnValueChanged(nameof(Rebuild)), Range(0f, 10f)]
+    [SerializeField]
+    [OnValueChanged(nameof(Rebuild))]
+    [Range(0f, 10f)]
     [Tooltip("Number of points on each side excluding 2 corner points.")]
     private int _sidePoints = 2;
 
-    [SerializeField, OnValueChanged(nameof(Rebuild))]
+    [SerializeField] [OnValueChanged(nameof(Rebuild))]
     private Color _sideColor = Color.blue;
 
-    [SerializeField, OnValueChanged(nameof(Rebuild))]
+    [SerializeField] [OnValueChanged(nameof(Rebuild))]
     private Color _cornerColor = Color.green;
 
     // [SerializeField, OnValueChanged(nameof(Rebuild)), EnumToggleButtons]

@@ -1,11 +1,11 @@
 using UnityEngine;
 
 /// <summary>
-/// Extend MonoBehaviourOperator if T is MonoBehaviour.
+///   Extend MonoBehaviourOperator if T is MonoBehaviour.
 /// </summary>
-public abstract class ComponentOperator<T> : MonoBehaviourBase where T : Component { // Behaviour
-  [SerializeField]
-  protected T _component;
+public abstract class ComponentOperator<T> : MonoBehaviourBase where T : Component {
+  // Behaviour
+  [SerializeField] protected T _component;
 
   // public virtual void Awake(){
   //  Reset();
@@ -18,5 +18,7 @@ public abstract class ComponentOperator<T> : MonoBehaviourBase where T : Compone
 }
 
 public abstract class MonoBehaviourOperator<T> : ComponentOperator<T> where T : MonoBehaviour {
-  public void DisableComponent() => _component.enabled = false;
+  public void DisableComponent() {
+    _component.enabled = false;
+  }
 }

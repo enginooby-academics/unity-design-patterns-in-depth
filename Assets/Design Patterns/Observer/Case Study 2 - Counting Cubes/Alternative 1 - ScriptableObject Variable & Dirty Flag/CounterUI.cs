@@ -1,12 +1,11 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using Shared = ObserverPattern.Case2;
 
 namespace ObserverPattern.Case2.Alternative1 {
   [RequireComponent(typeof(TextMeshProUGUI))]
   public class CounterUI : Shared.CounterUI {
-    [SerializeField]
-    private ReferenceIntSO _countRef;
+    [SerializeField] private ReferenceIntSO _countRef;
 
     // ! Alternative: get countRef from the Counter w/o SerializeField (coupling)
     // void Start() => _countRef = FindObjectOfType<Counter>().CountRef;
@@ -15,6 +14,6 @@ namespace ObserverPattern.Case2.Alternative1 {
     // void Update() => SetText(_countVar.Value);
 
     // ! Improve performance
-    void Update() => _countRef.PerformOnValueChanged(SetText);
+    private void Update() => _countRef.PerformOnValueChanged(SetText);
   }
 }

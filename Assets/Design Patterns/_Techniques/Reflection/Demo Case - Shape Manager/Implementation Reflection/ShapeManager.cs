@@ -11,14 +11,16 @@ using static TypeUtils;
 
 namespace Reflection.Case1.Reflection {
   public class ShapeManager : MonoBehaviour {
-    [SerializeField, LabelText("Shape Type")]
+    [SerializeField]
+    [LabelText("Shape Type")]
     [ValueDropdown(nameof(GetShapeTypeNames))]
     [OnValueChanged(nameof(UpdateCurrentType))]
-    private String _currentShapeTypeName;
+    private string _currentShapeTypeName;
 
-    private List<String> _shapeTypeNames;
-    private List<Type> _shapeTypes;
     private Type _currentShapeType;
+
+    private List<string> _shapeTypeNames;
+    private List<Type> _shapeTypes;
 
     // ! guard case: current type is removed
     public Type CurrentShapeType => _currentShapeType ?? SetAndGetFirstType();
@@ -30,13 +32,13 @@ namespace Reflection.Case1.Reflection {
       return _currentShapeType;
     }
 
-    private IEnumerable<String> GetShapeTypeNames() {
+    private IEnumerable<string> GetShapeTypeNames() {
       _shapeTypes = GetConcreteTypesOf<IShape>();
       return _shapeTypeNames = GetConcreteTypeNamesOf<IShape>();
     }
 
     private void UpdateCurrentType() {
-      int typeIndex = _shapeTypeNames.IndexOf(_currentShapeTypeName);
+      var typeIndex = _shapeTypeNames.IndexOf(_currentShapeTypeName);
       _currentShapeType = _shapeTypes[typeIndex];
     }
 
@@ -45,8 +47,9 @@ namespace Reflection.Case1.Reflection {
       IShape shape = default;
 
       if (!CurrentShapeType.IsSubclassOf(typeof(MonoBehaviour))) {
-        shape = (IShape)Activator.CreateInstance(CurrentShapeType);
-      } else {
+        shape = (IShape) Activator.CreateInstance(CurrentShapeType);
+      }
+      else {
         var go = new GameObject();
         go.AddComponent<MeshFilter>();
         go.AddComponent<MeshRenderer>();

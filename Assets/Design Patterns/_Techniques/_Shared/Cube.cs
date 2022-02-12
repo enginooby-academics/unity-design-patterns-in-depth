@@ -4,10 +4,7 @@ using static UnityEngine.Mathf;
 namespace GOConstruction {
   [DisallowMultipleComponent]
   public class Cube : MonoBehaviour, IShape {
-    [Range(1f, 5f)]
-    public float Size = 1f;
-
-    public double GetVolume() => Pow(Size, 3);
+    [Range(1f, 5f)] public float Size = 1f;
 
     protected virtual void Awake() {
       gameObject.AddComponent<MeshFilter>();
@@ -16,5 +13,7 @@ namespace GOConstruction {
       gameObject.SetMaterialColor(Color.red);
       gameObject.SetScale(Size);
     }
+
+    public double GetVolume() => Pow(Size, 3);
   }
 }

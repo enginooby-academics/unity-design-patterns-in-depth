@@ -1,17 +1,17 @@
 {
-    "name": "AdapterPattern",
-    "rootNamespace": "",
-    "references": [
-        "GUID:b6c19ef8de785f64e9e14f726b9b446b",
-        "GUID:1049b7fc5e738c04487da86600973798"
-    ],
-    "includePlatforms": [],
-    "excludePlatforms": [],
-    "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
-    "autoReferenced": true,
-    "defineConstraints": [],
-    "versionDefines": [],
-    "noEngineReferences": false
+  "name": "AdapterPattern",
+  "rootNamespace": "",
+  "references": [
+    "GUID:b6c19ef8de785f64e9e14f726b9b446b",
+    "GUID:1049b7fc5e738c04487da86600973798"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
 }

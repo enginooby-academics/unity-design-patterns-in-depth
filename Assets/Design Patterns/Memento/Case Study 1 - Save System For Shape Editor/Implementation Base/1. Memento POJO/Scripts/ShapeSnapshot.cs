@@ -1,48 +1,44 @@
+using System;
+using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
 using Enginoobz.Attribute;
 #endif
 
-using UnityEngine;
-
 namespace MementoPattern.Case1.Base {
   /// <summary>
-  /// The 'Memento' class. 
-  /// Contains all saved data at a certain time as POJO (optionally w/ snapshot metadata).
+  ///   The 'Memento' class.
+  ///   Contains all saved data at a certain time as POJO (optionally w/ snapshot metadata).
   /// </summary>
-  [System.Serializable, InlineProperty]
+  [Serializable]
+  [InlineProperty]
   public class ShapeSnapshot {
-    [HorizontalGroup("Metadata")]
-    [SerializeField, DisplayAsString]
+    [HorizontalGroup("Metadata")] [SerializeField] [DisplayAsString]
     private string _name; // metadata
 
-    [HorizontalGroup("Metadata")]
-    [SerializeField, DisplayAsString]
+    [HorizontalGroup("Metadata")] [SerializeField] [DisplayAsString]
     private string _timeCreated; // metadata
 
-    [SerializeField, EnumToggleButtons]
-    private ShapeType _type;
+    [SerializeField] [EnumToggleButtons] private ShapeType _type;
 
-    [ShowInInspector]
-    private Color _color;
+    [SerializeField] [Range(.5f, 2f)] private float _size;
 
-    [SerializeField, Range(.5f, 2f)]
-    private float _size;
+    [ShowInInspector] private Color _color;
+
+    public ShapeSnapshot(string name, ShapeType type, Color color, float size) {
+      _name = name;
+      _timeCreated = DateTime.Now.ToShortTimeString();
+      _type = type;
+      _color = color;
+      _size = size;
+    }
 
     public string Name => _name;
     public string TimeCreated => _timeCreated;
     public ShapeType Type => _type;
     public Color Color => _color;
     public float Size => _size;
-
-    public ShapeSnapshot(string name, ShapeType type, Color color, float size) {
-      _name = name;
-      _timeCreated = System.DateTime.Now.ToShortTimeString();
-      _type = type;
-      _color = color;
-      _size = size;
-    }
 
     [Button]
     public void Load() {

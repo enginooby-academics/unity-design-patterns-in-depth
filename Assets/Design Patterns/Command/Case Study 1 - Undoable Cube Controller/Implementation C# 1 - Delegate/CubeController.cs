@@ -1,77 +1,59 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
 using Enginoobz.Attribute;
 #endif
 
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-
 namespace CommandPattern.Case1.CSharp1 {
   /// <summary>
-  /// * The 'Invoker' class
+  ///   * The 'Invoker' class
   /// </summary>
   public class CubeController : MonoBehaviour {
-    [SerializeField]
-    private Cube _cube;
+    [SerializeField] private Cube _cube;
+
+    private readonly List<MoveCommand> _commandHistory = new List<MoveCommand>(); // ! can use Stack
 
     private List<MoveCommand> _commands = new List<MoveCommand>();
 
-    private List<MoveCommand> _commandHistory = new List<MoveCommand>(); // ! can use Stack
 
-
-    void Start() {
+    private void Start() {
       var moveUpCommand = new MoveCommand(
-        keyCode: KeyCode.W,
-        excuteFunc: delegate (Cube cube) {
-          cube.MoveY(1f);
-        },
-        undoFunc: delegate (Cube cube) {
-          cube.MoveY(-1f);
-        }
+        KeyCode.W,
+        delegate(Cube cube) { cube.MoveY(1f); },
+        delegate(Cube cube) { cube.MoveY(-1f); }
       );
 
       var moveDownCommand = new MoveCommand(
-        keyCode: KeyCode.S,
-        excuteFunc: delegate (Cube cube) {
-          cube.MoveY(-1f);
-        },
-        undoFunc: delegate (Cube cube) {
-          cube.MoveY(1f);
-        }
+        KeyCode.S,
+        delegate(Cube cube) { cube.MoveY(-1f); },
+        delegate(Cube cube) { cube.MoveY(1f); }
       );
 
       var moveLeftCommand = new MoveCommand(
-        keyCode: KeyCode.A,
-        excuteFunc: delegate (Cube cube) {
-          cube.MoveX(-1f);
-        },
-        undoFunc: delegate (Cube cube) {
-          cube.MoveX(1f);
-        }
+        KeyCode.A,
+        delegate(Cube cube) { cube.MoveX(-1f); },
+        delegate(Cube cube) { cube.MoveX(1f); }
       );
 
       var moveRightCommand = new MoveCommand(
-        keyCode: KeyCode.D,
-        excuteFunc: delegate (Cube cube) {
-          cube.MoveX(1f);
-        },
-        undoFunc: delegate (Cube cube) {
-          cube.MoveX(-1);
-        }
+        KeyCode.D,
+        delegate(Cube cube) { cube.MoveX(1f); },
+        delegate(Cube cube) { cube.MoveX(-1); }
       );
 
-      _commands = new List<MoveCommand>{
+      _commands = new List<MoveCommand> {
         moveUpCommand,
         moveDownCommand,
         moveLeftCommand,
-        moveRightCommand,
+        moveRightCommand
       };
     }
 
-    void Update() => _commands.ForEach(ProcessCommand);
+    private void Update() => _commands.ForEach(ProcessCommand);
 
     private void ProcessCommand(MoveCommand command) {
       if (!command.CanExecute) return;
@@ -79,7 +61,8 @@ namespace CommandPattern.Case1.CSharp1 {
       _commandHistory.Add(command);
     }
 
-    [Button, HorizontalGroup]
+    [Button]
+    [HorizontalGroup]
     public void Rewind() => StartCoroutine(RewindCoroutine());
 
     public IEnumerator RewindCoroutine() {
@@ -91,7 +74,8 @@ namespace CommandPattern.Case1.CSharp1 {
       }
     }
 
-    [Button, HorizontalGroup]
+    [Button]
+    [HorizontalGroup]
     public void Undo() {
       if (_commandHistory.IsUnset()) return;
 

@@ -1,83 +1,106 @@
+using System;
+using UnityEngine;
+using UnityEngine.Events;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
 using Enginoobz.Attribute;
 #endif
 
-using UnityEngine;
-using System;
-using UnityEngine.Events;
-
 // TODO: Extend from Stat, couple w/ GameManager for quick prototyping
-[Serializable, InlineProperty]
+[Serializable]
+[InlineProperty]
 public class StatGame {
-  [HideInInspector] public string statName;
-
-  public StatGame(string statName, int initialValue = 0, StatEvent triggerGameOverValue = StatEvent.None) {
-    this.statName = statName;
-    this.InitialValue = initialValue;
-    this.triggerGameOverValue = triggerGameOverValue;
-    // this.ui.statName = statName;
-    this.ui.prefix = statName + ": ";
-  }
-
   private const float LABEL_WIDTH_1 = 80f;
+  [HideInInspector] public string statName;
 
   // [ToggleGroup(nameof(enable), groupTitle: "$statName")]
   [FoldoutGroup("$statName")]
-  [HorizontalGroup("$statName/Enable"), LabelWidth(LABEL_WIDTH_1)]
+  [HorizontalGroup("$statName/Enable")]
+  [LabelWidth(LABEL_WIDTH_1)]
   [LabelText("Enable Stat")]
   public bool enable = true;
 
-  #region VALUES ===================================================================================================================================
   // [ToggleGroup(nameof(enable))]
-  [FoldoutGroup("$statName"), EnableIf(nameof(enable))]
-  [HorizontalGroup("$statName/Value"), LabelWidth(LABEL_WIDTH_1)]
-  [OnValueChanged(nameof(UpdateStatUI))]
-  public int InitialValue;
-  [HideInInspector] public int CurrentValue;
+  [FoldoutGroup("$statName")] [ShowIf(nameof(enable))] [OnValueChanged(nameof(UpdateStatUI), true)] [HideLabel]
+  public StatUI ui = new StatUI();
 
-  // [ToggleGroup(nameof(enable))]
-  [FoldoutGroup("$statName"), EnableIf(nameof(enable))]
-  [HorizontalGroup("$statName/Enable"), LabelWidth(LABEL_WIDTH_1)]
-  public bool enableMin = true;
-
-  [FoldoutGroup("$statName"), EnableIf(nameof(EnableStatAndMin))]
-  [HorizontalGroup("$statName/Value"), LabelWidth(LABEL_WIDTH_1)]
-  public int MinValue;
-  private bool EnableStatAndMin() { return enable && enableMin; }
-
-  [FoldoutGroup("$statName"), EnableIf(nameof(enable))]
-  [HorizontalGroup("$statName/Enable"), LabelWidth(LABEL_WIDTH_1)]
-
-  public bool enableMax;
-
-  [FoldoutGroup("$statName"), EnableIf(nameof(EnableStatAndMax))]
-  [HorizontalGroup("$statName/Value"), LabelWidth(LABEL_WIDTH_1)]
-  [PropertySpace(SpaceAfter = 10, SpaceBefore = 0)]
-  public int MaxValue;
-  private bool EnableStatAndMax() { return enable && enableMax; }
-  #endregion ===================================================================================================================================
-
-  // [ToggleGroup(nameof(enable))]
-  [FoldoutGroup("$statName"), ShowIf(nameof(enable))]
-  [OnValueChanged(nameof(UpdateStatUI), true)]
-  [HideLabel] public StatUI ui = new StatUI();
+  public StatGame(string statName, int initialValue = 0, StatEvent triggerGameOverValue = StatEvent.None) {
+    this.statName = statName;
+    InitialValue = initialValue;
+    this.triggerGameOverValue = triggerGameOverValue;
+    // this.ui.statName = statName;
+    ui.prefix = statName + ": ";
+  }
 
   private void UpdateStatUI() {
     ui.Update(InitialValue);
   }
 
-  #region EVENTS ===================================================================================================================================
-  // TODO: universal FXs on Stat change events (for FXs of specific objects, setup in EventManager)
-
-  public enum StatEvent { Min, Max, Zero, None } // ? Use enum flag
+  #region VALUES ===================================================================================================================================
 
   // [ToggleGroup(nameof(enable))]
-  [FoldoutGroup("$statName"), ShowIf(nameof(enable))]
+  [FoldoutGroup("$statName")]
+  [EnableIf(nameof(enable))]
+  [HorizontalGroup("$statName/Value")]
+  [LabelWidth(LABEL_WIDTH_1)]
+  [OnValueChanged(nameof(UpdateStatUI))]
+  public int InitialValue;
+
+  [HideInInspector] public int CurrentValue;
+
+  // [ToggleGroup(nameof(enable))]
+  [FoldoutGroup("$statName")]
+  [EnableIf(nameof(enable))]
+  [HorizontalGroup("$statName/Enable")]
+  [LabelWidth(LABEL_WIDTH_1)]
+  public bool enableMin = true;
+
+  [FoldoutGroup("$statName")]
+  [EnableIf(nameof(EnableStatAndMin))]
+  [HorizontalGroup("$statName/Value")]
+  [LabelWidth(LABEL_WIDTH_1)]
+  public int MinValue;
+
+  private bool EnableStatAndMin() => enable && enableMin;
+
+  [FoldoutGroup("$statName")]
+  [EnableIf(nameof(enable))]
+  [HorizontalGroup("$statName/Enable")]
+  [LabelWidth(LABEL_WIDTH_1)]
+  public bool enableMax;
+
+  [FoldoutGroup("$statName")]
+  [EnableIf(nameof(EnableStatAndMax))]
+  [HorizontalGroup("$statName/Value")]
+  [LabelWidth(LABEL_WIDTH_1)]
+  [PropertySpace(SpaceAfter = 10, SpaceBefore = 0)]
+  public int MaxValue;
+
+  private bool EnableStatAndMax() => enable && enableMax;
+
+  #endregion ===================================================================================================================================
+
+  #region EVENTS ===================================================================================================================================
+
+  // TODO: universal FXs on Stat change events (for FXs of specific objects, setup in EventManager)
+
+  public enum StatEvent {
+    Min,
+    Max,
+    Zero,
+    None
+  } // ? Use enum flag
+
+  // [ToggleGroup(nameof(enable))]
+  [FoldoutGroup("$statName")]
+  [ShowIf(nameof(enable))]
   [OnValueChanged(nameof(OnTriggerGameOverValueChange))]
   [PropertySpace(SpaceBefore = 10)]
-  [EnumToggleButtons, LabelText("Trigger Game Over On")] public StatEvent triggerGameOverValue = StatEvent.None;
+  [EnumToggleButtons]
+  [LabelText("Trigger Game Over On")]
+  public StatEvent triggerGameOverValue = StatEvent.None;
 
   private void OnTriggerGameOverValueChange() {
     switch (triggerGameOverValue) {
@@ -87,10 +110,9 @@ public class StatGame {
       case StatEvent.Max:
         enableMax = true;
         break;
-      default:
-        break;
     }
   }
+
   private void ProcessTriggerGameOverValue() {
     switch (triggerGameOverValue) {
       case StatEvent.Min:
@@ -102,39 +124,32 @@ public class StatGame {
       case StatEvent.Zero:
         if (CurrentValue == 0) GameManager.Instance.SetGameOver();
         break;
-      default:
-        break;
     }
   }
 
   // [ToggleGroup(nameof(enable))]
   // [FoldoutGroup("enable/Manual Events")]
-  [FoldoutGroup("$statName"), ShowIf(nameof(enable))]
-  [FoldoutGroup("$statName/Manual Events")]
+  [FoldoutGroup("$statName")] [ShowIf(nameof(enable))] [FoldoutGroup("$statName/Manual Events")]
   public UnityEvent OnStatIncrease = new UnityEvent();
 
   // [ToggleGroup(nameof(enable))]
   // [FoldoutGroup("enable/Manual Events")]
-  [FoldoutGroup("$statName"), ShowIf(nameof(enable))]
-  [FoldoutGroup("$statName/Manual Events")]
+  [FoldoutGroup("$statName")] [ShowIf(nameof(enable))] [FoldoutGroup("$statName/Manual Events")]
   public UnityEvent OnStatDecrease = new UnityEvent();
 
   // [ToggleGroup(nameof(enable))]
   // [FoldoutGroup("enable/Manual Events")]
-  [FoldoutGroup("$statName"), ShowIf(nameof(enable))]
-  [FoldoutGroup("$statName/Manual Events")]
+  [FoldoutGroup("$statName")] [ShowIf(nameof(enable))] [FoldoutGroup("$statName/Manual Events")]
   public UnityEvent OnStatMin = new UnityEvent();
 
   // [ToggleGroup(nameof(enable))]
   // [FoldoutGroup("enable/Manual Events")]
-  [FoldoutGroup("$statName"), ShowIf(nameof(enable))]
-  [FoldoutGroup("$statName/Manual Events")]
+  [FoldoutGroup("$statName")] [ShowIf(nameof(enable))] [FoldoutGroup("$statName/Manual Events")]
   public UnityEvent OnStatMax = new UnityEvent();
 
   // [ToggleGroup(nameof(enable))]
   // [FoldoutGroup("enable/Manual Events")]
-  [FoldoutGroup("$statName"), ShowIf(nameof(enable))]
-  [FoldoutGroup("$statName/Manual Events")]
+  [FoldoutGroup("$statName")] [ShowIf(nameof(enable))] [FoldoutGroup("$statName/Manual Events")]
   public UnityEvent OnStatZero = new UnityEvent();
 
   public void SetupGameEvents() {
@@ -144,23 +159,23 @@ public class StatGame {
   }
 
   public void OnGameLoad() {
-    this.CurrentValue = this.InitialValue;
+    CurrentValue = InitialValue;
   }
 
   public void OnGameStart() {
-
   }
 
   public void OnGameOver() {
-
   }
+
   #endregion ===================================================================================================================================
 
   #region PUBLIC METHODS ===================================================================================================================================
+
   public void Update(int amountToAdd) {
     if (GameManager.Instance.gameOver || !enable) return;
 
-    int valueAfterUpdate = CurrentValue + amountToAdd;
+    var valueAfterUpdate = CurrentValue + amountToAdd;
     if (enableMin && valueAfterUpdate < MinValue || enableMax && valueAfterUpdate > MaxValue) return;
 
     Set(valueAfterUpdate);
@@ -196,5 +211,6 @@ public class StatGame {
     Set(MaxValue);
     OnStatMax.Invoke();
   }
+
   #endregion ===================================================================================================================================
 }

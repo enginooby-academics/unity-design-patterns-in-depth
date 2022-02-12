@@ -1,36 +1,25 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 namespace Prototype {
   public abstract class ProceduralShape : ICloneable {
-    protected List<Vector3> vertices = new List<Vector3>();
-    protected List<int> triangles = new List<int>();
+    protected Color _color;
+
+    protected GameObject _gameObject;
+    protected Mesh _mesh;
+    protected MeshFilter _meshFilter;
+    protected MeshRenderer _meshRenderer;
+    protected ShapeMonoBehaviour _shapeMonoBehaviour;
     protected List<Vector3> normals = new List<Vector3>();
     protected List<Vector4> tangents = new List<Vector4>();
+    protected List<int> triangles = new List<int>();
     protected List<Vector2> uv = new List<Vector2>();
     protected List<Vector2> uv2 = new List<Vector2>();
     protected List<Vector2> uv3 = new List<Vector2>();
     protected List<Vector2> uv4 = new List<Vector2>();
-
-    protected GameObject _gameObject;
-    protected ShapeMonoBehaviour _shapeMonoBehaviour;
-    protected MeshFilter _meshFilter;
-    protected MeshRenderer _meshRenderer;
-    protected Mesh _mesh;
-    protected Color _color;
-
-    public GameObject GameObject => _gameObject;
-    public string Name => _gameObject.name;
-    public Color Color => _color;
-    public Vector3 Position {
-      get => _gameObject.transform.position;
-      set => _gameObject.transform.position = value;
-    }
-
-    public void SetPosition(Vector3 pos) {
-      _gameObject.transform.position = pos;
-    }
+    protected List<Vector3> vertices = new List<Vector3>();
 
     // TODO: uv, Material, shader, behaviours (spin, shake) 
 
@@ -49,7 +38,23 @@ namespace Prototype {
 
       _shapeMonoBehaviour = _gameObject.AddComponent<ShapeMonoBehaviour>();
       _shapeMonoBehaviour.shape = this;
-      _shapeMonoBehaviour.AddRigidBodyIfNotExist(useGravity: true);
+      _shapeMonoBehaviour.AddRigidBodyIfNotExist(true);
+    }
+
+    public GameObject GameObject => _gameObject;
+    public string Name => _gameObject.name;
+    public Color Color => _color;
+
+    public Vector3 Position {
+      get => _gameObject.transform.position;
+      set => _gameObject.transform.position = value;
+    }
+
+    // ! For base implementation
+    public virtual object Clone(Vector3? pos) => throw new NotImplementedException();
+
+    public void SetPosition(Vector3 pos) {
+      _gameObject.transform.position = pos;
     }
 
     protected void CreateMesh() {
@@ -70,10 +75,5 @@ namespace Prototype {
 
     protected abstract void CreateMeshData();
     public abstract void OnUpdate();
-
-    // ! For base implementation
-    public virtual object Clone(Vector3? pos) {
-      throw new System.NotImplementedException();
-    }
   }
 }

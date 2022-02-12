@@ -1,13 +1,12 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
 using Enginoobz.Attribute;
 #endif
-
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
 
 // TODO
 // + Boundary
@@ -17,30 +16,30 @@ using UnityEngine;
 // + Implement UI controller to demonstrate duplicated implementation in naive impl
 namespace CommandPattern.Case1.Base1 {
   /// <summary>
-  /// * The 'Invoker' class
+  ///   * The 'Invoker' class
   /// </summary>
   public class CubeController : MonoBehaviour {
-    [SerializeField]
-    private Cube _cube;
-
-    private List<MoveCommand> _commandHistory = new List<MoveCommand>(); // ! can use Stack
+    [SerializeField] private Cube _cube;
+    private readonly List<MoveCommand> _commandHistory = new List<MoveCommand>(); // ! can use Stack
 
 
-    void Start() => CommandRegistry.Instance.SetReceiver(_cube);
+    private void Start() => CommandRegistry.Instance.SetReceiver(_cube);
 
-    void Update() => CommandRegistry.Instance.Commands.ForEach(ProcessCommand);
+    private void Update() => CommandRegistry.Instance.Commands.ForEach(ProcessCommand);
 
     private void ProcessCommand(MoveCommand command) {
       if (!command.CanExecute) return;
+
       command.Execute();
       _commandHistory.Add(command);
     }
 
-    [Button, HorizontalGroup]
+    [Button]
+    [HorizontalGroup]
     public void Rewind() => StartCoroutine(RewindCoroutine());
 
-    public IEnumerator RewindCoroutine() {
-      // TIP: iterate collection reversely
+    private IEnumerator RewindCoroutine() {
+      // TIP: iterate collection reversely for removing operation
       foreach (var command in Enumerable.Reverse(_commandHistory)) {
         command.Undo();
         _commandHistory.Remove(command);
@@ -48,9 +47,10 @@ namespace CommandPattern.Case1.Base1 {
       }
     }
 
-    [Button, HorizontalGroup]
+    [Button]
+    [HorizontalGroup]
     public void Undo() {
-      if (_commandHistory.IsUnset()) return;
+      if (_commandHistory.IsNullOrEmpty()) return;
 
       _commandHistory.GetLast().Undo();
       _commandHistory.RemoveLast();

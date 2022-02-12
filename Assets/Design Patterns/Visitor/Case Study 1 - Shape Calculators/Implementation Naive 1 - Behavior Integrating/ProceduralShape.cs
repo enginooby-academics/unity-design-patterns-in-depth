@@ -1,17 +1,22 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace VisitorPattern.Case1.Naive1 {
   public abstract class ProceduralShape : MonoBehaviour {
     // ! Naive approach: each shape now has 2 responsibilites which are procudural generation & calculation
     // ! Need to modify the whole inheritance hierarchy
+
     #region CALCULATION-RELATED =======================================================================================================================================================================
+
     public abstract double CalculateSurfaceArea();
 
     public abstract double CalculateVolume();
+
     #endregion CALCULATION-RELATED ====================================================================================================================================================================
 
     #region PROCEDURAL-RELATED =======================================================================================================================================================================
+
     protected List<Vector3> vertices = new List<Vector3>();
     protected List<int> triangles = new List<int>();
     protected List<Vector3> normals = new List<Vector3>();
@@ -40,7 +45,8 @@ namespace VisitorPattern.Case1.Naive1 {
       UpdateMeshData();
     }
 
-    protected virtual void CreateMeshData() { }
+    protected virtual void CreateMeshData() {
+    }
 
     private void ClearMeshData() {
       vertices.Clear();
@@ -54,9 +60,9 @@ namespace VisitorPattern.Case1.Naive1 {
     }
 
     private void UpdateMeshData() {
-      Mesh _mesh = _meshFilter.mesh;
+      var _mesh = _meshFilter.mesh;
       _mesh.Clear();
-      _mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt16;
+      _mesh.indexFormat = IndexFormat.UInt16;
       _mesh.SetVertices(vertices);
       _mesh.SetTriangles(triangles, 0, true);
       _mesh.SetNormals(normals);
@@ -66,6 +72,7 @@ namespace VisitorPattern.Case1.Naive1 {
       _mesh.SetUVs(2, uv3);
       _mesh.SetUVs(3, uv4);
     }
+
     #endregion PROCEDURAL-RELATED ====================================================================================================================================================================
   }
 }

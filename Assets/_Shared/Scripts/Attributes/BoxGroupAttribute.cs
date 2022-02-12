@@ -3,13 +3,11 @@ using System.Diagnostics;
 using UnityEngine;
 
 namespace Enginoobz.Attribute {
-  [AttributeUsage(AttributeTargets.All, AllowMultiple = false, Inherited = false)]
+  [AttributeUsage(AttributeTargets.All, Inherited = false)]
   [Conditional("UNITY_EDITOR")]
   public class BoxGroupAttribute : PropertyAttribute {
     private string _label;
 
-    public BoxGroupAttribute(string label) {
-      _label = label;
-    }
+    public BoxGroupAttribute(string label) => _label = label;
   }
 }

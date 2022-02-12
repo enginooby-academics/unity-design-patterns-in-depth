@@ -1,17 +1,17 @@
 {
-    "name": "Singleton",
-    "rootNamespace": "",
-    "references": [
-        "Library",
-        "AdvancedSceneManager"
-    ],
-    "includePlatforms": [],
-    "excludePlatforms": [],
-    "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
-    "autoReferenced": true,
-    "defineConstraints": [],
-    "versionDefines": [],
-    "noEngineReferences": false
+  "name": "Singleton",
+  "rootNamespace": "",
+  "references": [
+    "Library",
+    "AdvancedSceneManager"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
 }

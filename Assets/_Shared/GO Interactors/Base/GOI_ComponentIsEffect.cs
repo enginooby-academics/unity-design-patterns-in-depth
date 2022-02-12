@@ -8,11 +8,7 @@ public abstract partial class GOI_ComponentIsEffect<TSelf, TComponent> {
   private void InitializeEffect() {
     if (_currentEffect) return;
 
-    if (_effectPrefabs.IsSet()) {
-      _currentEffect = _effectPrefabs[0];
-    } else {
-      // TODO: Find asset by type in project, if not found throw error
-    }
+    if (_effectPrefabs.IsSet()) _currentEffect = _effectPrefabs[0];
   }
 
   public override void AwakeSingleton() {
@@ -25,8 +21,9 @@ public abstract partial class GOI_ComponentIsEffect<TSelf, TComponent> {
 
     if (_interactedGos.ContainsKey(go)) {
       component = _interactedGos[go].Component;
-    } else {
-      if (!go.TryGetComponent<TComponent>(out component)) {
+    }
+    else {
+      if (!go.TryGetComponent(out component)) {
         component = go.AddComponent<TComponent>();
         OnComponentAdded(go, component);
       }

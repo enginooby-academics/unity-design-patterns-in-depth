@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
@@ -5,10 +6,10 @@ using UnityEngine;
 [CustomEditor(typeof(DefaultAsset), isFallback = true)]
 public class FolderDescription : Editor {
   // Thanks for all the fish!
-  const string descriptionFilename = ".desc";
+  private const string descriptionFilename = ".desc";
+  private string description;
 
-  bool isFolder;
-  string description;
+  private bool isFolder;
 
   private void OnEnable() {
     var path = AssetDatabase.GetAssetPath(target);
@@ -19,7 +20,10 @@ public class FolderDescription : Editor {
 
       try {
         description = File.ReadAllText(descriptionPath);
-      } catch (System.Exception ea) { Error(ea); } // Print to debug error message only if there was an advanced error
+      }
+      catch (Exception ea) {
+        Error(ea);
+      } // Print to debug error message only if there was an advanced error
     }
   }
 
@@ -27,9 +31,7 @@ public class FolderDescription : Editor {
   protected override void OnHeaderGUI() {
     base.OnHeaderGUI();
 
-    if (isFolder) {
-      DoDescriptionEditor();
-    }
+    if (isFolder) DoDescriptionEditor();
   }
 #endif
 
@@ -42,7 +44,9 @@ public class FolderDescription : Editor {
     GUILayout.Label("Description");
     EditorGUILayout.Space(8);
 
-    description = EditorGUILayout.TextArea(description, GUILayout.ExpandHeight(false), GUILayout.ExpandWidth(true)); // Reverted styling to default
+    description =
+      EditorGUILayout.TextArea(description, GUILayout.ExpandHeight(false),
+        GUILayout.ExpandWidth(true)); // Reverted styling to default
 
     EditorGUILayout.Space(16);
 
@@ -53,25 +57,33 @@ public class FolderDescription : Editor {
       if (!string.IsNullOrEmpty(description)) {
         try {
           File.SetAttributes(descriptionPath, FileAttributes.Normal);
-        } catch (System.Exception ea) { Error(ea); } // Print to debug error message only if there was an advanced error
+        }
+        catch (Exception ea) {
+          Error(ea);
+        } // Print to debug error message only if there was an advanced error
 
         File.WriteAllText(descriptionPath, description);
 
         try {
           File.SetAttributes(descriptionPath, FileAttributes.Normal);
-        } catch (System.Exception ea) { Error(ea); } // Print to debug error message only if there was an advanced error
-      } else {
+        }
+        catch (Exception ea) {
+          Error(ea);
+        } // Print to debug error message only if there was an advanced error
+      }
+      else {
         try {
           File.Delete(descriptionPath);
-        } catch (System.Exception ea) { Error(ea); } // Print to debug error message only if there was an advanced error
+        }
+        catch (Exception ea) {
+          Error(ea);
+        } // Print to debug error message only if there was an advanced error
       }
     }
   }
 
-  void Error(System.Exception ea) {
-    if (ea is System.IO.FileNotFoundException) {
-      return;
-    }
+  private void Error(Exception ea) {
+    if (ea is FileNotFoundException) return;
     Debug.LogError(ea.ToString());
   }
 }

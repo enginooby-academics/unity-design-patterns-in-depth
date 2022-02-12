@@ -1,20 +1,21 @@
 #if ASSET_SCPE
-using UnityEngine;
 using SCPE;
+using UnityEngine;
+
 // using QFSW.QC;
 
 namespace Enginoobz.Graphics {
   public partial class PostFxModifierSCPE : MonoBehaviour {
     private ColorSplit colorSplit;
-    private Dithering dithering;
-    private Pixelize pixelize;
-    private Posterize posterize;
-    private Scanlines scanlines;
 
     private bool colorSplitOriginalState;
+    private Dithering dithering;
     private bool ditheringOriginalState;
+    private Pixelize pixelize;
     private bool pixelizeOriginalState;
+    private Posterize posterize;
     private bool posterizeOriginalState;
+    private Scanlines scanlines;
     private bool scanlinesOriginalState;
 
     private void GetRetroOriginalStates() {
@@ -47,11 +48,11 @@ namespace Enginoobz.Graphics {
     }
 
     private void GetRetroSettings() {
-      Profile.TryGet<ColorSplit>(out colorSplit);
-      Profile.TryGet<Dithering>(out dithering);
-      Profile.TryGet<Pixelize>(out pixelize);
-      Profile.TryGet<Posterize>(out posterize);
-      Profile.TryGet<Scanlines>(out scanlines);
+      Profile.TryGet(out colorSplit);
+      Profile.TryGet(out dithering);
+      Profile.TryGet(out pixelize);
+      Profile.TryGet(out posterize);
+      Profile.TryGet(out scanlines);
     }
 
     // [Command(CommandPrefix.PostFx + "color-split-toggle")]

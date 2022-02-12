@@ -1,49 +1,41 @@
+using System;
+using System.Collections.Generic;
+using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
 using Enginoobz.Attribute;
 #endif
 
-using UnityEngine;
-using System;
-using System.Collections.Generic;
-
 // TODO: Exclusive area
 namespace CompositePattern.Case1.Base {
-  public enum GizmosMode { Solid, Wire }
-  [Flags] public enum GizmosDisplay { OnGizmos = 1 << 1, OnSelected = 1 << 2, InGame = 1 << 3 }
+  public enum GizmosMode {
+    Solid,
+    Wire
+  }
 
-  [Serializable, InlineProperty]
+  [Flags]
+  public enum GizmosDisplay {
+    OnGizmos = 1 << 1,
+    OnSelected = 1 << 2,
+    InGame = 1 << 3
+  }
+
+  [Serializable]
+  [InlineProperty]
   /// <summary>
   /// The 'Component' Treenode
   /// * Define area for detection, boundary, trigger, spawner, etc.
   /// </summary>
   public abstract class Area {
-    public Area() {
-    }
-
-    public Area(Vector3 staticOrigin) {
-      _origins.Add(new ReferenceVector3(staticOrigin));
-    }
-
-    public Area(GameObject gameObjectOrigin) {
-      _origins.Add(new ReferenceVector3(gameObjectOrigin));
-    }
-
-    protected bool _isComposite;
-
     [HideIf(nameof(_isComposite))]
-    [ToggleGroup(nameof(_isEnabled), groupTitle: "Enable")]
-    [SerializeField, ToggleLeft]
+    [ToggleGroup(nameof(_isEnabled), "Enable")]
+    [SerializeField]
+    [ToggleLeft]
     [GUIColor(nameof(_gizmosColor))]
     protected bool _isEnabled = true;
 
-    public bool IsEnabled => _isEnabled;
-
-    [ToggleGroup(nameof(_isEnabled))]
-    [HideIf(nameof(_isComposite))]
-    [LabelText("Area Origins")]
-    [SerializeField]
+    [ToggleGroup(nameof(_isEnabled))] [HideIf(nameof(_isComposite))] [LabelText("Area Origins")] [SerializeField]
     protected List<ReferenceVector3> _origins = new List<ReferenceVector3>();
 
     [ToggleGroup(nameof(_isEnabled))]
@@ -65,33 +57,48 @@ namespace CompositePattern.Case1.Base {
     // [FoldoutGroup("Gizmos")]
     [FoldoutGroup(nameof(_isEnabled) + "/Gizmos")]
     [HideIf(nameof(_isComposite))]
-    [SerializeField, EnumToggleButtons, HideLabel]
+    [SerializeField]
+    [EnumToggleButtons]
+    [HideLabel]
     protected GizmosMode _gizmosMode;
 
     [ToggleGroup(nameof(_isEnabled))]
     // [FoldoutGroup("Gizmos")]
     [FoldoutGroup(nameof(_isEnabled) + "/Gizmos")]
     [HideIf(nameof(_isComposite))]
-    [SerializeField, EnumToggleButtons, HideLabel]
+    [SerializeField]
+    [EnumToggleButtons]
+    [HideLabel]
     protected GizmosDisplay _gizmosDisplay = GizmosDisplay.InGame;
 
-    public abstract bool Contains(Vector3 pos);
+    protected bool _isComposite;
 
-    public bool Contains(GameObject target) {
-      return Contains(target.transform.position);
+    public Area() {
     }
 
-    public bool Contains(Reference reference) {
-      return Contains(reference.GameObject);
+    public Area(Vector3 staticOrigin) {
+      _origins.Add(new ReferenceVector3(staticOrigin));
     }
+
+    public Area(GameObject gameObjectOrigin) {
+      _origins.Add(new ReferenceVector3(gameObjectOrigin));
+    }
+
+    public bool IsEnabled => _isEnabled;
 
     /// <summary>
-    /// Return a random position lie inside the area.
+    ///   Return a random position lie inside the area.
     /// </summary>
     public abstract Vector3 RandomPoint { get; }
 
+    public abstract bool Contains(Vector3 pos);
+
+    public bool Contains(GameObject target) => Contains(target.transform.position);
+
+    public bool Contains(Reference reference) => Contains(reference.GameObject);
+
     /// <summary>
-    /// Visualize area in MonoBehaviourGizmos.DrawGizmos().
+    ///   Visualize area in MonoBehaviourGizmos.DrawGizmos().
     /// </summary>
     public virtual void DrawGizmos(Color? color = null) {
       if (!_isEnabled) return;

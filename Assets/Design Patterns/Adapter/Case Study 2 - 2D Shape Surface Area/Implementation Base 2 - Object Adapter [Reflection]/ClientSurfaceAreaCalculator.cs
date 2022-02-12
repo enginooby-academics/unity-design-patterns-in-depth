@@ -3,21 +3,18 @@ using Shared = AdapterPattern.Case2;
 
 namespace AdapterPattern.Case2.Base2 {
   /// <summary>
-  /// Using Reflection. Client is aware of adapter.
+  ///   Using Reflection. Client is aware of adapter.
   /// </summary>
   public class ClientSurfaceAreaCalculator : Shared.ClientSurfaceAreaCalculator {
-    [SerializeField]
-    protected GameObject _shape;
+    [SerializeField] protected GameObject _shape;
 
-    [SerializeField]
-    private ReferenceConcreteType<AreaToSurfaceAreaAdapter> _adapterType;
+    [SerializeField] private ReferenceConcreteType<AreaToSurfaceAreaAdapter> _adapterType;
 
     public override void CalculateSurfaceArea() {
       double result = 0;
 
-      if (_shape.TryGetComponent(typeof(ISurfaceArea), out var shape3dComponent)) {
+      if (_shape.TryGetComponent(typeof(ISurfaceArea), out var shape3dComponent))
         result = (shape3dComponent as ISurfaceArea).GetSurfaceArea();
-      }
 
       if (_shape.TryGetComponent(typeof(IArea), out var shape2dComponent)) {
         // result = (shape2dComponent as IArea).GetArea();

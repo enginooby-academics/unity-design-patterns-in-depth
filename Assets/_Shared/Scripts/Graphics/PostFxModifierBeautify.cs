@@ -1,7 +1,8 @@
 #if ASSET_BEAUTIFY
-using UnityEngine;
 using Beautify.Universal;
+using UnityEngine;
 using UnityEngine.Rendering;
+
 // using QFSW.QC;
 
 namespace Enginoobz.Graphics {
@@ -10,17 +11,25 @@ namespace Enginoobz.Graphics {
   [RequireComponent(typeof(Volume))]
   public class PostFxModifierBeautify : MonoBehaviour {
     private Beautify.Universal.Beautify _settings;
-    public Beautify.Universal.Beautify Settings => _settings ?? BeautifySettings.settings;
 
     private bool originalBlurState;
-    private bool originalSharpenState;
-    private bool originalVignettingOuterRingState;
-    private bool originalVignettingInnerRingState;
-    private bool originalOutlineState;
     private bool originalNightVisionState;
+    private bool originalOutlineState;
+    private bool originalSharpenState;
+    private bool originalVignettingInnerRingState;
+    private bool originalVignettingOuterRingState;
+    public Beautify.Universal.Beautify Settings => _settings ?? BeautifySettings.settings;
 
     private void Awake() {
       GetBeautifySettings();
+    }
+
+    public void Reset() {
+      Settings.blurIntensity.overrideState = originalBlurState;
+      Settings.vignettingOuterRing.overrideState = originalVignettingOuterRingState;
+      Settings.vignettingInnerRing.overrideState = originalVignettingInnerRingState;
+      Settings.nightVision.overrideState = originalNightVisionState;
+      Settings.outline.overrideState = originalOutlineState;
     }
 
     private void GetBeautifySettings() {
@@ -74,14 +83,6 @@ namespace Enginoobz.Graphics {
 
     public void ActivateOutline(bool isActive) {
       Settings.outline.overrideState = isActive;
-    }
-
-    public void Reset() {
-      Settings.blurIntensity.overrideState = originalBlurState;
-      Settings.vignettingOuterRing.overrideState = originalVignettingOuterRingState;
-      Settings.vignettingInnerRing.overrideState = originalVignettingInnerRingState;
-      Settings.nightVision.overrideState = originalNightVisionState;
-      Settings.outline.overrideState = originalOutlineState;
     }
 
     public void Randomize() {

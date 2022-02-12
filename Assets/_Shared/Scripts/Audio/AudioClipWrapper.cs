@@ -1,33 +1,31 @@
-#if ODIN_INSPECTOR
-using Sirenix.OdinInspector;
-#else
-using Enginoobz.Attribute;
-#endif
-
 using System;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
+#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+
+#else
+using Enginoobz.Attribute;
+#endif
 
 // TODO: Extend SO
 // + Rename to AudioClipData
 
 namespace Enginoobz.Audio {
-  [Serializable, InlineProperty]
+  [Serializable]
+  [InlineProperty]
   public class AudioClipWrapper {
-    private readonly string GROUP_NAME = "Audio Clip";
-
-    [FoldoutGroup("$GROUP_NAME")]
-    [SerializeField, InlineButton(nameof(PlayInEditMode), label: "▶"), HideLabel]
+    [FoldoutGroup("$GROUP_NAME")] [SerializeField] [InlineButton(nameof(PlayInEditMode), "▶")] [HideLabel]
     private AudioClip _audioClip;
 
-    [FoldoutGroup("$GROUP_NAME")]
-    [SerializeField, MinMaxSlider(0, 1, true)]
+    [FoldoutGroup("$GROUP_NAME")] [SerializeField] [MinMaxSlider(0, 1, true)]
     private Vector2 _volumeRange = Vector2.one;
 
-    [FoldoutGroup("$GROUP_NAME")]
-    [SerializeField, MinMaxSlider(0, 3, true)]
+    [FoldoutGroup("$GROUP_NAME")] [SerializeField] [MinMaxSlider(0, 3, true)]
     private Vector2 _pitchRange = Vector2.one;
+
+    private readonly string GROUP_NAME = "Audio Clip";
 
     public Vector2 VolumeRange {
       get => _volumeRange;
@@ -53,21 +51,21 @@ namespace Enginoobz.Audio {
 
     // UTIL
     public static void PlayClip(AudioClip clip, int startSample = 0, bool loop = false) {
-      Assembly unityEditorAssembly = typeof(AudioImporter).Assembly;
+      var unityEditorAssembly = typeof(AudioImporter).Assembly;
 
-      Type audioUtilClass = unityEditorAssembly.GetType("UnityEditor.AudioUtil");
-      MethodInfo method = audioUtilClass.GetMethod(
-          "PlayPreviewClip",
-          BindingFlags.Static | BindingFlags.Public,
-          null,
-          new Type[] { typeof(AudioClip), typeof(int), typeof(bool) },
-          null
+      var audioUtilClass = unityEditorAssembly.GetType("UnityEditor.AudioUtil");
+      var method = audioUtilClass.GetMethod(
+        "PlayPreviewClip",
+        BindingFlags.Static | BindingFlags.Public,
+        null,
+        new[] {typeof(AudioClip), typeof(int), typeof(bool)},
+        null
       );
 
       Debug.Log(method);
       method.Invoke(
-          null,
-          new object[] { clip, startSample, loop }
+        null,
+        new object[] {clip, startSample, loop}
       );
     }
   }

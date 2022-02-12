@@ -1,12 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace StatePattern.Base {
   public class NpcPursueState : NpcState {
-    public NpcPursueState(GameObject npc, Animator animator, UnityEngine.AI.NavMeshAgent navMeshAgent, Transform player, AreaCircular vision = null, AreaCircular attackableArea = null)
-    : base(npc, animator, navMeshAgent, player, vision, attackableArea) {
-      name = NpcState.Name.Pursue;
+    public NpcPursueState(GameObject npc, Animator animator, NavMeshAgent navMeshAgent, Transform player,
+      AreaCircular vision = null, AreaCircular attackableArea = null)
+      : base(npc, animator, navMeshAgent, player, vision, attackableArea) {
+      name = Name.Pursue;
       navMeshAgent.speed = 5;
       navMeshAgent.isStopped = false;
     }
@@ -23,7 +23,8 @@ namespace StatePattern.Base {
         if (CanAttackPlayer) {
           incommingState = new NpcAttackState(npc, animator, navMeshAgent, player, vision, attackableArea);
           stage = Stage.Exit;
-        } else if (!CanSeePlayer) {
+        }
+        else if (!CanSeePlayer) {
           incommingState = new NpcPatrolState(npc, animator, navMeshAgent, player, vision, attackableArea);
           stage = Stage.Exit;
         }

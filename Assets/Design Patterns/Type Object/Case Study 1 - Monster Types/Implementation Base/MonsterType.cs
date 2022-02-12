@@ -1,29 +1,23 @@
+using System;
+using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
 using Enginoobz.Attribute;
 #endif
 
-using UnityEngine;
-
 namespace TypeObjectPattern.Case1.Base {
   /// <summary>
-  /// The 'Type Object' class. Contains all data to define a monster type.
+  ///   The 'Type Object' class. Contains all data to define a monster type.
   /// </summary>
-  [System.Serializable, InlineProperty]
+  [Serializable]
+  [InlineProperty]
   public class MonsterType {
-    [SerializeField]
-    private int _health;
+    [SerializeField] private int _health;
 
-    [SerializeField]
-    private int _strength;
+    [SerializeField] private int _strength;
 
-    [SerializeField]
-    private int _speed;
-
-    public int Health => _health;
-    public int Strength => _strength;
-    public int Speed => _speed;
+    [SerializeField] private int _speed;
 
     public MonsterType(int health, int strength, int speed) {
       _health = health;
@@ -31,12 +25,16 @@ namespace TypeObjectPattern.Case1.Base {
       _speed = speed;
     }
 
+    public int Health => _health;
+    public int Strength => _strength;
+    public int Speed => _speed;
+
     [Button]
     public Monster MakeInstance(Vector3 pos, string name = "Monster") {
-      GameObject monsterGameObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
+      var monsterGameObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
       monsterGameObject.name = name;
       monsterGameObject.transform.position = pos;
-      Monster monster = monsterGameObject.AddComponent<Monster>();
+      var monster = monsterGameObject.AddComponent<Monster>();
       monster.Type = this;
       return monster;
     }

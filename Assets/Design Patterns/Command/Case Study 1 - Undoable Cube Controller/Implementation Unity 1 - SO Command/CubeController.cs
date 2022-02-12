@@ -1,28 +1,26 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
 using Enginoobz.Attribute;
 #endif
 
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-
 namespace CommandPattern.Case1.Unity1 {
   /// <summary>
-  /// * The 'Invoker' class
+  ///   * The 'Invoker' class
   /// </summary>
   public class CubeController : MonoBehaviour {
-    [SerializeField]
-    private Cube _cube;
-    [SerializeField, InlineEditor]
-    private CommandRegistry _commandRegister;
+    [SerializeField] private Cube _cube;
 
-    private List<MoveCommand> _commandHistory = new List<MoveCommand>(); // ! can use Stack
+    [SerializeField] [InlineEditor] private CommandRegistry _commandRegister;
+
+    private readonly List<MoveCommand> _commandHistory = new List<MoveCommand>(); // ! can use Stack
 
 
-    void Update() => _commandRegister.Commands.ForEach(ProcessCommand);
+    private void Update() => _commandRegister.Commands.ForEach(ProcessCommand);
 
     private void ProcessCommand(MoveCommand command) {
       if (!command.CanExecute) return;
@@ -30,7 +28,8 @@ namespace CommandPattern.Case1.Unity1 {
       _commandHistory.Add(command);
     }
 
-    [Button, HorizontalGroup]
+    [Button]
+    [HorizontalGroup]
     public void Rewind() => StartCoroutine(RewindCoroutine());
 
     public IEnumerator RewindCoroutine() {
@@ -42,7 +41,8 @@ namespace CommandPattern.Case1.Unity1 {
       }
     }
 
-    [Button, HorizontalGroup]
+    [Button]
+    [HorizontalGroup]
     public void Undo() {
       if (_commandHistory.IsUnset()) return;
 

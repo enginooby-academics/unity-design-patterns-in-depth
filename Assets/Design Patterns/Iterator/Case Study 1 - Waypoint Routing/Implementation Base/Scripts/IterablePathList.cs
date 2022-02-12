@@ -1,29 +1,26 @@
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
 using Enginoobz.Attribute;
 #endif
 
-using System.Linq;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace IteratorPattern.Case1.Base {
   public class IterablePathList : MonoBehaviour, IIterable<Waypoint> {
-    [SerializeField, InlineEditor]
-    private List<Waypoint> _waypoints = new List<Waypoint>();
+    [SerializeField] [InlineEditor] private List<Waypoint> _waypoints = new List<Waypoint>();
+
+    // ? Alternative: implement indexer and pass this iterable to iterator's constructor
+    // IMPL: multiple iterator strategies
+    public IIterator<Waypoint> GetIterator() =>
+      // return new Iterator(_waypoints);
+      // return new IteratorFilterColor(_waypoints);
+      new IteratorFilterSizeMin(_waypoints);
 
     [Button]
     public void AddAllChildren() {
       _waypoints = transform.GetComponentsInChildren<Waypoint>().ToList();
-    }
-
-    // ? Alternative: implement indexer and pass this iterable to iterator's constructor
-    // IMPL: multiple iterator strategies
-    public IIterator<Waypoint> GetIterator() {
-      // return new Iterator(_waypoints);
-      // return new IteratorFilterColor(_waypoints);
-      return new IteratorFilterSizeMin(_waypoints);
     }
 
     // IMPL: Reflection w/ generic type

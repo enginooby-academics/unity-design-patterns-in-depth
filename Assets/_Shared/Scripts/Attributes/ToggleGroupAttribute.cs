@@ -3,7 +3,7 @@ using System.Diagnostics;
 using UnityEngine;
 
 namespace Enginoobz.Attribute {
-  [AttributeUsage(AttributeTargets.All, AllowMultiple = true, Inherited = true)]
+  [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
   [Conditional("UNITY_EDITOR")]
   public class ToggleGroupAttribute : PropertyAttribute {
     private string _condition;

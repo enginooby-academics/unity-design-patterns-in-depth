@@ -8,24 +8,13 @@ using UnityEngine;
 // + OnCollision/Spawn VFX, SFX, event 
 
 public class ArchievedProjectile : MonoBehaviour {
-  #region TRANSLATION
-  [SerializeField] Vector3 speed;
-  [SerializeField] Vector3 translationalAcceleration;
-  private bool isStopping = false;
-  #endregion
-
-  #region ROTATION
-  #endregion
-
-  #region EVENT
-  #endregion
-
-  void Update() {
-    if (!isStopping) this.MoveWorld(distances: speed);
+  private void Update() {
+    if (!isStopping) this.MoveWorld(speed);
   }
-  void OnDrawGizmosSelected() {
-    Vector3 pos = transform.position;
-    Vector3 dest = new Vector3(pos.x + speed.x, pos.y + speed.y, pos.z + speed.z);
+
+  private void OnDrawGizmosSelected() {
+    var pos = transform.position;
+    var dest = new Vector3(pos.x + speed.x, pos.y + speed.y, pos.z + speed.z);
     Gizmos.color = Color.magenta;
     Gizmos.DrawLine(pos, dest);
   }
@@ -33,4 +22,20 @@ public class ArchievedProjectile : MonoBehaviour {
   public void Stop() {
     isStopping = true;
   }
+
+  #region TRANSLATION
+
+  [SerializeField] private Vector3 speed;
+  [SerializeField] private Vector3 translationalAcceleration;
+  private bool isStopping;
+
+  #endregion
+
+  #region ROTATION
+
+  #endregion
+
+  #region EVENT
+
+  #endregion
 }

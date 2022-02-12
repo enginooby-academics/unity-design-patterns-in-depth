@@ -10,20 +10,18 @@ using static RayUtils;
 
 namespace Strategy.Base {
   public class Mover : MonoBehaviour {
-    [SerializeField]
-    private float _speed = 5f;
+    [SerializeField] private float _speed = 5f;
 
-    [ValueDropdown(nameof(_movementEases)), SerializeField, SerializeReference]
+    [SerializeReference] private List<IMovementEase> _movementEases = new List<IMovementEase>();
+
+    [ValueDropdown(nameof(_movementEases))] [SerializeField] [SerializeReference]
     private IMovementEase _movementEase;
-
-    [SerializeReference]
-    private List<IMovementEase> _movementEases = new List<IMovementEase>();
 
     private void Reset() {
       RetrieveMovementEases();
     }
 
-    void Update() {
+    private void Update() {
       HandleMovement();
     }
 
@@ -38,7 +36,7 @@ namespace Strategy.Base {
 
     private void HandleMovement() {
       if (MouseButton.Left.IsDown()) {
-        Vector3 mousePosOnGround = MousePosOnRayHit.Value.WithY(0);
+        var mousePosOnGround = MousePosOnRayHit.Value.WithY(0);
         _movementEase.Move(gameObject, mousePosOnGround, _speed);
       }
     }

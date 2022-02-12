@@ -3,18 +3,18 @@ using System.Diagnostics;
 using UnityEngine;
 
 namespace Enginoobz.Attribute {
-  [AttributeUsage(AttributeTargets.All, AllowMultiple = true, Inherited = true)]
+  [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
   [Conditional("UNITY_EDITOR")]
   public class HorizontalGroupAttribute : PropertyAttribute {
-    public float Width;
+    public float LabelWidth;
     public float MarginLeft;
     public float MarginRight;
+    public float MaxWidth;
+    public float MinWidth;
     public float PaddingLeft;
     public float PaddingRight;
-    public float MinWidth;
-    public float MaxWidth;
     public string Title;
-    public float LabelWidth;
+    public float Width;
 
     public HorizontalGroupAttribute() {
     }

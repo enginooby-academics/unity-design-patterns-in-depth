@@ -84,7 +84,8 @@ public class RewiredFlyingMovementController : MonoBehaviour {
 
   // REFACTOR: Replace string by enums
   private void GetInput() {
-    moveVector += new Vector3(player.GetAxis("Move Horizontal"), player.GetAxis("Move Vertical"), player.GetAxis("Move Zedical"));
+    moveVector +=
+ new Vector3(player.GetAxis("Move Horizontal"), player.GetAxis("Move Vertical"), player.GetAxis("Move Zedical"));
     accelerated = player.GetButton("Accelerate");
     movementStaysFlat = player.GetButton("Stay Flat");
   }
