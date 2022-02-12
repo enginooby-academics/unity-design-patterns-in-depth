@@ -22,12 +22,13 @@ using static VectorUtils;
 // ? hotkey for enable/disable
 
 public class TransformOperator : ComponentOperator<Transform> {
-  #region SCALING ===================================================================================================================================
+  #region SCALING
 
+  // -------------------------------------------------------------------------------------------------------------------
   [ToggleGroup(nameof(_enableScaling), "Scaling")] [SerializeField]
   private bool _enableScaling;
 
-  #endregion ===================================================================================================================================
+  #endregion
 
   private Vector3 _originalPos;
 
@@ -63,7 +64,9 @@ public class TransformOperator : ComponentOperator<Transform> {
     LoopPingPong
   }
 
-  #region LOOK AT ===================================================================================================================================
+  #region LOOK AT
+
+  // -------------------------------------------------------------------------------------------------------------------
 
   [ToggleGroup(nameof(_enableLookAt), "Loot At")] [SerializeField]
   private bool _enableLookAt;
@@ -85,10 +88,11 @@ public class TransformOperator : ComponentOperator<Transform> {
     _enableLookAt = false;
   }
 
-  #endregion ===================================================================================================================================
+  #endregion
 
-  #region TRANSLATING ===================================================================================================================================
+  #region TRANSLATING
 
+  // -------------------------------------------------------------------------------------------------------------------
   [ToggleGroup(nameof(_enableTranslating), "Translating")] [SerializeField]
   private bool _enableTranslating = true;
 
@@ -199,10 +203,11 @@ public class TransformOperator : ComponentOperator<Transform> {
     _enableTranslating = false;
   }
 
-  #endregion ===================================================================================================================================
+  #endregion
 
-  #region ROTATING ===================================================================================================================================
+  #region ROTATING
 
+  // -------------------------------------------------------------------------------------------------------------------
   [ToggleGroup(nameof(_enableRotating), "Rotating")] [SerializeField]
   private bool _enableRotating;
 
@@ -272,11 +277,11 @@ public class TransformOperator : ComponentOperator<Transform> {
     _enableRotating = false;
   }
 
-  #endregion ===================================================================================================================================
+  #endregion
 
+  #region PUBLIC METHODS
 
-  #region PUBLIC METHODS ===================================================================================================================================
-
+  // -------------------------------------------------------------------------------------------------------------------
   public void SetPosition(Vector3 pos) {
   }
 
@@ -286,5 +291,5 @@ public class TransformOperator : ComponentOperator<Transform> {
   public void SetScale(Vector3 scale) {
   }
 
-  #endregion ===================================================================================================================================
+  #endregion
 }
