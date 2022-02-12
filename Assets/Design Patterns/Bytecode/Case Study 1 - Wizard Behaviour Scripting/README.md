@@ -1,0 +1,2 @@
+﻿+ Reference: https://github.com/Habrador/Unity-Programming-Patterns/tree/master/Assets/Patterns/10.%20Bytecode
++ Modifications: refactor code and create SerializableInstruction to script instructions on the Inspector.
