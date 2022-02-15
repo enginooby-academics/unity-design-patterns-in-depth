@@ -3,7 +3,7 @@ using static PrimitiveUtils;
 
 namespace AbstractFactoryPattern.Case1 {
   /// <summary>
-  ///   * [An 'Abstract Product']
+  ///   * An 'Abstract Product'
   /// </summary>
   public abstract class Cube {
     protected GameObject _gameObject;

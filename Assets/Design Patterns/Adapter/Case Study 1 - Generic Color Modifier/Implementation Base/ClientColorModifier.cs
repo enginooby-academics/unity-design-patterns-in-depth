@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
 using Enginoobz.Attribute;
 #endif
@@ -14,13 +15,13 @@ namespace AdapterPattern.Case1.Base1 {
     [SerializeField] [HideLabel] [OnValueChanged(nameof(UpdateColor))]
     private Color _color = Color.red;
 
-    [SerializeReference] [HideInInspector] private IColorizable _colorizableObject;
+    [SerializeReference] private IColorizable _colorizableObject;
 
     private bool _isInitialized;
 
     private void Reset() {
       var colorizableTypes = TypeUtils.GetConcreteTypesOf<IColorizable>();
-      colorizableTypes.ForEach(type => TrySetupWith(type));
+      colorizableTypes.ForEach(TrySetupWith);
       if (!_isInitialized) Debug.LogError("There is no colorizable component/object on the GameObject.");
     }
 

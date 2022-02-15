@@ -17,14 +17,15 @@ using static VectorUtils;
 // + max offset (constrain) w/ optional loop
 // + local vs. World-space
 // + integrate DOTween
+// + events
 
-// ? CONSIDER:
+// CONSIDER:
 // ? hotkey for enable/disable
 
 public class TransformOperator : ComponentOperator<Transform> {
   #region SCALING
 
-  // -------------------------------------------------------------------------------------------------------------------
+  // ===================================================================================================================
   [ToggleGroup(nameof(_enableScaling), "Scaling")] [SerializeField]
   private bool _enableScaling;
 
@@ -273,9 +274,7 @@ public class TransformOperator : ComponentOperator<Transform> {
     }
   }
 
-  private void StopRotating() {
-    _enableRotating = false;
-  }
+  private void StopRotating() => _enableRotating = false;
 
   #endregion
 

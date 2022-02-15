@@ -1,8 +1,11 @@
-using System;
-using System.Diagnostics;
-using UnityEngine;
-
 namespace Enginoobz.Attribute {
+#if ODIN_INSPECTOR
+  /// <inheritdoc />
+  public class ButtonAttribute : Sirenix.OdinInspector.ButtonAttribute {
+  }
+#else
+  // Fallback attribute
+
   [AttributeUsage(AttributeTargets.All, Inherited = false)]
   [Conditional("UNITY_EDITOR")]
   public class ButtonAttribute : PropertyAttribute {
@@ -15,4 +18,5 @@ namespace Enginoobz.Attribute {
     Medium,
     Large
   }
+#endif
 }

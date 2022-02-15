@@ -1,18 +1,11 @@
 using System.Collections.Generic;
-using UnityEngine;
-#if ODIN_INSPECTOR
-using Sirenix.OdinInspector;
-
-#else
 using Enginoobz.Attribute;
-#endif
+using UnityEngine;
 
 namespace Enginoobz.UI {
   // [SOVariant]
+  // Collection of cursors in a certain style (e.g. pixel, modern), used in a certain game theme (e.g. RPG, racing).
   [CreateAssetMenu(fileName = "CSPreset_", menuName = "UI/Cusor Data Preset", order = 0)]
-  /// <summary>
-  /// Collection of cursors in a certain style (e.g. pixel, modern), used in a certain game theme (e.g. RPG, racing).
-  /// </summary>
   public class CursorDataPreset : ScriptableObject {
     [InlineEditor] [SerializeField] private List<CursorData> _cursorDatas;
 

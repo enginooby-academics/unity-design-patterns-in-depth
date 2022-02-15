@@ -1,10 +1,6 @@
 using System;
-using UnityEngine;
-#if ODIN_INSPECTOR
-using Sirenix.OdinInspector;
-#else
 using Enginoobz.Attribute;
-#endif
+using UnityEngine;
 
 namespace GOConstruction.GUI {
   public class RefinedGUIShapeGenerator : MonoBehaviour {
@@ -19,6 +15,5 @@ namespace GOConstruction.GUI {
 
   // !
   [Serializable]
-  public class IShapeContainer : IUnifiedContainer<IShape> {
-  }
+  public class IShapeContainer : IUnifiedContainer<IShape> { }
 }

@@ -56,11 +56,12 @@ public class RigidbodyController : MonoBehaviourBase {
   private void ConstraintMovements() {
     var pos = transform.position;
 
-    if (enableJump && !jumpableHeightRange.ContainsIgnoreZero(pos.y)) transform.PosY(jumpableHeightRange.Clamp(pos.y));
+    if (enableJump && !jumpableHeightRange.ContainsIgnoreZero(pos.y))
+      transform.SetPosY(jumpableHeightRange.Clamp(pos.y));
     if (enableHorizontalMovement && !horizontalMovementRange.ContainsIgnoreZero(pos.x))
-      transform.PosX(horizontalMovementRange.Clamp(pos.x)); // ! jiggering constraint
+      transform.SetPosX(horizontalMovementRange.Clamp(pos.x)); // ! jiggering constraint
     if (enableVerticalMovement && !verticalMovementRange.ContainsIgnoreZero(pos.z))
-      transform.PosZ(verticalMovementRange.Clamp(pos.z));
+      transform.SetPosZ(verticalMovementRange.Clamp(pos.z));
   }
 
   private void DrawGismozMovemenConstraints() {

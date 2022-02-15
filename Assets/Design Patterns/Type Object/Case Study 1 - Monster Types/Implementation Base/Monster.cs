@@ -1,10 +1,5 @@
-using UnityEngine;
-#if ODIN_INSPECTOR
-using Sirenix.OdinInspector;
-
-#else
 using Enginoobz.Attribute;
-#endif
+using UnityEngine;
 
 namespace TypeObjectPattern.Case1.Base {
   /// <summary>

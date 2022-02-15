@@ -69,7 +69,7 @@ public static class MovementUtils {
     monoBehaviour.transform.Translate(v100 * Time.deltaTime * distance);
     var posX = monoBehaviour.transform.position.x;
     if (range.Contains(posX)) return;
-    monoBehaviour.transform.PosX(Mathf.Clamp(posX, range.x, range.y));
+    monoBehaviour.transform.SetPosX(Mathf.Clamp(posX, range.x, range.y));
   }
 
   ///<summary>Rotates the object around the Y axis by the number of degrees defined by the given angle.</summary>
@@ -135,13 +135,11 @@ public static class MovementUtils {
   // FIX: does not move
   public static void MoveTowardsByRigidBody(this MonoBehaviour monoBehaviour, Vector3 dest, float offset = 0f,
     float speed = 1f) {
-    var direction = Vector3.zero;
-    if (Vector3.Distance(monoBehaviour.transform.position, dest) > offset) {
-      direction = dest - monoBehaviour.transform.position;
-      monoBehaviour.GetComponent<Rigidbody>().AddRelativeForce(direction.normalized * speed, ForceMode.Force);
-      if (monoBehaviour.GetComponent<Rigidbody>())
-        "Move".Log();
-    }
+    if (!(Vector3.Distance(monoBehaviour.transform.position, dest) > offset)) return;
+
+    var direction = dest - monoBehaviour.transform.position;
+    monoBehaviour.GetComponent<Rigidbody>().AddRelativeForce(direction.normalized * speed, ForceMode.Force);
+    if (monoBehaviour.GetComponent<Rigidbody>()) "Move".Log();
   }
 
   private static IEnumerator MoveTowardsEnumerator(Transform transform, Vector3 dest, float speed) {

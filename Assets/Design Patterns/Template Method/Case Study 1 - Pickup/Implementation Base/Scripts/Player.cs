@@ -1,43 +1,31 @@
 using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
 using Enginoobz.Attribute;
 #endif
 
 namespace TemplateMethodPattern.Case1.Base {
   public class Player : MonoBehaviour {
-    [SerializeField] [HideLabel] private Stat healthStat = new Stat(StatName.Health, 5);
-
-    [SerializeField] [HideLabel] private Stat coinStat = new Stat(StatName.Coin);
-
-    [SerializeField] [HideLabel] private Stat speedStat = new Stat(StatName.Speed, 10);
+    [SerializeField] [HideLabel] private Stat _healthStat = new Stat(StatName.Health, 5);
+    [SerializeField] [HideLabel] private Stat _coinStat = new Stat(StatName.Coin);
+    [SerializeField] [HideLabel] private Stat _speedStat = new Stat(StatName.Speed, 10);
 
     private TransformOperator _mover;
 
-    private void OnEnable() {
-      _mover = GetComponent<TransformOperator>();
-      speedStat.OnStatChangeEvent += UpdateSpeed;
-    }
+    private void Awake() => _mover = GetComponent<TransformOperator>();
 
-    private void OnDisable() {
-      speedStat.OnStatChangeEvent += UpdateSpeed;
-    }
+    private void OnEnable() => _speedStat.OnStatChangeEvent += UpdateSpeed;
 
-    public void AddHealth(int amount) {
-      healthStat.Add(amount);
-    }
+    private void OnDisable() => _speedStat.OnStatChangeEvent -= UpdateSpeed;
 
-    public void AddCoin(int amount) {
-      coinStat.Add(amount);
-    }
+    private void UpdateSpeed() => _mover.TranslationalSpeed = _speedStat.CurrentValue * new Vector3(1, 0, 1);
 
-    public void AddSpeed(int amount, float duration) {
-      speedStat.Add(amount, duration, this);
-    }
+    public void AddHealth(int amount) => _healthStat.Add(amount);
 
-    private void UpdateSpeed() {
-      _mover.TranslationalSpeed = speedStat.CurrentValue * new Vector3(1, 0, 1);
-    }
+    public void AddCoin(int amount) => _coinStat.Add(amount);
+
+    public void AddSpeed(int amount, float duration) => _speedStat.Add(amount, duration, this);
   }
 }

@@ -10,11 +10,9 @@ namespace SubclassSandboxPattern.Case1.Base {
   /// </summary>
   public abstract class Builder : MonoBehaviourGizmos {
     // Subsystems
-    // load vfxs from resources
+    // load vfxes from resources
 
-    private void Start() {
-      Build();
-    }
+    private void Start() => Build();
 
     protected abstract void Build();
 
@@ -40,27 +38,25 @@ namespace SubclassSandboxPattern.Case1.Base {
       return primitive;
     }
 
-    protected void AddSphere() {
-    }
+    protected void AddSphere() { }
 
-    protected void AddCylinder() {
-    }
+    protected void AddCylinder() { }
 
-    protected void ShakePosition(GameObject gameObject) {
+    protected void ShakePosition(GameObject go) {
 #if ASSET_DOTWEEN
-      gameObject.transform.DOShakePosition(1f).SetLoops(-1);
+      go.transform.DOShakePosition(1f).SetLoops(-1);
 #endif
     }
 
-    protected void ShakeRotation(GameObject gameObject) {
+    protected void ShakeRotation(GameObject go) {
 #if ASSET_DOTWEEN
-      gameObject.transform.DOShakeRotation(1f).SetLoops(-1);
+      go.transform.DOShakeRotation(1f).SetLoops(-1);
 #endif
     }
 
-    protected void ShakeScale(GameObject gameObject) {
+    protected void ShakeScale(GameObject go) {
 #if ASSET_DOTWEEN
-      gameObject.transform.DOShakeScale(1f).SetLoops(-1);
+      go.transform.DOShakeScale(1f).SetLoops(-1);
 #endif
     }
   }

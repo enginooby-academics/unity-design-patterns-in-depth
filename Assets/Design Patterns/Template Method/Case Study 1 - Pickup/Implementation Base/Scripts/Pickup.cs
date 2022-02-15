@@ -1,6 +1,7 @@
 using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
 using Enginoobz.Attribute;
 #endif
@@ -29,14 +30,10 @@ namespace TemplateMethodPattern.Case1.Base {
 
     protected abstract void OnPickedUp(Player player);
 
-    private void PlayVFX() {
-    }
+    private void PlayVFX() { }
 
-    private void PlaySFX() {
-    }
+    private void PlaySFX() { }
 
-    private void Disappear() {
-      Destroy(gameObject);
-    }
+    private void Disappear() => Destroy(gameObject);
   }
 }

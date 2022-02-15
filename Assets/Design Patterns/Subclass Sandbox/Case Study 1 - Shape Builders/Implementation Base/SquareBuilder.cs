@@ -36,7 +36,7 @@ namespace SubclassSandboxPattern.Case1.Base {
 
     // IMPL
     // [SerializeField, OnValueChanged(nameof(Rebuild)), EnumToggleButtons]
-    // private Axis _facingAxis = Axis.Z;
+    // private Axis _facingAxis = Axis.Z; 
 
     protected override void Build() {
       // centroid point

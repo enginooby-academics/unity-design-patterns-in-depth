@@ -11,7 +11,7 @@ using static GeometryUtils;
 
 namespace SubclassSandboxPattern.Case1.Base {
   /// <summary>
-  ///   * [The 'Sandbox Subclass']
+  ///   * The 'Sandbox Subclass'
   /// </summary>
   public class TriangleBuilder : Builder {
     [SerializeField] [OnValueChanged(nameof(Rebuild))] [Range(2f, 6f)]

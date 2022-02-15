@@ -1,8 +1,15 @@
-using System;
-using System.Diagnostics;
-using UnityEngine;
+using Sirenix.OdinInspector;
 
 namespace Enginoobz.Attribute {
+#if ODIN_INSPECTOR
+  [IncludeMyAttributes]
+  [Sirenix.OdinInspector.InlineEditor]
+  public class InlineEditorAttribute : System.Attribute {
+  }
+  /// <inheritdoc />
+  // public class InlineEditorAttribute : Sirenix.OdinInspector.InlineEditorAttribute {
+  // }
+#else
   [AttributeUsage(AttributeTargets.All, Inherited = false)]
   [Conditional("UNITY_EDITOR")]
   public class InlineEditorAttribute : PropertyAttribute {
@@ -17,4 +24,5 @@ namespace Enginoobz.Attribute {
     FullEditor,
     GUIOnly
   }
+#endif
 }

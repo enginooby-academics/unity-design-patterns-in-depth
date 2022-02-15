@@ -1,8 +1,14 @@
-using System;
-using System.Diagnostics;
-using UnityEngine;
-
 namespace Enginoobz.Attribute {
+#if ODIN_INSPECTOR
+  /// <inheritdoc />
+  public class DetailedInfoBoxAttribute : Sirenix.OdinInspector.DetailedInfoBoxAttribute {
+    public DetailedInfoBoxAttribute(string message, string details,
+      Sirenix.OdinInspector.InfoMessageType infoMessageType = Sirenix.OdinInspector.InfoMessageType.Info,
+      string visibleIf = null)
+      : base(message, details, infoMessageType, visibleIf) {
+    }
+  }
+#else
   [AttributeUsage(AttributeTargets.All, Inherited = false)]
   [Conditional("UNITY_EDITOR")]
   public class DetailedInfoBoxAttribute : PropertyAttribute {
@@ -10,4 +16,5 @@ namespace Enginoobz.Attribute {
       InfoMessageType infoMessageType = InfoMessageType.Info, string visibleIf = null) {
     }
   }
+#endif
 }

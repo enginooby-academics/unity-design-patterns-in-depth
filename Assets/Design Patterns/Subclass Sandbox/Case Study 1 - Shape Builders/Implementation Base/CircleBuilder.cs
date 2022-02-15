@@ -2,13 +2,14 @@ using System;
 using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
 using Enginoobz.Attribute;
 #endif
 
 namespace SubclassSandboxPattern.Case1.Base {
   /// <summary>
-  ///   * [The 'Sandbox Subclass']
+  ///   * The 'Sandbox Subclass'
   /// </summary>
   public class CircleBuilder : Builder {
     [SerializeField] [OnValueChanged(nameof(Rebuild))] [Range(2f, 6f)]
@@ -32,7 +33,7 @@ namespace SubclassSandboxPattern.Case1.Base {
           Axis.X => new Vector3(0, dir1, dir2),
           Axis.Y => new Vector3(dir1, 0, dir2),
           Axis.Z => new Vector3(dir1, dir2, 0),
-          _ => throw new ArgumentOutOfRangeException()
+          _ => throw new ArgumentOutOfRangeException(),
         };
         var pos = spawnDir * _radius;
         var point = AddCube(pos);

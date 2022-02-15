@@ -8,9 +8,6 @@ namespace AdapterPattern.Case2 {
   public class Circle : MonoBehaviour, IArea {
     [SerializeField] [Range(1f, 5f)] private float _radius;
 
-    private void Start() {
-    }
-
     public double GetArea() => PI * Pow(_radius, 2);
   }
 }

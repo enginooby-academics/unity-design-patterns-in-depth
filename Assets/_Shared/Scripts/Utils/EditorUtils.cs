@@ -21,12 +21,12 @@ namespace Enginoobz.Utils {
       // UTIL: AssetUtils - FindPrefabs
       var guids = AssetDatabase.FindAssets("t:Prefab", new[] {path});
 
-      for (var i = 0; i < guids.Length; i++) {
+      foreach (var t in guids) {
         // UTIL: AssetUtils - GetAssetByGUID
-        var assetPath = AssetDatabase.GUIDToAssetPath(guids[i]);
-        var assetGO = AssetDatabase.LoadAssetAtPath<GameObject>(assetPath);
+        var assetPath = AssetDatabase.GUIDToAssetPath(t);
+        var assetGo = AssetDatabase.LoadAssetAtPath<GameObject>(assetPath);
         // UTIL: List add if contain component
-        if (assetGO.TryGetComponent(out T component)) assets.Add(component);
+        if (assetGo.TryGetComponent(out T component)) assets.Add(component);
       }
 
       return assets;

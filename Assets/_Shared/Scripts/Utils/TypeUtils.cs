@@ -21,18 +21,12 @@ public static class TypeUtils {
     var interfaces = type.GetInterfaces();
 
     // UTIL: Compare interface types
-    if (interfaceTarget.IsGenericTypeDefinition) {
-      foreach (var @interface in interfaces)
-        if (@interface.IsConstructedGenericType && @interface.GetGenericTypeDefinition() == interfaceTarget)
-          return true;
-    }
-    else {
-      foreach (var @interface in interfaces)
-        if (@interface == interfaceTarget)
-          return true;
+    if (!interfaceTarget.IsGenericTypeDefinition) {
+      return interfaces.Any(@interface =>
+        @interface.IsConstructedGenericType && @interface.GetGenericTypeDefinition() == interfaceTarget);
     }
 
-    return false;
+    return interfaces.Any(@interface => @interface == interfaceTarget);
   }
 
   public static List<Type> GetConcreteTypesOf<T>() => GetTypesOf<T>();
@@ -58,19 +52,11 @@ public static class TypeUtils {
   }
 
   public static List<string> GetConcreteTypeNamesOf<T>() {
-    var types = GetConcreteTypesOf<T>();
-    var _typeNames = new List<string>();
-
-    for (var i = 0; i < types.Count; i++) _typeNames.Add(types[i].Name);
-    return _typeNames;
+    return GetConcreteTypesOf<T>().Select(type => type.Name).ToList();
   }
 
   public static List<string> GetConcreteTypeQualifiedNamesOf<T>() {
-    var types = GetConcreteTypesOf<T>();
-    var _typeNames = new List<string>();
-
-    for (var i = 0; i < types.Count; i++) _typeNames.Add(types[i].AssemblyQualifiedName);
-    return _typeNames;
+    return GetConcreteTypesOf<T>().Select(t => t.AssemblyQualifiedName).ToList();
   }
 
   public static List<T> GetInstancesOf<T>() where T : class {

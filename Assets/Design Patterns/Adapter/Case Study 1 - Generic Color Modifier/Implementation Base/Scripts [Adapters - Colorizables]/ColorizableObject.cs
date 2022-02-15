@@ -4,30 +4,29 @@ using Object = UnityEngine.Object;
 
 namespace AdapterPattern.Case1.Base1 {
   /// <summary>
-  ///   * [The 'Adapter' base class]
+  ///   * The 'Adapter' base class
   /// </summary>
-  public abstract class ColorizableObject<T, W> : IColorizable where T : Object where W : Component {
-    protected W _component;
+  public abstract class ColorizableObject<TObject, TComponent> : IColorizable
+    where TObject : Object where TComponent : Component {
+    protected readonly TComponent _component;
+    protected TObject _object;
 
-    protected T _object;
+    public ColorizableObject() { }
 
-    public ColorizableObject() {
-    }
-
-    public ColorizableObject(W component) {
+    public ColorizableObject(TComponent component) {
       _component = component;
-      if (typeof(T) == typeof(W)) _object = component as T;
+      if (typeof(TObject) == typeof(TComponent)) _object = component as TObject;
     }
 
     public abstract Color Color { get; set; }
-    public Type ComponentType => typeof(W);
+
+    public Type ComponentType => typeof(TComponent);
   }
 
-  public abstract class ColorizableObject<T> : ColorizableObject<T, T> where T : Component {
-    public ColorizableObject() {
-    }
+  public abstract class ColorizableObject<TComponent> : ColorizableObject<TComponent, TComponent>
+    where TComponent : Component {
+    public ColorizableObject() { }
 
-    protected ColorizableObject(T component) : base(component) {
-    }
+    protected ColorizableObject(TComponent component) : base(component) { }
   }
 }

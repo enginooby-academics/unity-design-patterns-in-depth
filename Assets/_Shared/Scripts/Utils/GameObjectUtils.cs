@@ -66,6 +66,10 @@ public static class GameObjectUtils {
       Object.DestroyImmediate(gameObject);
   }
 
+  public static void Destroy(this GameObject gameObject, bool @if) {
+    if (@if) gameObject.Destroy();
+  }
+
   /// <summary>
   ///   Add component if not exist.
   /// </summary>
@@ -75,21 +79,21 @@ public static class GameObjectUtils {
   /// <summary>
   ///   Create a new GameObject with given MonoBehaviour types with reset transform.
   /// </summary>
-  public static void CreateGameObject(params Type[] monobehaviourTypes) {
+  public static void CreateGameObject(params Type[] componentTypes) {
     var go = new GameObject();
     go.transform.Reset();
 
-    foreach (var monoBehaviourType in monobehaviourTypes) {
-      if (!monoBehaviourType.IsSubclassOf<MonoBehaviour>()) return;
+    foreach (var monoBehaviourType in componentTypes) {
+      if (!monoBehaviourType.IsSubclassOf<Component>()) return;
       go.AddComponent(monoBehaviourType);
     }
   }
 
   /// <summary>
-  ///   Create a new GameObject with the given MonoBehaviour type with reset transform.
+  ///   Create a new GameObject with the given component type with reset transform.
   ///   Return the added MonoBehaviour.
   /// </summary>
-  public static T CreateGameObject<T>() where T : MonoBehaviour {
+  public static T CreateGameObject<T>() where T : Component {
     var go = new GameObject();
     go.transform.Reset();
     return go.AddComponent<T>();

@@ -10,7 +10,7 @@ public static class StringUtils {
       .ToArray());
   }
 
-  public static List<string> ToStrings<T>(this IList<T> list) where T : IFormattable {
+  public static List<string> ToStrings<T>(this IEnumerable<T> list) where T : IFormattable {
     var stringList = new List<string>();
 
     foreach (var item in list) stringList.Add(item.ToString());

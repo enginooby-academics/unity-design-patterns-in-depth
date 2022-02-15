@@ -35,6 +35,7 @@ namespace TypeObjectPattern.Case1.Base {
       var monsterGo = GameObject.CreatePrimitive(PrimitiveType.Cube);
       monsterGo.name = name;
       monsterGo.transform.position = pos;
+
       var monster = monsterGo.AddComponent<Monster>();
       monster.Type = this;
 

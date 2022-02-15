@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using Object = UnityEngine.Object;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 
@@ -20,20 +21,15 @@ using Enginoobz.Attribute;
 ///   * vs. ComponentOperator base is for built-in Unity Components
 /// </summary>
 public abstract class MonoBehaviourBase : MonoBehaviour {
-  protected virtual void Awake() {
-  }
+  protected virtual void Awake() { }
 
-  protected virtual void Start() {
-  }
+  protected virtual void Start() { }
 
-  protected virtual void Update() {
-  }
+  protected virtual void Update() { }
 
-  protected virtual void FixedUpdate() {
-  }
+  protected virtual void FixedUpdate() { }
 
-  protected virtual void LateUpdate() {
-  }
+  protected virtual void LateUpdate() { }
 
   // TIP: Best practice using static variable: cache old value and restore it after operation
   private void OnDrawGizmos() {
@@ -48,11 +44,9 @@ public abstract class MonoBehaviourBase : MonoBehaviour {
     Gizmos.color = oldColor;
   }
 
-  protected virtual void DrawGizmos() {
-  }
+  protected virtual void DrawGizmos() { }
 
-  protected virtual void DrawGizmosOnSelected() {
-  }
+  protected virtual void DrawGizmosOnSelected() { }
 
   // [SerializeField, HideInInspector]
   // private Vector3? _initalPosition = null;
@@ -79,12 +73,23 @@ public abstract class MonoBehaviourBase : MonoBehaviour {
 
   // Cons: expose un-used/un-available components from a MonoBehaviour => use protected instead of public
   public Transform Transform => My<Transform>();
-  public Rigidbody Rigidbody => My<Rigidbody>();
-  public Collider Collider => My<Collider>();
-  public BoxCollider BoxCollider => My<BoxCollider>();
-  public MeshRenderer MeshRenderer => My<MeshRenderer>();
-  public MeshFilter MeshFilter => My<MeshFilter>();
-  public Animator Animator => My<Animator>();
+
+  protected Vector3 _position {
+    get => Transform.position;
+    set => Transform.position = value;
+  }
+
+  protected Quaternion _rotation {
+    get => Transform.rotation;
+    set => Transform.rotation = value;
+  }
+
+  protected Rigidbody _rigidbody => My<Rigidbody>();
+  protected Collider _collider => My<Collider>();
+  protected BoxCollider _boxCollider => My<BoxCollider>();
+  protected MeshRenderer _meshRenderer => My<MeshRenderer>();
+  protected MeshFilter _meshFilter => My<MeshFilter>();
+  protected Animator _animator => My<Animator>();
 
   /// <summary>
   ///   Get cached singleton (on a GO) component.
@@ -111,12 +116,41 @@ public abstract class MonoBehaviourBase : MonoBehaviour {
   [FoldoutGroup("MonoBehaviour Common")] [SerializeField] [Min(0f)]
   private float lifespan;
 
-  public void DisableForSecs(float seconds) {
-    this.Disable(seconds);
+  public void DisableTemporarily<T>(float durationInSec) where T : MonoBehaviour {
+    // TODO
+    // My<T>().enabled = false;
   }
 
+  public void DisableColliderForSecs(float seconds) {
+    _collider.enabled = false;
+    Invoke(nameof(EnableCollider), seconds);
+  }
 
-  public void ToggleActive() {
+  protected void EnableCollider() => _collider.enabled = true;
+
+  public void DisableForSecs(float seconds) => this.Disable(seconds);
+
+
+  public void ToggleActive() { }
+
+  /// <summary>
+  /// Instantiate at this component's position with Quaternion identity.
+  /// </summary>
+  protected new T Instantiate<T>(T prefab) where T : Component {
+    return Object.Instantiate(prefab, transform.position, Quaternion.identity);
+  }
+
+  /// <summary>
+  /// Instantiate at this component's position with Quaternion identity. <br/>
+  /// After the given lifespan, the spawned GameObject/component is destroyed.
+  /// </summary>
+  protected T Instantiate<T>(T prefab, float lifespan, bool destroyGameObject = true) where T : Component {
+    var component = Instantiate(prefab);
+    if (destroyGameObject)
+      Destroy(component.gameObject, lifespan);
+    else
+      Destroy(component, lifespan);
+    return component;
   }
 
   #endregion ===========================================================================================================

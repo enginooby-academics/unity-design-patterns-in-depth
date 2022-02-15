@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
 using Enginoobz.Attribute;
 #endif
@@ -12,14 +13,15 @@ using Enginoobz.Attribute;
 // + Boundary
 // + Movement trait
 // + Implement un-concurrent command
-
 // + Implement UI controller to demonstrate duplicated implementation in naive impl
+
 namespace CommandPattern.Case1.Base1 {
   /// <summary>
   ///   * The 'Invoker' class
   /// </summary>
   public class CubeController : MonoBehaviour {
-    [SerializeField] private Cube _cube;
+    [InlineEditor] [SerializeField] private Cube _cube;
+
     private readonly List<MoveCommand> _commandHistory = new List<MoveCommand>(); // ! can use Stack
 
 

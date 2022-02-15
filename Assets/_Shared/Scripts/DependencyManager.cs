@@ -13,6 +13,5 @@
 [assembly: OptionalDependency("UnityEngine.UI.ProceduralImage.ProceduralImage", "ASSET_PROCEDURAL_IMAGE")]
 
 // [assembly: OptionalDependency("EnviroSkyMgr", "ASSET_ENVIRO")] //  ENVIRO_LW || ENVIRO_HD
-// [assembly: OptionalDependency("EPOOutline.Outlinable", "ASSET_EPO_OUTLINE")] // URP_OUTLINE
-public class DependencyManager {
-}
+// [assembly: OptionalDependency("EPOOutline.Outlinable", "ASSET_EPO_OUTLINE")] // URP_OUTLINE 
+public class DependencyManager { }

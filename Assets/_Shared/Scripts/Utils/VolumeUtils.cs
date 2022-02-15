@@ -9,9 +9,9 @@ public static class VolumeUtils {
     volumeComponent.active = !volumeComponent.active;
   }
 
-  /// <summary> Given a propability number from 0 to 1, if match set active, otherwise set inactive </summary>
+  /// <summary> Given a probability number from 0 to 1, if match set active, otherwise set inactive </summary>
   public static void SetActiveOnRandom(this VolumeComponent volumeComponent, float probability = .5f) {
-    volumeComponent.active = Random.value < probability ? true : false;
+    volumeComponent.active = Random.value < probability;
   }
 
   /// <summary> Set the same state (active or inactive) for all components </summary>

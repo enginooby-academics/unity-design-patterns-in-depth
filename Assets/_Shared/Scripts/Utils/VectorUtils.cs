@@ -46,58 +46,66 @@ public static class VectorUtils {
   public static readonly Vector3 v100 = Vector3.right;
 
   /// <summary>Return true if Vector2.zero, used to treat unset Vector as infinite Vector (e.g. in Boundary)</summary>
-  public static bool ContainsIgnoreZero(this Vector2 vect, float value) => vect == Vector2.zero || vect.Contains(value);
+  public static bool ContainsIgnoreZero(this Vector2 vector, float value) =>
+    vector == Vector2.zero || vector.Contains(value);
 
   /// <summary>
   ///   Check contain inclusively.
   /// </summary>
-  public static bool Contains(this Vector2 vect, float value) => vect.x <= value && value <= vect.y;
+  public static bool Contains(this Vector2 vector, float value) => vector.x <= value && value <= vector.y;
 
-  // public static bool Equals(this Vector3 vect1, Vector3 vect2, AxisFlag axises){
-
+  // public static bool Equals(this Vector3 vector1, Vector3 vector2, AxisFlag axis){
   // }
 
   /// <summary> Uses a Vector2 where x is min and y is max. </summary>
-  public static float Clamp(this Vector2 vect, float value) => Mathf.Clamp(value, vect.x, vect.y);
+  public static float Clamp(this Vector2 vector, float value) => Mathf.Clamp(value, vector.x, vector.y);
 
-  public static float Average(this Vector2 vect) => (vect.x + vect.y) / 2;
+  public static float Average(this Vector2 vector) => (vector.x + vector.y) / 2;
 
-  public static float Length(this Vector2 vect) => Mathf.Abs(vect.x - vect.y);
+  public static float Length(this Vector2 vector) => Mathf.Abs(vector.x - vector.y);
 
-  public static float Random(this Vector2 vect) => UnityEngine.Random.Range(vect.x, vect.y);
+  public static float Random(this Vector2 vector) => UnityEngine.Random.Range(vector.x, vector.y);
 
-  public static int Random(this Vector2Int vect) => UnityEngine.Random.Range(vect.x, vect.y);
+  public static int Random(this Vector2Int vector) => UnityEngine.Random.Range(vector.x, vector.y);
 
-  public static Vector2 Offset(this Vector2 vect, float offset) => new Vector2(vect.x + offset, vect.y + offset);
+  public static Vector2 Offset(this Vector2 vector, float offset) => new Vector2(vector.x + offset, vector.y + offset);
 
-  public static Vector3 WithX(this Vector3 vect, float newX) => new Vector3(newX, vect.y, vect.z);
+  public static Vector3 WithX(this Vector3 vector, float newX) => new Vector3(newX, vector.y, vector.z);
 
-  public static Vector3 WithY(this Vector3 vect, float newY) => new Vector3(vect.x, newY, vect.z);
+  public static Vector3 WithXRandom(this Vector3 vector, float minX, float maxX) =>
+    vector.WithX(UnityEngine.Random.Range(minX, maxX));
 
-  public static Vector3 WithNegativeY(this Vector3 vect) => new Vector3(vect.x, -Mathf.Abs(vect.y), vect.z);
+  public static Vector3 WithY(this Vector3 vector, float newY) => new Vector3(vector.x, newY, vector.z);
+  public static Vector3 WithYZ(this Vector3 vector, float newValue) => new Vector3(vector.x, newValue, newValue);
 
-  public static Vector3 WithPositiveY(this Vector3 vect) => new Vector3(vect.x, Mathf.Abs(vect.y), vect.z);
+  public static Vector3 WithNegativeY(this Vector3 vector) => new Vector3(vector.x, -Mathf.Abs(vector.y), vector.z);
 
-  public static Vector3 OffsetX(this Vector3 vect, float offset) => new Vector3(vect.x + offset, vect.y, vect.z);
+  public static Vector3 WithPositiveY(this Vector3 vector) => new Vector3(vector.x, Mathf.Abs(vector.y), vector.z);
 
-  public static Vector3 OffsetY(this Vector3 vect, float offset) => new Vector3(vect.x, vect.y + offset, vect.z);
+  public static Vector3 OffsetX(this Vector3 vector, float offset) =>
+    new Vector3(vector.x + offset, vector.y, vector.z);
 
-  public static Vector3 OffsetZ(this Vector3 vect, float offset) => new Vector3(vect.x, vect.y, vect.z + offset);
+  public static Vector3 OffsetY(this Vector3 vector, float offset) =>
+    new Vector3(vector.x, vector.y + offset, vector.z);
 
-  public static Vector3 WithZ(this Vector3 vect, float newZ) => new Vector3(vect.x, vect.y, newZ);
+  public static Vector3 OffsetZ(this Vector3 vector, float offset) =>
+    new Vector3(vector.x, vector.y, vector.z + offset);
 
-  public static Vector3 SetX(this Vector3 vect, float newX) => new Vector3(newX, vect.y, vect.z);
+  public static Vector3 WithZ(this Vector3 vector, float newZ) => new Vector3(vector.x, vector.y, newZ);
 
-  public static Vector3 SetY(this Vector3 vect, float newY) => new Vector3(vect.x, newY, vect.z);
+  public static Vector3 SetX(this Vector3 vector, float newX) => new Vector3(newX, vector.y, vector.z);
 
-  public static Vector3 SetZ(this Vector3 vect, float newZ) => new Vector3(vect.x, vect.y, newZ);
+  public static Vector3 SetY(this Vector3 vector, float newY) => new Vector3(vector.x, newY, vector.z);
+
+  public static Vector3 SetZ(this Vector3 vector, float newZ) => new Vector3(vector.x, vector.y, newZ);
+
+  public static Vector2 GetXZ(this Vector3 vector) => new Vector2(vector.x, vector.z);
 
   /// <summary>
   ///   Return Vector3.zero if no flag.
   /// </summary>
   public static Vector3 ToVector3(this AxisFlag axisFlag) {
-    if (axisFlag.HasFlag(AxisFlag.X) && axisFlag.HasFlag(AxisFlag.Y) && axisFlag.HasFlag(AxisFlag.Z))
-      return Vector3.one;
+    if (axisFlag.HasFlags(AxisFlag.X, AxisFlag.Y, AxisFlag.Z)) return Vector3.one;
     if (!axisFlag.HasFlag(AxisFlag.X) && !axisFlag.HasFlag(AxisFlag.Y) && !axisFlag.HasFlag(AxisFlag.Z))
       return Vector3.zero;
     if (!axisFlag.HasFlag(AxisFlag.X) && axisFlag.HasFlag(AxisFlag.Y) && axisFlag.HasFlag(AxisFlag.Z)) return v011;

@@ -4,7 +4,7 @@ using System.Linq;
 
 public static class FileUtils {
   /// <summary>
-  ///   Return name (without extension) list of assets in the given directory path (ingore meta files).
+  ///   Return name (without extension) list of assets in the given directory path (ignore meta files).
   /// </summary>
   public static List<string> GetFileNamesAtPath(string directoryPath) {
     var fileNames = new List<string>();
@@ -17,7 +17,7 @@ public static class FileUtils {
   }
 
   /// <summary>
-  ///   Return name (with extension) list of assets in the given directory path (ingore meta files).
+  ///   Return name (with extension) list of assets in the given directory path (ignore meta files).
   /// </summary>
   public static List<string> GetFullFileNamesAtPath(string directoryPath) {
     var fileNames = new List<string>();

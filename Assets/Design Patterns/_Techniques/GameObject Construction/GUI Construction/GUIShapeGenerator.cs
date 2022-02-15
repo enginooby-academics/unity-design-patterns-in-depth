@@ -4,11 +4,8 @@ using UnityEngine;
 namespace GOConstruction.GUI {
   public class GUIShapeGenerator : ShapeGenerator {
     [SerializeField] private Cube _rotatingCubePrefab;
-
     [SerializeField] private Cube _shakingCubePrefab;
-
     [SerializeField] private Sphere _rotatingSpherePrefab;
-
     [SerializeField] private Sphere _shakingSpherePrefab;
 
     public override void CreateShape() {
@@ -17,7 +14,7 @@ namespace GOConstruction.GUI {
         ShapeType.RotatingSphere => Instantiate(_rotatingSpherePrefab),
         ShapeType.ShakingCube => Instantiate(_shakingCubePrefab),
         ShapeType.ShakingSphere => Instantiate(_shakingSpherePrefab),
-        _ => throw new ArgumentOutOfRangeException()
+        _ => throw new ArgumentOutOfRangeException(),
       };
 
       print("Volume of the generated shape is: " + shape.GetVolume());

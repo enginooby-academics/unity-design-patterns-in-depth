@@ -10,7 +10,7 @@ public static class CollectionUtils {
   /// <summary>
   ///   Destroy all GameObjects of the component list.
   /// </summary>
-  public static void Destroy<T>(this T[] components) where T : MonoBehaviour {
+  public static void Destroy<T>(this IEnumerable<T> components) where T : MonoBehaviour {
     foreach (var component in components) {
 #if UNITY_EDITOR
       if (!EditorApplication.isPlaying) Object.DestroyImmediate(component.gameObject);
@@ -19,13 +19,7 @@ public static class CollectionUtils {
     }
   }
 
-  public static List<T> ToList<T>(this Array array) {
-    var list = new List<T>();
-
-    foreach (var item in array) list.Add((T) item);
-
-    return list;
-  }
+  public static List<T> ToList<T>(this Array array) => array.Cast<T>().ToList();
 
   #region VALIDATION
 
@@ -65,7 +59,7 @@ public static class CollectionUtils {
   /// <summary>
   ///   Add method IndexOf() to IReadOnlyList.
   /// </summary>
-  public static int IndexOf<T>(this IReadOnlyList<T> self, T elementToFind) {
+  public static int IndexOf<T>(this IEnumerable<T> self, T elementToFind) {
     var i = 0;
     foreach (var element in self) {
       if (Equals(element, elementToFind))
@@ -82,6 +76,7 @@ public static class CollectionUtils {
     return list[nextIndex];
   }
 
+  [Obsolete("Use GetPrevious")]
   public static T NavPrevious<T>(this IList<T> list, T currentItem) {
     var currentIndex = list.IndexOf(currentItem);
     var previous = currentIndex == 0 ? list.Count - 1 : currentIndex - 1;
@@ -119,26 +114,22 @@ public static class CollectionUtils {
   ///   Return true if the element exists and not null.
   /// </summary>
   public static bool TryGetById<T>(this IList<Object> objects, int id, out T element) where T : Object {
-    if (objects.Count > id) {
-      element = objects[id] as T;
-      return element ? true : false;
-    }
+    // TIP: Return object (implicitly casted to bool) w/o using conditional statement
+    // E.g., return element ? true : false;
+    if (objects.HasIndex(id))
+      return element = objects[id] as T;
 
-    element = null;
-    return false;
+    return element = null;
   }
 
   /// <summary>
   ///   Return true if the element exists in the array and not null.
   /// </summary>
-  public static bool TryGetById<T>(this Object[] objects, int id, out T element) where T : Object {
-    if (objects.Length > id) {
-      element = objects[id] as T;
-      return element ? true : false;
-    }
+  public static bool TryGetById<T>(this T[] objects, int id, out T element) where T : Object {
+    if (objects.HasIndex(id))
+      return element = objects[id];
 
-    element = null;
-    return false;
+    return element = null;
   }
 
   /// <summary>
@@ -147,7 +138,7 @@ public static class CollectionUtils {
   public static bool TryGetById(this Object[] objects, int id, out Object element) {
     if (objects.Length > id) {
       element = objects[id];
-      return element ? true : false;
+      return element;
     }
 
     element = null;
@@ -206,14 +197,12 @@ public static class CollectionUtils {
     while (n > 1) {
       n--;
       var k = rng.Next(n + 1);
-      var value = list[k];
-      list[k] = list[n];
-      list[n] = value;
+      (list[k], list[n]) = (list[n], list[k]);
     }
   }
 
   // ! not pass by ref => not modify original list
-  public static List<T> OrderByName<T>(this IList<T> list) where T : Object {
+  public static List<T> OrderByName<T>(this IEnumerable<T> list) where T : Object {
     return list.OrderBy(item => item.name).ToList();
   }
 

@@ -6,8 +6,7 @@ namespace AdapterPattern.Case1.Base1 {
   ///   For Adaptee class: Material
   /// </summary>
   public class ColorizableMaterial : ColorizableObject<Material, MeshRenderer> {
-    public ColorizableMaterial() {
-    }
+    public ColorizableMaterial() { }
 
     public ColorizableMaterial(MeshRenderer component) : base(component) => _object = _component.material;
 
