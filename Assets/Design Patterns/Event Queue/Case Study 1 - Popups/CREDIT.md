@@ -1,0 +1,2 @@
+﻿+ Credit: https://github.com/Habrador/Unity-Programming-Patterns/tree/master/Assets/Patterns/14.%20Command%20Queue%20(Event%20Queue)
++ Modification: refactor code, implement popup management as singleton to simplify command class.
