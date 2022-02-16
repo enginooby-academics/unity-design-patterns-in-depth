@@ -4,9 +4,8 @@ using static VectorUtils;
 
 public static class TransformUtils {
   // ?
-  public static bool Contains(this Transform transform, Bounds bounds, Bounds target) {
-    return bounds.Contains(target.ClosestPoint(transform.position));
-  }
+  public static bool Contains(this Transform transform, Bounds bounds, Bounds target) =>
+    bounds.Contains(target.ClosestPoint(transform.position));
 
   public static float DistanceFrom(this Transform transform, Vector3 targetPos) {
     // optimizer than Vector3.Distance()
@@ -243,14 +242,17 @@ public static class TransformUtils {
   /// <summary>
   /// Used for smooth position lerping.
   /// </summary>
-  public static void SmoothApproach(this Transform transform, Vector3 pastPosition, Vector3 pastTargetPosition,
+  public static void SmoothApproach(
+    this Transform transform,
+    Vector3 pastPosition,
+    Vector3 pastTargetPosition,
     Vector3 targetPosition,
     float delta) {
     if (Time.timeScale == 0 || float.IsNaN(delta) || float.IsInfinity(delta) || delta == 0 ||
         pastPosition == Vector3.zero || pastTargetPosition == Vector3.zero || targetPosition == Vector3.zero)
       return;
 
-    var t = (Time.deltaTime * delta) + .00001f;
+    var t = Time.deltaTime * delta + .00001f;
     var v = (targetPosition - pastTargetPosition) / t;
     var f = pastPosition - pastTargetPosition + v;
     var l = targetPosition - v + f * Mathf.Exp(-t);
@@ -296,4 +298,15 @@ public static class TransformUtils {
   }
 
   #endregion SCALE ================================================================================================================================
+
+  #region ROTATION
+
+  /// <summary>
+  /// Given x, y, z in degree unit.
+  /// </summary>
+  public static void SetRotation(this Transform transform, float x, float y, float z) {
+    transform.rotation = Quaternion.Euler(x, y, z);
+  }
+
+  #endregion
 }

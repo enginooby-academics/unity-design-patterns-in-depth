@@ -19,6 +19,16 @@ public static class CollectionUtils {
     }
   }
 
+  /// <summary>
+  /// Return true if not contains.
+  /// </summary>
+  public static bool AddIfNotContains<T>(this IList<T> list, T element) {
+    if (list.Contains(element)) return false;
+
+    list.Add(element);
+    return true;
+  }
+
   public static List<T> ToList<T>(this Array array) => array.Cast<T>().ToList();
 
   #region VALIDATION
@@ -216,6 +226,11 @@ public static class CollectionUtils {
     for (var i = list.Count - 1; i >= 0; i--)
       if (Equals(default(T), list[i]))
         list.RemoveAt(i);
+  }
+
+  // https://stackoverflow.com/questions/1211608/possible-to-iterate-backwards-through-a-foreach
+  public static IEnumerable<T> FastReverse<T>(this IList<T> list) {
+    for (var i = list.Count - 1; i >= 0; i--) yield return list[i];
   }
 
   #endregion

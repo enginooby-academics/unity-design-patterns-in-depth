@@ -78,6 +78,9 @@ public static class VectorUtils {
   public static Vector3 WithY(this Vector3 vector, float newY) => new Vector3(vector.x, newY, vector.z);
   public static Vector3 WithYZ(this Vector3 vector, float newValue) => new Vector3(vector.x, newValue, newValue);
 
+  public static Vector3 WithYRandom(this Vector3 vector, float minY, float maxY) =>
+    new Vector3(vector.x, UnityEngine.Random.Range(minY, maxY), vector.z);
+
   public static Vector3 WithNegativeY(this Vector3 vector) => new Vector3(vector.x, -Mathf.Abs(vector.y), vector.z);
 
   public static Vector3 WithPositiveY(this Vector3 vector) => new Vector3(vector.x, Mathf.Abs(vector.y), vector.z);
@@ -133,5 +136,14 @@ public static class VectorUtils {
     for (var i = 0; i < vectors.Length; i++) vectors[i] += offset;
 
     return vectors;
+  }
+
+  /// <summary>
+  /// Origin is at (0, 0, 0) be default.
+  /// </summary>
+  public static bool IsInsideCircle(this Vector3 vector3, float radius, Vector3? origin = null) {
+    origin ??= Vector3.zero;
+
+    return (vector3 - origin.Value).sqrMagnitude <= radius * radius;
   }
 }

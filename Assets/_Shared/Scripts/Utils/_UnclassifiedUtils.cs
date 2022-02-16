@@ -2,16 +2,14 @@ using System;
 using System.Linq;
 using UnityEngine;
 
-public static class UnclassifiedUtils {
-  public static bool Overlap(this Collider collider, Collider target) {
-    return collider.transform.Contains(collider.bounds, target.bounds);
-  }
+public static class _UnclassifiedUtils {
+  public static bool Overlap(this Collider collider, Collider target) =>
+    collider.transform.Contains(collider.bounds, target.bounds);
 
   public static T GetComponent<T>(this Collision collision) where T : Component =>
     collision.gameObject.GetComponent<T>();
 
-  public static T GetComponent<T>(this Collider collider) where T : Component =>
-    collider.gameObject.GetComponent<T>();
+  public static T GetComponent<T>(this Collider collider) where T : Component => collider.gameObject.GetComponent<T>();
 
   public static bool CompareTag(this Collider collider, string tag) => collider.gameObject.CompareTag(tag);
 
@@ -25,7 +23,10 @@ public static class UnclassifiedUtils {
     return isTagMatched;
   }
 
-  public static bool CompareTag(this Collider collider, string tag, Action<Collider> trueAction,
+  public static bool CompareTag(
+    this Collider collider,
+    string tag,
+    Action<Collider> trueAction,
     Action<Collider> falseAction) {
     var isTagMatched = collider.gameObject.CompareTag(tag);
     if (isTagMatched)
