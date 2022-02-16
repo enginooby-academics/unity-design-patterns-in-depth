@@ -1,8 +1,9 @@
+using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace DoubleBufferPattern.Case1 {
-  public class CaveGenerator : MonoBehaviour {
+  public abstract class CaveGenerator : MonoBehaviour {
     //Is used to init the cellular automata by spreading random dots on a grid
     //And from these dots we will generate caves
     //The higher the fill percentage, the smaller the caves
@@ -11,14 +12,11 @@ namespace DoubleBufferPattern.Case1 {
     protected const int CAVE_ID = 0;
     protected const int WALL_ID = 1;
 
-    //The size of the grid
     protected const int GRID_SIZE = 100;
-
-    //How many steps do we want to simulate?
-    protected const int SIMULATION_STEPS = 20;
+    private const int SIMULATION_STEPS = 20;
 
     //For how long will we pause between each simulation step so we can look at the result
-    protected const float PAUSE_TIME = 1f;
+    private const float PAUSE_TIME = 1f;
 
     //Display the cave pattern on this plane 
     private MeshRenderer _renderer;
@@ -45,6 +43,24 @@ namespace DoubleBufferPattern.Case1 {
       //For testing that init is working
       // GenerateAndDisplayTexture(buffer);
     }
+
+    protected IEnumerator SimulateCavePatternCoroutine() {
+      for (var i = 0; i < SIMULATION_STEPS; i++) {
+        for (var x = 0; x < GRID_SIZE; x++)
+        for (var y = 0; y < GRID_SIZE; y++)
+          WriteToBuffer(x, y);
+        DisplayBuffer();
+        yield return new WaitForSeconds(PAUSE_TIME);
+      }
+
+      OnCaveCompleted();
+    }
+
+    // Write operation - Calculate the new value at the given cell
+    protected abstract void WriteToBuffer(int cellX, int cellY);
+
+    // Display operation
+    protected abstract void DisplayBuffer();
 
     protected bool IsCellAtBorder(int cellX, int cellY) =>
       cellX == 0 || cellX == GRID_SIZE - 1 || cellY == 0 || cellY == GRID_SIZE - 1;
