@@ -83,6 +83,7 @@ public static class TransformUtils {
   }
 
   /// <summary>
+  ///   [In-update] <br />
   ///   Translate on local Y (included deltaTime).
   /// </summary>
   public static void MoveY(this Transform transform, float distance = 1f) {
@@ -103,6 +104,7 @@ public static class TransformUtils {
   }
 
   /// <summary>
+  ///   [In-update] <br />
   ///   Translate on local Z (included deltaTime).
   /// </summary>
   public static void MoveZ(this Transform transform, float distance = 1f) {
@@ -110,6 +112,7 @@ public static class TransformUtils {
   }
 
   /// <summary>
+  ///   [In-update] <br />
   ///   Rotate local Y (green axis) and move to (stop at) destination (included deltaTime).
   /// </summary>
   public static void LookAtAndMoveY(this Transform transform, Vector3 dest, float distance = 1f) {
@@ -118,6 +121,7 @@ public static class TransformUtils {
   }
 
   /// <summary>
+  ///   [In-update] <br />
   ///   Rotate local Y (green axis) and move to (stop at) target (included deltaTime).
   /// </summary>
   public static void LookAtAndMoveY(this Transform transform, Transform target, float distance = 1f) {
