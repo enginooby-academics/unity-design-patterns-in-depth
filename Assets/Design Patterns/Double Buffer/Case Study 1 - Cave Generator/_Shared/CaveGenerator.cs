@@ -53,7 +53,7 @@ namespace DoubleBufferPattern.Case1 {
         yield return new WaitForSeconds(PAUSE_TIME);
       }
 
-      OnCaveCompleted();
+      Debug.Log("Cave is completely generated.");
     }
 
     // Write operation - Calculate the new value at the given cell
@@ -64,8 +64,6 @@ namespace DoubleBufferPattern.Case1 {
 
     protected bool IsCellAtBorder(int cellX, int cellY) =>
       cellX == 0 || cellX == GRID_SIZE - 1 || cellY == 0 || cellY == GRID_SIZE - 1;
-
-    protected void OnCaveCompleted() => Debug.Log("Cave is completely generated.");
 
     //Given a cell, how many of the 8 surrounding cells are walls?
     protected int GetSurroundingWallCount(int cellX, int cellY, int[,] buffer) {

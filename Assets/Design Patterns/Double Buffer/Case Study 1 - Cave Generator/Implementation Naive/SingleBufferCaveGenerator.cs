@@ -21,7 +21,7 @@ namespace DoubleBufferPattern.Case1.Naive {
       //Use some smoothing rules to generate caves
       if (surroundingWalls > 4)
         _buffer[x, y] = WALL_ID;
-      else if (surroundingWalls < 4)
+      if (surroundingWalls < 4)
         _buffer[x, y] = CAVE_ID;
     }
 
