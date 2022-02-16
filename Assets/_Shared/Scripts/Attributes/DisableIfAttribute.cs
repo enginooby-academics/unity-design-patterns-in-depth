@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics;
 using UnityEngine;
 
-namespace Enginoobz.Attribute {
+namespace Enginooby.Attribute {
   [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
   [Conditional("UNITY_EDITOR")]
   public class DisableIfAttribute : PropertyAttribute {

@@ -6,7 +6,7 @@ using Sirenix.OdinInspector;
 using Enginoobz.Attribute;
 #endif
 
-namespace Enginoobz.Audio {
+namespace Enginooby.Audio {
   [RequireComponent(typeof(AudioSource))]
   public class AudioSourceOperator : ComponentOperator<AudioSource> {
     [SerializeField] [InlineEditor] private SFXDataPreset _sfxDataPreset;

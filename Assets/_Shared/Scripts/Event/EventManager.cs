@@ -2,7 +2,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using Enginoobz;
+using Enginooby;
 #if ODIN_INSPECTOR
 using UnityEngine;
 

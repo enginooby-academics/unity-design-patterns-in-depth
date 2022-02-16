@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Rendering;
 
-namespace Enginoobz.Graphics {
+namespace Enginooby.Graphics {
   // ? Rename to PFX_SCPE
   // Collection of functions for modifying important parameters of Beautify FX setting
   // Usage: for short keys (controller) or UI

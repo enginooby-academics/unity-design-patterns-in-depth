@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Enginoobz.Graphics {
+namespace Enginooby.Graphics {
   public class PostFxController : MonoBehaviour {
     private VolumeEditor volumeEditor;
 

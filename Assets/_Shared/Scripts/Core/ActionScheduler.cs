@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Enginoobz.Core {
+namespace Enginooby.Core {
   /// <summary>
   ///   Simplified version of State Pattern to manage action transition.
   ///   Used to implement actor controller of many actions.

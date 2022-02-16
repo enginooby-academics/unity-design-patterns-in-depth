@@ -12,7 +12,7 @@ using Enginoobz.Attribute;
 // TODO: Extend SO
 // + Rename to AudioClipData
 
-namespace Enginoobz.Audio {
+namespace Enginooby.Audio {
   [Serializable]
   [InlineProperty]
   public class AudioClipWrapper {

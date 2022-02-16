@@ -1,8 +1,7 @@
-namespace Enginoobz.Attribute {
+namespace Enginooby.Attribute {
 #if ODIN_INSPECTOR
   /// <inheritdoc />
-  public class BoxGroupAttribute : Sirenix.OdinInspector.BoxGroupAttribute {
-  }
+  public class BoxGroupAttribute : Sirenix.OdinInspector.BoxGroupAttribute { }
 #else
   [AttributeUsage(AttributeTargets.All, Inherited = false)]
   [Conditional("UNITY_EDITOR")]

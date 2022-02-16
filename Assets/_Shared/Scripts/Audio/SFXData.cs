@@ -10,7 +10,7 @@ using Enginoobz.Attribute;
 
 // TODO: Rename to SFXVariation
 
-namespace Enginoobz.Audio {
+namespace Enginooby.Audio {
   [CreateAssetMenu(fileName = "SFX_", menuName = "Audio/SFX Data", order = 0)]
   /// <summary>
   /// List of audio clips for a certain event (e.g. play taked damage, enemy dead).
@@ -89,12 +89,12 @@ namespace Enginoobz.Audio {
   public enum SFXTarget {
     Any = 0,
     Player = 1,
-    Enemy = 2
+    Enemy = 2,
   }
 
   public enum SFXAction {
     Damaged = 0,
     Die = 1,
-    Attack = 2
+    Attack = 2,
   }
 }

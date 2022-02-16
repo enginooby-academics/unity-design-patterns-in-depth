@@ -6,7 +6,7 @@ using Sirenix.OdinInspector;
 using Enginoobz.Attribute;
 #endif
 
-namespace Enginoobz.UI {
+namespace Enginooby.UI {
   [CreateAssetMenu(fileName = "CS_", menuName = "UI/Cusor Data", order = 0)]
   public class CursorData : ScriptableObject {
     [SerializeField] private CursorName _name;
@@ -37,6 +37,6 @@ namespace Enginoobz.UI {
     Move = 1,
     Attack = 2,
     UI = 3,
-    Pickup = 4
+    Pickup = 4,
   }
 }

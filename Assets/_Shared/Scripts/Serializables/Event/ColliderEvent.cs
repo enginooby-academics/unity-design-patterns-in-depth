@@ -10,7 +10,7 @@ using Sirenix.OdinInspector;
 using Enginoobz.Attribute;
 #endif
 
-namespace Enginoobz {
+namespace Enginooby {
   [Serializable]
   [InlineProperty]
   public class ColliderEvent : TriggerEvent {

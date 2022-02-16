@@ -5,7 +5,7 @@ using UnityEngine.Rendering;
 
 // using QFSW.QC;
 
-namespace Enginoobz.Graphics {
+namespace Enginooby.Graphics {
   // Collection of functions for modifying important parameters of Beautify FX setting
   // Used for short keys (controller) or UI
   [RequireComponent(typeof(Volume))]

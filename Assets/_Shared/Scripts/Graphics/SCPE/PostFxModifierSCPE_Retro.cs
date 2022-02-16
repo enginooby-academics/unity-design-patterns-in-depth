@@ -4,7 +4,7 @@ using UnityEngine;
 
 // using QFSW.QC;
 
-namespace Enginoobz.Graphics {
+namespace Enginooby.Graphics {
   public partial class PostFxModifierSCPE : MonoBehaviour {
     private ColorSplit colorSplit;
 

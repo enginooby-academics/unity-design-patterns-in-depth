@@ -6,9 +6,8 @@ using Sirenix.OdinInspector;
 using Enginoobz.Attribute;
 #endif
 
-namespace Enginoobz {
+namespace Enginooby {
   [Serializable]
   [InlineProperty]
-  public class OnTriggerEnterEvent : ColliderEvent {
-  }
+  public class OnTriggerEnterEvent : ColliderEvent { }
 }

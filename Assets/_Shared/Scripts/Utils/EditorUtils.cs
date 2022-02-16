@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace Enginoobz.Utils {
+namespace Enginooby.Utils {
   public static class EditorUtils {
     public static void StopPlayMode() {
       EditorApplication.isPlaying = false;

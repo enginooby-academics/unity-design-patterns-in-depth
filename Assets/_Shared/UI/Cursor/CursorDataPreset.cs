@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 using UnityEngine;
 
-namespace Enginoobz.UI {
+namespace Enginooby.UI {
   // [SOVariant]
   // Collection of cursors in a certain style (e.g. pixel, modern), used in a certain game theme (e.g. RPG, racing).
   [CreateAssetMenu(fileName = "CSPreset_", menuName = "UI/Cusor Data Preset", order = 0)]

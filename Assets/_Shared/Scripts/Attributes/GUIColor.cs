@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics;
 using UnityEngine;
 
-namespace Enginoobz.Attribute {
+namespace Enginooby.Attribute {
   [AttributeUsage(AttributeTargets.All, Inherited = false)]
   [Conditional("UNITY_EDITOR")]
   public class GUIColorAttribute : PropertyAttribute {
@@ -10,7 +10,6 @@ namespace Enginoobz.Attribute {
 
     public GUIColorAttribute(string colorExpression) => _colorExpression = colorExpression;
 
-    public GUIColorAttribute(float r, float g, float b, float a = 1f) {
-    }
+    public GUIColorAttribute(float r, float g, float b, float a = 1f) { }
   }
 }

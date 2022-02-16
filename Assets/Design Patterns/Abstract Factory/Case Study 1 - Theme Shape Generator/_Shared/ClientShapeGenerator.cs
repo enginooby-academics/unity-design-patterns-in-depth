@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 using UnityEngine;
 
 namespace AbstractFactoryPattern.Case1 {

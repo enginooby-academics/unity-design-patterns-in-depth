@@ -10,7 +10,7 @@ using Enginoobz.Attribute;
 
 // TODO: Rename to SFXCollection/SFXTheme
 
-namespace Enginoobz.Audio {
+namespace Enginooby.Audio {
   [CreateAssetMenu(fileName = "SFXPreset_", menuName = "Audio/SFX Data Preset", order = 0)]
   /// <summary>
   /// Centralization for all SFXData.

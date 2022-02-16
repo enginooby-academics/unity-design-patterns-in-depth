@@ -1,4 +1,4 @@
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 using UnityEngine;
 
 namespace TypeObjectPattern.Case1.Base {

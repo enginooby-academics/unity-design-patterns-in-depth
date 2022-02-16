@@ -5,7 +5,7 @@ using Gradient = SCPE.Gradient;
 
 // using QFSW.QC;
 
-namespace Enginoobz.Graphics {
+namespace Enginooby.Graphics {
   public partial class PostFxModifierSCPE : MonoBehaviour {
     private BlackBars blackBars;
 

@@ -9,6 +9,8 @@ namespace UpdateMethodPattern.Case1.Unity2 {
 
     protected override void OnStart() => SetRandomDirection();
 
+    private void SetRandomDirection() => transform.SetRotation(0, Random.Range(0, 360), 0);
+
     public override void OnUpdate(float deltaTime) => WanderInsideCircle(deltaTime);
 
     private void WanderInsideCircle(float deltaTime) {
@@ -19,7 +21,5 @@ namespace UpdateMethodPattern.Case1.Unity2 {
         transform.position = forwardPos;
       else SetRandomDirection();
     }
-
-    private void SetRandomDirection() => transform.SetRotation(0, Random.Range(0, 360), 0);
   }
 }

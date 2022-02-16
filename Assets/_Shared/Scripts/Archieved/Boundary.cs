@@ -9,7 +9,7 @@ using Enginoobz.Attribute;
 #endif
 
 // TODO: integrate serializable Area
-namespace Enginoobz {
+namespace Enginooby {
   public class Boundary : MonoBehaviour {
     [EnumToggleButtons] [SerializeField] private ActionOutOfBounds actionOutOfBounds = ActionOutOfBounds.Destroy;
 
@@ -119,7 +119,7 @@ namespace Enginoobz {
       Destroy,
       Disable,
       Constrain,
-      Custom
+      Custom,
     }
 
     // CONSIDER: remove World-Space Mode, which is a particular/sub case of Target Mode (w/ pos = 0, 0, 0)

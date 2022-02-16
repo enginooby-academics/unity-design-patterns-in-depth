@@ -1,5 +1,5 @@
 using System;
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 using UnityEngine;
 
 namespace GOConstruction.GUI {

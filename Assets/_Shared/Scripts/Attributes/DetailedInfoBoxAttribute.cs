@@ -1,12 +1,13 @@
-namespace Enginoobz.Attribute {
+namespace Enginooby.Attribute {
 #if ODIN_INSPECTOR
   /// <inheritdoc />
   public class DetailedInfoBoxAttribute : Sirenix.OdinInspector.DetailedInfoBoxAttribute {
-    public DetailedInfoBoxAttribute(string message, string details,
+    public DetailedInfoBoxAttribute(
+      string message,
+      string details,
       Sirenix.OdinInspector.InfoMessageType infoMessageType = Sirenix.OdinInspector.InfoMessageType.Info,
       string visibleIf = null)
-      : base(message, details, infoMessageType, visibleIf) {
-    }
+      : base(message, details, infoMessageType, visibleIf) { }
   }
 #else
   [AttributeUsage(AttributeTargets.All, Inherited = false)]

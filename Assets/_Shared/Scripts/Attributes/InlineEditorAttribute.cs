@@ -1,11 +1,10 @@
 using Sirenix.OdinInspector;
 
-namespace Enginoobz.Attribute {
+namespace Enginooby.Attribute {
 #if ODIN_INSPECTOR
   [IncludeMyAttributes]
   [Sirenix.OdinInspector.InlineEditor]
-  public class InlineEditorAttribute : System.Attribute {
-  }
+  public class InlineEditorAttribute : System.Attribute { }
   /// <inheritdoc />
   // public class InlineEditorAttribute : Sirenix.OdinInspector.InlineEditorAttribute {
   // }

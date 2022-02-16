@@ -7,7 +7,7 @@ using Enginoobz.Attribute;
 using System;
 using UnityEngine;
 
-namespace Enginoobz.Core {
+namespace Enginooby.Core {
   // REFACTOR: Create generics class & RandomFloat
   [Serializable]
   [InlineProperty]

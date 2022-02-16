@@ -9,7 +9,7 @@ using Enginoobz.Attribute;
 
 // using QFSW.QC;
 
-namespace Enginoobz.Graphics {
+namespace Enginooby.Graphics {
   public class PostFxModifierController : MonoBehaviour {
     // TODO: Separate all keys into SO
     // [SerializeField] private KeyCodeModifier modifierKey = new KeyCodeModifier(keyCode: KeyCode.LeftShift);

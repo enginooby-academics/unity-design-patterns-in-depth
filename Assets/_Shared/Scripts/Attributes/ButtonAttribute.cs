@@ -1,8 +1,7 @@
-namespace Enginoobz.Attribute {
+namespace Enginooby.Attribute {
 #if ODIN_INSPECTOR
   /// <inheritdoc />
-  public class ButtonAttribute : Sirenix.OdinInspector.ButtonAttribute {
-  }
+  public class ButtonAttribute : Sirenix.OdinInspector.ButtonAttribute { }
 #else
   // Fallback attribute
 

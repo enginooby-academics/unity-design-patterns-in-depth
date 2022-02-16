@@ -1,15 +1,14 @@
 #if ODIN_INSPECTOR
 #endif
 
-namespace Enginoobz.Attribute {
+namespace Enginooby.Attribute {
 #if ODIN_INSPECTOR
   // [IncludeMyAttributes]
   // [HorizontalGroup]
   // public class HorizontalGroupAttribute : System.Attribute {
   // }
   /// <inheritdoc />
-  public class HorizontalGroupAttribute : Sirenix.OdinInspector.HorizontalGroupAttribute {
-  }
+  public class HorizontalGroupAttribute : Sirenix.OdinInspector.HorizontalGroupAttribute { }
 #else
   [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
   [Conditional("UNITY_EDITOR")]

@@ -5,7 +5,7 @@ using UnityEngine;
 using QFSW.QC;
 #endif
 
-namespace Enginoobz.Graphics {
+namespace Enginooby.Graphics {
   public partial class PostFxModifierSCPE : MonoBehaviour {
     private Sketch sketch;
     private Kuwahara kuwahara;
