@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace AbstractDocumentPattern.Case2.Base1 {
   public class CarDriver : MonoBehaviour {
@@ -13,8 +12,10 @@ namespace AbstractDocumentPattern.Case2.Base1 {
       car.Put(Property.Price, 10000f);
       // car.Put(Property.Model, "300SL");
 
+#if UNITY_2021_2_OR_NEWER
       (car as IHasPrice).GetPrice().Log();
       (car as IHasModel).GetModel().Log();
+#endif
     }
   }
 }
