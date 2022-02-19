@@ -143,15 +143,32 @@ public static class CollectionUtils {
       return true;
     }
 
-    element = default(T);
+    element = default;
     return false;
+  }
+
+  private static readonly Dictionary<Type, object> NullKeys = new();
+
+  private static T GetNullKey<T>() => NullKeys.TryGetValue(typeof(T), out var nullKey) ? (T) nullKey : default;
+
+  /// <summary>
+  /// Get the value of the given key, return default if it does not exist.
+  /// </summary>
+  public static TValue GetValue<TKey, TValue>(
+    this Dictionary<TKey, TValue> dictionary,
+    TKey key,
+    TValue defaultValue = default) {
+    if (dictionary is null) return defaultValue;
+
+    key ??= GetNullKey<TKey>();
+    return key is not null && dictionary.TryGetValue(key, out var value) ? value : defaultValue;
   }
 
   #endregion
 
   #region COLLECTION OPERATIONS
 
-  private static readonly System.Random rng = new System.Random();
+  private static readonly System.Random rng = new();
 
   public static void Shuffle<T>(this IList<T> list) {
     Debug.Log("Shuffle");
