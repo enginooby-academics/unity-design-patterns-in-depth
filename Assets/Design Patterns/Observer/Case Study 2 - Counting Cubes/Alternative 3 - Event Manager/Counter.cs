@@ -5,12 +5,12 @@ namespace ObserverPattern.Case2.Alternative3 {
   ///   * [The 'Subject' class]
   /// </summary>
   public class Counter : Shared.Counter {
-    public EventBase<int> OnCountUpEvent = new EventBase<int>();
+    public Event<int> OnCountUpEvent = new Event<int>();
 
     public override int Count {
       set {
         _count = value;
-        EventManager.TriggerEvent(OnCountUpEvent, _count);
+        EventManager.NotifyEvent(OnCountUpEvent, _count);
       }
     }
   }

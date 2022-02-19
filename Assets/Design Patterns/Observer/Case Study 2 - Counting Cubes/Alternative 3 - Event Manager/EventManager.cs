@@ -4,70 +4,71 @@ using System.Linq;
 using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
 using Enginoobz.Attribute;
 #endif
 
 // ? What is the point of EventManager when we can just use Action
 namespace ObserverPattern.Case2.Alternative3 {
-  using ObservingAction = Action<Dictionary<string, object>>; // paramName + value
+  using EventHandler = Action<Dictionary<string, object>>; // paramName + value
 
   public class EventManager : MonoBehaviourSingleton<EventManager> {
-    private readonly Dictionary<EventBase, ObservingAction> events = new Dictionary<EventBase, ObservingAction>();
+    private readonly Dictionary<Event, EventHandler> _events = new Dictionary<Event, EventHandler>();
 
     private void OnApplicationQuit() {
       // foreach loop causes error on modifying
-      for (var i = 0; i < Instance.events.Count; i++) {
-        var @event = Instance.events.ElementAt(i);
-        StopListening(@event.Key, @event.Value);
+      for (var i = 0; i < _events.Count; i++) {
+        var @event = _events.ElementAt(i);
+        RemoveHandler(@event.Key, @event.Value);
       }
     }
 
-    public static void StartListening(EventBase eventId, ObservingAction observingAction) {
-      if (Instance.events.TryGetValue(eventId, out var @event)) {
-        @event += observingAction;
-        Instance.events[eventId] = @event;
+    public void AddEventHandler(Event @event, EventHandler handler) {
+      if (_events.TryGetValue(@event, out var cachedEvent)) {
+        cachedEvent += handler;
+        _events[@event] = cachedEvent;
       }
       else {
-        @event += observingAction;
-        Instance.events.Add(eventId, @event);
+        cachedEvent += handler;
+        _events.Add(@event, cachedEvent);
       }
     }
 
-    public static void StartListening<T>(EventBase<T> eventId, Action<T> method) {
-      void ObservingAction(Dictionary<string, object> message) {
+    public void AddEventHandler<T>(Event<T> eventId, Action<T> method) {
+      void HandleEvent(Dictionary<string, object> message) {
         var paramValue = (T) message[eventId.Param];
         method.Invoke(paramValue);
       }
 
-      StartListening(eventId, ObservingAction);
+      AddEventHandler(eventId, HandleEvent);
     }
 
-    public static void StopListening(EventBase eventId, ObservingAction observingAction) {
-      if (Instance.events.TryGetValue(eventId, out var @event)) {
-        @event -= observingAction;
-        Instance.events[eventId] = @event;
+    public void RemoveHandler(Event @event, EventHandler handler) {
+      if (!_events.TryGetValue(@event, out var cachedEvent)) return;
+
+      cachedEvent -= handler;
+      _events[@event] = cachedEvent;
+    }
+
+    public static void NotifyEvent<T>(Event<T> @event, T value) {
+      if (Instance._events.TryGetValue(@event, out var cachedEvent)) {
+        var message = new Dictionary<string, object> {{@event.Param, value}};
+        cachedEvent.Invoke(message);
       }
     }
 
-    public static void TriggerEvent<T>(EventBase<T> eventId, T value) {
-      if (Instance.events.TryGetValue(eventId, out var @event)) {
-        var message = new Dictionary<string, object> {{eventId.Param, value}};
-        @event.Invoke(message);
-      }
-    }
-
-    public static void TriggerEvent(EventBase eventId, Dictionary<string, object> message) {
-      if (Instance.events.TryGetValue(eventId, out var @event)) @event.Invoke(message);
+    public void NotifyEvent(Event @event, Dictionary<string, object> message) {
+      if (_events.TryGetValue(@event, out var cachedEvent))
+        cachedEvent.Invoke(message);
     }
   }
 
-  public class EventBase {
-  }
+  public class Event { }
 
   [Serializable]
   [InlineProperty]
-  public class EventBase<T0> : EventBase {
+  public class Event<T0> : Event {
     [HideInInspector] public string Param = "";
 
     // [SerializeField]

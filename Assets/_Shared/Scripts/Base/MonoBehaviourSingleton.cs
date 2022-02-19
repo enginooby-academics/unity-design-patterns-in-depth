@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+///  Don't use OnDisable or OnDestroy for reset singleton data. Use OnApplicationQuit.
+/// </summary>
 public class MonoBehaviourSingleton<T> : MonoBehaviour where T : Component {
   protected static T _instance;
 
@@ -36,11 +39,10 @@ public class MonoBehaviourSingleton<T> : MonoBehaviour where T : Component {
   }
 
   /// <summary>
-  ///   Override to add addictional Awake logic for the singleton.
+  ///   Override to add additional Awake logic for the singleton.
   /// </summary>
   // FIX: sometimes is not called
-  public virtual void AwakeSingleton() {
-  }
+  public virtual void AwakeSingleton() { }
 }
 
 
