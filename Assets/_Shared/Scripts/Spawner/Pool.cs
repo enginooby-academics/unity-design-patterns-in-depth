@@ -13,6 +13,9 @@ using Enginoobz.Attribute;
 // TODO: Add Unity 2022 version directive
 
 // TODO: Generics - GameObject...
+/// <summary>
+/// Default pool: disable object on release, enable object on retrieve, destroy object on destroy
+/// </summary>
 [Serializable]
 [InlineProperty]
 public class Pool {
@@ -58,6 +61,15 @@ public class Pool {
     // if (enablePool) enableLifeTime = false;
   }
 
+  // ! Get() from Pool does not respect Retrieve Mode of Collection
+  public GameObject GetInstance(Vector3 pos) {
+    if (_pool == null) Init(Prefab);
+
+    var instance = _pool.Get();
+    instance.transform.position = pos;
+    return instance;
+  }
+
   public void Init(GameObject prefab) {
     // ? How about randomize mode
     Prefab = prefab;
@@ -90,30 +102,10 @@ public class Pool {
     return instance;
   }
 
-  // ! Get() from Pool does not respect Retrieve Mode of Collection
-  // private GameObject GetInstanceFromPool(Vector3 pos, bool keepPrefabRotation) {
-  //   if (pool == null) InitPool();
-  //   GameObject instance = pool.Get();
-  //   instance.transform.position = pos;
-  //   // instance.transform.rotation = rot;
-  //   instance.transform.UpdatePosOnAxis(target: instance.transform, axis: keepPrefabPosition);
-  //   if (parentObject && instance) instance.transform.SetParent(parentObject);
-
-  //   return instance;
-  // }
-
-  public GameObject GetInstance(Vector3 pos) {
-    if (_pool == null) Init(Prefab);
-
-    var instance = _pool.Get();
-    instance.transform.position = pos;
-    return instance;
-  }
-
-  private bool CanObjectReleasedToPool(GameObject poolObject) => poolObject.activeInHierarchy && poolObject;
+  private bool IsObjectReadyToRelease(GameObject poolObject) => poolObject.activeInHierarchy && poolObject;
 
   private void OnPoolRelease(GameObject poolObject) {
-    if (!CanObjectReleasedToPool(poolObject)) return;
+    if (!IsObjectReadyToRelease(poolObject)) return;
 
     poolObject.SetActive(false);
   }
@@ -123,12 +115,8 @@ public class Pool {
     OnPoolRelease(poolObject);
   }
 
-  private void OnPoolGet(GameObject poolObject) {
-    poolObject.SetActive(true);
-  }
+  private void OnPoolGet(GameObject poolObject) => poolObject.SetActive(true);
 
-  private void OnPoolDestroy(GameObject poolObject) {
-    // DestroyImmediate(poolObject); // TODO: for Edit Mode
-    Object.Destroy(poolObject);
-  }
+  // DestroyImmediate(poolObject); // TODO: for Edit Mode
+  private void OnPoolDestroy(GameObject poolObject) => Object.Destroy(poolObject);
 }

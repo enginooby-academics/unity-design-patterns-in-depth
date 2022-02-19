@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public static class RayUtils {
@@ -29,15 +30,12 @@ public static class RayUtils {
   ///   Return the list of GameObjects lie between this GameObject and main camera.
   /// </summary>
   // FIX: not working
-  public static List<GameObject> GetHitsFromCameraRay(this GameObject go) {
-    var gos = new List<GameObject>();
+  public static IEnumerable<GameObject> GetHitsFromCameraRay(this GameObject go) {
     var goToCameraRay = Camera.main!.ScreenPointToRay(go.transform.position);
     // RaycastHit[] hits = Physics.RaycastAll(goToCameraRay);
     var hits = Physics.RaycastAll(goToCameraRay);
 
-    foreach (var hit in hits) gos.Add(hit.transform.gameObject);
-
-    return gos;
+    return hits.Select(hit => hit.transform.gameObject);
   }
 
   public static void DrawRayToCamera(this GameObject go) {

@@ -10,7 +10,12 @@ public static class CollectionUtils {
   /// <summary>
   ///   Destroy all GameObjects of the component list.
   /// </summary>
+  [Obsolete("Use " + nameof(DestroyWithGameObject))]
   public static void Destroy<T>(this IEnumerable<T> components) where T : MonoBehaviour {
+    DestroyWithGameObject(components);
+  }
+
+  public static void DestroyWithGameObject<T>(this IEnumerable<T> components) where T : MonoBehaviour {
     foreach (var component in components) {
 #if UNITY_EDITOR
       if (!EditorApplication.isPlaying) Object.DestroyImmediate(component.gameObject);
@@ -31,35 +36,43 @@ public static class CollectionUtils {
 
   public static List<T> ToList<T>(this Array array) => array.Cast<T>().ToList();
 
+  /// <summary>
+  /// Perform an action on each item.
+  /// </summary>
+  public static IEnumerable<T> ForEach<T>(this IEnumerable<T> collection, Action<T> action) {
+    foreach (var obj in collection)
+      action(obj);
+    return collection;
+  }
+
   #region VALIDATION
 
-  public static bool HasIndex<T>(this T[] collection, int index) => index.IsInRange(0, collection.Length - 1);
-
-  public static bool HasIndex<T>(this IList<T> collection, int index) => index.IsInRange(0, collection.Count - 1);
+  public static bool HasIndex<T>(this IEnumerable<T> collection, int index) =>
+    index.IsInRange(0, collection.Count() - 1);
 
   // TIP: Use Obsolete attribute to safely rename methods used in multiple projects
   // Delete obsoleted method when all consumer projects update the renamed method
   [Obsolete("Use HasIndex")]
-  public static bool ValidateIndex<T>(this IList<T> list, int index) => 0 <= index && index < list.Count;
+  public static bool ValidateIndex<T>(this IEnumerable<T> list, int index) => 0 <= index && index < list.Count();
 
   // TIP: Use interface (IList) instead of concrete class (List) to cover more types in extension method
   /// <summary>
   ///   Check if collection is null or empty.
   /// </summary>
-  public static bool IsUnset<T>(this IList<T> list) => list == null || list.Count == 0;
+  public static bool IsUnset<T>(this IEnumerable<T> collection) => collection == null || !collection.Any();
 
   public static bool IsNullOrEmpty<T>(this IEnumerable<T> enumerable) => enumerable == null || !enumerable.Any();
 
   /// <summary>
   ///   Check if collection is not null nor empty.
   /// </summary>
-  public static bool IsSet<T>(this IList<T> list) => list != null && list.Count > 0;
+  public static bool IsSet<T>(this IEnumerable<T> list) => list != null && list.Any();
 
   #endregion
 
   #region ELEMENT RETRIEVAL
 
-  // TODO: rename GetNext
+  [Obsolete("Use GetNext")]
   public static T NavNext<T>(this IList<T> list, T currentItem) {
     var currentIndex = list.IndexOf(currentItem);
     var nextIndex = currentIndex == list.Count - 1 ? 0 : currentIndex + 1;
@@ -80,10 +93,10 @@ public static class CollectionUtils {
     return -1;
   }
 
-  public static T GetNext<T>(this IReadOnlyList<T> list, T currentItem) {
-    var currentIndex = list.IndexOf(currentItem);
-    var nextIndex = currentIndex == list.Count - 1 ? 0 : currentIndex + 1;
-    return list[nextIndex];
+  public static T GetNext<T>(this IEnumerable<T> collection, T currentItem) {
+    var currentIndex = collection.IndexOf(currentItem);
+    var nextIndex = currentIndex == collection.Count() - 1 ? 0 : currentIndex + 1;
+    return collection.ElementAt(nextIndex);
   }
 
   [Obsolete("Use GetPrevious")]
@@ -93,13 +106,13 @@ public static class CollectionUtils {
     return list[previous];
   }
 
-  public static T GetPrevious<T>(this IReadOnlyList<T> list, T currentItem) {
+  public static T GetPrevious<T>(this IEnumerable<T> list, T currentItem) {
     var currentIndex = list.IndexOf(currentItem);
-    var previous = currentIndex == 0 ? list.Count - 1 : currentIndex - 1;
-    return list[previous];
+    var previousIndex = currentIndex == 0 ? list.Count() - 1 : currentIndex - 1;
+    return list.ElementAt(previousIndex);
   }
 
-  public static T GetLast<T>(this IList<T> list) => list[list.Count - 1];
+  public static T GetLast<T>(this IEnumerable<T> collection) => collection.ElementAt(collection.Count() - 1);
 
   public static void RemoveLast<T>(this IList<T> list) {
     if (!list.IsSet()) return;
@@ -107,92 +120,31 @@ public static class CollectionUtils {
     list.RemoveAt(list.Count - 1);
   }
 
-  public static T GetRandom<T>(this IList<T> list) => list[Random.Range(0, list.Count)];
+  public static T GetRandom<T>(this IEnumerable<T> list) => list.ElementAt(Random.Range(0, list.Count()));
 
   /// <summary>
   ///   Return a random element which is different than the given one (can be null).
   /// </summary>
-  public static T GetRandomOtherThan<T>(this IList<T> list, T excludingElement) {
-    if (excludingElement == null || list.Count == 1) return list.GetRandom();
-    var excludingIndex = list.IndexOf(excludingElement);
+  public static T GetRandomOtherThan<T>(this IEnumerable<T> collection, T excludingElement) {
+    if (excludingElement == null || collection.Count() == 1) return collection.GetRandom();
+
+    var excludingIndex = collection.IndexOf(excludingElement);
     var randomIndex = excludingIndex;
-    while (randomIndex == excludingIndex) randomIndex = Random.Range(0, list.Count);
-    return list[randomIndex];
-  }
-
-  /// <summary>
-  ///   Return true if the element exists and not null.
-  /// </summary>
-  public static bool TryGetById<T>(this IList<Object> objects, int id, out T element) where T : Object {
-    // TIP: Return object (implicitly casted to bool) w/o using conditional statement
-    // E.g., return element ? true : false;
-    if (objects.HasIndex(id))
-      return element = objects[id] as T;
-
-    return element = null;
+    while (randomIndex == excludingIndex) randomIndex = Random.Range(0, collection.Count());
+    return collection.ElementAt(randomIndex);
   }
 
   /// <summary>
   ///   Return true if the element exists in the array and not null.
   /// </summary>
-  public static bool TryGetById<T>(this T[] objects, int id, out T element) where T : Object {
-    if (objects.HasIndex(id))
-      return element = objects[id];
-
-    return element = null;
-  }
-
-  /// <summary>
-  ///   Return true if the element exists in the array and not null.
-  /// </summary>
-  public static bool TryGetById(this Object[] objects, int id, out Object element) {
-    if (objects.Length > id) {
-      element = objects[id];
-      return element;
+  public static bool TryGetById<T>(this IEnumerable<T> collection, int id, out T element) {
+    if (collection.HasIndex(id)) {
+      element = collection.ElementAt(id);
+      return true;
     }
 
-    element = null;
+    element = default(T);
     return false;
-  }
-
-  // ? Move to GameObjectUtils
-  /// <summary>
-  ///   Return the GameObject in the list which is nearest to the given position.
-  /// </summary>
-  // REFACTOR
-  public static GameObject GetNearestTo(this IList<GameObject> list, Vector3 pos) {
-    var nearestIndex = 0;
-    var lastDist = Mathf.Infinity;
-
-    for (var i = 0; i < list.Count; i++) {
-      var gameObject = list[i];
-      var distanceToPos = Vector3.Distance(pos, gameObject.transform.position);
-      if (distanceToPos < lastDist) {
-        nearestIndex = i;
-        lastDist = distanceToPos;
-      }
-    }
-
-    return list[nearestIndex];
-  }
-
-  /// <summary>
-  ///   Return the GameObject in the list which is nearest to the given position.
-  /// </summary>
-  public static GameObject GetNearestTo(this IReadOnlyList<GameObject> list, Vector3 pos) {
-    var nearestIndex = 0;
-    var lastDist = Mathf.Infinity;
-
-    for (var i = 0; i < list.Count; i++) {
-      var gameObject = list[i];
-      var distanceToPos = Vector3.Distance(pos, gameObject.transform.position);
-      if (distanceToPos < lastDist) {
-        nearestIndex = i;
-        lastDist = distanceToPos;
-      }
-    }
-
-    return list[nearestIndex];
   }
 
   #endregion
@@ -209,11 +161,6 @@ public static class CollectionUtils {
       var k = rng.Next(n + 1);
       (list[k], list[n]) = (list[n], list[k]);
     }
-  }
-
-  // ! not pass by ref => not modify original list
-  public static List<T> OrderByName<T>(this IEnumerable<T> list) where T : Object {
-    return list.OrderBy(item => item.name).ToList();
   }
 
   public static void RemoveNullEntries<T>(this IList<T> list) where T : class {

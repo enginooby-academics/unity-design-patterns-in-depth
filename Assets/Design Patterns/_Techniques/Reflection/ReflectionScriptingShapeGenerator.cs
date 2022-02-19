@@ -6,20 +6,21 @@ using Enginoobz.Attribute;
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static TypeUtils;
 
 namespace GOConstruction.Scripting {
-  public class ReflectionScriptingShapeGenerator : MonoBehaviour {
+  public sealed class ReflectionScriptingShapeGenerator : MonoBehaviour {
     [SerializeField]
     [LabelText("Current Type")]
     [ValueDropdown(nameof(GetTypeNames))]
     [OnValueChanged(nameof(UpdateCurrentQualifiedName))]
     private string _currentTypeName;
 
-    [SerializeField] [HideInInspector] private List<string> _typeNames;
+    private IEnumerable<string> _typeNames;
 
-    [SerializeField] [HideInInspector] private List<string> _qualifiedNames;
+    private IEnumerable<string> _qualifiedNames;
 
     [SerializeField] [HideInInspector] private string _currentQualifiedName;
 
@@ -28,7 +29,7 @@ namespace GOConstruction.Scripting {
 
     private void UpdateCurrentQualifiedName() {
       var id = _typeNames.IndexOf(_currentTypeName);
-      _currentQualifiedName = _qualifiedNames[id];
+      _currentQualifiedName = _qualifiedNames.ElementAt(id);
     }
 
     private IEnumerable<string> GetTypeNames() {
@@ -38,12 +39,12 @@ namespace GOConstruction.Scripting {
 
     private Type GetAndSetFirstType() {
       GetTypeNames();
-      _currentTypeName = _typeNames[0];
-      _currentQualifiedName = _qualifiedNames[0];
+      _currentTypeName = _typeNames.ElementAt(0);
+      _currentQualifiedName = _qualifiedNames.ElementAt(0);
       return Type.GetType(_currentQualifiedName);
     }
 
-    public virtual IShape CreateShapeInstance() {
+    public IShape CreateShapeInstance() {
       if (!CurrentShapeType.IsSubclassOf(typeof(MonoBehaviour)))
         return (IShape) Activator.CreateInstance(CurrentShapeType);
 

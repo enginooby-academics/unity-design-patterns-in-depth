@@ -1,13 +1,29 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
+// TODO: Move each method to its categorize and remove this class
 public static class RandomUtils {
+  /// <summary>
+  ///   E.g., Given 3 return random number in range (-3, 3).
+  /// </summary>
   public static float RandomTwoSides(this float range) => Random.Range(-Mathf.Abs(range), Mathf.Abs(range));
 
-  public static bool Percent(this int percent) => Random.Range(0, 100) < percent;
+  /// <summary>
+  ///   Out of 100%.
+  /// </summary>
+  public static bool Percent<T>(this T percent)
+    where T : unmanaged,
+    IComparable,
+    IComparable<T>,
+    IConvertible,
+    IEquatable<T>,
+    IFormattable =>
+    percent.CompareTo(Random.Range(0f, 100f)) > 0;
 
-  public static bool Percent(this float percent) => Random.Range(0f, 100f) < percent;
-
-  /// <summary>E.g. Vector (1, 1, 1) with offset range (1, 2, 3) results (0->2, -1->3, -2->4) </summary>
+  /// <summary>
+  ///   E.g., Vector (1, 1, 1) with offset range (1, 2, 3) results (0->2, -1->3, -2->4)
+  /// </summary>
   public static Vector3 RandomOffset(this Vector3 vector, Vector3? offsetRange = null) {
     var offset = offsetRange == null
       ? Vector3.zero
@@ -18,7 +34,7 @@ public static class RandomUtils {
   }
 
   /// <summary>
-  ///   E.g. Vector (1, 1, 1) return between vector (-1, -1, -1) and (1, 1, 1).
+  ///   E.g., Vector (1, 1, 1) return between vector (-1, -1, -1) and (1, 1, 1).
   /// </summary>
   public static Vector3 RandomRange(this Vector3 vector) {
     var randomX = vector.x.RandomTwoSides();

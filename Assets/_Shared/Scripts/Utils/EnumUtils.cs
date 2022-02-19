@@ -26,9 +26,9 @@ public static class EnumUtils {
     return i < 0 ? enums.GetLast() : enums[i];
   }
 
-  public static List<T> GetValuesFromEnum<T>() where T : Enum => Enum.GetValues(typeof(T)).ToList<T>();
+  public static IEnumerable<T> GetValuesFromEnum<T>() where T : Enum => Enum.GetValues(typeof(T)).ToList<T>();
 
-  public static IList<string> GetValueLabelsFromEnum<T>() where T : Enum => GetValuesFromEnum<T>().ToStrings();
+  public static IEnumerable<string> GetValueLabelsFromEnum<T>() where T : Enum => GetValuesFromEnum<T>().ToStrings();
 
   #region CONVERSION ----------------------------------------------------------------------------------------------------------------------------
 
@@ -48,45 +48,39 @@ public static class EnumUtils {
   /// <summary>
   ///   Returns the underlying character value.
   /// </summary>
-  public static char ToChar<T>(this T enumValue) where T : Enum {
-    return enumValue.To<T, char>();
-    // if (enumValue == null)
-    //   throw new ArgumentNullException(nameof(enumValue));
-    //
-    // if (!typeof(char).IsAssignableFrom(Enum.GetUnderlyingType(typeof(T))))
-    //   throw new ArgumentException("Underlying type of enum value isn't char.");
-    //
-    // return (char) (object) enumValue;
-  }
+  public static char ToChar<T>(this T enumValue) where T : Enum => enumValue.To<T, char>();
 
+  // if (enumValue == null)
+  //   throw new ArgumentNullException(nameof(enumValue));
+  //
+  // if (!typeof(char).IsAssignableFrom(Enum.GetUnderlyingType(typeof(T))))
+  //   throw new ArgumentException("Underlying type of enum value isn't char.");
+  //
+  // return (char) (object) enumValue;
   /// <summary>
   ///   Returns the underlying byte value.
   /// </summary>
-  public static byte ToByte<T>(this T enumValue) where T : Enum {
-    return enumValue.To<T, byte>();
-    // if (enumValue == null)
-    //   throw new ArgumentNullException(nameof(enumValue));
-    //
-    // if (!typeof(byte).IsAssignableFrom(Enum.GetUnderlyingType(typeof(T))))
-    //   throw new ArgumentException("Underlying type of enum value isn't byte.");
-    //
-    // return (byte) (object) enumValue;
-  }
+  public static byte ToByte<T>(this T enumValue) where T : Enum => enumValue.To<T, byte>();
 
+  // if (enumValue == null)
+  //   throw new ArgumentNullException(nameof(enumValue));
+  //
+  // if (!typeof(byte).IsAssignableFrom(Enum.GetUnderlyingType(typeof(T))))
+  //   throw new ArgumentException("Underlying type of enum value isn't byte.");
+  //
+  // return (byte) (object) enumValue;
   /// <summary>
   ///   Returns the underlying integer value.
   /// </summary>
-  public static int ToInt<T>(this T enumValue) where T : Enum {
-    return enumValue.To<T, int>();
-    // if (enumValue == null)
-    //   throw new ArgumentNullException(nameof(enumValue));
-    //
-    // if (!typeof(int).IsAssignableFrom(Enum.GetUnderlyingType(typeof(T))))
-    //   throw new ArgumentException("Underlying type of enum value isn't int.");
-    //
-    // return (int) (object) enumValue;
-  }
+  public static int ToInt<T>(this T enumValue) where T : Enum => enumValue.To<T, int>();
 
+  // if (enumValue == null)
+  //   throw new ArgumentNullException(nameof(enumValue));
+  //
+  // if (!typeof(int).IsAssignableFrom(Enum.GetUnderlyingType(typeof(T))))
+  //   throw new ArgumentException("Underlying type of enum value isn't int.");
+  //
+  // return (int) (object) enumValue;
   public static TTarget To<TEnum, TTarget>(this TEnum enumValue) where TEnum : Enum {
     if (enumValue == null)
       throw new ArgumentNullException(nameof(enumValue));

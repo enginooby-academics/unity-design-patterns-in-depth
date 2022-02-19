@@ -23,11 +23,12 @@ public static class GeometryUtils {
   /// <summary>
   ///   Return a list of points on the line formed by 2 given points. All points have same distance.
   /// </summary>
-  public static List<Vector3> PositionsInBetween(Vector3 startPoint, Vector3 endPoint, int numOfPos) {
-    var points = new List<Vector3>();
+  public static IEnumerable<Vector3> PositionsInBetween(Vector3 startPoint, Vector3 endPoint, int numOfPos) {
+    // var points = new List<Vector3>();
+    var points = new Vector3[numOfPos];
     for (var i = 1; i <= numOfPos; i++) {
       var posFactor = (numOfPos + 1) / (float) i;
-      points.Add(InBetween(startPoint, endPoint, posFactor));
+      points[i] = InBetween(startPoint, endPoint, posFactor);
     }
 
     return points;

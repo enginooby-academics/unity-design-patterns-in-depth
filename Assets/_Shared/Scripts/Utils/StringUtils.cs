@@ -10,17 +10,15 @@ public static class StringUtils {
       .ToArray());
   }
 
-  public static List<string> ToStrings<T>(this IEnumerable<T> list) where T : IFormattable {
-    var stringList = new List<string>();
-
-    foreach (var item in list) stringList.Add(item.ToString());
-
-    return stringList;
+  public static IEnumerable<string> ToStrings<T>(this IEnumerable<T> list) where T : IFormattable {
+    return list.Select(item => item.ToString());
   }
 
   public static string ToSentenceCase(this string str) {
     return Regex.Replace(str, "[a-z][A-Z]", m => m.Value[0] + " " + char.ToLower(m.Value[1]));
   }
+
+  public static bool IsEmpty(this string @string) => @string == "";
 
   public static bool EqualIgnoreCase(this string string1, string string2) =>
     string.Equals(string1, string2, StringComparison.OrdinalIgnoreCase);

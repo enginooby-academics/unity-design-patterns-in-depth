@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -21,15 +22,14 @@ public static class TypeUtils {
     var interfaces = type.GetInterfaces();
 
     // UTIL: Compare interface types
-    if (!interfaceTarget.IsGenericTypeDefinition) {
+    if (!interfaceTarget.IsGenericTypeDefinition)
       return interfaces.Any(@interface =>
         @interface.IsConstructedGenericType && @interface.GetGenericTypeDefinition() == interfaceTarget);
-    }
 
     return interfaces.Any(@interface => @interface == interfaceTarget);
   }
 
-  public static List<Type> GetConcreteTypesOf<T>() => GetTypesOf<T>();
+  public static IEnumerable<Type> GetConcreteTypesOf<T>() => GetTypesOf<T>();
 
   // return Assembly
   //       .GetAssembly(typeof(T))
@@ -37,33 +37,32 @@ public static class TypeUtils {
   //       .Where(p => typeof(T)
   //       .IsAssignableFrom(p) && p.IsClass && !p.IsAbstract)
   //       .ToList();
-  public static List<Type> GetTypesOf<T>(bool isClass = true, bool isAbstract = false) {
-    var types = new List<Type>();
+  public static IEnumerable<Type> GetTypesOf<T>(bool isClass = true, bool isAbstract = false) {
     if (isClass && !isAbstract)
-      types = Assembly
+      return Assembly
         .GetAssembly(typeof(T))
         .GetTypes()
-        .Where(p => typeof(T)
-          .IsAssignableFrom(p) && p.IsClass && !p.IsAbstract)
-        .ToList();
+        .Where(p => typeof(T).IsAssignableFrom(p) && p.IsClass && !p.IsAbstract);
 
     // TODO: implement all isClass cases
-    return types;
+    return Enumerable.Empty<Type>();
   }
 
-  public static List<string> GetConcreteTypeNamesOf<T>() {
-    return GetConcreteTypesOf<T>().Select(type => type.Name).ToList();
+  public static IEnumerable<string> GetConcreteTypeNamesOf<T>() {
+    return GetConcreteTypesOf<T>().Select(type => type.Name);
   }
 
-  public static List<string> GetConcreteTypeQualifiedNamesOf<T>() {
-    return GetConcreteTypesOf<T>().Select(t => t.AssemblyQualifiedName).ToList();
+  public static IEnumerable<string> GetConcreteTypeQualifiedNamesOf<T>() {
+    return GetConcreteTypesOf<T>().Select(type => type.AssemblyQualifiedName);
   }
 
-  public static List<T> GetInstancesOf<T>() where T : class {
-    var instances = new List<T>();
-    GetConcreteTypesOf<T>().ForEach(type => { instances.Add(Activator.CreateInstance(type) as T); });
+  public static IEnumerable<T> GetInstancesOf<T>() where T : class {
+    return GetConcreteTypesOf<T>().Select(type => Activator.CreateInstance(type) as T);
 
-    return instances;
+    // var instances = new List<T>();
+    // GetConcreteTypesOf<T>().ForEach(type => { instances.Add(Activator.CreateInstance(type) as T); });
+    //
+    // return instances;
   }
 
   public static MethodInfo GetNonPublicMethod(this Type type, string methodName, Type paramType) {

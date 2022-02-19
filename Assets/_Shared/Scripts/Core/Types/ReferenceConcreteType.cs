@@ -6,6 +6,7 @@ using Enginoobz.Attribute;
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static TypeUtils;
 
@@ -20,9 +21,9 @@ public class ReferenceConcreteType<T> where T : class {
   [SerializeField] [HideLabel] [ValueDropdown(nameof(GetTypeNames))] [OnValueChanged(nameof(UpdateCurrentType))]
   private string _currentTypeName;
 
-  [SerializeField] [HideInInspector] private List<string> _typeNames;
+  [SerializeField] [HideInInspector] private IEnumerable<string> _typeNames;
 
-  [SerializeField] [HideInInspector] private List<string> _qualifiedTypeNames;
+  [SerializeField] [HideInInspector] private IEnumerable<string> _qualifiedTypeNames;
 
   [SerializeField] [HideInInspector] private string _currentQualifiedTypeName;
 
@@ -35,8 +36,8 @@ public class ReferenceConcreteType<T> where T : class {
 
   private Type GetAndSetFirstType() {
     GetTypeNames();
-    _currentTypeName = _typeNames[0];
-    _currentQualifiedTypeName = _qualifiedTypeNames[0];
+    _currentTypeName = _typeNames.ElementAt(0);
+    _currentQualifiedTypeName = _qualifiedTypeNames.ElementAt(0);
     return Type.GetType(_currentQualifiedTypeName);
   }
 
@@ -80,6 +81,6 @@ public class ReferenceConcreteType<T> where T : class {
 
   private void UpdateCurrentType() {
     var id = _typeNames.IndexOf(_currentTypeName);
-    _currentQualifiedTypeName = _qualifiedTypeNames[id];
+    _currentQualifiedTypeName = _qualifiedTypeNames.ElementAt(id);
   }
 }

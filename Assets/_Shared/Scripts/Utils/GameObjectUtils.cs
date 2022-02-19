@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -97,5 +98,24 @@ public static class GameObjectUtils {
     var go = new GameObject();
     go.transform.Reset();
     return go.AddComponent<T>();
+  }
+
+  /// <summary>
+  ///   Return the GameObject in the list which is nearest to the given position.
+  /// </summary>
+  public static GameObject GetNearestTo(this IEnumerable<GameObject> gos, Vector3 pos) {
+    var nearestIndex = 0;
+    var lastDist = Mathf.Infinity;
+
+    for (var i = 0; i < gos.Count(); i++) {
+      var gameObject = gos.ElementAt(i);
+      var distanceToPos = Vector3.Distance(pos, gameObject.transform.position);
+      if (distanceToPos < lastDist) {
+        nearestIndex = i;
+        lastDist = distanceToPos;
+      }
+    }
+
+    return gos.ElementAt(nearestIndex);
   }
 }

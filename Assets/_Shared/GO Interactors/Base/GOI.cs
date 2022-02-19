@@ -21,19 +21,19 @@ public abstract partial class GOI {
 
   public virtual List<GameObject> InteractedGos => _interactedGos;
 
-  // TIP: Clear data of the singleton, ortherwise it will remain through Play sessions.
+  // TIP: Clear data of the singleton, otherwise it will remain through Play sessions.
   private void OnApplicationQuit() {
     // ! Instance of the derived Singleton is not null
     // print("ClearInteractedGos from " + gameObject.name);
     ClearInteractedGos();
   }
 
-  protected virtual void ClearInteractedGos() {
-    InteractedGos.Clear();
-  }
+  protected virtual void ClearInteractedGos() => InteractedGos.Clear();
 
+  public abstract void IncrementEffect();
+  public abstract void DecrementEffect();
 
-  // ? Use enum for differnt interact modes: Apply, Diable, Enable, Toggle (drawback: hard to use with UnityEvent)
+  // ? Use enum for different interact modes: Apply, Disable, Enable, Toggle (drawback: hard to use with UnityEvent)
   //* BASE
   /// <summary>
   ///   Apply the effect of Interactor on the given GameObject.<br />
@@ -58,76 +58,41 @@ public abstract partial class GOI {
   /// </summary>
   public abstract void InteractToggle(GameObject go);
 
-  public abstract void IncrementEffect();
-  public abstract void DecrementEffect();
-
   //* MULTIPLE GAMEOBJECTS
-  public virtual void Interact(List<GameObject> gos) {
-    gos.ForEach(Interact);
-  }
-
-  public virtual void InteractRevert(List<GameObject> gos) {
-    gos.ForEach(InteractRevert);
-  }
-
-  public virtual void InteractRestore(List<GameObject> gos) {
-    gos.ForEach(InteractRestore);
-  }
-
-  public virtual void InteractToggle(List<GameObject> gos) {
-    gos.ForEach(InteractToggle);
-  }
+  public virtual void Interact(IEnumerable<GameObject> gos) => gos.ForEach(Interact);
+  public virtual void InteractRevert(IEnumerable<GameObject> gos) => gos.ForEach(InteractRevert);
+  public virtual void InteractRestore(IEnumerable<GameObject> gos) => gos.ForEach(InteractRestore);
+  public virtual void InteractToggle(IEnumerable<GameObject> gos) => gos.ForEach(InteractToggle);
 
   //* CACHED GAMEOBJECTS
-  public virtual void InteractForInteracted() {
-    Interact(InteractedGos);
-  }
-
-  public virtual void InteractRevertForInteracted() {
-    InteractRevert(InteractedGos);
-  }
-
-  public virtual void InteractRestoreForInteracted() {
-    InteractRestore(InteractedGos);
-  }
-
-  public virtual void InteractToggleForInteracted() {
-    InteractToggle(InteractedGos);
-  }
+  public virtual void InteractForInteracted() => Interact(InteractedGos);
+  public virtual void InteractRevertForInteracted() => InteractRevert(InteractedGos);
+  public virtual void InteractRestoreForInteracted() => InteractRestore(InteractedGos);
+  public virtual void InteractToggleForInteracted() => InteractToggle(InteractedGos);
 
   //* GAMEOBJECT FILTER
   // TODO: Implement random, limit for each filter method
-  public void InteractByName(string name) {
-  }
-
-  public void InteractByTag(string tag) {
-  }
-
-  public void InteractByType(Type type) {
-  }
-
-  public void InteractByTypeName(string typeName) {
-  }
-
-  public void InteractInsideArea(IArea area, GameObject origin) {
-  }
-
-  public void InteractOutsideArea(IArea area, GameObject origin) {
-  }
+  public void InteractByName(string name) { }
+  public void InteractByTag(string tag) { }
+  public void InteractByType(Type type) { }
+  public void InteractByTypeName(string typeName) { }
+  public void InteractInsideArea(IArea area, GameObject origin) { }
+  public void InteractOutsideArea(IArea area, GameObject origin) { }
 }
 
+/// <inheritdoc />
 public abstract partial class GOI<TSelf> {
   // TIP: Get instance of derived Singleton using "Self-passing generics"
   // This replaces Instance in base
   public new static TSelf Instance => MonoBehaviourSingleton<TSelf>.Instance;
 
-  // TIP: Validate type when using generic singeleton to keep singletons of different generic types alive
+  // TIP: Validate type when using generic singleton to keep singletons of different generic types alive
   // E.g., if not do this, GOBlender, GOHighlighter, GOVFXer,... will be destroyed except one. 
   protected override bool DoesInstanceExist => _instance && _instance.GetType() == typeof(TSelf);
 
   [Button]
   public void InteractWithInteractables() {
-    // TIP: "Self-passing generics" to implemment generic method accepting "this" type
+    // TIP: "Self-passing generics" to implement generic method accepting "this" type
     var interactables = FindObjectsOfType<MonoBehaviour>().OfType<IInteractable<TSelf>>();
     foreach (var interactable in interactables) // Interact(interactable.GameObject);
       interactable.OnInteracted();

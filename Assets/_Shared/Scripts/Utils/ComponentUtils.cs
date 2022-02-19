@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -23,22 +24,14 @@ public static class ComponentUtils {
   /// <summary>
   ///   Get all components whose GameObject is child of this GameObject (not this GameObject).
   /// </summary>
-  public static List<T> GetComponentsInChildrenOnly<T>(this GameObject gameObject) where T : Component {
-    var components = new List<T>();
-    foreach (T component in gameObject.transform) components.Add(component);
-
-    return components;
-  }
+  public static IEnumerable<T> GetComponentsInChildrenOnly<T>(this GameObject gameObject) where T : Component =>
+    gameObject.transform.Cast<T>();
 
   /// <summary>
   ///   Get all child GameObjects of this GameObject (not this GameObject).
   /// </summary>
-  public static List<GameObject> GetGameObjectsInChildrenOnly(this GameObject gameObject) {
-    var children = new List<GameObject>();
-    foreach (Transform transformChild in gameObject.transform) children.Add(transformChild.gameObject);
-
-    return children;
-  }
+  public static IEnumerable<GameObject> GetGameObjectsInChildrenOnly(this GameObject gameObject) =>
+    from Transform transformChild in gameObject.transform select transformChild.gameObject;
 
   public static T CopyTo<T>(this T original, GameObject destination) where T : Component {
     var type = original.GetType();
@@ -74,7 +67,9 @@ public static class ComponentUtils {
   }
 
   /// <summary>If RigidBody exists, just leave it as it be (respect the existing RigidBody)</summary>
-  public static Rigidbody AddRigidBodyIfNotExist(this MonoBehaviour monoBehaviour, bool useGravity = true,
+  public static Rigidbody AddRigidBodyIfNotExist(
+    this MonoBehaviour monoBehaviour,
+    bool useGravity = true,
     float mass = 1) {
     var theRb = monoBehaviour.gameObject.GetComponent<Rigidbody>();
     if (theRb != null) return theRb;
@@ -86,8 +81,11 @@ public static class ComponentUtils {
   }
 
   /// <summary>If RigidBody exists, setup & override it as provided params.</summary>
-  public static Rigidbody AddAndSetupRigidBodyIfNotExist(this MonoBehaviour monoBehaviour, bool useGravity = true,
-    float mass = 1, bool isKinematic = false) {
+  public static Rigidbody AddAndSetupRigidBodyIfNotExist(
+    this MonoBehaviour monoBehaviour,
+    bool useGravity = true,
+    float mass = 1,
+    bool isKinematic = false) {
     var theRb = monoBehaviour.gameObject.GetComponent<Rigidbody>();
     if (theRb == null) theRb = monoBehaviour.gameObject.AddComponent<Rigidbody>();
     theRb.useGravity = useGravity;

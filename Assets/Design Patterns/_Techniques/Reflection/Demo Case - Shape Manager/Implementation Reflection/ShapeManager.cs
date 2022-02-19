@@ -6,6 +6,7 @@ using Enginoobz.Attribute;
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static TypeUtils;
 
@@ -19,16 +20,16 @@ namespace Reflection.Case1.Reflection {
 
     private Type _currentShapeType;
 
-    private List<string> _shapeTypeNames;
-    private List<Type> _shapeTypes;
+    private IEnumerable<string> _shapeTypeNames;
+    private IEnumerable<Type> _shapeTypes;
 
     // ! guard case: current type is removed
     public Type CurrentShapeType => _currentShapeType ?? SetAndGetFirstType();
 
     protected Type SetAndGetFirstType() {
       GetShapeTypeNames();
-      _currentShapeTypeName = _shapeTypes[0].Name;
-      _currentShapeType = _shapeTypes[0];
+      _currentShapeTypeName = _shapeTypes.ElementAt(0).Name;
+      _currentShapeType = _shapeTypes.ElementAt(0);
       return _currentShapeType;
     }
 
@@ -39,12 +40,12 @@ namespace Reflection.Case1.Reflection {
 
     private void UpdateCurrentType() {
       var typeIndex = _shapeTypeNames.IndexOf(_currentShapeTypeName);
-      _currentShapeType = _shapeTypes[typeIndex];
+      _currentShapeType = _shapeTypes.ElementAt(typeIndex);
     }
 
     [Button]
     public void CreateShape() {
-      IShape shape = default;
+      IShape shape;
 
       if (!CurrentShapeType.IsSubclassOf(typeof(MonoBehaviour))) {
         shape = (IShape) Activator.CreateInstance(CurrentShapeType);
@@ -56,7 +57,7 @@ namespace Reflection.Case1.Reflection {
         shape = go.AddComponent(CurrentShapeType) as IShape;
       }
 
-      print("Volume of the newly-created shape is: " + shape.GetVolume());
+      print("Volume of the newly-created shape is: " + shape?.GetVolume());
     }
   }
 }

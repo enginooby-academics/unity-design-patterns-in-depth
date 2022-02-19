@@ -18,7 +18,7 @@ public static class NumeralUtils {
   public static bool ToBool(this int number) => number != 0;
 
   /// <summary>
-  /// Return a Vector3 whose x, y, z equal given value. E.g., 1 -> (1, 1, 1).
+  ///   Return a Vector3 whose x, y, z equal given value. E.g., 1 -> (1, 1, 1).
   /// </summary>
   public static Vector3 ToVector3(this float number) => new Vector3(number, number, number);
 
@@ -64,7 +64,7 @@ public static class NumeralUtils {
 
       var unitsMap = new[] {
         "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve",
-        "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"
+        "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen",
       };
       var tensMap = new[] {"zero", "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
 
@@ -96,7 +96,7 @@ public static class NumeralUtils {
     (number - min) * ((targetMax - targetMin) / (max - min)) + targetMin;
 
   public static int WithRandomSign(this int number) {
-    var sign = (UnityEngine.Random.Range(0, 100) > 50) ? 1 : -1;
+    var sign = UnityEngine.Random.Range(0, 100) > 50 ? 1 : -1;
     return sign * number;
   }
 }

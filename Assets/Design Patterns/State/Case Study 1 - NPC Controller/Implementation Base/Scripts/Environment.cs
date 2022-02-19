@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
 using Enginoobz.Attribute;
 #endif
@@ -17,7 +19,7 @@ namespace StatePattern.Base {
 
     private void Start() {
       _checkpoints.AddRange(GameObject.FindGameObjectsWithTag(checkpointTag));
-      _checkpoints = _checkpoints.OrderByName();
+      _checkpoints = _checkpoints.OrderByName().ToList();
     }
   }
 }
