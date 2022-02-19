@@ -1,16 +1,18 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Pool;
 using Object = UnityEngine.Object;
+
+#if UNITY_2021_1_OR_NEWER
+using UnityEngine.Pool;
+#endif
+
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 
 #else
 using Enginoobz.Attribute;
 #endif
-
-// TODO: Add Unity 2022 version directive
 
 // TODO: Generics - GameObject...
 /// <summary>
@@ -53,8 +55,9 @@ public class Pool {
 
   [HideInInspector] public GameObject Prefab;
 
+#if UNITY_2021_1_OR_NEWER
   private IObjectPool<GameObject> _pool;
-
+#endif
   public bool IsEnabled => _enabled;
 
   private void OnPoolEnabled() {
@@ -63,9 +66,14 @@ public class Pool {
 
   // ! Get() from Pool does not respect Retrieve Mode of Collection
   public GameObject GetInstance(Vector3 pos) {
+    GameObject instance = default;
+#if UNITY_2021_1_OR_NEWER
     if (_pool == null) Init(Prefab);
 
-    var instance = _pool.Get();
+    instance = _pool.Get();
+#else
+     instance = CreateInstance();
+#endif
     instance.transform.position = pos;
     return instance;
   }
@@ -73,6 +81,7 @@ public class Pool {
   public void Init(GameObject prefab) {
     // ? How about randomize mode
     Prefab = prefab;
+#if UNITY_2021_1_OR_NEWER
     _pool = new ObjectPool<GameObject>(
       CreateInstance,
       OnPoolGet,
@@ -81,6 +90,7 @@ public class Pool {
       maxSize: _maxSize,
       defaultCapacity: _defaultCapacity
     );
+#endif
   }
 
   private GameObject CreateInstance() {
@@ -97,7 +107,9 @@ public class Pool {
       poolObject.ReleaseOnBecameInvisible = _releaseOnBecameInvisible;
     }
 
+#if UNITY_2021_1_OR_NEWER
     poolObject.Init(_pool);
+#endif
 
     return instance;
   }
