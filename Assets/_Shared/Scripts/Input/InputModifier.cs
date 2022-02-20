@@ -14,7 +14,7 @@ using static InputUtils;
 public enum KeyCodeTriggerEvent {
   Up = 1 << 1,
   Down = 1 << 2,
-  Hold = 1 << 3
+  Hold = 1 << 3,
 }
 
 public enum InputAxis {
@@ -22,7 +22,7 @@ public enum InputAxis {
   Horizontal,
   Vertical,
   Fire1,
-  Jump
+  Jump,
 } // TODO: add more
 
 [Serializable]
@@ -30,7 +30,7 @@ public enum InputAxis {
 public class InputModifier {
   public enum InputType {
     KeyCode,
-    Axis
+    Axis,
   }
 
   [SerializeField] [HideInInspector] private InputType inputType = InputType.KeyCode;
@@ -81,8 +81,11 @@ public class InputModifier {
 
   private float InputValueKeyCode => IsKeyCodeTriggering ? 1 : 0;
 
-  public InputModifier(InputType inputType = InputType.KeyCode, KeyCode keyCode = KeyCode.None,
-    ModifierKey modifierKey = (ModifierKey) 1, KeyCodeTriggerEvent keyTriggerEvent = KeyCodeTriggerEvent.Down,
+  public InputModifier(
+    InputType inputType = InputType.KeyCode,
+    KeyCode keyCode = KeyCode.None,
+    ModifierKey modifierKey = (ModifierKey) 1,
+    KeyCodeTriggerEvent keyTriggerEvent = KeyCodeTriggerEvent.Down,
     InputAxis inputAxis = InputAxis.None) {
     this.inputType = inputType;
     this.keyCode = keyCode;
@@ -122,8 +125,8 @@ public class InputModifier {
     get {
       if (!modifierKey.IsHeld()) return 0;
 
-      if (inputAxis == InputAxis.Horizontal) return horizontalInput;
-      if (inputAxis == InputAxis.Vertical) return verticalInput;
+      if (inputAxis == InputAxis.Horizontal) return HorizontalInput;
+      if (inputAxis == InputAxis.Vertical) return VerticalInput;
       return 0;
     }
   }

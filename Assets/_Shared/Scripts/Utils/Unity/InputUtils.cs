@@ -1,13 +1,13 @@
 using UnityEngine;
 
 public static class InputUtils {
-  public static float horizontalInput => Input.GetAxis("Horizontal");
+  public static float HorizontalInput => Input.GetAxis("Horizontal");
 
-  public static float verticalInput => Input.GetAxis("Vertical");
+  public static float VerticalInput => Input.GetAxis("Vertical");
 
   public static bool IsHeld(this KeyCode keyCode) => Input.GetKey(keyCode);
 
-  public static bool IsHeld(this MouseButton mouseButton) => Input.GetMouseButton((int) mouseButton);
+  public static bool IsHeld(this MouseButton mouseButton) => Input.GetMouseButton(mouseButton.ToInt());
 
   /// <summary>
   ///   If modifier key is not set, return true.
@@ -23,6 +23,7 @@ public static class InputUtils {
     if (key.HasFlag(ModifierKey.Rmb) && !Input.GetKey(KeyCode.Mouse1)) return false;
     if (key.HasFlag(ModifierKey.Mmb) && !Input.GetKey(KeyCode.Mouse2)) return false;
     if (key.HasFlag(ModifierKey.Caps) && !Input.GetKey(KeyCode.CapsLock)) return false;
+
     return true;
   }
 

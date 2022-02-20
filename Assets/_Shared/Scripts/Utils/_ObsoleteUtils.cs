@@ -47,4 +47,10 @@ public static class _ObsoleteUtils {
 
   [Obsolete("Use " + nameof(TransformUtils.GetDistanceTo))]
   public static float DistanceFrom(this Transform transform, Vector3 pos) => transform.GetDistanceTo(pos);
+
+  [Obsolete("Use " + nameof(InputUtils.HorizontalInput))]
+  public static float horizontalInput => Input.GetAxis("Horizontal");
+
+  [Obsolete("Use " + nameof(InputUtils.VerticalInput))]
+  public static float verticalInput => Input.GetAxis("Vertical");
 }

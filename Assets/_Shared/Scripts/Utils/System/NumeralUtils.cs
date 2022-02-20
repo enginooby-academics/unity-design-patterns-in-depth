@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+// TODO: Use Random System and remove UnityEngine dependency
 public static class NumeralUtils {
   /// <summary>
   ///   Returns whether the value is greater than or equal to a minimal value
