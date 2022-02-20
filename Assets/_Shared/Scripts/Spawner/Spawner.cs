@@ -14,7 +14,7 @@ using Enginoobz.Attribute;
 // ? Events
 public enum GizmosMode {
   OnSelected,
-  Always
+  Always,
 }
 
 // [TypeInfoBox("Spawner usages: gun, repeating backgrounds, enemy/obstacle waves")]
@@ -137,7 +137,7 @@ public class Spawner : MonoBehaviourBase {
   [Sirenix.OdinInspector.BoxGroup("Asset Collection")]
   [SerializeField]
   [HideLabel]
-  public AssetCollection<GameObject> assetCollection = new AssetCollection<GameObject>();
+  public AssetCollection<GameObject> assetCollection = new();
 
   private GameObject currentPrefab;
 
@@ -171,7 +171,7 @@ public class Spawner : MonoBehaviourBase {
   public enum ActiveMode {
     Active,
     Inactive,
-    Prefab
+    Prefab,
   }
 
   [Sirenix.OdinInspector.BoxGroup("Spawned Attributes")]
@@ -183,7 +183,7 @@ public class Spawner : MonoBehaviourBase {
 
   private enum Rotation {
     Identity,
-    Prefab
+    Prefab,
   }
 
   // CONSIDER: Separate rotation and selection modes for Auto and Active Spawning
@@ -201,7 +201,7 @@ public class Spawner : MonoBehaviourBase {
   [Sirenix.OdinInspector.EnableIf(nameof(enableLifeTime))]
   [SerializeField]
   [HideLabel]
-  private Vector2Wrapper lifeTimeRange = new Vector2Wrapper(Vector2.zero, 0);
+  private Vector2Wrapper lifeTimeRange = new(Vector2.zero, 0);
 
   // ? FXs on Destroy
 
@@ -219,13 +219,13 @@ public class Spawner : MonoBehaviourBase {
   [Sirenix.OdinInspector.OnValueChanged(nameof(OnSpawningAreaChange), true)]
   [SerializeField]
   [HideLabel]
-  private Area spawningArea = new Area();
+  private Area spawningArea = new();
 
   private enum PointSpawnMode {
     Iterate,
     RandomIterate,
     RandomOne,
-    RandomAll
+    RandomAll,
   }
 
   private Transform pointCurrentIterate;
@@ -275,12 +275,12 @@ public class Spawner : MonoBehaviourBase {
     }
 
     if (pointSpawnMode == PointSpawnMode.Iterate) {
-      pointCurrentIterate = points.NavNext(pointCurrentIterate);
+      pointCurrentIterate = points.GetNext(pointCurrentIterate);
       newSpawnedObjects.Add(SpawnIndividual(pointCurrentIterate.position, keepPrefabRotation));
     }
 
     if (pointSpawnMode == PointSpawnMode.RandomIterate) {
-      pointCurrentIterate = points.NavNext(pointCurrentIterate);
+      pointCurrentIterate = points.GetNext(pointCurrentIterate);
       newSpawnedObjects.Add(SpawnIndividual(pointCurrentIterate.position, keepPrefabRotation));
     }
   }
@@ -363,7 +363,7 @@ public class Spawner : MonoBehaviourBase {
 
   #region SPAWNING LOCATION POINT ===================================================================================================================================
 
-  private readonly List<GameObject> spawnPoints = new List<GameObject>();
+  private readonly List<GameObject> spawnPoints = new();
 
   private void GetSpawnPoints() {
     foreach (Transform child in transform)
@@ -510,7 +510,7 @@ public class Spawner : MonoBehaviourBase {
   #region SPAWNER CONFIG ===================================================================================================================================
 
   [Sirenix.OdinInspector.BoxGroup("Spawner Config")] [SerializeField] [LabelText("Spawn Amount/Time")]
-  private Vector2Wrapper spawnAmountRangePerTime = new Vector2Wrapper(new Vector2(1, 1), 0);
+  private Vector2Wrapper spawnAmountRangePerTime = new(new Vector2(1, 1), 0);
 
   [Sirenix.OdinInspector.BoxGroup("Spawner Config")] [SerializeField] [EnumToggleButtons]
   private GizmosMode gizmosMode = GizmosMode.Always;

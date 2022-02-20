@@ -29,11 +29,11 @@ public class AssetCollection<T> where T : Object {
   public enum CollectionRetrieveMode {
     Current,
     Random,
-    Iterate
+    Iterate,
   }
 
   [OnValueChanged(nameof(OnItemsChanged))]
-  public List<T> items = new List<T>();
+  public List<T> items = new();
 
   [OnValueChanged(nameof(OnCurrentItemChanged))]
   [InlineButton(nameof(GetAndSetToRandomItem), "?")]
@@ -78,10 +78,10 @@ public class AssetCollection<T> where T : Object {
   public bool enableEvent = true;
 
   [ToggleGroup(nameof(enableEvent))] [SerializeField]
-  public UnityEvent onCurrentItemChanged = new UnityEvent();
+  public UnityEvent onCurrentItemChanged = new();
 
   [ToggleGroup(nameof(enableEvent))] [SerializeField]
-  public UnityEvent onItemsChanged = new UnityEvent();
+  public UnityEvent onItemsChanged = new();
 
   private void UpdateDeactivateExceptCurrent() {
 #if UNITY_EDITOR
@@ -139,21 +139,21 @@ public class AssetCollection<T> where T : Object {
   [Title("Set To Previous Item Key", bold: false, titleAlignment: TitleAlignments.Left)]
   // [LabelText("Set Previous"), LabelWidth(LABEL_WIDTH_KEY)]
   [SerializeField]
-  private KeyCodeModifier switchPreviousKey = new KeyCodeModifier();
+  private KeyCodeModifier switchPreviousKey = new();
 
   [ToggleGroup(nameof(enableHotkey))]
   [HideLabel]
   [Title("Set To Next Item Key", bold: false, titleAlignment: TitleAlignments.Left)]
   // [LabelText("Set Next"), LabelWidth(LABEL_WIDTH_KEY)]
   [SerializeField]
-  private KeyCodeModifier switchNextKey = new KeyCodeModifier();
+  private KeyCodeModifier switchNextKey = new();
 
   [ToggleGroup(nameof(enableHotkey))]
   [HideLabel]
   [Title("Set To Random Item Key", bold: false, titleAlignment: TitleAlignments.Left)]
   // [LabelText("Set Random"), LabelWidth(LABEL_WIDTH_KEY)]
   [SerializeField]
-  private KeyCodeModifier switchRandomKey = new KeyCodeModifier();
+  private KeyCodeModifier switchRandomKey = new();
 
   /// <summary>
   ///   Invoke this in Monobehaviour container for quick switching between items using hotkeys
@@ -196,7 +196,7 @@ public class AssetCollection<T> where T : Object {
     return CurrentItemOrFirst;
   }
 
-  public T NextItem => items.NavNext(currentItem);
+  public T NextItem => items.GetNext(currentItem);
 
   public T GetAndSetToNextItem() {
     if (items.IsUnset()) return null;
@@ -205,7 +205,7 @@ public class AssetCollection<T> where T : Object {
     return CurrentItemOrFirst;
   }
 
-  public T PreviousItem => items.NavPrevious(currentItem);
+  public T PreviousItem => items.GetPrevious(currentItem);
 
   public T GetAndSetToPreviousItem() {
     if (items.IsUnset()) return null;

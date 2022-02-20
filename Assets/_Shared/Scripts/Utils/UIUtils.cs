@@ -3,6 +3,8 @@ using JetBrains.Annotations;
 using UnityEngine.UI;
 
 public static class UIUtils {
+  // ? Is there constraint type replacing both string and IFormattable
+
   // TIP: Use CanBeNull attribute so that we don't need to bother about NullException in usage
   // E.g., usage with CanBeNull: _healthLabel.SetText(_heath);
   // Without CanBeNull: _heathLabel?.SetText(_health);  Besides, we may have to deal with:

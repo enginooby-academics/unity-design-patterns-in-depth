@@ -20,7 +20,7 @@ public static class NumeralUtils {
   /// <summary>
   ///   Return a Vector3 whose x, y, z equal given value. E.g., 1 -> (1, 1, 1).
   /// </summary>
-  public static Vector3 ToVector3(this float number) => new Vector3(number, number, number);
+  public static Vector3 ToVector3(this float number) => new(number, number, number);
 
   /// <summary>
   ///   Round the calculated degree to a given number of decimal places.
@@ -29,9 +29,6 @@ public static class NumeralUtils {
     decimal.Round((decimal) (radian * Mathf.Rad2Deg), decimals);
 
   public static float FromDegreeToRadian(this float degree) => (float) Math.PI / 180f * degree;
-
-  [Obsolete("Use FromRadianToDegree")]
-  public static decimal ToDegree(this float radian, int decimals = 0) => radian.FromRadianToDegree();
 
   /// <summary>
   ///   Convert number to English word: one, two, etc.
@@ -80,9 +77,6 @@ public static class NumeralUtils {
 
     return words;
   }
-
-  [Obsolete("Use ToWord")]
-  public static string NumberToWord(int number) => number.ToWord();
 
   /// <summary>
   ///   Returns the normalized (between 0 and 1) value.

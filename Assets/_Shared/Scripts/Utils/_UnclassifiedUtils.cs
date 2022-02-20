@@ -72,8 +72,8 @@ public static class _UnclassifiedUtils {
     return null;
   }
 
-  public static Rect GetHalfTop(this Rect rect) => new Rect(rect.x, rect.y, rect.width, rect.height / 2);
+  public static Rect GetHalfTop(this Rect rect) => new(rect.x, rect.y, rect.width, rect.height / 2);
 
   public static Rect GetHalfBottom(this Rect rect) =>
-    new Rect(rect.x, rect.y + rect.height / 2, rect.width, rect.height / 2);
+    new(rect.x, rect.y + rect.height / 2, rect.width, rect.height / 2);
 }

@@ -39,7 +39,7 @@ public static class EnumUtils {
     var enumValues = (T[]) Enum.GetValues(typeof(T));
 
     foreach (var enumValue in enumValues)
-      if (value.EqualIgnoreCase(enumValue.ToString()))
+      if (value.EqualsIgnoreCase(enumValue.ToString()))
         return enumValue;
 
     return enumValues[0];

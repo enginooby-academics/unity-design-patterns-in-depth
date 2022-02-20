@@ -16,7 +16,7 @@ namespace AbstractDocumentPattern.Case2.Base1 {
 
     public void Put(IFormattable key, object value) => Put(key.ToString(), value);
 
-    public object Get(string key) => _properties.GetValue(key);
+    public object Get(string key) => _properties.GetValueOrDefault(key);
 
     public object Get(IFormattable key) => Get(key.ToString());
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -157,61 +157,70 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifespan: 0
-  enableLifetime: 0
-  lifetime: 0
-  enableTranslating: 0
-  translationalSpeed: {x: 0, y: 0, z: 0}
-  translationalAcceleration: {x: 0, y: 0, z: 0}
-  translationalOffsetBound: {x: 0, y: 0, z: 0}
-  translatingMode: 0
-  xTranslateKey:
+  _component: {fileID: 0}
+  _enableScaling: 0
+  _enableLookAt: 0
+  _lookAtTarget:
+    GameObject: {fileID: 0}
+    _gameObjectRef: {fileID: 0}
+    _tag: Player
+    _name: Player
+    _type: 
+    findMethod: 0
+  _enableTranslating: 0
+  _translationalSpeed: {x: 0, y: 0, z: 0}
+  _translationalMinPos: {x: 0, y: 0, z: 0}
+  _translationalMaxPos: {x: 0, y: 0, z: 0}
+  _translationalOnBoundaryAction: 3
+  _translationalAcceleration: {x: 0, y: 0, z: 0}
+  _translatingMode: 0
+  _xTranslateKey:
     inputType: 1
     inputTypeName: A
     keyCode: 0
     keyTriggerEvent: 4
     inputAxis: 0
     modifierKey: 1
-  yTranslateKey:
+  _yTranslateKey:
     inputType: 1
     inputTypeName: A
     keyCode: 0
     keyTriggerEvent: 4
     inputAxis: 0
     modifierKey: 1
-  zTranslateKey:
+  _zTranslateKey:
     inputType: 1
     inputTypeName: A
     keyCode: 0
     keyTriggerEvent: 4
     inputAxis: 1
     modifierKey: 1
-  enableRotating: 1
-  rotationalSpeed: {x: 30, y: 20, z: 30}
-  rotationalAcceleration: {x: 0, y: 0, z: 0}
-  rotationPivot: {fileID: 0}
-  rotationMode: 0
-  xRotateKey:
+  _enableRotating: 1
+  _rotationalSpeed: {x: 50, y: 50, z: 50}
+  _rotationalAcceleration: {x: 0, y: 0, z: 0}
+  _rotationPivot: {fileID: 0}
+  _rotationMode: 0
+  _xRotateKey:
     inputType: 0
     inputTypeName: A
     keyCode: 0
     keyTriggerEvent: 4
     inputAxis: 0
     modifierKey: 1
-  yRotateKey:
+  _yRotateKey:
     inputType: 0
     inputTypeName: A
     keyCode: 0
     keyTriggerEvent: 4
     inputAxis: 0
     modifierKey: 1
-  zRotateKey:
+  _zRotateKey:
     inputType: 0
     inputTypeName: A
     keyCode: 0
     keyTriggerEvent: 4
     inputAxis: 0
     modifierKey: 1
-  enableScaling: 0
 --- !u!114 &146765014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,6 +257,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -296,6 +306,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.01, y: 0.39, z: -5.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -391,6 +402,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 254245860}
   m_Father: {fileID: 0}
@@ -480,6 +492,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1743350663243341639}
   - {fileID: 1452249303}
@@ -575,6 +588,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -623,6 +637,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.39, z: -5.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -640,61 +655,70 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifespan: 0
-  enableLifetime: 0
-  lifetime: 0
-  enableTranslating: 0
-  translationalSpeed: {x: 0, y: 0, z: 0}
-  translationalAcceleration: {x: 0, y: 0, z: 0}
-  translationalOffsetBound: {x: 0, y: 0, z: 0}
-  translatingMode: 0
-  xTranslateKey:
+  _component: {fileID: 0}
+  _enableScaling: 0
+  _enableLookAt: 0
+  _lookAtTarget:
+    GameObject: {fileID: 0}
+    _gameObjectRef: {fileID: 0}
+    _tag: Player
+    _name: Player
+    _type: 
+    findMethod: 0
+  _enableTranslating: 0
+  _translationalSpeed: {x: 0, y: 0, z: 0}
+  _translationalMinPos: {x: 0, y: 0, z: 0}
+  _translationalMaxPos: {x: 0, y: 0, z: 0}
+  _translationalOnBoundaryAction: 3
+  _translationalAcceleration: {x: 0, y: 0, z: 0}
+  _translatingMode: 0
+  _xTranslateKey:
     inputType: 1
     inputTypeName: A
     keyCode: 0
     keyTriggerEvent: 4
     inputAxis: 0
     modifierKey: 1
-  yTranslateKey:
+  _yTranslateKey:
     inputType: 1
     inputTypeName: A
     keyCode: 0
     keyTriggerEvent: 4
     inputAxis: 0
     modifierKey: 1
-  zTranslateKey:
+  _zTranslateKey:
     inputType: 1
     inputTypeName: A
     keyCode: 0
     keyTriggerEvent: 4
     inputAxis: 1
     modifierKey: 1
-  enableRotating: 1
-  rotationalSpeed: {x: 30, y: 20, z: 30}
-  rotationalAcceleration: {x: 0, y: 0, z: 0}
-  rotationPivot: {fileID: 0}
-  rotationMode: 0
-  xRotateKey:
+  _enableRotating: 1
+  _rotationalSpeed: {x: 50, y: 50, z: 50}
+  _rotationalAcceleration: {x: 0, y: 0, z: 0}
+  _rotationPivot: {fileID: 0}
+  _rotationMode: 0
+  _xRotateKey:
     inputType: 0
     inputTypeName: A
     keyCode: 0
     keyTriggerEvent: 4
     inputAxis: 0
     modifierKey: 1
-  yRotateKey:
+  _yRotateKey:
     inputType: 0
     inputTypeName: A
     keyCode: 0
     keyTriggerEvent: 4
     inputAxis: 0
     modifierKey: 1
-  zRotateKey:
+  _zRotateKey:
     inputType: 0
     inputTypeName: A
     keyCode: 0
     keyTriggerEvent: 4
     inputAxis: 0
     modifierKey: 1
-  enableScaling: 0
 --- !u!114 &669239029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -793,6 +817,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -819,6 +844,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
   m_Antialiasing: 2
   m_AntialiasingQuality: 2
@@ -855,6 +881,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.00069977774, y: 5.7967896, z: -16.401491}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1272357726}
   - {fileID: 700002298}
@@ -1018,6 +1045,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1701486812}
   - component: {fileID: 1701486811}
+  - component: {fileID: 1701486813}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -1097,10 +1125,31 @@ Transform:
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
   m_LocalPosition: {x: 0.00069977774, y: -2.7967896, z: 16.401491}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1188613370}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1701486813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701486810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &1825015103
 GameObject:
   m_ObjectHideFlags: 0
@@ -1135,61 +1184,70 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifespan: 0
-  enableLifetime: 0
-  lifetime: 0
-  enableTranslating: 0
-  translationalSpeed: {x: 0, y: 0, z: 0}
-  translationalAcceleration: {x: 0, y: 0, z: 0}
-  translationalOffsetBound: {x: 0, y: 0, z: 0}
-  translatingMode: 0
-  xTranslateKey:
+  _component: {fileID: 0}
+  _enableScaling: 0
+  _enableLookAt: 0
+  _lookAtTarget:
+    GameObject: {fileID: 0}
+    _gameObjectRef: {fileID: 0}
+    _tag: Player
+    _name: Player
+    _type: 
+    findMethod: 0
+  _enableTranslating: 0
+  _translationalSpeed: {x: 0, y: 0, z: 0}
+  _translationalMinPos: {x: 0, y: 0, z: 0}
+  _translationalMaxPos: {x: 0, y: 0, z: 0}
+  _translationalOnBoundaryAction: 3
+  _translationalAcceleration: {x: 0, y: 0, z: 0}
+  _translatingMode: 0
+  _xTranslateKey:
     inputType: 1
     inputTypeName: A
     keyCode: 0
     keyTriggerEvent: 4
     inputAxis: 0
     modifierKey: 1
-  yTranslateKey:
+  _yTranslateKey:
     inputType: 1
     inputTypeName: A
     keyCode: 0
     keyTriggerEvent: 4
     inputAxis: 0
     modifierKey: 1
-  zTranslateKey:
+  _zTranslateKey:
     inputType: 1
     inputTypeName: A
     keyCode: 0
     keyTriggerEvent: 4
     inputAxis: 1
     modifierKey: 1
-  enableRotating: 1
-  rotationalSpeed: {x: 30, y: 20, z: 30}
-  rotationalAcceleration: {x: 0, y: 0, z: 0}
-  rotationPivot: {fileID: 0}
-  rotationMode: 0
-  xRotateKey:
+  _enableRotating: 1
+  _rotationalSpeed: {x: 50, y: 50, z: 50}
+  _rotationalAcceleration: {x: 0, y: 0, z: 0}
+  _rotationPivot: {fileID: 0}
+  _rotationMode: 0
+  _xRotateKey:
     inputType: 0
     inputTypeName: A
     keyCode: 0
     keyTriggerEvent: 4
     inputAxis: 0
     modifierKey: 1
-  yRotateKey:
+  _yRotateKey:
     inputType: 0
     inputTypeName: A
     keyCode: 0
     keyTriggerEvent: 4
     inputAxis: 0
     modifierKey: 1
-  zRotateKey:
+  _zRotateKey:
     inputType: 0
     inputTypeName: A
     keyCode: 0
     keyTriggerEvent: 4
     inputAxis: 0
     modifierKey: 1
-  enableScaling: 0
 --- !u!114 &1825015105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1226,6 +1284,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1274,6 +1333,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.01, y: 0.39, z: -5.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -1588,6 +1648,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
   m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018,
     type: 3}
   m_PointAction: {fileID: 1054132383583890850, guid: ca9f5fa95ffab41fb9a615ab714db018,
@@ -1637,6 +1698,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3

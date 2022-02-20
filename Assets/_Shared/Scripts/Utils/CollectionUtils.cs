@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -8,13 +9,8 @@ using Random = UnityEngine.Random;
 
 public static class CollectionUtils {
   /// <summary>
-  ///   Destroy all GameObjects of the component list.
+  ///   Destroy all GameObjects of the given components.
   /// </summary>
-  [Obsolete("Use " + nameof(DestroyWithGameObject))]
-  public static void Destroy<T>(this IEnumerable<T> components) where T : MonoBehaviour {
-    DestroyWithGameObject(components);
-  }
-
   public static void DestroyWithGameObject<T>(this IEnumerable<T> components) where T : MonoBehaviour {
     foreach (var component in components) {
 #if UNITY_EDITOR
@@ -50,12 +46,6 @@ public static class CollectionUtils {
   public static bool HasIndex<T>(this IEnumerable<T> collection, int index) =>
     index.IsInRange(0, collection.Count() - 1);
 
-  // TIP: Use Obsolete attribute to safely rename methods used in multiple projects
-  // Delete obsoleted method when all consumer projects update the renamed method
-  [Obsolete("Use HasIndex")]
-  public static bool ValidateIndex<T>(this IEnumerable<T> list, int index) => 0 <= index && index < list.Count();
-
-  // TIP: Use interface (IList) instead of concrete class (List) to cover more types in extension method
   /// <summary>
   ///   Check if collection is null or empty.
   /// </summary>
@@ -72,19 +62,12 @@ public static class CollectionUtils {
 
   #region ELEMENT RETRIEVAL
 
-  [Obsolete("Use GetNext")]
-  public static T NavNext<T>(this IList<T> list, T currentItem) {
-    var currentIndex = list.IndexOf(currentItem);
-    var nextIndex = currentIndex == list.Count - 1 ? 0 : currentIndex + 1;
-    return list[nextIndex];
-  }
-
   /// <summary>
-  ///   Add method IndexOf() to IReadOnlyList.
+  /// Return -1 if the given element doesn't exist in the collection.
   /// </summary>
-  public static int IndexOf<T>(this IEnumerable<T> self, T elementToFind) {
+  public static int IndexOf<T>(this IEnumerable<T> collection, T elementToFind) {
     var i = 0;
-    foreach (var element in self) {
+    foreach (var element in collection) {
       if (Equals(element, elementToFind))
         return i;
       i++;
@@ -97,13 +80,6 @@ public static class CollectionUtils {
     var currentIndex = collection.IndexOf(currentItem);
     var nextIndex = currentIndex == collection.Count() - 1 ? 0 : currentIndex + 1;
     return collection.ElementAt(nextIndex);
-  }
-
-  [Obsolete("Use GetPrevious")]
-  public static T NavPrevious<T>(this IList<T> list, T currentItem) {
-    var currentIndex = list.IndexOf(currentItem);
-    var previous = currentIndex == 0 ? list.Count - 1 : currentIndex - 1;
-    return list[previous];
   }
 
   public static T GetPrevious<T>(this IEnumerable<T> list, T currentItem) {
@@ -151,10 +127,8 @@ public static class CollectionUtils {
 
   private static T GetNullKey<T>() => NullKeys.TryGetValue(typeof(T), out var nullKey) ? (T) nullKey : default;
 
-  /// <summary>
-  /// Get the value of the given key, return default if it does not exist.
-  /// </summary>
-  public static TValue GetValue<TKey, TValue>(
+  // TIP: Naming _OrDefault
+  public static TValue GetValueOrDefault<TKey, TValue>(
     this Dictionary<TKey, TValue> dictionary,
     TKey key,
     TValue defaultValue = default) {
@@ -171,7 +145,6 @@ public static class CollectionUtils {
   private static readonly System.Random rng = new();
 
   public static void Shuffle<T>(this IList<T> list) {
-    Debug.Log("Shuffle");
     var n = list.Count;
     while (n > 1) {
       n--;
@@ -180,17 +153,19 @@ public static class CollectionUtils {
     }
   }
 
-  public static void RemoveNullEntries<T>(this IList<T> list) where T : class {
+  /// <summary>
+  /// Remove all the elements whose values equal to the given value. <br/>
+  /// <example> (1, 2, 3, 1).RemoveEntriesOfValue(1) -> (2, 3) </example>
+  /// </summary>
+  public static void RemoveEntriesOfValue<T>(this IList<T> list, [CanBeNull] T entryValue) {
     for (var i = list.Count - 1; i >= 0; i--)
-      if (Equals(list[i], null))
+      if (Equals(list[i], entryValue))
         list.RemoveAt(i);
   }
 
-  public static void RemoveDefaultValues<T>(this IList<T> list) {
-    for (var i = list.Count - 1; i >= 0; i--)
-      if (Equals(default(T), list[i]))
-        list.RemoveAt(i);
-  }
+  public static void RemoveNullEntries<T>(this IList<T> list) where T : class => list.RemoveEntriesOfValue(null);
+
+  public static void RemoveDefaultValues<T>(this IList<T> list) => list.RemoveEntriesOfValue(default);
 
   // https://stackoverflow.com/questions/1211608/possible-to-iterate-backwards-through-a-foreach
   public static IEnumerable<T> FastReverse<T>(this IList<T> list) {

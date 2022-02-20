@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
 using Enginoobz.Attribute;
 #endif
@@ -14,7 +15,7 @@ namespace MementoPattern.Case1.Base {
   public class SaveSystem : MonoBehaviourSingleton<SaveSystem> {
     [SerializeField] private Shape _currentShape;
 
-    [ShowInInspector] private List<ShapeSnapshot> _history = new List<ShapeSnapshot>();
+    [ShowInInspector] private List<ShapeSnapshot> _history = new();
 
     public void AddSnapshot(ShapeSnapshot snapshot) {
       _history.Add(snapshot);
@@ -26,13 +27,13 @@ namespace MementoPattern.Case1.Base {
     }
 
     public bool CheckSnapshotExist(string snapshotName) {
-      var snapshot = _history.Find(snapshot => snapshot.Name.EqualIgnoreCase(snapshotName));
+      var snapshot = _history.Find(snapshot => snapshot.Name.EqualsIgnoreCase(snapshotName));
       return snapshot == null ? false : true;
     }
 
     // [Button]
     public void LoadSnapshot(string snapshotName) {
-      var snapshot = _history.Find(snapshot => snapshot.Name.EqualIgnoreCase(snapshotName));
+      var snapshot = _history.Find(snapshot => snapshot.Name.EqualsIgnoreCase(snapshotName));
       if (snapshot != null) LoadSnapshot(snapshot);
       else Debug.LogError($"Snapshot {snapshotName} can not be found.");
     }

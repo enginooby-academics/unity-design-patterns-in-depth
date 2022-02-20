@@ -20,6 +20,6 @@ public static class StringUtils {
 
   public static bool IsEmpty(this string @string) => @string == "";
 
-  public static bool EqualIgnoreCase(this string string1, string string2) =>
+  public static bool EqualsIgnoreCase(this string string1, string string2) =>
     string.Equals(string1, string2, StringComparison.OrdinalIgnoreCase);
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 using static VectorUtils;
 
 public static class TransformUtils {
-  // ?
+  // ? Purpose
   public static bool Contains(this Transform transform, Bounds bounds, Bounds target) =>
     bounds.Contains(target.ClosestPoint(transform.position));
 
@@ -195,15 +195,6 @@ public static class TransformUtils {
   public static void SetPos(this Transform transform, Vector3 pos) {
     transform.position = pos;
   }
-
-  [Obsolete("Use " + nameof(SetPosX))]
-  public static void PosX(this Transform transform, float x) => transform.SetPosX(x);
-
-  [Obsolete("Use " + nameof(SetPosY))]
-  public static void PosY(this Transform transform, float y) => transform.SetPosY(y);
-
-  [Obsolete("Use " + nameof(SetPosZ))]
-  public static void PosZ(this Transform transform, float z) => transform.SetPosZ(z);
 
   /// <summary>
   ///   E.g. Update (1, 1, 1) with (2, 2, 2) with Axis.XZ => (2, 1, 2)

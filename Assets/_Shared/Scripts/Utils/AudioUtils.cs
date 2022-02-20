@@ -24,6 +24,7 @@ public static class AudioUtils {
     if (@if) audioSource.PlayOneShot(audioClip);
   }
 
+  // ? Make naming convention for "action if in state" method
   /// <summary>
   ///   Trigger playing music if the source is not playing && the given condition is true.
   /// </summary>
@@ -34,6 +35,7 @@ public static class AudioUtils {
     if (!audioSource.isPlaying) audioSource.Play();
   }
 
+  // ? Make naming convention for "action or opposite action based on condition" method
   /// <summary>
   ///   Trigger playing audio if the source is not playing && the given condition is true. <br />
   ///   If the condition is false, stop the audio source.

@@ -80,6 +80,7 @@ public static class ComponentUtils {
     return theRb;
   }
 
+  // TODO: Think of naming convention for ...IfNotExist
   /// <summary>If RigidBody exists, setup & override it as provided params.</summary>
   public static Rigidbody AddAndSetupRigidBodyIfNotExist(
     this MonoBehaviour monoBehaviour,
@@ -110,10 +111,9 @@ public static class ComponentUtils {
   /// <summary>
   ///   If Collider exists, setup & override it as provided params.
   /// </summary>
-  public static Collider AddAndSetupColliderIfNotExist<T>(this GameObject gameObject, bool isTrigger = true)
+  public static T AddAndSetupColliderIfNotExist<T>(this GameObject gameObject, bool isTrigger = true)
     where T : Collider {
-    var collider = gameObject.GetComponent<Collider>();
-    if (collider == null) collider = gameObject.AddComponent<T>();
+    var collider = gameObject.GetComponent<T>() ?? gameObject.AddComponent<T>();
     collider.isTrigger = isTrigger;
     return collider;
   }

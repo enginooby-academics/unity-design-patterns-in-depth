@@ -35,12 +35,12 @@ public class VolumeEditor : MonoBehaviour {
   }
 
   public void SwitchNextVolume() {
-    currentProfile = profiles.NavNext(currentProfile);
+    currentProfile = profiles.GetNext(currentProfile);
     volume.profile = currentProfile;
   }
 
   public void SwitchPreviousVolume() {
-    currentProfile = profiles.NavPrevious(currentProfile);
+    currentProfile = profiles.GetPrevious(currentProfile);
     volume.profile = currentProfile;
   }
 

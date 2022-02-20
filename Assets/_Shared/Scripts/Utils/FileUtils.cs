@@ -30,7 +30,7 @@ public static class FileUtils {
   }
 
   public static IEnumerable<FileInfo> GetAllFilesIgnoreMeta(this DirectoryInfo directoryInfo) {
-    return directoryInfo.GetFiles("*.*").Where(name => !name.Extension.EqualIgnoreCase(".meta"));
+    return directoryInfo.GetFiles("*.*").Where(name => !name.Extension.EqualsIgnoreCase(".meta"));
   }
 
   public static string GetNameWithoutExtension(this FileInfo fileInfo) =>
