@@ -2,7 +2,7 @@ using UnityEngine;
 
 public static class MeshUtils {
   /// <summary>
-  ///   ! This can change primitive mesh permantly. Use WithScale() to get a new Mesh w/o affecting primitive mesh.
+  ///   ! This can change primitive mesh permanently. Use WithScale() to get a new Mesh w/o affecting primitive mesh.
   /// </summary>
   public static void Scale(this Mesh mesh, float factor) {
     var baseVertices = mesh.vertices;
