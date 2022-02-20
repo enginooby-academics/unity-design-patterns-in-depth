@@ -17,28 +17,28 @@ public static class VectorUtils {
   public static readonly Vector3 v1 = Vector3.one;
 
   public static readonly Vector3 v001 = Vector3.forward;
-  public static readonly Vector3 v011 = new Vector3(0, 1, 1);
-  public static readonly Vector3 v101 = new Vector3(1, 0, 1);
-  public static readonly Vector3 v110 = new Vector3(1, 1, 0);
-  public static readonly Vector3 vm10m1 = new Vector3(-1, 0, -1);
-  public static readonly Vector3 vm101 = new Vector3(-1, 0, 1);
+  public static readonly Vector3 v011 = new(0, 1, 1);
+  public static readonly Vector3 v101 = new(1, 0, 1);
+  public static readonly Vector3 v110 = new(1, 1, 0);
+  public static readonly Vector3 vm10m1 = new(-1, 0, -1);
+  public static readonly Vector3 vm101 = new(-1, 0, 1);
 
   /// <summary>
   ///   Vector3(-1, 1, 0)
   /// </summary>
-  public static readonly Vector3 vm110 = new Vector3(-1, 1, 0);
+  public static readonly Vector3 vm110 = new(-1, 1, 0);
 
   /// <summary>
   ///   Vector3(1, -1, 0)
   /// </summary>
-  public static readonly Vector3 v1m10 = new Vector3(1, -1, 0);
+  public static readonly Vector3 v1m10 = new(1, -1, 0);
 
   /// <summary>
   ///   Vector3(-1, -1, 0)
   /// </summary>
-  public static readonly Vector3 vm1m10 = new Vector3(-1, -1, 0);
+  public static readonly Vector3 vm1m10 = new(-1, -1, 0);
 
-  public static readonly Vector3 v10m1 = new Vector3(1, 0, -1);
+  public static readonly Vector3 v10m1 = new(1, 0, -1);
   public static readonly Vector3 v00m1 = Vector3.back;
   public static readonly Vector3 v010 = Vector3.up;
   public static readonly Vector3 v0m10 = Vector3.down;
@@ -68,41 +68,38 @@ public static class VectorUtils {
 
   public static int Random(this Vector2Int vector) => UnityEngine.Random.Range(vector.x, vector.y);
 
-  public static Vector2 Offset(this Vector2 vector, float offset) => new Vector2(vector.x + offset, vector.y + offset);
+  public static Vector2 Offset(this Vector2 vector, float offset) => new(vector.x + offset, vector.y + offset);
 
-  public static Vector3 WithX(this Vector3 vector, float newX) => new Vector3(newX, vector.y, vector.z);
+  public static Vector3 WithX(this Vector3 vector, float newX) => new(newX, vector.y, vector.z);
 
   public static Vector3 WithXRandom(this Vector3 vector, float minX, float maxX) =>
     vector.WithX(UnityEngine.Random.Range(minX, maxX));
 
-  public static Vector3 WithY(this Vector3 vector, float newY) => new Vector3(vector.x, newY, vector.z);
-  public static Vector3 WithYZ(this Vector3 vector, float newValue) => new Vector3(vector.x, newValue, newValue);
+  public static Vector3 WithY(this Vector3 vector, float newY) => new(vector.x, newY, vector.z);
+  public static Vector3 WithYZ(this Vector3 vector, float newValue) => new(vector.x, newValue, newValue);
 
   public static Vector3 WithYRandom(this Vector3 vector, float minY, float maxY) =>
-    new Vector3(vector.x, UnityEngine.Random.Range(minY, maxY), vector.z);
+    new(vector.x, UnityEngine.Random.Range(minY, maxY), vector.z);
 
-  public static Vector3 WithNegativeY(this Vector3 vector) => new Vector3(vector.x, -Mathf.Abs(vector.y), vector.z);
+  public static Vector3 WithNegativeY(this Vector3 vector) => new(vector.x, -Mathf.Abs(vector.y), vector.z);
 
-  public static Vector3 WithPositiveY(this Vector3 vector) => new Vector3(vector.x, Mathf.Abs(vector.y), vector.z);
+  public static Vector3 WithPositiveY(this Vector3 vector) => new(vector.x, Mathf.Abs(vector.y), vector.z);
 
-  public static Vector3 OffsetX(this Vector3 vector, float offset) =>
-    new Vector3(vector.x + offset, vector.y, vector.z);
+  public static Vector3 OffsetX(this Vector3 vector, float offset) => new(vector.x + offset, vector.y, vector.z);
 
-  public static Vector3 OffsetY(this Vector3 vector, float offset) =>
-    new Vector3(vector.x, vector.y + offset, vector.z);
+  public static Vector3 OffsetY(this Vector3 vector, float offset) => new(vector.x, vector.y + offset, vector.z);
 
-  public static Vector3 OffsetZ(this Vector3 vector, float offset) =>
-    new Vector3(vector.x, vector.y, vector.z + offset);
+  public static Vector3 OffsetZ(this Vector3 vector, float offset) => new(vector.x, vector.y, vector.z + offset);
 
-  public static Vector3 WithZ(this Vector3 vector, float newZ) => new Vector3(vector.x, vector.y, newZ);
+  public static Vector3 WithZ(this Vector3 vector, float newZ) => new(vector.x, vector.y, newZ);
 
-  public static Vector3 SetX(this Vector3 vector, float newX) => new Vector3(newX, vector.y, vector.z);
+  public static Vector3 SetX(this Vector3 vector, float newX) => new(newX, vector.y, vector.z);
 
-  public static Vector3 SetY(this Vector3 vector, float newY) => new Vector3(vector.x, newY, vector.z);
+  public static Vector3 SetY(this Vector3 vector, float newY) => new(vector.x, newY, vector.z);
 
-  public static Vector3 SetZ(this Vector3 vector, float newZ) => new Vector3(vector.x, vector.y, newZ);
+  public static Vector3 SetZ(this Vector3 vector, float newZ) => new(vector.x, vector.y, newZ);
 
-  public static Vector2 GetXZ(this Vector3 vector) => new Vector2(vector.x, vector.z);
+  public static Vector2 GetXZ(this Vector3 vector) => new(vector.x, vector.z);
 
   /// <summary>
   ///   Return Vector3.zero if no flag.
@@ -145,5 +142,11 @@ public static class VectorUtils {
     origin ??= Vector3.zero;
 
     return (vector3 - origin.Value).sqrMagnitude <= radius * radius;
+  }
+
+  public static float GetDistanceTo(this Vector3 from, Vector3 to) {
+    // optimizer than Vector3.Distance()
+    var x = Vector3.SqrMagnitude(from - to);
+    return Mathf.Pow(x, .5f);
   }
 }

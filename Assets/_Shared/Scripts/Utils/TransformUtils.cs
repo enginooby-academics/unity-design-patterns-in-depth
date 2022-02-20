@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using static VectorUtils;
 
@@ -7,88 +6,85 @@ public static class TransformUtils {
   public static bool Contains(this Transform transform, Bounds bounds, Bounds target) =>
     bounds.Contains(target.ClosestPoint(transform.position));
 
-  public static float DistanceFrom(this Transform transform, Vector3 targetPos) {
-    // optimizer than Vector3.Distance()
-    var x = Vector3.SqrMagnitude(transform.position - targetPos);
-    return Mathf.Pow(x, .5f);
-  }
-
-  public static float DistanceFrom(this Transform transform, Transform targetTransform) =>
-    transform.DistanceFrom(targetTransform.position);
+  /// <summary>
+  ///   Return center position of the collider. If collider not exist, return transform position.
+  /// </summary>
+  public static Vector3 GetColliderCenter(this Transform transform) =>
+    transform.TryGetComponent(out Collider collider) ? collider.bounds.center : transform.position;
 
   /// <summary>
-  ///   Check if distance to target is less than given range.
+  ///   Destroy all child GameObjects safely.
   /// </summary>
-  public static bool IsInRange(this Transform transform, Transform targetTransform, float range) {
-    // optimizer than Vector3.Distance()
-    var distanceSquare = Vector3.SqrMagnitude(transform.position - targetTransform.position);
-    return distanceSquare <= range * range;
+  public static void DestroyChildren(this Transform transform) {
+    transform.gameObject.GetComponentsInChildrenOnly<Transform>().DestroyGameObjects();
   }
+
+  public static float GetDistanceTo(this Transform transform, Vector3 pos) => transform.position.GetDistanceTo(pos);
+
+  // ? Remove this short
+  public static float GetDistanceTo(this Transform transform, Transform target) =>
+    transform.GetDistanceTo(target.position);
+
+  // ? Remove this short 
+  /// <summary>
+  ///   Is distance from this transform to given target is less than given range?
+  /// </summary>
+  public static bool IsInRange(this Transform transform, Transform target, float range) =>
+    transform.GetDistanceTo(target) < range;
+
+  #region MOVEMENT
+
+  // ===================================================================================================================
 
   /// <summary>
   /// (DeltaTime multiplied)
   /// </summary>
-  public static void RotateForward(this Transform transform, float speed) {
+  public static void RotateForward(this Transform transform, float speed) =>
     transform.Rotate(transform.forward, speed * Time.deltaTime);
-  }
 
   /// <summary>
   ///   Rotate local X (red axis) to target.
   /// </summary>
-  public static void LookAtX(this Transform transform, Transform target) {
-    transform.LookAtX(target.position);
-  }
+  public static void LookAtX(this Transform transform, Transform target) => transform.LookAtX(target.position);
 
   /// <summary>
   ///   Rotate local Y (green axis) to target.
   /// </summary>
-  public static void LookAtY(this Transform transform, Transform target) {
-    transform.LookAtY(target.position);
-  }
+  public static void LookAtY(this Transform transform, Transform target) => transform.LookAtY(target.position);
 
   /// <summary>
   ///   Rotate local Z (blue axis) to target.
   /// </summary>
-  public static void LookAtZ(this Transform transform, Transform target) {
-    transform.LookAtZ(target.position);
-  }
+  public static void LookAtZ(this Transform transform, Transform target) => transform.LookAtZ(target.position);
 
   /// <summary>
   ///   Rotate local X (red axis) to destination.
   /// </summary>
-  public static void LookAtX(this Transform transform, Vector3 dest) {
-    transform.right = dest - transform.position;
-  }
+  public static void LookAtX(this Transform transform, Vector3 dest) => transform.right = dest - transform.position;
 
   /// <summary>
   ///   Rotate local Y (green axis) to destination.
   /// </summary>
-  public static void LookAtY(this Transform transform, Vector3 dest) {
-    transform.up = dest - transform.position;
-  }
+  public static void LookAtY(this Transform transform, Vector3 dest) => transform.up = dest - transform.position;
 
   /// <summary>
   ///   Rotate local Z (blue axis) to destination.
   /// </summary>
-  public static void LookAtZ(this Transform transform, Vector3 dest) {
-    transform.forward = dest - transform.position;
-  }
+  public static void LookAtZ(this Transform transform, Vector3 dest) => transform.forward = dest - transform.position;
 
   /// <summary>
   ///   [In-update] <br />
   ///   Translate on local X (included deltaTime).
   /// </summary>
-  public static void MoveX(this Transform transform, float distance = 1f) {
+  public static void MoveX(this Transform transform, float distance = 1f) =>
     transform.Translate(v100 * Time.deltaTime * distance);
-  }
 
   /// <summary>
   ///   [In-update] <br />
   ///   Translate on local Y (included deltaTime).
   /// </summary>
-  public static void MoveY(this Transform transform, float distance = 1f) {
-    transform.Translate(v010 * distance * Time.deltaTime);
-  }
+  public static void MoveY(this Transform transform, float distance = 1f) =>
+    transform.Translate(Time.deltaTime * distance * v010);
 
   /// <summary>
   ///   This looping movement is based on Time.time so don't need extra direction flag in the MonoBehaviour<br />
@@ -107,9 +103,8 @@ public static class TransformUtils {
   ///   [In-update] <br />
   ///   Translate on local Z (included deltaTime).
   /// </summary>
-  public static void MoveZ(this Transform transform, float distance = 1f) {
+  public static void MoveZ(this Transform transform, float distance = 1f) =>
     transform.Translate(v001 * Time.deltaTime * distance);
-  }
 
   /// <summary>
   ///   [In-update] <br />
@@ -129,22 +124,11 @@ public static class TransformUtils {
     transform.MoveY(distance);
   }
 
-  /// <summary>
-  ///   Return center position of the collider. If collider not exist, return transform position.
-  /// </summary>
-  public static Vector3 GetColliderCenter(this Transform transform) {
-    if (transform.TryGetComponent(out Collider collider)) return collider.bounds.center;
-    return transform.position;
-  }
+  #endregion
 
-  /// <summary>
-  ///   Destroy all child GameObjects safely.
-  /// </summary>
-  public static void DestroyChildren(this Transform transform) {
-    transform.gameObject.GetComponentsInChildrenOnly<Transform>().DestroyGameObjects();
-  }
+  #region RESET
 
-  #region RESET =======================================================================================================================================================================
+  // ===================================================================================================================
 
   /// <summary>
   ///   Reset position, rotation, scale
@@ -178,23 +162,17 @@ public static class TransformUtils {
 
   #endregion RESET ====================================================================================================================================================================
 
-  #region POSITION ===================================================================================================================================
+  #region POSITION
 
-  public static void SetPosX(this Transform transform, float x) {
-    transform.position = transform.position.WithX(x);
-  }
+  // ===================================================================================================================
 
-  public static void SetPosY(this Transform transform, float y) {
-    transform.position = transform.position.WithY(y);
-  }
+  public static void SetPosX(this Transform transform, float x) => transform.position = transform.position.WithX(x);
 
-  public static void SetPosZ(this Transform transform, float z) {
-    transform.position = transform.position.WithZ(z);
-  }
+  public static void SetPosY(this Transform transform, float y) => transform.position = transform.position.WithY(y);
 
-  public static void SetPos(this Transform transform, Vector3 pos) {
-    transform.position = pos;
-  }
+  public static void SetPosZ(this Transform transform, float z) => transform.position = transform.position.WithZ(z);
+
+  public static void SetPos(this Transform transform, Vector3 pos) => transform.position = pos;
 
   /// <summary>
   ///   E.g. Update (1, 1, 1) with (2, 2, 2) with Axis.XZ => (2, 1, 2)
@@ -256,9 +234,11 @@ public static class TransformUtils {
       transform.position = l;
   }
 
-  #endregion POSITION ================================================================================================================================
+  #endregion
 
-  #region SCALE ===================================================================================================================================
+  #region SCALE
+
+  // ===================================================================================================================
 
   /// <summary>
   ///   Multiply transform.localScale.y by the given factor.
@@ -295,6 +275,8 @@ public static class TransformUtils {
   #endregion SCALE ================================================================================================================================
 
   #region ROTATION
+
+  // ===================================================================================================================
 
   /// <summary>
   /// Given x, y, z in degree unit.

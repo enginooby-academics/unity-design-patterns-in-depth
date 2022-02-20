@@ -6,9 +6,9 @@ using UnityEngine;
 public abstract partial class GOI_ComponentIsEffect<TSelf, TComponent> {
   // Fallback in case the singleton component is not available or have not set up effects
   private void InitializeEffect() {
-    if (_currentEffect) return;
+    if (_currentEffect || _effectPrefabs.IsNullOrEmpty()) return;
 
-    if (_effectPrefabs.IsSet()) _currentEffect = _effectPrefabs[0];
+    _currentEffect = _effectPrefabs[0];
   }
 
   public override void AwakeSingleton() {

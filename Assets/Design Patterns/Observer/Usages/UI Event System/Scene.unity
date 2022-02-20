@@ -166,7 +166,7 @@ MonoBehaviour:
     _tag: Player
     _name: Player
     _type: 
-    findMethod: 0
+    findMethod: 1
   _enableTranslating: 0
   _translationalSpeed: {x: 0, y: 0, z: 0}
   _translationalMinPos: {x: 0, y: 0, z: 0}

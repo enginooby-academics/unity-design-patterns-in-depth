@@ -31,7 +31,7 @@ public class AreaPointData : SerializedScriptableObject {
   }
 
   public void DrawGizmos(Vector3 origin, float scale = 1f, Color? color = null) {
-    if (Points.IsUnset()) return;
+    if (Points.IsNullOrEmpty()) return;
 
     color ??= Color.red;
     Gizmos.color = color.Value;

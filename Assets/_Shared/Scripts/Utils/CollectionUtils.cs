@@ -2,34 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
-using UnityEditor;
-using UnityEngine;
-using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 public static class CollectionUtils {
-  /// <summary>
-  ///   Destroy all GameObjects of the given components.
-  /// </summary>
-  public static void DestroyWithGameObject<T>(this IEnumerable<T> components) where T : MonoBehaviour {
-    foreach (var component in components) {
-#if UNITY_EDITOR
-      if (!EditorApplication.isPlaying) Object.DestroyImmediate(component.gameObject);
-#endif
-      Object.Destroy(component.gameObject);
-    }
-  }
-
-  /// <summary>
-  /// Return true if not contains.
-  /// </summary>
-  public static bool AddIfNotContains<T>(this IList<T> list, T element) {
-    if (list.Contains(element)) return false;
-
-    list.Add(element);
-    return true;
-  }
-
   public static List<T> ToList<T>(this Array array) => array.Cast<T>().ToList();
 
   /// <summary>
@@ -43,24 +18,18 @@ public static class CollectionUtils {
 
   #region VALIDATION
 
+  // ===================================================================================================================
+
   public static bool HasIndex<T>(this IEnumerable<T> collection, int index) =>
     index.IsInRange(0, collection.Count() - 1);
 
-  /// <summary>
-  ///   Check if collection is null or empty.
-  /// </summary>
-  public static bool IsUnset<T>(this IEnumerable<T> collection) => collection == null || !collection.Any();
-
   public static bool IsNullOrEmpty<T>(this IEnumerable<T> enumerable) => enumerable == null || !enumerable.Any();
-
-  /// <summary>
-  ///   Check if collection is not null nor empty.
-  /// </summary>
-  public static bool IsSet<T>(this IEnumerable<T> list) => list != null && list.Any();
 
   #endregion
 
-  #region ELEMENT RETRIEVAL
+  #region RETRIEVAL
+
+  // ===================================================================================================================
 
   /// <summary>
   /// Return -1 if the given element doesn't exist in the collection.
@@ -76,6 +45,7 @@ public static class CollectionUtils {
     return -1;
   }
 
+  // ? Rename: Next
   public static T GetNext<T>(this IEnumerable<T> collection, T currentItem) {
     var currentIndex = collection.IndexOf(currentItem);
     var nextIndex = currentIndex == collection.Count() - 1 ? 0 : currentIndex + 1;
@@ -90,14 +60,9 @@ public static class CollectionUtils {
 
   public static T GetLast<T>(this IEnumerable<T> collection) => collection.ElementAt(collection.Count() - 1);
 
-  public static void RemoveLast<T>(this IList<T> list) {
-    if (!list.IsSet()) return;
-
-    list.RemoveAt(list.Count - 1);
-  }
-
   public static T GetRandom<T>(this IEnumerable<T> list) => list.ElementAt(Random.Range(0, list.Count()));
 
+  // ? Rename: GetRandomExcluding(params...)
   /// <summary>
   ///   Return a random element which is different than the given one (can be null).
   /// </summary>
@@ -127,7 +92,7 @@ public static class CollectionUtils {
 
   private static T GetNullKey<T>() => NullKeys.TryGetValue(typeof(T), out var nullKey) ? (T) nullKey : default;
 
-  // TIP: Naming _OrDefault
+  // ? Naming convention: _OrDefault
   public static TValue GetValueOrDefault<TKey, TValue>(
     this Dictionary<TKey, TValue> dictionary,
     TKey key,
@@ -140,7 +105,9 @@ public static class CollectionUtils {
 
   #endregion
 
-  #region COLLECTION OPERATIONS
+  #region MODIFICATION
+
+  // ===================================================================================================================
 
   private static readonly System.Random rng = new();
 
@@ -170,6 +137,22 @@ public static class CollectionUtils {
   // https://stackoverflow.com/questions/1211608/possible-to-iterate-backwards-through-a-foreach
   public static IEnumerable<T> FastReverse<T>(this IList<T> list) {
     for (var i = list.Count - 1; i >= 0; i--) yield return list[i];
+  }
+
+  public static void RemoveLast<T>(this IList<T> list) {
+    if (list.IsNullOrEmpty()) return;
+
+    list.RemoveAt(list.Count - 1);
+  }
+
+  /// <summary>
+  /// Return true if not contains.
+  /// </summary>
+  public static bool AddIfNotContains<T>(this IList<T> list, T element) {
+    if (list.Contains(element)) return false;
+
+    list.Add(element);
+    return true;
   }
 
   #endregion

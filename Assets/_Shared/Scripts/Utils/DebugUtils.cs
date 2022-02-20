@@ -4,6 +4,7 @@ using JetBrains.Annotations;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
+// ? Implement Logger wrapper to log in different ways + style
 public static class DebugUtils {
   public static void Log<T>([CanBeNull] this T value) where T : IFormattable {
 #if UNITY_EDITOR
@@ -29,12 +30,6 @@ public static class DebugUtils {
     if (value is not null) Debug.Log(value);
 #endif
   }
-
-//   public static void Log([CanBeNull] this float? value) {
-// #if UNITY_EDITOR
-//     if (value is not null) Debug.Log(value);
-// #endif
-//   }
 
   public static void Log<T>(this IEnumerable<T> list) where T : IFormattable {
 #if UNITY_EDITOR

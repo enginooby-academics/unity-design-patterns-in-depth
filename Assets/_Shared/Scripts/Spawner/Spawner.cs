@@ -250,7 +250,7 @@ public class Spawner : MonoBehaviourBase {
   private void OnSpawningAreaChange() {
     if (spawningArea.IsPointType) {
       var points = (spawningArea.currentArea as AreaPoint).pointTransforms;
-      if (points.IsUnset()) return;
+      if (points.IsNullOrEmpty()) return;
       pointCurrentIterate = points.GetLast();
       if (pointSpawnMode == PointSpawnMode.RandomIterate) points.Shuffle();
     }

@@ -87,7 +87,7 @@ public class AssetCollection<T> where T : Object {
 #if UNITY_EDITOR
     if (EditorApplication.isPlaying) return;
 #endif
-    if (items.IsUnset()) return;
+    if (items.IsNullOrEmpty()) return;
 
     // TODO: if SceneAssetOnly
     if (typeof(T) == typeof(GameObject)) {
@@ -111,7 +111,7 @@ public class AssetCollection<T> where T : Object {
   }
 
   public void OnItemsChanged() {
-    if (items.IsUnset()) return;
+    if (items.IsNullOrEmpty()) return;
     UpdateDeactivateExceptCurrent();
     if (enableEvent) onItemsChanged.Invoke();
     if (!items.Contains(currentItem)) currentItem = items[0];
@@ -189,8 +189,8 @@ public class AssetCollection<T> where T : Object {
   public T RandomItem => items.GetRandom();
 
   public T GetAndSetToRandomItem() {
-    if (items.IsUnset()) Debug.Log("not set");
-    if (items.IsUnset()) return null;
+    if (items.IsNullOrEmpty()) Debug.Log("not set");
+    if (items.IsNullOrEmpty()) return null;
     currentItem = RandomItem;
     OnCurrentItemChanged();
     return CurrentItemOrFirst;
@@ -199,7 +199,7 @@ public class AssetCollection<T> where T : Object {
   public T NextItem => items.GetNext(currentItem);
 
   public T GetAndSetToNextItem() {
-    if (items.IsUnset()) return null;
+    if (items.IsNullOrEmpty()) return null;
     currentItem = NextItem;
     OnCurrentItemChanged();
     return CurrentItemOrFirst;
@@ -208,7 +208,7 @@ public class AssetCollection<T> where T : Object {
   public T PreviousItem => items.GetPrevious(currentItem);
 
   public T GetAndSetToPreviousItem() {
-    if (items.IsUnset()) return null;
+    if (items.IsNullOrEmpty()) return null;
     currentItem = PreviousItem;
     OnCurrentItemChanged();
     return CurrentItemOrFirst;

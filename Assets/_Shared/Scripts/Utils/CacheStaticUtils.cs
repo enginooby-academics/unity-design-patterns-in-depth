@@ -18,9 +18,7 @@ public static class CacheStaticUtils {
   // ! Only include common actions
   // ? Use GameObject or MonoBehaviour
   // ? UnityEngine.Object (getter not implemented) or UnityEngine.Component
-  private static Dictionary<GameObject, Dictionary<Type, Object>> _cachedGameObjects =
-    new Dictionary<GameObject, Dictionary<Type, Object>>();
-
+  private static Dictionary<GameObject, Dictionary<Type, Object>> _cachedGameObjects = new();
 
 #if UNITY_EDITOR
   // TIP: Clear static variable each time entering Play Mode w/ this attribute
@@ -51,9 +49,7 @@ public static class CacheStaticUtils {
   /// <summary>
   ///   [CacheStaticUtils] Clear all static caches of this MonoBehaviour. Use when a certain component is changed.
   /// </summary>
-  public static void ClearCaches(this GameObject go) {
-    _cachedGameObjects.Remove(go);
-  }
+  public static void ClearCaches(this GameObject go) => _cachedGameObjects.Remove(go);
 
   /// <summary>
   ///   [CacheStaticUtils] Clear a component cache of this MonoBehaviour. Use when the component is changed.
@@ -87,10 +83,7 @@ public static class CacheStaticUtils {
   ///   don't want to include all primitive meshes.
   /// </summary>
   public static void SetPrimitiveMesh(this GameObject go, Enum meshType) {
-    void PerformAction(Object component) {
-      ((MeshFilter) component).mesh = PrimitiveUtils.GetPrimitiveMesh(meshType);
-    }
-
+    void PerformAction(Object component) => ((MeshFilter) component).mesh = PrimitiveUtils.GetPrimitiveMesh(meshType);
     ProcessActionWithCaching(go, PerformAction, typeof(MeshFilter));
   }
 
@@ -98,29 +91,28 @@ public static class CacheStaticUtils {
   ///   [CacheStaticUtils] Require static TransformOperator component.
   /// </summary>
   public static void InvertTranslationalDirection(this GameObject go) {
-    void PerformAction(Object component) {
-      (component as TransformOperator)?.InvertTranslationalDirection();
-    }
-
+    void PerformAction(Object component) => (component as TransformOperator)?.InvertTranslationalDirection();
     ProcessActionWithCaching(go, PerformAction, typeof(TransformOperator));
   }
 
-  #region INTERNAL METHODS ===================================================================================================================================
+  #region INTERNAL METHODS
+
+  // ===================================================================================================================
 
   /// <summary>
   ///   Cache GameObject and its component after performing component action.
   /// </summary>
-  private static void ProcessActionWithCaching(GameObject go, Action<Object> performAction, Type componentType) {
+  private static void ProcessActionWithCaching(GameObject go, Action<Object> action, Type componentType) {
     if (_cachedGameObjects.TryGetValue(go, out var components)) {
       // O(1)
       if (components.TryGetValue(componentType, out var component)) // O(1)
-        performAction?.Invoke(component);
-      else CacheComponent(go, componentType, components, performAction);
+        action?.Invoke(component);
+      else CacheComponent(go, componentType, components, action);
       return;
     }
 
     CacheGameObject(go, out components);
-    CacheComponent(go, componentType, components, performAction, false);
+    CacheComponent(go, componentType, components, action, false);
   }
 
   private static void CacheGameObject(GameObject go, out Dictionary<Type, Object> components) {
@@ -128,12 +120,16 @@ public static class CacheStaticUtils {
     _cachedGameObjects.Add(go, components);
   }
 
-  private static Object CacheComponent(GameObject go, Type componentType, Dictionary<Type, Object> components,
-    Action<Object> performAction = null, bool isGameObjectCached = true) {
+  private static Object CacheComponent(
+    GameObject go,
+    Type componentType,
+    Dictionary<Type, Object> components,
+    Action<Object> action = null,
+    bool isGameObjectCached = true) {
     if (go.TryGetComponent(componentType, out var component)) {
       if (EnableDebug) Debug.Log($"{go.name} cached: {isGameObjectCached}. Caching {component.GetType()}");
       components.Add(componentType, component);
-      performAction?.Invoke(component);
+      action?.Invoke(component);
       return component;
     }
 
@@ -142,5 +138,5 @@ public static class CacheStaticUtils {
     throw new ArgumentException($"Component {componentType.Name} on {go.name} not found!");
   }
 
-  #endregion INTERNAL METHODS ================================================================================================================================
+  #endregion
 }

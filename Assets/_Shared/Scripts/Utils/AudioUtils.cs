@@ -2,7 +2,7 @@ using UnityEngine;
 
 public static class AudioUtils {
   /// <summary>
-  ///   Play by AudioSource from GameManager
+  ///   Play by AudioSource from the GameManager.
   /// </summary>
   public static void PlayOneShot(this AudioClip audioClip) {
     if (!audioClip) return;
@@ -24,7 +24,7 @@ public static class AudioUtils {
     if (@if) audioSource.PlayOneShot(audioClip);
   }
 
-  // ? Make naming convention for "action if in state" method
+  // ? Naming convention: for "action if in state" method
   /// <summary>
   ///   Trigger playing music if the source is not playing && the given condition is true.
   /// </summary>
@@ -35,7 +35,7 @@ public static class AudioUtils {
     if (!audioSource.isPlaying) audioSource.Play();
   }
 
-  // ? Make naming convention for "action or opposite action based on condition" method
+  // ? Naming convention: for "action or opposite action based on condition" method
   /// <summary>
   ///   Trigger playing audio if the source is not playing && the given condition is true. <br />
   ///   If the condition is false, stop the audio source.

@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
 using Enginoobz.Attribute;
 #endif
@@ -15,7 +16,7 @@ namespace CompositePattern.Case1.Base {
   /// * The 'Composite' class.
   /// </summary>
   public class AreaComposite : Area {
-    [SerializeField] [SerializeReference] private List<Area> _areas = new List<Area>();
+    [SerializeField] [SerializeReference] private List<Area> _areas = new();
 
 
     public AreaComposite(List<Area> areas) {
@@ -53,12 +54,11 @@ namespace CompositePattern.Case1.Base {
     }
 
     public override void DrawGizmos(Color? color = null) {
-      if (_areas.IsUnset()) return;
+      if (_areas.IsNullOrEmpty()) return;
 
       foreach (var area in _areas) area?.DrawGizmos(color);
     }
 
-    protected override void DrawGizmosOnSingleOrigin(ReferenceVector3 origin) {
-    }
+    protected override void DrawGizmosOnSingleOrigin(ReferenceVector3 origin) { }
   }
 }

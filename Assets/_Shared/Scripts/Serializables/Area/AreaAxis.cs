@@ -16,7 +16,7 @@ using Enginoobz.Attribute;
 public class AreaAxis : SerializableBase, IArea {
   [LabelText("Area Origins")] public List<Reference> origins;
 
-  [HideLabel] public Vector3Range box = new Vector3Range("Axes", new Vector2(-100, 100));
+  [HideLabel] public Vector3Range box = new("Axes", new Vector2(-100, 100));
 
   /// <summary>
   ///   Return a random position lie inside a "box" (determined by Vector3Range) of the first origin.
@@ -55,7 +55,7 @@ public class AreaAxis : SerializableBase, IArea {
   ///   index is invalid.
   /// </summary>
   public Vector3 RandomByOrigin(int originIndex) {
-    if (!origins.HasIndex(originIndex) || origins.IsUnset()) return Vector3.zero; // ? throw exception instead
+    if (!origins.HasIndex(originIndex) || origins.IsNullOrEmpty()) return Vector3.zero; // ? throw exception instead
     return origins[originIndex].GameObject.transform.position + box.Random;
   }
 }

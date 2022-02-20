@@ -14,7 +14,7 @@ public static class _ObsoleteUtils {
   [Obsolete("Use " + nameof(NumeralUtils.FromRadianToDegree) + "")]
   public static decimal ToDegree(this float radian, int decimals = 0) => radian.FromRadianToDegree();
 
-  [Obsolete("Use " + nameof(CollectionUtils.DestroyWithGameObject) + "")]
+  [Obsolete("Use " + nameof(ComponentUtils.DestroyWithGameObject) + "")]
   public static void Destroy<T>(this IEnumerable<T> components) where T : MonoBehaviour =>
     components.DestroyWithGameObject();
 
@@ -38,4 +38,13 @@ public static class _ObsoleteUtils {
 
   [Obsolete("Use " + nameof(TransformUtils.SetPosZ))]
   public static void PosZ(this Transform transform, float z) => transform.SetPosZ(z);
+
+  [Obsolete("Use " + nameof(CollectionUtils.IsNullOrEmpty))]
+  public static bool IsUnset<T>(this IEnumerable<T> collection) => collection.IsNullOrEmpty();
+
+  [Obsolete("Use !" + nameof(CollectionUtils.IsNullOrEmpty))]
+  public static bool IsSet<T>(this IEnumerable<T> list) => !list.IsNullOrEmpty();
+
+  [Obsolete("Use " + nameof(TransformUtils.GetDistanceTo))]
+  public static float DistanceFrom(this Transform transform, Vector3 pos) => transform.GetDistanceTo(pos);
 }

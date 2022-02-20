@@ -19,7 +19,7 @@ public abstract class AreaPoint : SerializableBase, IArea {
 
   [OnValueChanged(nameof(UpdatePoints))] public float pointRadius = .5f;
 
-  [HideInInspector] public List<Vector3> pointPositions = new List<Vector3>();
+  [HideInInspector] public List<Vector3> pointPositions = new();
 
   [InfoBox("Create Transforms as children of Origin, useful for manual positioning points or moving Origin.")]
   [OnValueChanged(nameof(UpdatePoints))]
@@ -28,7 +28,7 @@ public abstract class AreaPoint : SerializableBase, IArea {
   [ToggleLeft]
   public bool useTransforms = true;
 
-  public List<Transform> pointTransforms = new List<Transform>();
+  public List<Transform> pointTransforms = new();
 
   public bool Contains(Vector3 pos) {
     foreach (var point in pointTransforms)
@@ -39,7 +39,7 @@ public abstract class AreaPoint : SerializableBase, IArea {
   }
 
   public void DrawGizmos(Color? color = null) {
-    if (pointPositions.IsUnset() || pointTransforms.IsUnset()) return;
+    if (pointPositions.IsNullOrEmpty() || pointTransforms.IsNullOrEmpty()) return;
 
     color ??= Color.magenta;
     Gizmos.color = color.Value;

@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
 using Enginoobz.Attribute;
 #endif
@@ -15,9 +16,9 @@ namespace CommandPattern.Case1.CSharp1 {
   public class CubeController : MonoBehaviour {
     [SerializeField] private Cube _cube;
 
-    private readonly List<MoveCommand> _commandHistory = new List<MoveCommand>(); // ! can use Stack
+    private readonly List<MoveCommand> _commandHistory = new(); // ! can use Stack
 
-    private List<MoveCommand> _commands = new List<MoveCommand>();
+    private List<MoveCommand> _commands = new();
 
 
     private void Start() {
@@ -49,7 +50,7 @@ namespace CommandPattern.Case1.CSharp1 {
         moveUpCommand,
         moveDownCommand,
         moveLeftCommand,
-        moveRightCommand
+        moveRightCommand,
       };
     }
 
@@ -77,7 +78,7 @@ namespace CommandPattern.Case1.CSharp1 {
     [Button]
     [HorizontalGroup]
     public void Undo() {
-      if (_commandHistory.IsUnset()) return;
+      if (_commandHistory.IsNullOrEmpty()) return;
 
       _commandHistory.GetLast().Undo(_cube);
       _commandHistory.RemoveLast();
