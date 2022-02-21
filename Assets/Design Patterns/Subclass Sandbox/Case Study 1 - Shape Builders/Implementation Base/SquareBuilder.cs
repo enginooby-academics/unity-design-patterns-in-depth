@@ -4,6 +4,7 @@ using Sirenix.OdinInspector;
 using Enginooby.Attribute;
 #endif
 
+using Enginooby.Utils;
 using UnityEngine;
 using static VectorUtils;
 using static GeometryUtils;

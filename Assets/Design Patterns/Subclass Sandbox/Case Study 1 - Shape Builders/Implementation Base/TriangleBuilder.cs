@@ -5,6 +5,7 @@ using Enginooby.Attribute;
 #endif
 
 // ! Utils below are core, not likely to change so can couple w/ sandbox subclasses
+using Enginooby.Utils;
 using UnityEngine;
 using static VectorUtils;
 using static GeometryUtils;

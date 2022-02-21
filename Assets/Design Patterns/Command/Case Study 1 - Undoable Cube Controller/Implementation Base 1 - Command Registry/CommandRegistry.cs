@@ -10,7 +10,7 @@ namespace CommandPattern.Case1.Base1 {
   public class CommandRegistry : MonoBehaviourSingleton<CommandRegistry> {
     public IEnumerable<MoveCommand> Commands;
 
-    public override void AwakeSingleton() => Commands = TypeUtils.GetInstancesOf<MoveCommand>();
+    public override void AwakeSingleton() => Commands = TypeUtils.CreateInstancesOf<MoveCommand>();
 
     public void SetReceiver(Cube cube) {
       foreach (var command in Commands) command.Cube = cube;

@@ -1,3 +1,4 @@
+using Enginooby.Utils;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -5,8 +6,13 @@ namespace StatePattern.Base {
   public class NpcPatrolState : NpcState {
     private GameObject currentCheckpoint;
 
-    public NpcPatrolState(GameObject npc, Animator animator, NavMeshAgent navMeshAgent, Transform player,
-      AreaCircular vision = null, AreaCircular attackableArea = null)
+    public NpcPatrolState(
+      GameObject npc,
+      Animator animator,
+      NavMeshAgent navMeshAgent,
+      Transform player,
+      AreaCircular vision = null,
+      AreaCircular attackableArea = null)
       : base(npc, animator, navMeshAgent, player, vision, attackableArea) {
       name = Name.Patrol;
       navMeshAgent.speed = 2;

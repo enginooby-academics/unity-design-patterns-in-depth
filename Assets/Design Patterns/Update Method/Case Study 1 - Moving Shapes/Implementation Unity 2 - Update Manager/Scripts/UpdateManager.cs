@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Enginooby.Utils;
 using UnityEngine;
 
 namespace UpdateMethodPattern.Case1.Unity2 {
@@ -6,7 +7,7 @@ namespace UpdateMethodPattern.Case1.Unity2 {
   // This idea is based on code from the book "Unity 2017 Game Optimization"
   // This class will run all our custom update methods in Unity's own Update method, which will make it easier to pause the game
   public class UpdateManager : MonoBehaviourSingleton<UpdateManager> {
-    private readonly List<IUpdatable> _updatables = new List<IUpdatable>();
+    private readonly List<IUpdatable> _updatables = new();
     private bool _isPaused;
 
     // This should be the game's only MonoBehaviour Update method

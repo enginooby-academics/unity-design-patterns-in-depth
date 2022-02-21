@@ -1,5 +1,7 @@
 using System;
 using UnityEngine;
+using Enginooby.Utils;
+
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
@@ -8,17 +10,18 @@ using Enginooby.Attribute;
 
 #if ASSET_ALINE
 using Drawing;
+using Draw = Drawing.Draw;
 #endif
 
 // TODO: Exclusive area
 namespace CompositePattern.Case1.Base {
-  [Serializable]
-  [InlineProperty]
   /// <summary>
   /// The 'Leaf' class.
   /// * Define area from axes (results in line/face/box).
   /// * Basically a Vector3Range with position origins.
   /// </summary>
+  [Serializable]
+  [InlineProperty]
   public class AreaAxis : Area {
     [HideLabel] [SerializeField] [ToggleGroup(nameof(_isEnabled))]
     protected Vector3Range _box = new("Axes", new Vector2(-100, 100));

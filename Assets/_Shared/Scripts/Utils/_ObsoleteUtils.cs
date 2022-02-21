@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Enginooby.Utils;
 using UnityEngine;
 
 // TIP: To rename an API in the shared library
@@ -53,4 +54,8 @@ public static class _ObsoleteUtils {
 
   [Obsolete("Use " + nameof(TransformUtils.GetDistanceTo))]
   public static float DistanceFrom(this Transform transform, Vector3 pos) => transform.GetDistanceTo(pos);
+
+
+  [Obsolete("Use " + nameof(TypeUtils.CreateInstancesOf))]
+  public static IEnumerable<T> GetInstancesOf<T>() where T : class => TypeUtils.CreateInstancesOf<T>();
 }

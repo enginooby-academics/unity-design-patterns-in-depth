@@ -55,7 +55,7 @@ public static class TypeUtils {
     return GetConcreteTypesOf<T>().Select(type => type.AssemblyQualifiedName);
   }
 
-  public static IEnumerable<T> GetInstancesOf<T>() where T : class {
+  public static IEnumerable<T> CreateInstancesOf<T>() where T : class {
     return GetConcreteTypesOf<T>().Select(type => Activator.CreateInstance(type) as T);
 
     // var instances = new List<T>();

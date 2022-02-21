@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Enginooby.Utils;
 
 public static class EnumUtils {
   public static bool HasFlags(this Enum @enum, params Enum[] flags) => flags.All(@enum.HasFlag);

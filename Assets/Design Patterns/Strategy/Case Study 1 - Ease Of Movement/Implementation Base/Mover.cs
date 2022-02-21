@@ -27,7 +27,7 @@ namespace Strategy.Base {
     /// </summary>
     [Button]
     public void RetrieveMovementEases() {
-      _movementEases = TypeUtils.GetInstancesOf<IMovementEase>();
+      _movementEases = TypeUtils.CreateInstancesOf<IMovementEase>();
       _movementEase = _movementEases.ElementAt(0);
     }
 

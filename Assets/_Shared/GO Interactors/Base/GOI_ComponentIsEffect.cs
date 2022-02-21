@@ -1,6 +1,7 @@
 // * Effect is setup by the component itself.
 // * Prefab workflow. Interactor singleton need to be setup in scene.
 
+using Enginooby.Utils;
 using UnityEngine;
 
 public abstract partial class GOI_ComponentIsEffect<TSelf, TComponent> {
