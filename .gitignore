@@ -97,4 +97,6 @@ Thumbs.db
 !/Assets/_*/
 /Assets/_TerrainAutoUpgrade
 
+### PROJECT-SPECIFIC ###
 !/Assets/Design Patterns/
+!/Assets/Common Techniques/

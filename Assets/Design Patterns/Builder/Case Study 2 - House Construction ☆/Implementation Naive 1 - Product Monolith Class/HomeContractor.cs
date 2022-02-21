@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
 using Enginoobz.Attribute;
 #endif
@@ -16,9 +17,7 @@ namespace BuilderPattern.Case2.Naive1 {
 
     [SerializeField] [EnumToggleButtons] private House.Type _houseType;
 
-    public void Construct() {
-      StartCoroutine(ConstructCoroutine());
-    }
+    public void Construct() => StartCoroutine(ConstructCoroutine());
 
     private Coroutine StartCoroutine(IEnumerator routine) => Worker.Instance.StartCoroutine(routine);
 
