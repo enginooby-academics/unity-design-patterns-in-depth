@@ -2,15 +2,15 @@ using System;
 using System.Collections.Generic;
 
 namespace AbstractDocumentPattern.Case2.Base1 {
-  public interface IDocument {
-    void Put(string key, object value);
+  /// <summary>
+  /// The document base interface <br/>
+  /// Represent a property in the document class.
+  /// </summary>
+  public interface IDocument<TKey> {
+    void Put(TKey key, object value);
 
-    void Put(IFormattable key, object value);
+    object Get(TKey key);
 
-    object Get(string key);
-
-    object Get(IFormattable key);
-
-    IEnumerable<T> Children<T>(string key, Func<KeyValuePair<string, object>, T> constructor);
+    IEnumerable<T> Children<T>(TKey key, Func<KeyValuePair<TKey, object>, T> constructor);
   }
 }
