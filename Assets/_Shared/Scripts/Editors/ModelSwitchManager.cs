@@ -14,16 +14,13 @@ using Enginoobz.Attribute;
 public class ModelSwitchManager : MonoBehaviour {
   [Range(0, 2)] [SerializeField] private int globalActiveModelIndex;
 
-  [InlineEditor] [Space] [SerializeField]
-  private List<ModelSwitchEditor> prefabs;
+  [Space] [SerializeField] private List<ModelSwitchEditor> prefabs;
 
   // Start is called before the first frame update
-  private void Start() {
-  }
+  private void Start() { }
 
   // Update is called once per frame
-  private void Update() {
-  }
+  private void Update() { }
 
   private void OnValidate() {
     foreach (var prefab in prefabs) prefab.SetActiveModelIndex(globalActiveModelIndex);

@@ -7,7 +7,5 @@ public class ColliderOperator : ComponentOperator<Collider> {
     if (!gameObject.TryGetComponent(out _component)) _component = gameObject.AddComponent<MeshCollider>();
   }
 
-  public void DisableCollider() {
-    _component.enabled = false;
-  }
+  public void DisableCollider() => _component.enabled = false;
 }

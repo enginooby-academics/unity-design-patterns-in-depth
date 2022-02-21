@@ -11,14 +11,12 @@ public abstract class ComponentOperator<T> : MonoBehaviourBase where T : Compone
   //  Reset();
   // }
 
+  // ! ??= operator does not work
   protected virtual void Reset() {
-    // ! ??= operator does not work
     if (!_component) _component = gameObject.TryAddComponent<T>();
   }
 }
 
 public abstract class MonoBehaviourOperator<T> : ComponentOperator<T> where T : MonoBehaviour {
-  public void DisableComponent() {
-    _component.enabled = false;
-  }
+  public void DisableComponent() => _component.enabled = false;
 }

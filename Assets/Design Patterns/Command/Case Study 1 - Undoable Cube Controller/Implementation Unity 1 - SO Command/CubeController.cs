@@ -16,7 +16,7 @@ namespace CommandPattern.Case1.Unity1 {
   public class CubeController : MonoBehaviour {
     [SerializeField] private Cube _cube;
 
-    [SerializeField] [InlineEditor] private CommandRegistry _commandRegister;
+    [SerializeField] private CommandRegistry _commandRegister;
 
     private readonly List<MoveCommand> _commandHistory = new(); // ! can use Stack
 

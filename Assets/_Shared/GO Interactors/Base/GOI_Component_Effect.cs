@@ -13,10 +13,9 @@ public abstract partial class GOI<TSelf, TComponent, TEffect> {
   [ValueDropdown(nameof(_effectPrefabs))] [SerializeField]
   protected TEffect _currentEffect;
 
-  [SerializeField] [InlineEditor] protected List<TEffect> _effectPrefabs;
+  [SerializeField] protected List<TEffect> _effectPrefabs;
 
-  protected new Dictionary<GameObject, GOIStruct<TComponent, TEffect>> _interactedGos =
-    new Dictionary<GameObject, GOIStruct<TComponent, TEffect>>();
+  protected new Dictionary<GameObject, GOIStruct<TComponent, TEffect>> _interactedGos = new();
 
   public TEffect CurrentEffect => _currentEffect;
   public override List<GameObject> InteractedGos => _interactedGos.Keys.ToList();

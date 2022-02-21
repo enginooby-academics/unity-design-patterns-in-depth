@@ -3,13 +3,14 @@ using System.Linq;
 using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
 using Enginoobz.Attribute;
 #endif
 
 namespace IteratorPattern.Case1.Base {
   public class IterablePathList : MonoBehaviour, IIterable<Waypoint> {
-    [SerializeField] [InlineEditor] private List<Waypoint> _waypoints = new List<Waypoint>();
+    [SerializeField] private List<Waypoint> _waypoints = new();
 
     // ? Alternative: implement indexer and pass this iterable to iterator's constructor
     // IMPL: multiple iterator strategies

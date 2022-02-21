@@ -23,7 +23,7 @@ public class StatUI {
   public enum UIType {
     Text,
     Icon,
-    Slider
+    Slider,
   }
 
   public const float LABEL_WIDTH = 45f;
@@ -63,7 +63,7 @@ public class StatUI {
 
   #region TEXT ===================================================================================================================================
 
-  [BoxGroup("$statName")] [LabelWidth(LABEL_WIDTH)] [ShowIf(nameof(uiType), UIType.Text)] [InlineEditor] [HideLabel]
+  [BoxGroup("$statName")] [LabelWidth(LABEL_WIDTH)] [ShowIf(nameof(uiType), UIType.Text)] [HideLabel]
   // FIX: label text not serialized if label is an instance prefab or child of an instance prefab
   public TextMeshProUGUI label;
 

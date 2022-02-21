@@ -20,9 +20,9 @@ namespace CommandPattern.Case1.Base1 {
   ///   * The 'Invoker' class
   /// </summary>
   public class CubeController : MonoBehaviour {
-    [InlineEditor] [SerializeField] private Cube _cube;
+    [SerializeField] private Cube _cube;
 
-    private readonly List<MoveCommand> _commandHistory = new List<MoveCommand>(); // ! can use Stack
+    private readonly List<MoveCommand> _commandHistory = new(); // ! can use Stack
 
 
     private void Start() => CommandRegistry.Instance.SetReceiver(_cube);

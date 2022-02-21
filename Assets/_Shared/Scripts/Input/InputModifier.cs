@@ -124,7 +124,6 @@ public class InputModifier {
   private float InputValueAxis {
     get {
       if (!modifierKey.IsHeld()) return 0;
-
       if (inputAxis == InputAxis.Horizontal) return HorizontalInput;
       if (inputAxis == InputAxis.Vertical) return VerticalInput;
       return 0;

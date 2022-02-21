@@ -22,11 +22,7 @@ public class ReferenceVariable<T> where T : IEquatable<T> {
   [ShowIf(nameof(_useConstant), Animate = false)] [HorizontalGroup("Reference")] [SerializeField] [HideLabel]
   private T _constantValue;
 
-  [HideIf(nameof(_useConstant), Animate = false)]
-  [HorizontalGroup("Reference")]
-  [InlineEditor]
-  [SerializeField]
-  [HideLabel]
+  [HideIf(nameof(_useConstant), Animate = false)] [HorizontalGroup("Reference")] [SerializeField] [HideLabel]
   // [Required] // ! Causes editor error
   // ! Drawback with generics: editor doesn't display specific type and cannot search for asset
   // Solution: create ReferenceInt class w/ ReferenceIntSO field.
@@ -34,9 +30,9 @@ public class ReferenceVariable<T> where T : IEquatable<T> {
 
 
 #if ODIN_INSPECTOR
-  private ValueDropdownList<bool> valueList = new ValueDropdownList<bool> {
+  private ValueDropdownList<bool> valueList = new() {
     {"Value", true},
-    {"Reference", false}
+    {"Reference", false},
   };
 #else
   private int valueList;

@@ -94,6 +94,7 @@ public static class MovementUtils {
     transform.RotateZ(angles.z);
   }
 
+  // TODO: Remove movement methods from MonoBehaviour (feature envy)
   ///<summary>Rotates the object around the Y axis by the number of degrees defined by the given angle.</summary>
   public static void RotateY(this MonoBehaviour monoBehaviour, float angle) {
     monoBehaviour.transform.Rotate(v010, angle * Time.deltaTime);
@@ -133,7 +134,10 @@ public static class MovementUtils {
   }
 
   // FIX: does not move
-  public static void MoveTowardsByRigidBody(this MonoBehaviour monoBehaviour, Vector3 dest, float offset = 0f,
+  public static void MoveTowardsByRigidBody(
+    this MonoBehaviour monoBehaviour,
+    Vector3 dest,
+    float offset = 0f,
     float speed = 1f) {
     if (!(Vector3.Distance(monoBehaviour.transform.position, dest) > offset)) return;
 

@@ -15,10 +15,10 @@ public class GOIController : MonoBehaviourSingleton<GOIController> {
   [PropertyOrder(-1)] [SerializeField] [ShowIf(nameof(_isGeneral))] [OnValueChanged(nameof(GetInteractorByType))]
   private ReferenceConcreteType<GOI> _interactorType;
 
-  [PropertyOrder(-1)] [SerializeField] [InlineEditor] [ShowIf(nameof(_isGeneral))]
+  [PropertyOrder(-1)] [SerializeField] [ShowIf(nameof(_isGeneral))]
   protected GOI _interactor;
 
-  [SerializeField] [InlineEditor] private Selector _selector;
+  [SerializeField] private Selector _selector;
 
   [SerializeField] private GOIControlKeyPreset _keyPreset;
 
@@ -104,7 +104,7 @@ public class GOIController : MonoBehaviourSingleton<GOIController> {
 public abstract class GOIController<TSelf, TInteractor> : GOIController
   where TSelf : GOIController<TSelf, TInteractor>
   where TInteractor : GOI<TInteractor> {
-  [PropertyOrder(-1)] [SerializeField] [InlineEditor] [LabelText("Interactor")]
+  [PropertyOrder(-1)] [SerializeField] [LabelText("Interactor")]
   private TInteractor _tInteractor;
 
   protected override bool DoesInstanceExist => _instance && _instance.GetType() == typeof(TSelf);

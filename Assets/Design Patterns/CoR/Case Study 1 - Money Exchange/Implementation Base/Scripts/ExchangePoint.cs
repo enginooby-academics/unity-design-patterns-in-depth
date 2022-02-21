@@ -1,6 +1,7 @@
 using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
 using Enginoobz.Attribute;
 #endif
@@ -10,7 +11,7 @@ namespace CoRPattern.Case1.Base {
     [SerializeField] [Min(1)] private int _currency;
     [SerializeField] private ExchangePoint _nextPoint; // TODO: Draw line to next point
 
-    [InlineEditor] [SerializeField] private GameObject _currencyPrefab;
+    [SerializeField] private GameObject _currencyPrefab;
 
     [Button]
     public void Exchange(GameObject moneyBag, int amount) {

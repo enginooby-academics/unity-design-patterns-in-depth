@@ -8,9 +8,9 @@ using Enginoobz.Attribute;
 
 namespace TemplateMethodPattern.Case1.Base {
   public class Player : MonoBehaviour {
-    [SerializeField] [HideLabel] private Stat _healthStat = new Stat(StatName.Health, 5);
-    [SerializeField] [HideLabel] private Stat _coinStat = new Stat(StatName.Coin);
-    [SerializeField] [HideLabel] private Stat _speedStat = new Stat(StatName.Speed, 10);
+    [SerializeField] [HideLabel] private Stat _healthStat = new(StatName.Health, 5);
+    [SerializeField] [HideLabel] private Stat _coinStat = new(StatName.Coin);
+    [SerializeField] [HideLabel] private Stat _speedStat = new(StatName.Speed, 10);
 
     private TransformOperator _mover;
 
@@ -20,7 +20,10 @@ namespace TemplateMethodPattern.Case1.Base {
 
     private void OnDisable() => _speedStat.OnStatChangeEvent -= UpdateSpeed;
 
-    private void UpdateSpeed() => _mover.TranslationalSpeed = _speedStat.CurrentValue * new Vector3(1, 0, 1);
+    private void UpdateSpeed() => print("UpdateSpeed");
+
+    // FIX
+    // private void UpdateSpeed() => _mover.TranslationalSpeed = _speedStat.CurrentValue * new Vector3(1, 0, 1);
 
     public void AddHealth(int amount) => _healthStat.Add(amount);
 

@@ -1,13 +1,14 @@
 using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
 using Enginoobz.Attribute;
 #endif
 
 namespace Flyweight.Unity.PrefabAndScriptableObject {
   public class Boid : Flyweight.Boid {
-    [SerializeField] [InlineEditor] private BoidCommonData _boidData;
+    [SerializeField] private BoidCommonData _boidData;
 
     protected override void DisplayInfo() {
       base.DisplayInfo();

@@ -1,13 +1,14 @@
 using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
 using Enginoobz.Attribute;
 #endif
 
 namespace VisitorPattern.Case1.Naive1 {
   public class ClientCalculator : MonoBehaviour {
-    [SerializeField] [InlineEditor] private ProceduralShape _currentShape;
+    [SerializeField] private ProceduralShape _currentShape;
 
     [Button]
     public void CalculateVolumeOfCurrentShape() {

@@ -16,7 +16,7 @@ namespace AdapterPattern.Case1.Base1 {
     // + global color w/ randomize
     // + randomize all
 
-    [SerializeField] [InlineEditor] private List<ClientColorModifier> _modifiers = new List<ClientColorModifier>();
+    [SerializeField] private List<ClientColorModifier> _modifiers = new();
 
     [Button]
     public void RetrieveAllModifiers() {

@@ -5,7 +5,7 @@ using System;
 public enum MouseButton {
   Left,
   Right,
-  Middle
+  Middle,
 }
 
 // * Use (EnumFlag)1 as None value, e.g., (ModifierKey)1
@@ -59,14 +59,14 @@ public enum ModifierKey {
   /// <summary>
   ///   Middle mouse button.
   /// </summary>
-  Mmb = 1 << 10
+  Mmb = 1 << 10,
 }
 
 
 public enum Axis {
   X,
   Y,
-  Z
+  Z,
 }
 
 // TIP: Add Flag suffix for enum flags.
@@ -75,7 +75,7 @@ public enum AxisFlag {
   X = 1 << 1, // 1
   Y = 1 << 2, // 2
   Z = 1 << 3, // 4
-  All = X | Y | Z
+  All = X | Y | Z,
 }
 
 [Flags]
@@ -86,7 +86,7 @@ public enum TriggerEventType {
   OnTriggerEnter = 1 << 3,
   OnTriggerExit = 1 << 4,
   OnDestroy = 1 << 5,
-  OnDisable = 1 << 6
+  OnDisable = 1 << 6,
 }
 
 /* Command constants used for Quantum Console utility */

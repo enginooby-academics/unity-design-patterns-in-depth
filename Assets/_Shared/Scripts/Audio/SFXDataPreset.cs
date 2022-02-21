@@ -16,7 +16,7 @@ namespace Enginooby.Audio {
   /// Centralization for all SFXData.
   /// </summary>
   public class SFXDataPreset : ScriptableObject {
-    [SerializeField] [InlineEditor] private List<SFXData> _sfxDatas = new List<SFXData>();
+    [SerializeField] private List<SFXData> _sfxDatas = new();
 
     public void PlayRandom(AudioSource audioSource, SFXTarget sfxTarget, SFXAction sfxAction) {
       var sfxData = _sfxDatas.Find(sfxData => sfxData.Target == sfxTarget && sfxData.Action == sfxAction)

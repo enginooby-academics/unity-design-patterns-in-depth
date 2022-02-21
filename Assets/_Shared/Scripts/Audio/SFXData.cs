@@ -36,14 +36,14 @@ namespace Enginooby.Audio {
     [LabelText("Global Pitch")]
     private Vector2 _globalPitchRange = Vector2.one;
 
-    [SerializeField] [HideLabel] private List<AudioClipWrapper> _audioClipWrappers = new List<AudioClipWrapper>();
+    [SerializeField] [HideLabel] private List<AudioClipWrapper> _audioClipWrappers = new();
 
     private AudioClipWrapper _lastClipWrapper;
 
     private AudioSource _previewAudioSource;
 
     // [SerializeField]
-    // [InlineEditor]
+    // 
     // [HideInInspector]
     // private List<AudioClip> _clips = new List<AudioClip>();
 

@@ -157,8 +157,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifespan: 0
-  _component: {fileID: 0}
-  _enableScaling: 0
+  _component: {fileID: 146765018}
+  _translater:
+    GameObject: {fileID: 0}
+    _enableTranslating: 1
+    _translationalSpeed: {x: 0.9, y: 0, z: 0}
+    _translationalMinPos: {x: 0, y: 0, z: 0}
+    _translationalMaxPos: {x: 0, y: 0, z: 0}
+    _translationalOnBoundaryAction: 3
+    _translationalAcceleration: {x: 0, y: 0, z: 0}
+    _translatingMode: 0
+    _xTranslateKey:
+      inputType: 1
+      inputTypeName: A
+      keyCode: 0
+      keyTriggerEvent: 4
+      inputAxis: 0
+      modifierKey: 1
+    _yTranslateKey:
+      inputType: 1
+      inputTypeName: A
+      keyCode: 0
+      keyTriggerEvent: 4
+      inputAxis: 0
+      modifierKey: 1
+    _zTranslateKey:
+      inputType: 1
+      inputTypeName: A
+      keyCode: 0
+      keyTriggerEvent: 4
+      inputAxis: 1
+      modifierKey: 1
   _enableLookAt: 0
   _lookAtTarget:
     GameObject: {fileID: 0}
@@ -166,37 +195,9 @@ MonoBehaviour:
     _tag: Player
     _name: Player
     _type: 
-    findMethod: 1
-  _enableTranslating: 0
-  _translationalSpeed: {x: 0, y: 0, z: 0}
-  _translationalMinPos: {x: 0, y: 0, z: 0}
-  _translationalMaxPos: {x: 0, y: 0, z: 0}
-  _translationalOnBoundaryAction: 3
-  _translationalAcceleration: {x: 0, y: 0, z: 0}
-  _translatingMode: 0
-  _xTranslateKey:
-    inputType: 1
-    inputTypeName: A
-    keyCode: 0
-    keyTriggerEvent: 4
-    inputAxis: 0
-    modifierKey: 1
-  _yTranslateKey:
-    inputType: 1
-    inputTypeName: A
-    keyCode: 0
-    keyTriggerEvent: 4
-    inputAxis: 0
-    modifierKey: 1
-  _zTranslateKey:
-    inputType: 1
-    inputTypeName: A
-    keyCode: 0
-    keyTriggerEvent: 4
-    inputAxis: 1
-    modifierKey: 1
-  _enableRotating: 1
-  _rotationalSpeed: {x: 50, y: 50, z: 50}
+    findMethod: 0
+  _enableRotating: 0
+  _rotationalSpeed: {x: 0, y: 0, z: 0}
   _rotationalAcceleration: {x: 0, y: 0, z: 0}
   _rotationPivot: {fileID: 0}
   _rotationMode: 0
@@ -221,6 +222,7 @@ MonoBehaviour:
     keyTriggerEvent: 4
     inputAxis: 0
     modifierKey: 1
+  _enableScaling: 0
 --- !u!114 &146765014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -655,8 +657,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifespan: 0
-  _component: {fileID: 0}
-  _enableScaling: 0
+  _component: {fileID: 669239027}
+  _translater:
+    GameObject: {fileID: 0}
+    _enableTranslating: 1
+    _translationalSpeed: {x: 0, y: 0, z: 0}
+    _translationalMinPos: {x: 0, y: 0, z: 0}
+    _translationalMaxPos: {x: 0, y: 0, z: 0}
+    _translationalOnBoundaryAction: 3
+    _translationalAcceleration: {x: 0, y: 0, z: 0}
+    _translatingMode: 0
+    _xTranslateKey:
+      inputType: 1
+      inputTypeName: A
+      keyCode: 0
+      keyTriggerEvent: 4
+      inputAxis: 0
+      modifierKey: 1
+    _yTranslateKey:
+      inputType: 1
+      inputTypeName: A
+      keyCode: 0
+      keyTriggerEvent: 4
+      inputAxis: 0
+      modifierKey: 1
+    _zTranslateKey:
+      inputType: 1
+      inputTypeName: A
+      keyCode: 0
+      keyTriggerEvent: 4
+      inputAxis: 1
+      modifierKey: 1
   _enableLookAt: 0
   _lookAtTarget:
     GameObject: {fileID: 0}
@@ -665,36 +696,8 @@ MonoBehaviour:
     _name: Player
     _type: 
     findMethod: 0
-  _enableTranslating: 0
-  _translationalSpeed: {x: 0, y: 0, z: 0}
-  _translationalMinPos: {x: 0, y: 0, z: 0}
-  _translationalMaxPos: {x: 0, y: 0, z: 0}
-  _translationalOnBoundaryAction: 3
-  _translationalAcceleration: {x: 0, y: 0, z: 0}
-  _translatingMode: 0
-  _xTranslateKey:
-    inputType: 1
-    inputTypeName: A
-    keyCode: 0
-    keyTriggerEvent: 4
-    inputAxis: 0
-    modifierKey: 1
-  _yTranslateKey:
-    inputType: 1
-    inputTypeName: A
-    keyCode: 0
-    keyTriggerEvent: 4
-    inputAxis: 0
-    modifierKey: 1
-  _zTranslateKey:
-    inputType: 1
-    inputTypeName: A
-    keyCode: 0
-    keyTriggerEvent: 4
-    inputAxis: 1
-    modifierKey: 1
-  _enableRotating: 1
-  _rotationalSpeed: {x: 50, y: 50, z: 50}
+  _enableRotating: 0
+  _rotationalSpeed: {x: 0, y: 0, z: 0}
   _rotationalAcceleration: {x: 0, y: 0, z: 0}
   _rotationPivot: {fileID: 0}
   _rotationMode: 0
@@ -719,6 +722,7 @@ MonoBehaviour:
     keyTriggerEvent: 4
     inputAxis: 0
     modifierKey: 1
+  _enableScaling: 0
 --- !u!114 &669239029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1184,8 +1188,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifespan: 0
-  _component: {fileID: 0}
-  _enableScaling: 0
+  _component: {fileID: 1825015109}
+  _translater:
+    GameObject: {fileID: 0}
+    _enableTranslating: 1
+    _translationalSpeed: {x: 0, y: 0, z: 0}
+    _translationalMinPos: {x: 0, y: 0, z: 0}
+    _translationalMaxPos: {x: 0, y: 0, z: 0}
+    _translationalOnBoundaryAction: 3
+    _translationalAcceleration: {x: 0, y: 0, z: 0}
+    _translatingMode: 0
+    _xTranslateKey:
+      inputType: 1
+      inputTypeName: A
+      keyCode: 0
+      keyTriggerEvent: 4
+      inputAxis: 0
+      modifierKey: 1
+    _yTranslateKey:
+      inputType: 1
+      inputTypeName: A
+      keyCode: 0
+      keyTriggerEvent: 4
+      inputAxis: 0
+      modifierKey: 1
+    _zTranslateKey:
+      inputType: 1
+      inputTypeName: A
+      keyCode: 0
+      keyTriggerEvent: 4
+      inputAxis: 1
+      modifierKey: 1
   _enableLookAt: 0
   _lookAtTarget:
     GameObject: {fileID: 0}
@@ -1194,36 +1227,8 @@ MonoBehaviour:
     _name: Player
     _type: 
     findMethod: 0
-  _enableTranslating: 0
-  _translationalSpeed: {x: 0, y: 0, z: 0}
-  _translationalMinPos: {x: 0, y: 0, z: 0}
-  _translationalMaxPos: {x: 0, y: 0, z: 0}
-  _translationalOnBoundaryAction: 3
-  _translationalAcceleration: {x: 0, y: 0, z: 0}
-  _translatingMode: 0
-  _xTranslateKey:
-    inputType: 1
-    inputTypeName: A
-    keyCode: 0
-    keyTriggerEvent: 4
-    inputAxis: 0
-    modifierKey: 1
-  _yTranslateKey:
-    inputType: 1
-    inputTypeName: A
-    keyCode: 0
-    keyTriggerEvent: 4
-    inputAxis: 0
-    modifierKey: 1
-  _zTranslateKey:
-    inputType: 1
-    inputTypeName: A
-    keyCode: 0
-    keyTriggerEvent: 4
-    inputAxis: 1
-    modifierKey: 1
-  _enableRotating: 1
-  _rotationalSpeed: {x: 50, y: 50, z: 50}
+  _enableRotating: 0
+  _rotationalSpeed: {x: 0, y: 0, z: 0}
   _rotationalAcceleration: {x: 0, y: 0, z: 0}
   _rotationPivot: {fileID: 0}
   _rotationMode: 0
@@ -1248,6 +1253,7 @@ MonoBehaviour:
     keyTriggerEvent: 4
     inputAxis: 0
     modifierKey: 1
+  _enableScaling: 0
 --- !u!114 &1825015105
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -91,8 +91,8 @@ public static class CacheStaticUtils {
   ///   [CacheStaticUtils] Require static TransformOperator component.
   /// </summary>
   public static void InvertTranslationalDirection(this GameObject go) {
-    void PerformAction(Object component) => (component as TransformOperator)?.InvertTranslationalDirection();
-    ProcessActionWithCaching(go, PerformAction, typeof(TransformOperator));
+    // void PerformAction(Object component) => (component as TransformOperator)?.InvertTranslationalDirection();
+    // ProcessActionWithCaching(go, PerformAction, typeof(TransformOperator));
   }
 
   #region INTERNAL METHODS

@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
 using Enginoobz.Attribute;
 #endif
@@ -15,7 +16,7 @@ namespace BuilderPattern.Case2.Unity2 {
     [SerializeField] [Range(50f, 300f)] [SuffixLabel("%")]
     private float _speed = 200f;
 
-    [SerializeField] [InlineEditor] private HouseData _houseData;
+    [SerializeField] private HouseData _houseData;
 
     [SerializeField] private string _houseName = "House";
 

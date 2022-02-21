@@ -7,7 +7,7 @@ using Enginoobz.Attribute;
 #endif
 
 public class TransformProfileOperator : ComponentOperator<Transform> {
-  [SerializeField] [InlineEditor] private TransformProfile _transformProfile;
+  [SerializeField] private TransformProfile _transformProfile;
 
   private void Start() {
     _transformProfile?.InitTranslation(transform);

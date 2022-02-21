@@ -3,6 +3,7 @@ using System.Linq;
 using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
 using Enginoobz.Attribute;
 using Enginoobz.Core;
@@ -11,7 +12,7 @@ using Enginoobz.Core;
 namespace IteratorPattern.Case1.Base {
   // TIP: Extend OdinInspector.SerializedMonoBehaviour to serialize queue/stack...
   public class IterablePathQueue : SerializedMonoBehaviour, IIterable<Waypoint> {
-    [SerializeField] [InlineEditor] private Queue<Waypoint> _waypoints = new Queue<Waypoint>();
+    [SerializeField] private Queue<Waypoint> _waypoints = new();
 
     public IIterator<Waypoint> GetIterator() => new IteratorFilterSizeMin(_waypoints.ToList());
 

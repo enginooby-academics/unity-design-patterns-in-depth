@@ -13,9 +13,9 @@ using DG.Tweening;
 namespace IteratorPattern.Case1.Base {
   public class Traveller : SerializedMonoBehaviour {
     [SerializeField] [OnValueChanged(nameof(CreateIterator))]
-    private IIterableContainer<Waypoint> _path = new IIterableContainer<Waypoint>();
+    private IIterableContainer<Waypoint> _path = new();
 
-    [SerializeField] [InlineEditor] [SerializeReference]
+    [SerializeField] [SerializeReference]
     private IIterator<Waypoint> _iterator; // ! not serialized, has to init in Start()
 
     private void Start() {
