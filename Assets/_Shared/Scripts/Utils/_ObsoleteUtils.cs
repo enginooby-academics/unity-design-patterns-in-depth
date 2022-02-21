@@ -8,6 +8,12 @@ using UnityEngine;
 // 3. Use Obsolete attribute on the old API to safely rename methods used in multiple projects
 // 3. Delete obsoleted method when all consumer projects update the renamed method
 public static class _ObsoleteUtils {
+  [Obsolete("Use " + nameof(InputUtils.HorizontalInput))]
+  public static float horizontalInput => Input.GetAxis("Horizontal");
+
+  [Obsolete("Use " + nameof(InputUtils.VerticalInput))]
+  public static float verticalInput => Input.GetAxis("Vertical");
+
   [Obsolete("Use " + nameof(CollectionUtils.HasIndex) + "")]
   public static bool ValidateIndex<T>(this IEnumerable<T> list, int index) => list.HasIndex(index);
 
@@ -47,10 +53,4 @@ public static class _ObsoleteUtils {
 
   [Obsolete("Use " + nameof(TransformUtils.GetDistanceTo))]
   public static float DistanceFrom(this Transform transform, Vector3 pos) => transform.GetDistanceTo(pos);
-
-  [Obsolete("Use " + nameof(InputUtils.HorizontalInput))]
-  public static float horizontalInput => Input.GetAxis("Horizontal");
-
-  [Obsolete("Use " + nameof(InputUtils.VerticalInput))]
-  public static float verticalInput => Input.GetAxis("Vertical");
 }

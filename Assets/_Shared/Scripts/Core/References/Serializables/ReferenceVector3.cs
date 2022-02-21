@@ -4,7 +4,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 // ? Rename to ReferencePosition - wrapper for: gameObject.position, Vector3, Vector3 SO
@@ -22,8 +22,7 @@ public class ReferenceVector3 : Reference {
   [HorizontalGroup("Vector 3")] [SerializeField] [HideLabel] [EnableIf(nameof(_useStaticVector3))]
   private Vector3 _value;
 
-  public ReferenceVector3() {
-  }
+  public ReferenceVector3() { }
 
   public ReferenceVector3(Vector3 value) {
     SetStaticValue(value);

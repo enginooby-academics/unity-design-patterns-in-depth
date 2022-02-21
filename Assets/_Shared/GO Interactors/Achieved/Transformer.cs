@@ -12,8 +12,7 @@ public class Transformer : MonoBehaviour {
     selector = FindObjectOfType<Selector>();
   }
 
-  private void Update() {
-  }
+  private void Update() { }
 
   // TODO: Process dest so that player do not collide w/ target
   public void MovePlayerTowards(GameObject target) {

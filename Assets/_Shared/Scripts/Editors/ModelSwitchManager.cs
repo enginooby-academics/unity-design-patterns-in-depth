@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 #if ODIN_INSPECTOR
-using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 #if UNITY_EDITOR

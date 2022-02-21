@@ -4,7 +4,7 @@ using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 #if ASSET_ALINE
@@ -28,8 +28,7 @@ namespace CompositePattern.Case1.Base {
     [SerializeField] [ToggleGroup(nameof(_isEnabled))] [BoxGroup(nameof(_isEnabled) + "/Circular")]
     private float _angle = 360f;
 
-    public AreaCircular() {
-    }
+    public AreaCircular() { }
 
     public AreaCircular(Vector3 staticOrigin, float radius = 10f, float angle = 360f) : base(staticOrigin) {
       _radius = radius;

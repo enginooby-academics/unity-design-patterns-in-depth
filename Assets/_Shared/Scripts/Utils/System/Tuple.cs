@@ -2,7 +2,7 @@
 
 namespace Enginooby.Utils {
   /// <summary>
-  /// Helper to create instance of generic tuple types.
+  ///   Helper to create instance of generic tuple types.
   /// </summary>
   public static class Tuple {
     public static Tuple<T1> Create<T1>(T1 item1) => new(item1);

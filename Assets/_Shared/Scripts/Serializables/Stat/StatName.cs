@@ -36,5 +36,5 @@ public enum StatName {
   /// </summary>
   [StringValue(nameof(Strength))] Strength,
 
-  [StringValue(nameof(Speed))] Speed
+  [StringValue(nameof(Speed))] Speed,
 }

@@ -1,7 +1,7 @@
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 using System;
@@ -18,11 +18,11 @@ namespace GOConstruction.Scripting {
     [OnValueChanged(nameof(UpdateCurrentQualifiedName))]
     private string _currentTypeName;
 
-    private IEnumerable<string> _typeNames;
+    [SerializeField] [HideInInspector] private string _currentQualifiedName;
 
     private IEnumerable<string> _qualifiedNames;
 
-    [SerializeField] [HideInInspector] private string _currentQualifiedName;
+    private IEnumerable<string> _typeNames;
 
     // ! guard case: current type is removed
     public Type CurrentShapeType => Type.GetType(_currentQualifiedName) ?? GetAndSetFirstType();

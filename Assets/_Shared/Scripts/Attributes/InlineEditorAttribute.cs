@@ -3,7 +3,7 @@ using Sirenix.OdinInspector;
 namespace Enginooby.Attribute {
 #if ODIN_INSPECTOR
   /// <summary>
-  /// Unity 2021.2 already has built-in dropdown for serialized component.
+  ///   Unity 2021.2 already has built-in dropdown for serialized component.
   /// </summary>
   [IncludeMyAttributes]
   [Sirenix.OdinInspector.InlineEditor]

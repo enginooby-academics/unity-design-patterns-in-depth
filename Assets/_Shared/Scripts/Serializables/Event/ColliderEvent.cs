@@ -7,7 +7,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 namespace Enginooby {
@@ -17,7 +17,7 @@ namespace Enginooby {
     [PropertyOrder(-1)] public bool enableForAll;
 
     [DisableIf(nameof(enableForAll))] [PropertyOrder(-1)]
-    public List<Reference> targets = new List<Reference>();
+    public List<Reference> targets = new();
 
     public List<string> Tags {
       get {

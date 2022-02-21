@@ -1,15 +1,16 @@
 using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 namespace IteratorPattern.Case1.Base {
   public class Waypoint : MonoBehaviour {
     public enum Color {
       Green,
-      Red
+      Red,
     }
 
     [SerializeField] [OnValueChanged(nameof(UpdateColor))] [EnumToggleButtons]

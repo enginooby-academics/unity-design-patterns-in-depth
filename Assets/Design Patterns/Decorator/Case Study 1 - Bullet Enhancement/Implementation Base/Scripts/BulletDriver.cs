@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 namespace Decorator.Base {
@@ -14,9 +15,9 @@ namespace Decorator.Base {
   public class BulletDriver : MonoBehaviour {
     [SerializeField] [Min(0)] private int _fireDecorators;
 
-    [SerializeField] private List<ForceDecoratorConfig> _forceDecorators = new List<ForceDecoratorConfig>();
+    [SerializeField] private List<ForceDecoratorConfig> _forceDecorators = new();
 
-    [SerializeField] private List<SpeedDecoratorConfig> _speedDecorators = new List<SpeedDecoratorConfig>();
+    [SerializeField] private List<SpeedDecoratorConfig> _speedDecorators = new();
 
     private IBullet _bullet;
     private AttackTarget _target;

@@ -7,7 +7,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 [Serializable]
@@ -28,7 +28,7 @@ public class Area2DFuncPoint : AreaPoint {
   [OnValueChanged(nameof(UpdatePoints))] [ShowInInspector] [DisplayAsString]
   private string formula;
 
-  private StringBuilder formulaBuilder = new StringBuilder();
+  private StringBuilder formulaBuilder = new();
 
   public override void UpdatePoints() {
     base.UpdatePoints();

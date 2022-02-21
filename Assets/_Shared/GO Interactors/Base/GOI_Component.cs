@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 
 public abstract partial class GOI<TSelf, TComponent> {
-  protected new Dictionary<GameObject, TComponent> _interactedGos = new Dictionary<GameObject, TComponent>();
+  protected new Dictionary<GameObject, TComponent> _interactedGos = new();
   public override List<GameObject> InteractedGos => _interactedGos.Keys.ToList();
 
   protected override void ClearInteractedGos() {
@@ -16,6 +16,5 @@ public abstract partial class GOI<TSelf, TComponent> {
 
   protected virtual bool GetComponentActive(TComponent component) => component.enabled;
 
-  protected virtual void OnComponentAdded(GameObject go, TComponent component) {
-  }
+  protected virtual void OnComponentAdded(GameObject go, TComponent component) { }
 }

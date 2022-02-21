@@ -1,7 +1,7 @@
 #if ODIN_INSPECTOR
 using Sirenix.Serialization;
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 using Shared = ObserverPattern.Case2;

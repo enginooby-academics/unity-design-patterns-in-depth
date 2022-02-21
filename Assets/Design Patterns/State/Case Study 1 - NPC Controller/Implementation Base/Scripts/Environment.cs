@@ -5,14 +5,14 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 namespace StatePattern.Base {
   public class Environment : MonoBehaviourSingleton<Environment> {
     [SerializeField] private string checkpointTag = "Checkpoint";
 
-    private List<GameObject> _checkpoints = new List<GameObject>();
+    private List<GameObject> _checkpoints = new();
 
     // TIP: use IReadOnlyList to prevent from invoking list.Clear() (for getter property, while its List private attribute still can)
     [ShowInInspector] public IReadOnlyList<GameObject> Checkpoints => _checkpoints;

@@ -4,13 +4,11 @@ using System;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-public abstract partial class GOI : MonoBehaviourSingleton<GOI> {
-}
+public abstract partial class GOI : MonoBehaviourSingleton<GOI> { }
 
 
 public abstract partial class GOI<TSelf> : GOI
-  where TSelf : GOI<TSelf> {
-}
+  where TSelf : GOI<TSelf> { }
 
 
 /// <summary>
@@ -19,8 +17,7 @@ public abstract partial class GOI<TSelf> : GOI
 public abstract partial class GOI<TSelf, TComponent>
   : GOI<TSelf>
   where TSelf : GOI<TSelf, TComponent>
-  where TComponent : MonoBehaviour {
-}
+  where TComponent : MonoBehaviour { }
 
 
 /// <summary>
@@ -29,8 +26,7 @@ public abstract partial class GOI<TSelf, TComponent>
 public abstract partial class GOI<TSelf, TComponent, TEffect>
   : GOI<TSelf, TComponent>
   where TSelf : GOI<TSelf, TComponent, TEffect>
-  where TComponent : MonoBehaviour {
-}
+  where TComponent : MonoBehaviour { }
 
 
 /// <summary>
@@ -43,8 +39,7 @@ public abstract partial class GOI<TSelf, TComponent, TEffect, TCache>
   where TSelf : GOI<TSelf, TComponent, TEffect, TCache>
   where TComponent : MonoBehaviour
   where TEffect : class // TODO: Generalize interacting effect config (enum/prefab/SO/struct)
-  where TCache : class {
-} // TODO: Generalize - GOInteractCache
+  where TCache : class { } // TODO: Generalize - GOInteractCache
 
 
 /// <summary>
@@ -54,23 +49,20 @@ public abstract partial class GOI<TSelf, TComponent, TEffect, TCache>
 public abstract partial class GOI_ComponentIsEffect<TSelf, TComponent>
   : GOI<TSelf, TComponent, TComponent>
   where TSelf : GOI_ComponentIsEffect<TSelf, TComponent>
-  where TComponent : MonoBehaviour {
-}
+  where TComponent : MonoBehaviour { }
 
 
 public abstract class GOI_ComponentIsEffect<TSelf, TComponent, TCache>
   : GOI<TSelf, TComponent, TComponent, TCache>
   where TSelf : GOI_ComponentIsEffect<TSelf, TComponent, TCache>
   where TComponent : MonoBehaviour
-  where TCache : class {
-}
+  where TCache : class { }
 
 
 public abstract partial class GOI_ComponentIsEffect_CacheEffect<TSelf, TComponent>
   : GOI_ComponentIsEffect<TSelf, TComponent>
   where TSelf : GOI_ComponentIsEffect_CacheEffect<TSelf, TComponent>
-  where TComponent : MonoBehaviour {
-}
+  where TComponent : MonoBehaviour { }
 
 
 /// <summary>
@@ -83,5 +75,4 @@ public abstract partial class GOI_EffectIsEnum<TSelf, TComponent, TEffectEnum, T
   where TSelf : GOI_EffectIsEnum<TSelf, TComponent, TEffectEnum, TCache>
   where TComponent : MonoBehaviour
   where TEffectEnum : Enum
-  where TCache : Object {
-}
+  where TCache : Object { }

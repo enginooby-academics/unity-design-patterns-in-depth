@@ -11,11 +11,8 @@ public static class ParticleUtils {
     return vfx;
   }
 
-  public static ParticleSystem WithColorOf(this ParticleSystem vfx, Material material) {
-    return vfx.WithColor(material.color);
-  }
+  public static ParticleSystem WithColorOf(this ParticleSystem vfx, Material material) => vfx.WithColor(material.color);
 
-  public static ParticleSystem WithColorOf(this ParticleSystem vfx, MeshRenderer meshRenderer) {
-    return vfx.WithColor(meshRenderer.material.color);
-  }
+  public static ParticleSystem WithColorOf(this ParticleSystem vfx, MeshRenderer meshRenderer) =>
+    vfx.WithColor(meshRenderer.material.color);
 }

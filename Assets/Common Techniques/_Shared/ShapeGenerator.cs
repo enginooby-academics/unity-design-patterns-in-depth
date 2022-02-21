@@ -1,8 +1,9 @@
 using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 namespace GOConstruction {
@@ -10,7 +11,7 @@ namespace GOConstruction {
     RotatingCube,
     ShakingCube,
     RotatingSphere,
-    ShakingSphere
+    ShakingSphere,
   }
 
   public abstract class ShapeGenerator : MonoBehaviour {

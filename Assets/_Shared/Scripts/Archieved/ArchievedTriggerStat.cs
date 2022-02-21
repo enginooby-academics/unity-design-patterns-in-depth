@@ -6,7 +6,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 public abstract class ArchievedTriggerStat<T> : ArchievedTrigger {

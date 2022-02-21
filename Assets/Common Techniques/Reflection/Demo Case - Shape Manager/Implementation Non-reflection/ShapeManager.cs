@@ -2,8 +2,9 @@ using System;
 using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 namespace Reflection.Case1.Naive {
@@ -12,7 +13,7 @@ namespace Reflection.Case1.Naive {
       Cube,
       Sphere,
       MonoBehaviourCube,
-      MonoBehaviourSphere
+      MonoBehaviourSphere,
     }
 
     [SerializeField] [EnumToggleButtons] private ShapeType _currentShapeType;
@@ -27,7 +28,7 @@ namespace Reflection.Case1.Naive {
         ShapeType.Sphere => new Sphere(),
         ShapeType.MonoBehaviourCube => CreateMonoBehaviourCube(),
         ShapeType.MonoBehaviourSphere => CreateMonoBehaviourCube(),
-        _ => throw new ArgumentOutOfRangeException()
+        _ => throw new ArgumentOutOfRangeException(),
       };
 
       print("Volume of the newly-created shape is: " + shape.GetVolume());

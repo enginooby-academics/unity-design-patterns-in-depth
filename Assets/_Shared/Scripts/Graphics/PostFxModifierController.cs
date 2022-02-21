@@ -4,7 +4,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 // using QFSW.QC;
@@ -13,54 +13,53 @@ namespace Enginooby.Graphics {
   public class PostFxModifierController : MonoBehaviour {
     // TODO: Separate all keys into SO
     // [SerializeField] private KeyCodeModifier modifierKey = new KeyCodeModifier(keyCode: KeyCode.LeftShift);
-    [SerializeField] private KeyCodeModifier randomizeKey = new KeyCodeModifier(KeyCode.LeftBracket);
-    [SerializeField] private KeyCodeModifier resetKey = new KeyCodeModifier(KeyCode.RightBracket);
+    [SerializeField] private KeyCodeModifier randomizeKey = new(KeyCode.LeftBracket);
+    [SerializeField] private KeyCodeModifier resetKey = new(KeyCode.RightBracket);
 
     [Header("[Stylized]")] [SerializeField]
-    private KeyCodeModifier toggleSketchKey = new KeyCodeModifier(KeyCode.Alpha1);
+    private KeyCodeModifier toggleSketchKey = new(KeyCode.Alpha1);
 
-    [SerializeField] private KeyCodeModifier toggleKuwaharaKey = new KeyCodeModifier(KeyCode.Alpha2);
-    [SerializeField] private KeyCodeModifier toggleEdgeDetectionKey = new KeyCodeModifier(KeyCode.Alpha3);
-    [SerializeField] private KeyCodeModifier toggleMosaicKey = new KeyCodeModifier();
+    [SerializeField] private KeyCodeModifier toggleKuwaharaKey = new(KeyCode.Alpha2);
+    [SerializeField] private KeyCodeModifier toggleEdgeDetectionKey = new(KeyCode.Alpha3);
+    [SerializeField] private KeyCodeModifier toggleMosaicKey = new();
 
-    [Header("[Image]")] [SerializeField]
-    private KeyCodeModifier toggleHueShift3dKey = new KeyCodeModifier(KeyCode.Alpha4);
+    [Header("[Image]")] [SerializeField] private KeyCodeModifier toggleHueShift3dKey = new(KeyCode.Alpha4);
 
-    [SerializeField] private KeyCodeModifier toggleColorizeKey = new KeyCodeModifier(KeyCode.Alpha5);
+    [SerializeField] private KeyCodeModifier toggleColorizeKey = new(KeyCode.Alpha5);
 
     [Header("[Blurring]")] [SerializeField]
-    private KeyCodeModifier doubleVisionKey = new KeyCodeModifier();
+    private KeyCodeModifier doubleVisionKey = new();
 
-    [SerializeField] private KeyCodeModifier tiltShiftKey = new KeyCodeModifier();
-    [SerializeField] private KeyCodeModifier radialBlurKey = new KeyCodeModifier();
+    [SerializeField] private KeyCodeModifier tiltShiftKey = new();
+    [SerializeField] private KeyCodeModifier radialBlurKey = new();
 
     [Header("[Rendering]")] [SerializeField]
-    private KeyCodeModifier lensFlaresKey = new KeyCodeModifier();
+    private KeyCodeModifier lensFlaresKey = new();
 
-    [SerializeField] private KeyCodeModifier lightStreaksKey = new KeyCodeModifier();
+    [SerializeField] private KeyCodeModifier lightStreaksKey = new();
 
-    [Header("[Retro]")] [SerializeField] private KeyCodeModifier colorSplitKey = new KeyCodeModifier();
+    [Header("[Retro]")] [SerializeField] private KeyCodeModifier colorSplitKey = new();
 
-    [SerializeField] private KeyCodeModifier ditheringKey = new KeyCodeModifier();
-    [SerializeField] private KeyCodeModifier pixelizeKey = new KeyCodeModifier();
-    [SerializeField] private KeyCodeModifier posterizeKey = new KeyCodeModifier();
-    [SerializeField] private KeyCodeModifier scanlinesKey = new KeyCodeModifier();
+    [SerializeField] private KeyCodeModifier ditheringKey = new();
+    [SerializeField] private KeyCodeModifier pixelizeKey = new();
+    [SerializeField] private KeyCodeModifier posterizeKey = new();
+    [SerializeField] private KeyCodeModifier scanlinesKey = new();
 
-    [Header("[Retro]")] [SerializeField] private KeyCodeModifier blackBarsKey = new KeyCodeModifier();
+    [Header("[Retro]")] [SerializeField] private KeyCodeModifier blackBarsKey = new();
 
-    [SerializeField] private KeyCodeModifier dangerKey = new KeyCodeModifier();
-    [SerializeField] private KeyCodeModifier gradientKey = new KeyCodeModifier();
-    [SerializeField] private KeyCodeModifier refractionKey = new KeyCodeModifier();
-    [SerializeField] private KeyCodeModifier ripplesKey = new KeyCodeModifier();
-    [SerializeField] private KeyCodeModifier speedLinesKey = new KeyCodeModifier();
-    [SerializeField] private KeyCodeModifier tubeDistortionKey = new KeyCodeModifier();
-    [SerializeField] private KeyCodeModifier kaleidoscopeKey = new KeyCodeModifier();
+    [SerializeField] private KeyCodeModifier dangerKey = new();
+    [SerializeField] private KeyCodeModifier gradientKey = new();
+    [SerializeField] private KeyCodeModifier refractionKey = new();
+    [SerializeField] private KeyCodeModifier ripplesKey = new();
+    [SerializeField] private KeyCodeModifier speedLinesKey = new();
+    [SerializeField] private KeyCodeModifier tubeDistortionKey = new();
+    [SerializeField] private KeyCodeModifier kaleidoscopeKey = new();
 
     [Header("[Environment]")] [SerializeField]
-    private KeyCodeModifier toggleCloudShadowsKey = new KeyCodeModifier();
+    private KeyCodeModifier toggleCloudShadowsKey = new();
 
-    [SerializeField] private KeyCodeModifier toggleCausticsKey = new KeyCodeModifier();
-    [SerializeField] private KeyCodeModifier toggleFogKey = new KeyCodeModifier();
+    [SerializeField] private KeyCodeModifier toggleCausticsKey = new();
+    [SerializeField] private KeyCodeModifier toggleFogKey = new();
 
     private PostFxModifierSCPE scpeModifier;
 
@@ -107,14 +106,14 @@ namespace Enginooby.Graphics {
     #region BEAUTIFY
 
     [Header("[Beautify]")] [SerializeField]
-    private KeyCodeModifier disableBeautifyKey = new KeyCodeModifier(KeyCode.U);
+    private KeyCodeModifier disableBeautifyKey = new(KeyCode.U);
 
-    [SerializeField] private KeyCodeModifier toggleCompareModeKey = new KeyCodeModifier(KeyCode.I);
-    [SerializeField] private KeyCodeModifier toggleBlurKey = new KeyCodeModifier(KeyCode.Alpha6);
-    [SerializeField] private KeyCodeModifier toggleSharpenKey = new KeyCodeModifier(KeyCode.Alpha7);
-    [SerializeField] private KeyCodeModifier toggleVignetteKey = new KeyCodeModifier(KeyCode.Alpha8);
-    [SerializeField] private KeyCodeModifier toggleNightVisionKey = new KeyCodeModifier(KeyCode.Alpha9);
-    [SerializeField] private KeyCodeModifier toggleOutlineKey = new KeyCodeModifier(KeyCode.Alpha0);
+    [SerializeField] private KeyCodeModifier toggleCompareModeKey = new(KeyCode.I);
+    [SerializeField] private KeyCodeModifier toggleBlurKey = new(KeyCode.Alpha6);
+    [SerializeField] private KeyCodeModifier toggleSharpenKey = new(KeyCode.Alpha7);
+    [SerializeField] private KeyCodeModifier toggleVignetteKey = new(KeyCode.Alpha8);
+    [SerializeField] private KeyCodeModifier toggleNightVisionKey = new(KeyCode.Alpha9);
+    [SerializeField] private KeyCodeModifier toggleOutlineKey = new(KeyCode.Alpha0);
 
     [OnValueChanged(nameof(UpdateGlobalBeautifyModifierKey))] [SerializeField] [EnumToggleButtons]
     private ModifierKey globalBeautifyModifierKey;

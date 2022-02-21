@@ -1,7 +1,7 @@
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 using System;
@@ -21,11 +21,11 @@ public class ReferenceConcreteType<T> where T : class {
   [SerializeField] [HideLabel] [ValueDropdown(nameof(GetTypeNames))] [OnValueChanged(nameof(UpdateCurrentType))]
   private string _currentTypeName;
 
-  [SerializeField] [HideInInspector] private IEnumerable<string> _typeNames;
+  [SerializeField] [HideInInspector] private string _currentQualifiedTypeName;
 
   [SerializeField] [HideInInspector] private IEnumerable<string> _qualifiedTypeNames;
 
-  [SerializeField] [HideInInspector] private string _currentQualifiedTypeName;
+  [SerializeField] [HideInInspector] private IEnumerable<string> _typeNames;
 
 
   // ! guard case: current type is removed

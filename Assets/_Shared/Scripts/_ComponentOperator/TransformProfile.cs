@@ -4,7 +4,7 @@
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 using UnityEngine;
@@ -46,14 +46,14 @@ public class TransformProfile : ScriptableObject {
 
   private enum Mode {
     Auto,
-    Control
+    Control,
   }
 
   private enum OnBoundaryAction {
     Stop,
     LoopMinToMax,
     LoopMaxToMin,
-    LoopPingPong
+    LoopPingPong,
   }
 
   #region LOOK AT ===================================================================================================================================
@@ -134,14 +134,13 @@ public class TransformProfile : ScriptableObject {
   private Mode _translatingMode = Mode.Auto;
 
   [ToggleGroup(nameof(_enableTranslating))] [ShowIf(nameof(_translatingMode), Mode.Control)] [SerializeField]
-  private InputModifier _xTranslateKey = new InputModifier(InputModifier.InputType.Axis);
+  private InputModifier _xTranslateKey = new(InputModifier.InputType.Axis);
 
   [ToggleGroup(nameof(_enableTranslating))] [ShowIf(nameof(_translatingMode), Mode.Control)] [SerializeField]
-  private InputModifier _yTranslateKey = new InputModifier(InputModifier.InputType.Axis);
+  private InputModifier _yTranslateKey = new(InputModifier.InputType.Axis);
 
   [ToggleGroup(nameof(_enableTranslating))] [ShowIf(nameof(_translatingMode), Mode.Control)] [SerializeField]
-  private InputModifier _zTranslateKey =
-    new InputModifier(InputModifier.InputType.Axis, inputAxis: InputAxis.Horizontal);
+  private InputModifier _zTranslateKey = new(InputModifier.InputType.Axis, inputAxis: InputAxis.Horizontal);
 
   public void InitTranslation(Transform transform) {
     _originalPos = transform.position;
@@ -215,13 +214,13 @@ public class TransformProfile : ScriptableObject {
   private Mode _rotationMode = Mode.Auto;
 
   [ToggleGroup(nameof(_enableRotating))] [ShowIf(nameof(_rotationMode), Mode.Control)] [SerializeField]
-  private InputModifier _xRotateKey = new InputModifier();
+  private InputModifier _xRotateKey = new();
 
   [ToggleGroup(nameof(_enableRotating))] [ShowIf(nameof(_rotationMode), Mode.Control)] [SerializeField]
-  private InputModifier _yRotateKey = new InputModifier();
+  private InputModifier _yRotateKey = new();
 
   [ToggleGroup(nameof(_enableRotating))] [ShowIf(nameof(_rotationMode), Mode.Control)] [SerializeField]
-  private InputModifier _zRotateKey = new InputModifier();
+  private InputModifier _zRotateKey = new();
 
   // private void SetSelfAsRotationPivot() => _rotationPivot = transform;
 
@@ -268,14 +267,11 @@ public class TransformProfile : ScriptableObject {
 
   #region PUBLIC METHODS ===================================================================================================================================
 
-  public void SetPosition(Vector3 pos) {
-  }
+  public void SetPosition(Vector3 pos) { }
 
-  public void SetRotation(Vector3 rot) {
-  }
+  public void SetRotation(Vector3 rot) { }
 
-  public void SetScale(Vector3 scale) {
-  }
+  public void SetScale(Vector3 scale) { }
 
   #endregion ===================================================================================================================================
 }

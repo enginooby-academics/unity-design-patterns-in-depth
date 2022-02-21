@@ -32,12 +32,25 @@ public static class TransformUtils {
   public static bool IsInRange(this Transform transform, Transform target, float range) =>
     transform.GetDistanceTo(target) < range;
 
+  #region ROTATION
+
+  // ===================================================================================================================
+
+  /// <summary>
+  ///   Given x, y, z in degree unit.
+  /// </summary>
+  public static void SetRotation(this Transform transform, float x, float y, float z) {
+    transform.rotation = Quaternion.Euler(x, y, z);
+  }
+
+  #endregion
+
   #region MOVEMENT
 
   // ===================================================================================================================
 
   /// <summary>
-  /// (DeltaTime multiplied)
+  ///   (DeltaTime multiplied)
   /// </summary>
   public static void RotateForward(this Transform transform, float speed) =>
     transform.Rotate(transform.forward, speed * Time.deltaTime);
@@ -213,7 +226,7 @@ public static class TransformUtils {
   }
 
   /// <summary>
-  /// Used for smooth position lerping.
+  ///   Used for smooth position lerping.
   /// </summary>
   public static void SmoothApproach(
     this Transform transform,
@@ -273,17 +286,4 @@ public static class TransformUtils {
   }
 
   #endregion SCALE ================================================================================================================================
-
-  #region ROTATION
-
-  // ===================================================================================================================
-
-  /// <summary>
-  /// Given x, y, z in degree unit.
-  /// </summary>
-  public static void SetRotation(this Transform transform, float x, float y, float z) {
-    transform.rotation = Quaternion.Euler(x, y, z);
-  }
-
-  #endregion
 }

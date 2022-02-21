@@ -1,9 +1,10 @@
 using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
-using Enginoobz.Attribute;
-using Enginoobz.Core;
+using Enginooby.Attribute;
+using Enginooby.Core;
 #endif
 
 namespace CommandPattern.Case1.Unity1 {

@@ -19,12 +19,12 @@ public static class CollideUtils {
   public static bool CompareTag(this Collision collision, string tag) => collision.gameObject.CompareTag(tag);
 
   /// <summary>
-  /// Does GameObject of the given collider has one in the given tags?
+  ///   Does GameObject of the given collider has one in the given tags?
   /// </summary>
   public static bool CompareTag(this Collider collider, params string[] tags) => tags.Any(collider.CompareTag);
 
   /// <summary>
-  /// Does GameObject of the given collision has one in the given tags?
+  ///   Does GameObject of the given collision has one in the given tags?
   /// </summary>
   public static bool CompareTag(this Collision collision, params string[] tags) => tags.Any(collision.CompareTag);
 

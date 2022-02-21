@@ -7,7 +7,10 @@ public static class GizmosUtils {
   /// <summary>
   ///   Commonly used to draw speed: DrawGizmosLine(speed). Default color is magenta.
   /// </summary>
-  public static void DrawGizmosDirection(this GameObject go, Vector3 offset, Color? color = null,
+  public static void DrawGizmosDirection(
+    this GameObject go,
+    Vector3 offset,
+    Color? color = null,
     float thickness = 2f) {
 #if UNITY_EDITOR
     // TODO: draw decorative arrow & length number
@@ -21,7 +24,11 @@ public static class GizmosUtils {
   /// <summary>
   ///   Draw a boundary line from given position on the given axis.
   /// </summary>
-  public static void DrawGizmozRangeFromPos(Vector3 pos, Vector2 range, Axis axisRange, Color? color = null,
+  public static void DrawGizmozRangeFromPos(
+    Vector3 pos,
+    Vector2 range,
+    Axis axisRange,
+    Color? color = null,
     float thickness = 2f) {
 #if UNITY_EDITOR
     Handles.color = color ?? Color.magenta;
@@ -50,8 +57,12 @@ public static class GizmosUtils {
   /// <summary>
   ///   Draw a boundary line from GameObject position on the given axis.
   /// </summary>
-  public static void DrawGizmozRangeFromPos(this MonoBehaviour monoBehaviour, Vector2 range, Axis axisRange,
-    Color? color = null, float thickness = 2f) {
+  public static void DrawGizmozRangeFromPos(
+    this MonoBehaviour monoBehaviour,
+    Vector2 range,
+    Axis axisRange,
+    Color? color = null,
+    float thickness = 2f) {
     DrawGizmozRangeFromPos(monoBehaviour.transform.position, range, axisRange, color);
   }
 }

@@ -14,7 +14,7 @@ using UnityEngine.Events;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 [Serializable]
@@ -42,7 +42,7 @@ public class Stat {
   // TODO: Implement multiple UIs (? scriptable objects)
   // [ToggleGroup(nameof(enable))]
   [FoldoutGroup("$statName")] [ShowIf(nameof(enable))] [OnValueChanged(nameof(InitStatUIs), true)] [LabelText("UIs")]
-  public List<StatUI> uis = new List<StatUI> {new StatUI()};
+  public List<StatUI> uis = new() {new StatUI()};
 
   public Stat(string statName, int initialValue = 0) {
     this.statName = statName;
@@ -137,42 +137,42 @@ public class Stat {
   // [ToggleGroup(nameof(enable))]
   // [FoldoutGroup("enable/Manual Events")]
   [FoldoutGroup("$statName")] [ShowIf(nameof(enable))] [FoldoutGroup("$statName/Events")]
-  public UnityEvent OnStatChange = new UnityEvent();
+  public UnityEvent OnStatChange = new();
 
   public event Action OnStatChangeEvent;
 
   // [ToggleGroup(nameof(enable))]
   // [FoldoutGroup("enable/Manual Events")]
   [FoldoutGroup("$statName")] [ShowIf(nameof(enable))] [FoldoutGroup("$statName/Events")]
-  public UnityEvent OnStatIncrease = new UnityEvent();
+  public UnityEvent OnStatIncrease = new();
 
   public event Action OnStatIncreaseEvent;
 
   // [ToggleGroup(nameof(enable))]
   // [FoldoutGroup("enable/Manual Events")]
   [FoldoutGroup("$statName")] [ShowIf(nameof(enable))] [FoldoutGroup("$statName/Events")]
-  public UnityEvent OnStatDecrease = new UnityEvent();
+  public UnityEvent OnStatDecrease = new();
 
   public event Action OnStatDecreaseEvent;
 
   // [ToggleGroup(nameof(enable))]
   // [FoldoutGroup("enable/Manual Events")]
   [FoldoutGroup("$statName")] [ShowIf(nameof(enable))] [FoldoutGroup("$statName/Events")]
-  public UnityEvent OnStatMin = new UnityEvent();
+  public UnityEvent OnStatMin = new();
 
   public event Action OnStatMinEvent;
 
   // [ToggleGroup(nameof(enable))]
   // [FoldoutGroup("enable/Manual Events")]
   [FoldoutGroup("$statName")] [ShowIf(nameof(enable))] [FoldoutGroup("$statName/Events")]
-  public UnityEvent OnStatMax = new UnityEvent();
+  public UnityEvent OnStatMax = new();
 
   public event Action OnStatMaxEvent;
 
   // [ToggleGroup(nameof(enable))]
   // [FoldoutGroup("enable/Manual Events")]
   [FoldoutGroup("$statName")] [ShowIf(nameof(enable))] [FoldoutGroup("$statName/Events")]
-  public UnityEvent OnStatZero = new UnityEvent();
+  public UnityEvent OnStatZero = new();
 
   public event Action OnStatZeroEvent;
 

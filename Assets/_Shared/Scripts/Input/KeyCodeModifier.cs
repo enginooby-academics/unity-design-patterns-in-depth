@@ -4,14 +4,14 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 [Flags]
 public enum KeyTriggerEvent {
   Up = 1 << 1,
   Down = 1 << 2,
-  Hold = 1 << 3
+  Hold = 1 << 3,
 }
 
 [Serializable]
@@ -35,7 +35,9 @@ public class KeyCodeModifier {
 
   private bool showModifierAndTriggerAttributes;
 
-  public KeyCodeModifier(KeyCode keyCode = KeyCode.None, ModifierKey modifierKey = (ModifierKey) 1,
+  public KeyCodeModifier(
+    KeyCode keyCode = KeyCode.None,
+    ModifierKey modifierKey = (ModifierKey) 1,
     KeyTriggerEvent keyTriggerEvent = KeyTriggerEvent.Down) {
     this.keyCode = keyCode;
     this.modifierKey = modifierKey;

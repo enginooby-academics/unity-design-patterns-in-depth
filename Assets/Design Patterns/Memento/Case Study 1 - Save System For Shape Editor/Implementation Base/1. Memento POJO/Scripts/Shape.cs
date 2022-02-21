@@ -1,9 +1,10 @@
 using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
-using Enginoobz.Attribute;
-using Enginoobz.Core;
+using Enginooby.Attribute;
+using Enginooby.Core;
 #endif
 
 namespace MementoPattern.Case1.Base {
@@ -13,7 +14,7 @@ namespace MementoPattern.Case1.Base {
   public enum ShapeType {
     Cube,
     Sphere,
-    Cylinder
+    Cylinder,
   } // subset of PrimitiveType for this study case
 
   [TypeInfoBox("Modify properties in Play Mode only!")]

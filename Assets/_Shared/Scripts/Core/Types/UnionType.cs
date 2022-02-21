@@ -6,7 +6,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 [Serializable]
@@ -24,7 +24,7 @@ public class UnionType<T1, T2> {
 #if ODIN_INSPECTOR
   private IEnumerable Types = new ValueDropdownList<string> {
     {typeof(T1).Name, typeof(T1).Name},
-    {typeof(T2).Name, typeof(T2).Name}
+    {typeof(T2).Name, typeof(T2).Name},
   };
 #endif
 
@@ -41,7 +41,7 @@ public class UnionType<T1, T2> {
   private bool IsT1 => _currentType.Equals(typeof(T1).Name);
   private bool IsT2 => _currentType.Equals(typeof(T2).Name);
 
-  private List<string> TypeNames => new List<string> {typeof(T1).Name, typeof(T2).Name};
+  private List<string> TypeNames => new() {typeof(T1).Name, typeof(T2).Name};
 }
 
 
@@ -49,11 +49,9 @@ public class UnionType<T1, T2> {
 [InlineProperty]
 public class UnionStructType<T1, T2> : UnionType<T1, T2>
   where T1 : struct
-  where T2 : struct {
-}
+  where T2 : struct { }
 
 
 [Serializable]
 [InlineProperty]
-public class VectorType : UnionType<Vector2, Vector3> {
-}
+public class VectorType : UnionType<Vector2, Vector3> { }

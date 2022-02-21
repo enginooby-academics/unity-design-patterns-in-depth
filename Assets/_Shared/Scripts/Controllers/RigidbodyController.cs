@@ -4,7 +4,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 // TODO:
@@ -120,7 +120,7 @@ public class RigidbodyController : MonoBehaviourBase {
   private bool enableJump = true;
 
   [ToggleGroup(nameof(enableJump))] [SerializeField]
-  private InputModifier jumpKey = new InputModifier(keyCode: KeyCode.Space);
+  private InputModifier jumpKey = new(keyCode: KeyCode.Space);
 
   [ToggleGroup(nameof(enableJump))] [SerializeField]
   private float jumpForce = 10f;
@@ -142,7 +142,7 @@ public class RigidbodyController : MonoBehaviourBase {
   public Vector2 jumpableHeightRange = Vector2.zero;
 
   [ToggleGroup(nameof(enableJump))] [SerializeField] [LabelText("Min Max")]
-  public Vector2 dynamicMinMax = new Vector2(0, 20);
+  public Vector2 dynamicMinMax = new(0, 20);
 
   private int jumpCount;
 
@@ -170,7 +170,7 @@ public class RigidbodyController : MonoBehaviourBase {
   private bool enableVerticalMovement = true; // TODO: disable Freeze Position Z on Rigidbody
 
   [ToggleGroup(nameof(enableVerticalMovement))] [SerializeField]
-  private InputModifier verticalKey = new InputModifier(InputModifier.InputType.Axis, inputAxis: InputAxis.Vertical);
+  private InputModifier verticalKey = new(InputModifier.InputType.Axis, inputAxis: InputAxis.Vertical);
 
   [ToggleGroup(nameof(enableVerticalMovement))] [SerializeField]
   private float verticalSpeed = 5f;
@@ -188,7 +188,7 @@ public class RigidbodyController : MonoBehaviourBase {
   public Vector2 verticalMovementRange = Vector2.zero;
 
   [ToggleGroup(nameof(enableVerticalMovement))] [SerializeField] [LabelText("Min Max")]
-  public Vector2 dynamicMinMaxForVerticalRange = new Vector2(-20, 20);
+  public Vector2 dynamicMinMaxForVerticalRange = new(-20, 20);
 
   [ToggleGroup(nameof(enableVerticalMovement))] [SerializeField] [LabelText("Enable Boost")]
   private bool enableVerticalBoost;
@@ -215,7 +215,7 @@ public class RigidbodyController : MonoBehaviourBase {
   [ShowIf(nameof(enableVerticalBoost))]
   [SerializeField]
   [LabelText("Boost Key")]
-  private InputModifier verticalBoostKey = new InputModifier(InputModifier.InputType.KeyCode,
+  private InputModifier verticalBoostKey = new(InputModifier.InputType.KeyCode,
     keyTriggerEvent: KeyCodeTriggerEvent.Hold, keyCode: KeyCode.Space);
 
 
@@ -254,8 +254,7 @@ public class RigidbodyController : MonoBehaviourBase {
   private bool enableHorizontalMovement = true; // TODO: disable Freeze Position X on Rigidbody
 
   [ToggleGroup(nameof(enableHorizontalMovement))] [SerializeField]
-  private InputModifier horizontalKey =
-    new InputModifier(InputModifier.InputType.Axis, inputAxis: InputAxis.Horizontal);
+  private InputModifier horizontalKey = new(InputModifier.InputType.Axis, inputAxis: InputAxis.Horizontal);
 
   [ToggleGroup(nameof(enableHorizontalMovement))] [SerializeField]
   private float horizontalSpeed = 5f;
@@ -273,7 +272,7 @@ public class RigidbodyController : MonoBehaviourBase {
   public Vector2 horizontalMovementRange = Vector2.zero;
 
   [ToggleGroup(nameof(enableHorizontalMovement))] [SerializeField] [LabelText("Min Max")]
-  public Vector2 dynamicMinMaxForHorizontalRange = new Vector2(-20, 20);
+  public Vector2 dynamicMinMaxForHorizontalRange = new(-20, 20);
 
   private bool CanMoveHorizontal =>
     horizontalMovementRange.ContainsIgnoreZero(transform.position
@@ -314,7 +313,7 @@ public class RigidbodyController : MonoBehaviourBase {
   private ForceMode initialForceMode = ForceMode.Impulse;
 
   [ToggleGroup(nameof(enableInitialForce))] [SerializeField] [MinMaxSlider(-20, 20, true)] [LabelText("Force Range")]
-  private Vector2 initalForceRange = new Vector2(10, 12);
+  private Vector2 initalForceRange = new(10, 12);
 
   [ToggleGroup(nameof(enableInitialForce))] [SerializeField] [LabelText("Torque Mode")] [EnumToggleButtons]
   private ForceMode initialTorqueMode = ForceMode.Impulse;
@@ -325,7 +324,7 @@ public class RigidbodyController : MonoBehaviourBase {
   [HideLabel]
   // [LabelText("Torque Range")]
   [SerializeField]
-  private Vector3Range initalTorqueRange = new Vector3Range("Torque Range");
+  private Vector3Range initalTorqueRange = new("Torque Range");
 
   private void InitForceAndTorque() {
     if (!enableInitialForce) return;

@@ -7,21 +7,18 @@ public abstract class ScriptableObjectBase : ScriptableObject {
   /// <summary>
   ///   This will be executed for every existing SO, even if it's not referenced in the active scene.
   /// </summary>
-  protected virtual void OnPlayModeEnter() {
-  }
+  protected virtual void OnPlayModeEnter() { }
 
   /// <summary>
   ///   This will be executed for every existing SO, even if it's not referenced in the active scene.
   /// </summary>
-  protected virtual void OnPlayModeExit() {
-  }
+  protected virtual void OnPlayModeExit() { }
 
   /// <summary>
   ///   Executed on both OnPlayModeEnter and OnPlayModeExit. <br />
   ///   This will be executed for every existing SO, even if it's not referenced in the active scene.
   /// </summary>
-  protected virtual void OnPlayModeChange() {
-  }
+  protected virtual void OnPlayModeChange() { }
 
 #if UNITY_EDITOR
   protected void OnEnable() {

@@ -3,8 +3,8 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
-using Enginoobz.Core;
+using Enginooby.Attribute;
+using Enginooby.Core;
 #endif
 
 // TODO
@@ -16,42 +16,42 @@ using Enginoobz.Core;
 /// Preset of input keys for InteractController for easy swapping.
 /// </summary>
 public class GOIControlKeyPreset : SerializedScriptableObject {
-  [BoxGroup("Effect")] [SerializeField] private InputModifier _incrementEffectKey = new InputModifier();
+  [BoxGroup("Effect")] [SerializeField] private InputModifier _incrementEffectKey = new();
 
-  [BoxGroup("Effect")] [SerializeField] private InputModifier _decrementEffectKey = new InputModifier();
+  [BoxGroup("Effect")] [SerializeField] private InputModifier _decrementEffectKey = new();
 
 
   [BoxGroup("Raycast")] [SerializeField]
   private bool _enablePassThrough = true; // if disable, don't interact GOs behind the 1st one.
 
-  [BoxGroup("Raycast")] [SerializeField] private InputModifier _interactKey = new InputModifier();
+  [BoxGroup("Raycast")] [SerializeField] private InputModifier _interactKey = new();
 
-  [BoxGroup("Raycast")] [SerializeField] private InputModifier _revertKey = new InputModifier();
+  [BoxGroup("Raycast")] [SerializeField] private InputModifier _revertKey = new();
 
-  [BoxGroup("Raycast")] [SerializeField] private InputModifier _toggleKey = new InputModifier();
+  [BoxGroup("Raycast")] [SerializeField] private InputModifier _toggleKey = new();
 
 
   [BoxGroup("Selected")] [SerializeField]
-  private InputModifier _interactSelectedKey = new InputModifier();
+  private InputModifier _interactSelectedKey = new();
 
   [BoxGroup("Selected")] [SerializeField]
-  private InputModifier _toggleSelectedKey = new InputModifier();
+  private InputModifier _toggleSelectedKey = new();
 
   [BoxGroup("Selected")] [SerializeField]
-  private InputModifier _revertSelectedKey = new InputModifier();
+  private InputModifier _revertSelectedKey = new();
 
 
   [BoxGroup("Interacted")] [SerializeField]
-  private InputModifier _interactInteractedKey = new InputModifier();
+  private InputModifier _interactInteractedKey = new();
 
   [BoxGroup("Interacted")] [SerializeField]
-  private InputModifier _toggleInteractedKey = new InputModifier();
+  private InputModifier _toggleInteractedKey = new();
 
   [BoxGroup("Interacted")] [SerializeField]
-  private InputModifier _revertInteractedKey = new InputModifier();
+  private InputModifier _revertInteractedKey = new();
 
   [BoxGroup("Interacted")] [SerializeField]
-  private InputModifier _restoreInteractedKey = new InputModifier();
+  private InputModifier _restoreInteractedKey = new();
 
   public InputModifier IncrementEffectKey => _incrementEffectKey;
   public InputModifier DecrementEffectKey => _decrementEffectKey;

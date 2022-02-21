@@ -4,7 +4,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 #if UNITY_EDITOR
@@ -12,7 +12,7 @@ using Enginoobz.Attribute;
 
 [ExecuteInEditMode]
 public class ModelSwitchEditor : MonoBehaviour {
-  [SerializeField] private List<GameObject> models = new List<GameObject>();
+  [SerializeField] private List<GameObject> models = new();
 
   [Space] [ValueDropdown("models")] public GameObject activeModel;
 
@@ -26,8 +26,7 @@ public class ModelSwitchEditor : MonoBehaviour {
   }
 
   // Update is called once per frame
-  private void Update() {
-  }
+  private void Update() { }
 
   private void OnValidate() {
     // for (int i = 0; i < models.Count; i++)

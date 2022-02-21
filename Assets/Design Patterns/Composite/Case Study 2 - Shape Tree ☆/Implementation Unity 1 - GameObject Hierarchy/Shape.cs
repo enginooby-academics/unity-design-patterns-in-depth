@@ -3,8 +3,9 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 namespace CompositePattern.Case2.Unity1 {

@@ -1,7 +1,5 @@
-using UnityEngine;
-
 /// <summary>
-/// Collection of convenient public method involving GameObject (tag, name...) to bind in event listener.
+///   Collection of convenient public method involving GameObject (tag, name...) to bind in event listener.
 /// </summary>
 public class GameObjectOperator : MonoBehaviourBase {
   public void SetTag(string newTag) => gameObject.tag = newTag;

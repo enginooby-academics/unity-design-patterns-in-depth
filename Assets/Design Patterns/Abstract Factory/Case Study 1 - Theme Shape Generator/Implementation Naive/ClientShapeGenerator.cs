@@ -1,7 +1,7 @@
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 using System;
 using UnityEngine;
@@ -17,7 +17,7 @@ namespace AbstractFactoryPattern.Case1.Naive {
       Cube cube = _currentTheme switch {
         Theme.Simple => new SimpleCube(),
         Theme.Shaking => new ShakingCube(),
-        _ => throw new ArgumentOutOfRangeException()
+        _ => throw new ArgumentOutOfRangeException(),
       };
       cube.SetPos(RandomPos);
       generatedCubes.Add(cube);
@@ -28,7 +28,7 @@ namespace AbstractFactoryPattern.Case1.Naive {
       Sphere sphere = _currentTheme switch {
         Theme.Simple => new SimpleSphere(),
         Theme.Shaking => new ShakingSphere(),
-        _ => throw new ArgumentOutOfRangeException()
+        _ => throw new ArgumentOutOfRangeException(),
       };
       sphere.SetPos(RandomPos);
       generatedSpheres.Add(sphere);
@@ -37,7 +37,7 @@ namespace AbstractFactoryPattern.Case1.Naive {
     // ! need to modify if new theme is added
     private enum Theme {
       Simple,
-      Shaking
+      Shaking,
     }
   }
 }

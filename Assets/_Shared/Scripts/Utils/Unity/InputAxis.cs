@@ -2,7 +2,7 @@
 
 namespace Enginooby.Utils {
   /// <summary>
-  /// Provide type-safe access to axes in the Input Manager.
+  ///   Provide type-safe access to axes in the Input Manager.
   /// </summary>
   public static class InputAxis {
     // ? Performance cost with string casting

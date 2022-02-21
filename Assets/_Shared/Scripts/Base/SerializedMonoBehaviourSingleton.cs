@@ -3,7 +3,7 @@
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Core;
+using Enginooby.Core;
 #endif
 
 public class SerializedMonoBehaviourSingleton<T> : SerializedMonoBehaviour where T : Component {

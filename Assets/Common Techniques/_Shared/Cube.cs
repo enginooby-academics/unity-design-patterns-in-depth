@@ -11,7 +11,7 @@ namespace GOConstruction {
       gameObject.AddComponent<MeshRenderer>();
       gameObject.SetPrimitiveMesh(PrimitiveType.Cube);
       gameObject.SetMaterialColor(Color.red);
-      gameObject.SetScale(Size); 
+      gameObject.SetScale(Size);
     }
 
     public double GetVolume() => Pow(Size, 3);

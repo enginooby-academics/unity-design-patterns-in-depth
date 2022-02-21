@@ -1,13 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace BrokenVector.RealShortcuts
-{
-    public class Shortcut : ScriptableObject
-    {
-
-        public string TargetPath = "";
-
-    }
+namespace BrokenVector.RealShortcuts {
+  public class Shortcut : ScriptableObject {
+    public string TargetPath = "";
+  }
 }

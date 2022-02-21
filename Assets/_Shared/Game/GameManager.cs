@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 // ? CONSIDER
@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager> {
 
   private const string gameLoadGroupName = "GAME LOAD";
 
-  [FoldoutGroup("$gameLoadGroupName")] public UnityEvent OnGameLoad = new UnityEvent();
+  [FoldoutGroup("$gameLoadGroupName")] public UnityEvent OnGameLoad = new();
 
   private void Setup() {
     SetupStats();
@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager> {
   [SerializeField]
   private Spawner[] spawnersToEnable;
 
-  [FoldoutGroup("$gameStartGroupName")] public UnityEvent OnGameStart = new UnityEvent();
+  [FoldoutGroup("$gameStartGroupName")] public UnityEvent OnGameStart = new();
 
   // TODO: Object to activate
 
@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager> {
 
   private enum Target {
     All,
-    Custom
+    Custom,
   }
 
   [FoldoutGroup("$gameOverGroupName")] [EnumToggleButtons] [LabelText("Stop Projectiles")] [SerializeField]
@@ -126,7 +126,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager> {
   [FoldoutGroup("$gameOverGroupName")] [SceneObjectsOnly] [LabelText("Destroy Objects")] [SerializeField]
   private GameObject[] objectsToDestroy;
 
-  [FoldoutGroup("$gameOverGroupName")] public UnityEvent OnGameOver = new UnityEvent();
+  [FoldoutGroup("$gameOverGroupName")] public UnityEvent OnGameOver = new();
 
   [FoldoutGroup("$gameOverGroupName")]
   [Button]
@@ -154,13 +154,13 @@ public class GameManager : MonoBehaviourSingleton<GameManager> {
   private const string statsGroupName = "STATS & UI";
 
   [FoldoutGroup("$statsGroupName")] [GUIColor("@Color.cyan")] [SerializeField] [HideLabel]
-  public StatGame livesStat = new StatGame("Lives", triggerGameOverValue: StatGame.StatEvent.Zero);
+  public StatGame livesStat = new("Lives", triggerGameOverValue: StatGame.StatEvent.Zero);
 
   [FoldoutGroup("$statsGroupName")] [GUIColor("@Color.yellow")] [SerializeField] [HideLabel]
-  public StatGame scoresStat = new StatGame("Scores");
+  public StatGame scoresStat = new("Scores");
 
   [FoldoutGroup("$statsGroupName")] [GUIColor("@Color.cyan")] [SerializeField] [HideLabel]
-  public StatGame timerStat = new StatGame("Timer", triggerGameOverValue: StatGame.StatEvent.Zero);
+  public StatGame timerStat = new("Timer", triggerGameOverValue: StatGame.StatEvent.Zero);
 
   public void UpdateLives(int amountToAdd) {
     livesStat.Update(amountToAdd);

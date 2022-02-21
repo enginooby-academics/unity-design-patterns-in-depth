@@ -3,8 +3,9 @@
 using AdvancedSceneManager.Models;
 using Sirenix.OdinInspector;
 using UnityEngine;
+
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 namespace SingletonPattern {

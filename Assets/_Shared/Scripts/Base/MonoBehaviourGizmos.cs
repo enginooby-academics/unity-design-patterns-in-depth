@@ -1,6 +1,5 @@
 #if ASSET_ALINE
-public class MonoBehaviourGizmos : Drawing.MonoBehaviourGizmos {
-}
+public class MonoBehaviourGizmos : Drawing.MonoBehaviourGizmos { }
 #else
 public class MonoBehaviourGizmos : UnityEngine.MonoBehaviour {
   private void OnDrawGizmos() {

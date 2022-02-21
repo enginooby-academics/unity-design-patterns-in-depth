@@ -9,7 +9,7 @@ using Object = UnityEngine.Object;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 #if ASSET_DOTWEEN

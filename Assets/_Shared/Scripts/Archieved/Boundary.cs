@@ -5,7 +5,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 // TODO: integrate serializable Area
@@ -139,7 +139,7 @@ namespace Enginooby {
     public Vector2 zBoundary = Vector2.zero;
 
     [TabGroup("World-Space")] [SerializeField]
-    public Vector2 dynamicMinMax = new Vector2(-100, 100);
+    public Vector2 dynamicMinMax = new(-100, 100);
 
     #endregion
 
@@ -177,7 +177,7 @@ namespace Enginooby {
     [TabGroup("Target")] [MinMaxSlider(nameof(dynamicMinMaxTarget), true)] [SerializeField]
     private Vector2 zBoundaryTarget = Vector2.zero;
 
-    [TabGroup("Target")] [SerializeField] private Vector2 dynamicMinMaxTarget = new Vector2(-100, 100);
+    [TabGroup("Target")] [SerializeField] private Vector2 dynamicMinMaxTarget = new(-100, 100);
 
     #endregion
   }

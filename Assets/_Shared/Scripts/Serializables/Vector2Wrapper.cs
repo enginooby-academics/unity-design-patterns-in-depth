@@ -8,13 +8,13 @@ using UnityEngine.Events;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 [Serializable]
 [InlineProperty]
 public class Vector2Wrapper {
-  [HideInInspector] public UnityEvent OnValueChange = new UnityEvent();
+  [HideInInspector] public UnityEvent OnValueChange = new();
 
   [MinMaxSlider(nameof(min), nameof(max), true)]
   [InlineButton(nameof(ToggleShowMore), "...")]

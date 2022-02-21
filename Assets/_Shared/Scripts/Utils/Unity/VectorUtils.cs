@@ -136,7 +136,7 @@ public static class VectorUtils {
   }
 
   /// <summary>
-  /// Origin is at (0, 0, 0) be default.
+  ///   Origin is at (0, 0, 0) be default.
   /// </summary>
   public static bool IsInsideCircle(this Vector3 vector3, float radius, Vector3? origin = null) {
     origin ??= Vector3.zero;

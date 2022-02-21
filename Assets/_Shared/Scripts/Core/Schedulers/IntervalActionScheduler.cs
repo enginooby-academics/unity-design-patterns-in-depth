@@ -6,7 +6,7 @@ using UnityEngine.Events;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 // TODO: Make InputActionScheduler class from Active mode of Spawner
@@ -18,7 +18,7 @@ public abstract class ActionScheduler : SerializableBase {
 
   [SerializeField] protected bool _enabled = false;
 
-  [SerializeField] private UnityEvent _onActionInvoke = new UnityEvent(); // ? Necessery when already have Action
+  [SerializeField] private UnityEvent _onActionInvoke = new(); // ? Necessery when already have Action
 
   protected bool _started;
   public Action Action;

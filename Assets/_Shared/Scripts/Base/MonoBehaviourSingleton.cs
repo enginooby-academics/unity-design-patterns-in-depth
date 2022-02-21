@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 /// <summary>
-///  Don't use OnDisable or OnDestroy for reset singleton data. Use OnApplicationQuit.
+///   Don't use OnDisable or OnDestroy for reset singleton data. Use OnApplicationQuit.
 /// </summary>
 public class MonoBehaviourSingleton<T> : MonoBehaviour where T : Component {
   protected static T _instance;

@@ -8,7 +8,7 @@ namespace GOConstruction.Scripting {
         ShapeType.RotatingSphere => new RotatingSphere(),
         ShapeType.ShakingCube => new ShakingCube(),
         ShapeType.ShakingSphere => new ShakingSphere(),
-        _ => throw new ArgumentOutOfRangeException()
+        _ => throw new ArgumentOutOfRangeException(),
       };
 
       print("Volume of the generated shape is: " + shape.GetVolume());

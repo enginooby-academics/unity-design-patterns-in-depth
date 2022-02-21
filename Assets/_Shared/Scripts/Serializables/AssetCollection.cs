@@ -12,7 +12,7 @@ using Object = UnityEngine.Object;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 // ? Convert to SO

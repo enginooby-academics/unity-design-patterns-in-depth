@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Enginooby.Attribute;
 using UnityEngine;
 
 namespace Enginooby.UI {

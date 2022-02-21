@@ -5,7 +5,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 namespace AbstractFactoryPattern.Case1.Unity.Prefab {
@@ -17,8 +17,8 @@ namespace AbstractFactoryPattern.Case1.Unity.Prefab {
     [SerializeField] private ShapeFactory _currentShapeFactory;
     // private ProceduralShapeFactory _currentShapeFactory;
 
-    private readonly List<Cube> _generatedCubes = new List<Cube>();
-    private readonly List<Sphere> _generatedSpheres = new List<Sphere>();
+    private readonly List<Cube> _generatedCubes = new();
+    private readonly List<Sphere> _generatedSpheres = new();
     private Vector3 RandomPos => new Vector3(24, 8, 0).RandomRange();
 
     [Button]

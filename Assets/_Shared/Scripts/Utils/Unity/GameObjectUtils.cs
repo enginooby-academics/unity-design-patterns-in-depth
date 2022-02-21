@@ -82,7 +82,7 @@ public static class GameObjectUtils {
 
   /// <summary>
   ///   Create a new GameObject with the given component type and reset transform.
-  ///  <returns>The added component</returns>
+  ///   <returns>The added component</returns>
   /// </summary>
   public static T CreateGameObject<T>() where T : Component {
     var go = new GameObject();

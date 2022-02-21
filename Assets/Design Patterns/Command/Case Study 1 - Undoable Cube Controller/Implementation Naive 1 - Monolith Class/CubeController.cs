@@ -5,8 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 namespace CommandPattern.Case1.Naive1 {
@@ -14,11 +15,11 @@ namespace CommandPattern.Case1.Naive1 {
     MoveUp,
     MoveDown,
     MoveLeft,
-    MoveRight
+    MoveRight,
   }
 
   public class CubeController : MonoBehaviour {
-    private static readonly List<Command> _commandHistory = new List<Command>();
+    private static readonly List<Command> _commandHistory = new();
     [SerializeField] private Cube _cube;
     [SerializeField] private Button _moveUpButton;
 

@@ -5,8 +5,8 @@ using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 
 #else
-using Enginoobz.Attribute;
-using Enginoobz.Core;
+using Enginooby.Attribute;
+using Enginooby.Core;
 #endif
 
 // ? Rename to CollectionVector3

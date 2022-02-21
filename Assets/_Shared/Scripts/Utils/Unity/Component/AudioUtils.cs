@@ -11,7 +11,7 @@ public static class AudioUtils {
   }
 
   /// <summary>
-  ///   Play the audio source if the given condition is true. 
+  ///   Play the audio source if the given condition is true.
   /// </summary>
   public static void Play(this AudioSource audioSource, bool @if) {
     if (@if) audioSource.Play();

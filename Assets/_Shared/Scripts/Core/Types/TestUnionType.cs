@@ -7,6 +7,5 @@ public class TestUnionType : MonoBehaviour {
     Debug.Log(_hi.Value);
   }
 
-  private void Update() {
-  }
+  private void Update() { }
 }

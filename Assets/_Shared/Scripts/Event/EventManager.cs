@@ -11,9 +11,9 @@ using UnityEngine;
 
 // ! Cannot bind events in Inspector if the listener is Prefab Asset. Workaround: only use Scene Prefab
 public class EventManager : MonoBehaviour {
-  public List<OnTriggerEnterEvent> onTriggerEnterEvents = new List<OnTriggerEnterEvent>();
-  public List<OnCollisionEnterEvent> onCollisionEnterEvents = new List<OnCollisionEnterEvent>();
-  public List<OnMouseDownEvent> onMouseDownEvents = new List<OnMouseDownEvent>();
+  public List<OnTriggerEnterEvent> onTriggerEnterEvents = new();
+  public List<OnCollisionEnterEvent> onCollisionEnterEvents = new();
+  public List<OnMouseDownEvent> onMouseDownEvents = new();
 
   private IEnumerator OnCollisionEnter(Collision other) {
     for (var i = 0; i < onCollisionEnterEvents.Count; i++) {

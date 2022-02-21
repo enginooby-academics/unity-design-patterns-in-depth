@@ -6,7 +6,7 @@ using UnityEngine.Pool;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 // ? Group PoolObject w/ SpawnWaveObject

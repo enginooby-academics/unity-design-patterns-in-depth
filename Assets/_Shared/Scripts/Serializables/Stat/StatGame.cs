@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 // TODO: Extend from Stat, couple w/ GameManager for quick prototyping
@@ -24,7 +24,7 @@ public class StatGame {
 
   // [ToggleGroup(nameof(enable))]
   [FoldoutGroup("$statName")] [ShowIf(nameof(enable))] [OnValueChanged(nameof(UpdateStatUI), true)] [HideLabel]
-  public StatUI ui = new StatUI();
+  public StatUI ui = new();
 
   public StatGame(string statName, int initialValue = 0, StatEvent triggerGameOverValue = StatEvent.None) {
     this.statName = statName;
@@ -90,7 +90,7 @@ public class StatGame {
     Min,
     Max,
     Zero,
-    None
+    None,
   } // ? Use enum flag
 
   // [ToggleGroup(nameof(enable))]
@@ -130,27 +130,27 @@ public class StatGame {
   // [ToggleGroup(nameof(enable))]
   // [FoldoutGroup("enable/Manual Events")]
   [FoldoutGroup("$statName")] [ShowIf(nameof(enable))] [FoldoutGroup("$statName/Manual Events")]
-  public UnityEvent OnStatIncrease = new UnityEvent();
+  public UnityEvent OnStatIncrease = new();
 
   // [ToggleGroup(nameof(enable))]
   // [FoldoutGroup("enable/Manual Events")]
   [FoldoutGroup("$statName")] [ShowIf(nameof(enable))] [FoldoutGroup("$statName/Manual Events")]
-  public UnityEvent OnStatDecrease = new UnityEvent();
+  public UnityEvent OnStatDecrease = new();
 
   // [ToggleGroup(nameof(enable))]
   // [FoldoutGroup("enable/Manual Events")]
   [FoldoutGroup("$statName")] [ShowIf(nameof(enable))] [FoldoutGroup("$statName/Manual Events")]
-  public UnityEvent OnStatMin = new UnityEvent();
+  public UnityEvent OnStatMin = new();
 
   // [ToggleGroup(nameof(enable))]
   // [FoldoutGroup("enable/Manual Events")]
   [FoldoutGroup("$statName")] [ShowIf(nameof(enable))] [FoldoutGroup("$statName/Manual Events")]
-  public UnityEvent OnStatMax = new UnityEvent();
+  public UnityEvent OnStatMax = new();
 
   // [ToggleGroup(nameof(enable))]
   // [FoldoutGroup("enable/Manual Events")]
   [FoldoutGroup("$statName")] [ShowIf(nameof(enable))] [FoldoutGroup("$statName/Manual Events")]
-  public UnityEvent OnStatZero = new UnityEvent();
+  public UnityEvent OnStatZero = new();
 
   public void SetupGameEvents() {
     GameManager.Instance.OnGameLoad.AddListener(OnGameLoad);
@@ -162,11 +162,9 @@ public class StatGame {
     CurrentValue = InitialValue;
   }
 
-  public void OnGameStart() {
-  }
+  public void OnGameStart() { }
 
-  public void OnGameOver() {
-  }
+  public void OnGameOver() { }
 
   #endregion ===================================================================================================================================
 

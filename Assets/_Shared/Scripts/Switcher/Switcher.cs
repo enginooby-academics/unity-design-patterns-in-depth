@@ -3,12 +3,12 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 // FIX: not work in Edit Mode anymore after exit Play Mode
 public abstract class Switcher<T> : MonoBehaviour where T : Object {
-  [SerializeField] [HideLabel] public AssetCollection<T> collection = new AssetCollection<T>();
+  [SerializeField] [HideLabel] public AssetCollection<T> collection = new();
 
   // For Edit Mode
   private void Reset() {

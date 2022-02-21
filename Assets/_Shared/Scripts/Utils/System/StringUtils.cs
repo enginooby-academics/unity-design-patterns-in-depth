@@ -15,8 +15,8 @@ public static class StringUtils {
   }
 
   /// <summary>
-  /// Add a space after every capital character.
-  /// <example>TheAppDemo -> The App Demo</example>
+  ///   Add a space after every capital character.
+  ///   <example>TheAppDemo -> The App Demo</example>
   /// </summary>
   public static string ToSentenceCase(this string str) {
     return Regex.Replace(str, "[a-z][A-Z]", m => m.Value[0] + " " + char.ToLower(m.Value[1]));

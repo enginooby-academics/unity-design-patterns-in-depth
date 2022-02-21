@@ -5,7 +5,7 @@ using UnityEngine.Rendering;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 // TODO: Rename to VolumeProfileVariation extending SO

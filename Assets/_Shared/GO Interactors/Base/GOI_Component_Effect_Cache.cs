@@ -3,8 +3,7 @@ using System.Linq;
 using UnityEngine;
 
 public abstract partial class GOI<TSelf, TComponent, TEffect, TCache> {
-  protected new Dictionary<GameObject, GOIStruct<TComponent, TEffect, TCache>> _interactedGos =
-    new Dictionary<GameObject, GOIStruct<TComponent, TEffect, TCache>>();
+  protected new Dictionary<GameObject, GOIStruct<TComponent, TEffect, TCache>> _interactedGos = new();
 
   public override List<GameObject> InteractedGos => _interactedGos.Keys.ToList();
 

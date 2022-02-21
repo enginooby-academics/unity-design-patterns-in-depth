@@ -4,7 +4,7 @@
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 using UnityEngine;
@@ -24,6 +24,14 @@ using static VectorUtils;
 
 public class TransformOperator : ComponentOperator<Transform> {
   [SerializeField] [HideLabel] private Translater _translater;
+
+  #region SCALING
+
+  // ===================================================================================================================
+  [ToggleGroup(nameof(_enableScaling), "Scaling")] [SerializeField]
+  private bool _enableScaling;
+
+  #endregion
 
   protected override void Awake() {
     _translater.Setup(Transform);
@@ -155,14 +163,6 @@ public class TransformOperator : ComponentOperator<Transform> {
   }
 
   private void StopRotating() => _enableRotating = false;
-
-  #endregion
-
-  #region SCALING
-
-  // ===================================================================================================================
-  [ToggleGroup(nameof(_enableScaling), "Scaling")] [SerializeField]
-  private bool _enableScaling;
 
   #endregion
 

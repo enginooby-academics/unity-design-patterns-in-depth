@@ -8,7 +8,7 @@ using Object = UnityEngine.Object;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 [Serializable]

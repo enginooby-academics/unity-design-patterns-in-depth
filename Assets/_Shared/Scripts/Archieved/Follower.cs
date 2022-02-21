@@ -6,7 +6,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 // ? CONSIDER: Separate classes for 2 methods if they don't communicate
@@ -44,7 +44,7 @@ public class Follower : MonoBehaviour {
 
   private enum Method {
     Instant,
-    Towards
+    Towards,
   }
 
   #region METHOD INSTANT ===================================================================================================================================
@@ -53,7 +53,7 @@ public class Follower : MonoBehaviour {
   [OnValueChanged(nameof(OnOffsetUpdate))]
   [InlineButton(nameof(CalcOffsetFromCurrentPos), "Current")]
   [SerializeField]
-  private Vector3 offset = new Vector3(50, 0, 0);
+  private Vector3 offset = new(50, 0, 0);
 
   private void CalcOffsetFromCurrentPos() {
     if (!target.GameObject) return;

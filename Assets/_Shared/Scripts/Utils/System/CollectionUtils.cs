@@ -8,7 +8,7 @@ public static class CollectionUtils {
   public static List<T> ToList<T>(this Array array) => array.Cast<T>().ToList();
 
   /// <summary>
-  /// Perform an action on each item.
+  ///   Perform an action on each item.
   /// </summary>
   public static IEnumerable<T> ForEach<T>(this IEnumerable<T> collection, Action<T> action) {
     foreach (var obj in collection)
@@ -32,7 +32,7 @@ public static class CollectionUtils {
   // ===================================================================================================================
 
   /// <summary>
-  /// Return -1 if the given element doesn't exist in the collection.
+  ///   Return -1 if the given element doesn't exist in the collection.
   /// </summary>
   public static int IndexOf<T>(this IEnumerable<T> collection, T elementToFind) {
     var i = 0;
@@ -121,8 +121,8 @@ public static class CollectionUtils {
   }
 
   /// <summary>
-  /// Remove all the elements whose values equal to the given value. <br/>
-  /// <example> (1, 2, 3, 1).RemoveEntriesOfValue(1) -> (2, 3) </example>
+  ///   Remove all the elements whose values equal to the given value. <br />
+  ///   <example> (1, 2, 3, 1).RemoveEntriesOfValue(1) -> (2, 3) </example>
   /// </summary>
   public static void RemoveEntriesOfValue<T>(this IList<T> list, [CanBeNull] T entryValue) {
     for (var i = list.Count - 1; i >= 0; i--)
@@ -146,7 +146,7 @@ public static class CollectionUtils {
   }
 
   /// <summary>
-  /// Return true if not contains.
+  ///   Return true if not contains.
   /// </summary>
   public static bool AddIfNotContains<T>(this IList<T> list, T element) {
     if (list.Contains(element)) return false;

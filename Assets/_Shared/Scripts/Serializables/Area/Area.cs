@@ -4,7 +4,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 // ? Create Serializable AreaMultiple/Areas
@@ -18,7 +18,7 @@ public class Area : SerializableBase, IArea {
     Axis,
     Point,
     Point2dFunc,
-    Circular
+    Circular,
   } // TODO: Polygon type w/ number of vertices: triangle (3), square (4)...
 
   [OnValueChanged(nameof(UpdateCurrentArea))] [HideLabel] [EnumToggleButtons]
@@ -34,19 +34,20 @@ public class Area : SerializableBase, IArea {
   public Area2DFuncPoint area2DFuncPoint;
 
   [ShowIf(nameof(areaType), AreaType.Circular)] [HideLabel]
-  public AreaCircular areaCircular = new AreaCircular();
+  public AreaCircular areaCircular = new();
 
   [HideInInspector] public IArea currentArea; // ? Remove this since had setter
 
   public Area() => currentArea = areaAxis;
 
-  public IArea CurrentArea => areaType switch {
-    AreaType.Axis => areaAxis,
-    AreaType.Point => areaPoint,
-    AreaType.Point2dFunc => area2DFuncPoint,
-    AreaType.Circular => areaCircular,
-    _ => null
-  };
+  public IArea CurrentArea =>
+    areaType switch {
+      AreaType.Axis => areaAxis,
+      AreaType.Point => areaPoint,
+      AreaType.Point2dFunc => area2DFuncPoint,
+      AreaType.Circular => areaCircular,
+      _ => null,
+    };
 
   public bool IsAxixType => areaType == AreaType.Axis;
   public bool IsPointType => areaType == AreaType.Point || areaType == AreaType.Point2dFunc;
@@ -74,7 +75,7 @@ public class Area : SerializableBase, IArea {
       AreaType.Point => areaPoint,
       AreaType.Point2dFunc => area2DFuncPoint,
       AreaType.Circular => areaCircular,
-      _ => null
+      _ => null,
     };
   }
 }

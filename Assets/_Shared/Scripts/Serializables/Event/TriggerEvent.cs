@@ -5,20 +5,20 @@ using UnityEngine.Events;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 [Flags]
 public enum DestroyTarget {
   Trigger = 1 << 1,
   Self = 1 << 2,
-  Other = 1 << 3
+  Other = 1 << 3,
 }
 
 [Flags]
 public enum ReleaseToPoolTarget {
   Self = 1 << 1,
-  Other = 1 << 2
+  Other = 1 << 2,
 }
 
 [Serializable]
@@ -34,7 +34,7 @@ public class TriggerEvent {
   // [ShowIf(nameof(eventType), EventType.OnCollisionEnter)]
   // [SerializeField, LabelText("Tags")] public List<string> onCollisionEnterTags = new List<string>() { "Player" };
 
-  [EnableIf(nameof(enable))] public UnityEvent Action = new UnityEvent();
+  [EnableIf(nameof(enable))] public UnityEvent Action = new();
 
   [EnableIf(nameof(enable))]
   [Tooltip("If Destroy Self After Invoke, does not set VFX as child since it'll be destroyed as well.")]

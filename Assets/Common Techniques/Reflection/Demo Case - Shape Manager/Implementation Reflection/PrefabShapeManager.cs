@@ -2,8 +2,9 @@ using System;
 using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 namespace Reflection.Case1.Reflection {
@@ -26,6 +27,5 @@ namespace Reflection.Case1.Reflection {
   }
 
   [Serializable]
-  public class IShapeContainer : IUnifiedContainer<IShape> {
-  }
+  public class IShapeContainer : IUnifiedContainer<IShape> { }
 }

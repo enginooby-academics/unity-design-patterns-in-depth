@@ -2,8 +2,9 @@ using UnityEngine;
 using UnityEngine.AI;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 namespace StatePattern.Base {
@@ -16,10 +17,9 @@ namespace StatePattern.Base {
 
     public Transform player;
 
-    [SerializeField] [HideLabel] private AreaCircular vision = new AreaCircular("Vision", angle: 30f);
+    [SerializeField] [HideLabel] private AreaCircular vision = new("Vision", angle: 30f);
 
-    [SerializeField] [HideLabel]
-    private AreaCircular attackableArea = new AreaCircular("Attack Area", angle: 30f, radius: 7f);
+    [SerializeField] [HideLabel] private AreaCircular attackableArea = new("Attack Area", angle: 30f, radius: 7f);
 
     private State currentState;
 

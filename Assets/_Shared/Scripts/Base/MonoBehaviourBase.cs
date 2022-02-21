@@ -7,7 +7,7 @@ using Object = UnityEngine.Object;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 // TODO:
@@ -66,7 +66,7 @@ public abstract class MonoBehaviourBase : MonoBehaviour {
   // ? Does it cost many memories if variables are not used
   // ? Use a dictionary (like in CacheStaticUtils) instead of separate variables
   // Prefer to component with only one of its type on the GO ([DisallowedMultipleComponent])
-  private readonly Dictionary<Type, Component> _cachedComponents = new Dictionary<Type, Component>();
+  private readonly Dictionary<Type, Component> _cachedComponents = new();
 
   // private Rigidbody _rigidbody = null;
   // public Rigidbody Rigidbody => _rigidbody ??= GetComponent<Rigidbody>();
@@ -134,15 +134,14 @@ public abstract class MonoBehaviourBase : MonoBehaviour {
   public void ToggleActive() { }
 
   /// <summary>
-  /// Instantiate at this component's position with Quaternion identity.
+  ///   Instantiate at this component's position with Quaternion identity.
   /// </summary>
-  protected new T Instantiate<T>(T prefab) where T : Component {
-    return Object.Instantiate(prefab, transform.position, Quaternion.identity);
-  }
+  protected new T Instantiate<T>(T prefab) where T : Component =>
+    Instantiate(prefab, transform.position, Quaternion.identity);
 
   /// <summary>
-  /// Instantiate at this component's position with Quaternion identity. <br/>
-  /// After the given lifespan, the spawned GameObject/component is destroyed.
+  ///   Instantiate at this component's position with Quaternion identity. <br />
+  ///   After the given lifespan, the spawned GameObject/component is destroyed.
   /// </summary>
   protected T Instantiate<T>(T prefab, float lifespan, bool destroyGameObject = true) where T : Component {
     var component = Instantiate(prefab);

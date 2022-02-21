@@ -1,7 +1,7 @@
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 using UnityEngine;
@@ -53,8 +53,16 @@ namespace VisitorPattern.Case1.Naive1 {
       AddQuadUV(v110, v111, v101, v100, Vector3.forward, uv0, uv1, uv2, uv3);
     }
 
-    private void AddQuadUV(Vector3 vertex0, Vector3 vertex1, Vector3 vertex2, Vector3 vertex3, Vector3 normal,
-      Vector2 uv0, Vector2 uv1, Vector2 uv2, Vector2 uv3) {
+    private void AddQuadUV(
+      Vector3 vertex0,
+      Vector3 vertex1,
+      Vector3 vertex2,
+      Vector3 vertex3,
+      Vector3 normal,
+      Vector2 uv0,
+      Vector2 uv1,
+      Vector2 uv2,
+      Vector2 uv3) {
       uv.Add(uv0);
       uv.Add(uv1);
       uv.Add(uv2);
@@ -62,8 +70,15 @@ namespace VisitorPattern.Case1.Naive1 {
       AddQuadNormal(vertex0, vertex1, vertex2, vertex3, normal, normal, normal, normal);
     }
 
-    private void AddQuadNormal(Vector3 vertex0, Vector3 vertex1, Vector3 vertex2, Vector3 vertex3,
-      Vector3 normal0, Vector3 normal1, Vector3 normal2, Vector3 normal3) {
+    private void AddQuadNormal(
+      Vector3 vertex0,
+      Vector3 vertex1,
+      Vector3 vertex2,
+      Vector3 vertex3,
+      Vector3 normal0,
+      Vector3 normal1,
+      Vector3 normal2,
+      Vector3 normal3) {
       normals.Add(normal0);
       normals.Add(normal1);
       normals.Add(normal2);

@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using UnityEngine;
 using Object = UnityEngine.Object;
-
 #if UNITY_2021_1_OR_NEWER
 using UnityEngine.Pool;
 #endif
@@ -11,12 +10,12 @@ using UnityEngine.Pool;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 // TODO: Generics - GameObject...
 /// <summary>
-/// Default pool: disable object on release, enable object on retrieve, destroy object on destroy
+///   Default pool: disable object on release, enable object on retrieve, destroy object on destroy
 /// </summary>
 [Serializable]
 [InlineProperty]

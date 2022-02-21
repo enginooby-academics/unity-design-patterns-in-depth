@@ -3,14 +3,14 @@ using UnityEngine;
 using UnityEngine.Rendering;
 
 public static class ProceduralUtils {
-  private static readonly List<Vector3> vertices = new List<Vector3>();
-  private static readonly List<int> triangles = new List<int>();
-  private static readonly List<Vector3> normals = new List<Vector3>();
-  private static readonly List<Vector4> tangents = new List<Vector4>();
-  private static readonly List<Vector2> uv = new List<Vector2>();
-  private static readonly List<Vector2> uv2 = new List<Vector2>();
-  private static readonly List<Vector2> uv3 = new List<Vector2>();
-  private static readonly List<Vector2> uv4 = new List<Vector2>();
+  private static readonly List<Vector3> vertices = new();
+  private static readonly List<int> triangles = new();
+  private static readonly List<Vector3> normals = new();
+  private static readonly List<Vector4> tangents = new();
+  private static readonly List<Vector2> uv = new();
+  private static readonly List<Vector2> uv2 = new();
+  private static readonly List<Vector2> uv3 = new();
+  private static readonly List<Vector2> uv4 = new();
 
   private static void SetMeshData(Mesh mesh) {
     mesh.Clear();
@@ -71,8 +71,16 @@ public static class ProceduralUtils {
     AddQuadUV(v110, v111, v101, v100, Vector3.forward, uv0, uv1, uv2, uv3);
   }
 
-  private static void AddQuadUV(Vector3 vertex0, Vector3 vertex1, Vector3 vertex2, Vector3 vertex3, Vector3 normal,
-    Vector2 uv0, Vector2 uv1, Vector2 uv2, Vector2 uv3) {
+  private static void AddQuadUV(
+    Vector3 vertex0,
+    Vector3 vertex1,
+    Vector3 vertex2,
+    Vector3 vertex3,
+    Vector3 normal,
+    Vector2 uv0,
+    Vector2 uv1,
+    Vector2 uv2,
+    Vector2 uv3) {
     uv.Add(uv0);
     uv.Add(uv1);
     uv.Add(uv2);
@@ -80,8 +88,15 @@ public static class ProceduralUtils {
     AddQuadNormal(vertex0, vertex1, vertex2, vertex3, normal, normal, normal, normal);
   }
 
-  private static void AddQuadNormal(Vector3 vertex0, Vector3 vertex1, Vector3 vertex2, Vector3 vertex3,
-    Vector3 normal0, Vector3 normal1, Vector3 normal2, Vector3 normal3) {
+  private static void AddQuadNormal(
+    Vector3 vertex0,
+    Vector3 vertex1,
+    Vector3 vertex2,
+    Vector3 vertex3,
+    Vector3 normal0,
+    Vector3 normal1,
+    Vector3 normal2,
+    Vector3 normal3) {
     normals.Add(normal0);
     normals.Add(normal1);
     normals.Add(normal2);

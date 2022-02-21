@@ -4,7 +4,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 // TODO
@@ -19,16 +19,16 @@ public class Vector3Range {
   public string title;
 
   [FoldoutGroup("$title")] [LabelWidth(LABEL_WIDTH)] [LabelText("X")]
-  public Vector2Wrapper xRange = new Vector2Wrapper();
+  public Vector2Wrapper xRange = new();
 
   [FoldoutGroup("$title")] [LabelWidth(LABEL_WIDTH)] [LabelText("Y")]
-  public Vector2Wrapper yRange = new Vector2Wrapper();
+  public Vector2Wrapper yRange = new();
 
   [FoldoutGroup("$title")] [LabelWidth(LABEL_WIDTH)] [LabelText("Z")]
-  public Vector2Wrapper zRange = new Vector2Wrapper();
+  public Vector2Wrapper zRange = new();
 
   [FoldoutGroup("$title")] [LabelWidth(LABEL_WIDTH)] [LabelText("All")] [OnValueChanged(nameof(OnAllUpdate), true)]
-  public Vector2Wrapper all = new Vector2Wrapper();
+  public Vector2Wrapper all = new();
 
   [HideInInspector] public Vector2 initialMinMax;
 
@@ -42,11 +42,11 @@ public class Vector3Range {
   /// <summary>
   ///   Return a random position lie inside the "box" created by Vector3Range
   /// </summary>
-  public Vector3 Random => new Vector3(xRange.Random, yRange.Random, zRange.Random);
+  public Vector3 Random => new(xRange.Random, yRange.Random, zRange.Random);
 
   // ? Rename to Center
-  public Vector3 Average => new Vector3(xRange.Average, yRange.Average, zRange.Average);
-  public Vector3 Size => new Vector3(xRange.Length, yRange.Length, zRange.Length);
+  public Vector3 Average => new(xRange.Average, yRange.Average, zRange.Average);
+  public Vector3 Size => new(xRange.Length, yRange.Length, zRange.Length);
 
   private void OnAllUpdate() {
     // ? define = operatot for Vector2Wrapper

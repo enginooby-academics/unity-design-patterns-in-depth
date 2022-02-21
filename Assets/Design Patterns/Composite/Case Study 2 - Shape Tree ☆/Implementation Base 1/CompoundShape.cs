@@ -1,7 +1,7 @@
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 #if ASSET_DOTWEEN
@@ -22,7 +22,7 @@ using static UnityEngine.Mathf;
 namespace CompositePattern.Case2.Base1 {
   public enum ShapeType {
     Cube,
-    Sphere
+    Sphere,
   }
 
   /// <summary>
@@ -37,10 +37,9 @@ namespace CompositePattern.Case2.Base1 {
     private ShapeType _shapeType = ShapeType.Cube;
 
     [SerializeReference] [OnCollectionChanged(nameof(SetupChildren))]
-    private List<IShape> children = new List<IShape>();
+    private List<IShape> children = new();
 
-    public CompoundShape() : base(PrimitiveType.Cube) {
-    }
+    public CompoundShape() : base(PrimitiveType.Cube) { }
 
     private void UpdateShapeType() => GameObject.SetPrimitiveMesh(_shapeType);
 
@@ -73,7 +72,7 @@ namespace CompositePattern.Case2.Base1 {
       double selfVolume = _shapeType switch {
         ShapeType.Cube => Pow(_scale, 3),
         ShapeType.Sphere => 4 / 3 * PI * Pow(_scale / 2, 3),
-        _ => throw new ArgumentOutOfRangeException()
+        _ => throw new ArgumentOutOfRangeException(),
       };
 
       return childrenVolume + selfVolume;

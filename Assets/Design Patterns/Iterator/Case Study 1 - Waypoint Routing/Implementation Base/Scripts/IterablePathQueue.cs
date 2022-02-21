@@ -5,8 +5,8 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
-using Enginoobz.Core;
+using Enginooby.Attribute;
+using Enginooby.Core;
 #endif
 
 namespace IteratorPattern.Case1.Base {

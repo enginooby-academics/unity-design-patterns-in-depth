@@ -7,7 +7,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 // TODO: implement on right mouse click, layers, disable all tags/layers, enable all tags/layers, toggle/unselect mode
@@ -16,12 +16,12 @@ public class Selector : MonoBehaviour {
 
   private enum SelectEffect {
     Highlight,
-    Animate
+    Animate,
   }
 
   private enum SelectMode {
     Single,
-    Multiple
+    Multiple,
   }
 
 
@@ -43,14 +43,14 @@ public class Selector : MonoBehaviour {
   [Header("ON LEFT MOUSE CLICK (OLMC)")] [SerializeField] [Tooltip("Excluding Unselectable Tags OLMC")]
   private bool allTagsSelectableOlmc = true;
 
-  [SerializeField] private List<string> selectableTagsOlmc = new List<string>();
-  [SerializeField] private List<string> unselectableTagsOlmc = new List<string>();
+  [SerializeField] private List<string> selectableTagsOlmc = new();
+  [SerializeField] private List<string> unselectableTagsOlmc = new();
 
   [Header("ON MOUSE HOVER (OMH)")] [SerializeField] [Tooltip("Excluding Unselectable Tags OMH")]
   private bool allTagsSelectableOmh = true;
 
-  [SerializeField] private List<string> selectableTagsOmh = new List<string>();
-  [SerializeField] private List<string> unselectableTagsOmh = new List<string>();
+  [SerializeField] private List<string> selectableTagsOmh = new();
+  [SerializeField] private List<string> unselectableTagsOmh = new();
 
   #endregion
 

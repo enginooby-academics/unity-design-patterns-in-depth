@@ -1,13 +1,13 @@
 using UnityEngine;
 
 public class SelectionController : MonoBehaviour {
-  [SerializeField] private KeyCodeModifier deleteKey = new KeyCodeModifier(KeyCode.Delete);
-  [SerializeField] private KeyCodeModifier movePlayerToKey = new KeyCodeModifier(KeyCode.F);
-  [SerializeField] private KeyCodeModifier moveToPlayerKey = new KeyCodeModifier(KeyCode.V);
-  [SerializeField] private KeyCodeModifier revertPlayerPosKey = new KeyCodeModifier(KeyCode.G);
-  [SerializeField] private KeyCodeModifier toggleVfxKey = new KeyCodeModifier(KeyCode.T);
-  [SerializeField] private KeyCodeModifier enablePreviousVfxKey = new KeyCodeModifier(KeyCode.R);
-  [SerializeField] private KeyCodeModifier enableNextVfxKey = new KeyCodeModifier(KeyCode.Y);
+  [SerializeField] private KeyCodeModifier deleteKey = new(KeyCode.Delete);
+  [SerializeField] private KeyCodeModifier movePlayerToKey = new(KeyCode.F);
+  [SerializeField] private KeyCodeModifier moveToPlayerKey = new(KeyCode.V);
+  [SerializeField] private KeyCodeModifier revertPlayerPosKey = new(KeyCode.G);
+  [SerializeField] private KeyCodeModifier toggleVfxKey = new(KeyCode.T);
+  [SerializeField] private KeyCodeModifier enablePreviousVfxKey = new(KeyCode.R);
+  [SerializeField] private KeyCodeModifier enableNextVfxKey = new(KeyCode.Y);
 
 #if ASSET_MESH_EFFECTS
   [Header("[Directors]")]

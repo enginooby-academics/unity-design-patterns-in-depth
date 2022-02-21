@@ -3,22 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 // TODO: Exclusive area
 namespace CompositePattern.Case1.Base {
   public enum GizmosMode {
     Solid,
-    Wire
+    Wire,
   }
 
   [Flags]
   public enum GizmosDisplay {
     OnGizmos = 1 << 1,
     OnSelected = 1 << 2,
-    InGame = 1 << 3
+    InGame = 1 << 3,
   }
 
   [Serializable]
@@ -36,7 +37,7 @@ namespace CompositePattern.Case1.Base {
     protected bool _isEnabled = true;
 
     [ToggleGroup(nameof(_isEnabled))] [HideIf(nameof(_isComposite))] [LabelText("Area Origins")] [SerializeField]
-    protected List<ReferenceVector3> _origins = new List<ReferenceVector3>();
+    protected List<ReferenceVector3> _origins = new();
 
     [ToggleGroup(nameof(_isEnabled))]
     [FoldoutGroup(nameof(_isEnabled) + "/Gizmos")]
@@ -73,8 +74,7 @@ namespace CompositePattern.Case1.Base {
 
     protected bool _isComposite;
 
-    public Area() {
-    }
+    public Area() { }
 
     public Area(Vector3 staticOrigin) {
       _origins.Add(new ReferenceVector3(staticOrigin));

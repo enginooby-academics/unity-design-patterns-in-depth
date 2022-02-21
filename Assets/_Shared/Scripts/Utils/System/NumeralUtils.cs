@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 // TODO: Use Random System and remove UnityEngine dependency
 public static class NumeralUtils {
@@ -91,7 +92,7 @@ public static class NumeralUtils {
     (number - min) * ((targetMax - targetMin) / (max - min)) + targetMin;
 
   public static int WithRandomSign(this int number) {
-    var sign = UnityEngine.Random.Range(0, 100) > 50 ? 1 : -1;
+    var sign = Random.Range(0, 100) > 50 ? 1 : -1;
     return sign * number;
   }
 }

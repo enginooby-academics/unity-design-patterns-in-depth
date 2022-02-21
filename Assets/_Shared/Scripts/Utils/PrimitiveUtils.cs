@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class PrimitiveUtils {
-  private static readonly Dictionary<PrimitiveType, Mesh> _meshes = new Dictionary<PrimitiveType, Mesh>();
+  private static readonly Dictionary<PrimitiveType, Mesh> _meshes = new();
 
   /// <summary>
   ///   Convert the given enum to PrimitiveType, hence the string name must match. Useful for enum subset of PrimitiveType if
@@ -20,7 +20,7 @@ public static class PrimitiveUtils {
     var meshRenderer = go.AddComponent<MeshRenderer>();
     meshFilter.mesh = GetPrimitiveMesh(type);
     meshRenderer.material = new Material(Shader.Find("Universal Render Pipeline/Lit")) {
-      color = color ?? Color.white
+      color = color ?? Color.white,
     };
     return go;
   }

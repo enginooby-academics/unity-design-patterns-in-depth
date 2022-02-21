@@ -8,7 +8,7 @@ using UnityEngine.Events;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 // TODO
@@ -61,7 +61,7 @@ public abstract class ArchievedTrigger : MonoBehaviour {
   protected float onCollisionEnterDelay;
 
   [BoxGroup(nameof(IsTriggerEventOnCollisionEnter) + "/OnCollisionEnter")] [SerializeField]
-  protected List<string> onCollisionEnterTriggerTags = new List<string> {"Player"};
+  protected List<string> onCollisionEnterTriggerTags = new() {"Player"};
 
   [BoxGroup(nameof(IsTriggerEventOnCollisionEnter) + "/OnCollisionEnter")] [SerializeField]
   private UnityEvent onCollisionEnterManualEvent;
@@ -87,7 +87,7 @@ public abstract class ArchievedTrigger : MonoBehaviour {
   #region ON COLLISION EXIT
 
   [TabGroup("OnCollisionExit")] [ShowIf(nameof(IsTriggerEventOnCollisionExit))] [SerializeField]
-  protected List<string> onCollisionExitTriggerTags = new List<string> {"Player"};
+  protected List<string> onCollisionExitTriggerTags = new() {"Player"};
 
   [TabGroup("OnCollisionExit")] [ShowIf(nameof(IsTriggerEventOnCollisionExit))] [SerializeField]
   private UnityEvent onCollisionExitManualEvent;
@@ -112,7 +112,7 @@ public abstract class ArchievedTrigger : MonoBehaviour {
   private AudioClip onTriggerEnterSfx;
 
   [BoxGroup(nameof(IsTriggerEventOnTriggerEnter) + "/OnTriggerEnter")] [SerializeField]
-  protected List<string> onTriggerEnterTriggerTags = new List<string> {"Player"};
+  protected List<string> onTriggerEnterTriggerTags = new() {"Player"};
 
   [BoxGroup(nameof(IsTriggerEventOnTriggerEnter) + "/OnTriggerEnter")] [SerializeField]
   private UnityEvent onTriggerEnterManualEvent;
@@ -149,7 +149,7 @@ public abstract class ArchievedTrigger : MonoBehaviour {
   #region ON TRIGGER EXIT
 
   [ShowIf(nameof(IsTriggerEventOnTriggerExit))] [SerializeField]
-  protected List<string> onTriggerExitTriggerTags = new List<string> {"Player"};
+  protected List<string> onTriggerExitTriggerTags = new() {"Player"};
 
   private bool IsTriggerEventOnTriggerExit => triggerEvent.HasFlag(TriggerEventType.OnTriggerExit);
 

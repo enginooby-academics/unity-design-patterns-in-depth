@@ -1,11 +1,10 @@
-﻿#if ODIN_INSPECTOR
+﻿using System;
+using UnityEngine;
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
-
-using System;
-using UnityEngine;
 
 namespace Enginooby.Core {
   // REFACTOR: Create generics class & RandomFloat
@@ -18,7 +17,7 @@ namespace Enginooby.Core {
 
     [SerializeField] private int min;
     [SerializeField] private int max;
-    private int? _value = null;
+    private int? _value;
 
     public RandomInt(int min, int max) {
       // range.x = this.min = min;
@@ -31,7 +30,7 @@ namespace Enginooby.Core {
     public int Value => _value ?? Randomize(); // lazy init
 
     /// <summary>
-    /// Re-randomize the current value and return it.
+    ///   Re-randomize the current value and return it.
     /// </summary>
     public int Random => Randomize();
 

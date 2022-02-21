@@ -1,15 +1,9 @@
-﻿using UnityEngine;
-using System.Collections;
-using BrokenVector.FastGrid.Utils;
-using UnityEditor;
-using UnityEditor.Callbacks;
+﻿using UnityEditor;
+using UnityEngine;
 
-namespace BrokenVector.RealShortcuts
-{
-    [CustomEditor(typeof(Shortcut))]
-    public class ShortcutInspector : Editor
-    {
-
+namespace BrokenVector.RealShortcuts {
+  [CustomEditor(typeof(Shortcut))]
+  public class ShortcutInspector : Editor {
 #if UNITY_5_4_OR_NEWER
 #else
         static ShortcutInspector()
@@ -18,41 +12,33 @@ namespace BrokenVector.RealShortcuts
         }
 #endif
 
-        public override void OnInspectorGUI()
-        {
+    public override void OnInspectorGUI() {
+      GUILayout.Space(10);
 
-            GUILayout.Space(10);
+      GUI.skin.label.fontSize = 20;
+      GUILayout.Label("Shortcut");
+      GUI.skin.label.fontSize = 0;
 
-            GUI.skin.label.fontSize = 20;
-            GUILayout.Label("Shortcut");
-            GUI.skin.label.fontSize = 0;
+      GUILayout.Space(20);
 
-            GUILayout.Space(20);
+      var shortcut = (Shortcut) target;
 
-            Shortcut shortcut = (Shortcut) target;
+      EditorGUILayout.BeginHorizontal();
+      {
+        EditorGUILayout.LabelField("Target:", GUILayout.Width(50));
+        EditorGUILayout.TextArea(shortcut.TargetPath);
+      }
+      EditorGUILayout.EndHorizontal();
 
-            EditorGUILayout.BeginHorizontal();
-            {
-                EditorGUILayout.LabelField("Target:", GUILayout.Width(50));
-                EditorGUILayout.TextArea(shortcut.TargetPath);
-            }
-            EditorGUILayout.EndHorizontal();
+      GUILayout.Space(20);
 
-            GUILayout.Space(20);
-
-            EditorGUILayout.BeginHorizontal();
-            {
-                if (GUILayout.Button("Open"))
-                {
-                    OpenShortcut(shortcut);
-                }
-                if (GUILayout.Button("Remove"))
-                {
-                    AssetDatabase.DeleteAsset(AssetDatabase.GetAssetPath(target));
-                }
-            }
-            EditorGUILayout.EndHorizontal();
-        }
+      EditorGUILayout.BeginHorizontal();
+      {
+        if (GUILayout.Button("Open")) OpenShortcut(shortcut);
+        if (GUILayout.Button("Remove")) AssetDatabase.DeleteAsset(AssetDatabase.GetAssetPath(target));
+      }
+      EditorGUILayout.EndHorizontal();
+    }
 
 #if UNITY_5_4_OR_NEWER
 #else
@@ -73,14 +59,12 @@ namespace BrokenVector.RealShortcuts
             }
         }
 #endif
-        
-        public static void OpenShortcut(Shortcut shortcut)
-        {
-            var obj = AssetDatabase.LoadAssetAtPath(shortcut.TargetPath, typeof(Object));
 
-            Selection.activeObject = obj;
-            EditorGUIUtility.PingObject(obj);
-        }
+    public static void OpenShortcut(Shortcut shortcut) {
+      var obj = AssetDatabase.LoadAssetAtPath(shortcut.TargetPath, typeof(Object));
 
+      Selection.activeObject = obj;
+      EditorGUIUtility.PingObject(obj);
     }
+  }
 }

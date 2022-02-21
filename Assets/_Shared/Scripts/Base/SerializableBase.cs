@@ -4,7 +4,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 [Serializable]
@@ -24,6 +24,5 @@ public abstract class SerializableBase {
     OnGameObjectChanged();
   }
 
-  protected virtual void OnGameObjectChanged() {
-  }
+  protected virtual void OnGameObjectChanged() { }
 }

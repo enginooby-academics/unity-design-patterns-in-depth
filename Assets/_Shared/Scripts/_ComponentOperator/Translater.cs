@@ -4,47 +4,17 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 [Serializable]
 [InlineProperty]
 public class Translater : SerializableBase {
-  private Transform _transform;
-  private Vector3 _originalPos;
-
-  public void Setup(Transform transform) {
-    _transform = transform;
-  }
-
-  public void Init() {
-    _originalPos = _transform.position;
-    IsTranslatingToMaxY = _translationalSpeed.y > 0;
-  }
-
-  private enum Mode {
-    Auto,
-    Control,
-  }
-
-  private enum OnBoundaryAction {
-    Stop,
-    LoopMinToMax,
-    LoopMaxToMin,
-    LoopPingPong,
-  }
-
-
   [ToggleGroup(nameof(_enableTranslating), "Translating")] [SerializeField]
   private bool _enableTranslating = true;
 
   [ToggleGroup(nameof(_enableTranslating))] [OnValueChanged(nameof(Init))] [SerializeField] [LabelText("Speed")]
   private Vector3 _translationalSpeed;
-
-  public Vector3 TranslationalSpeed {
-    get => _translationalSpeed;
-    set => _translationalSpeed = value;
-  }
 
   [ToggleGroup(nameof(_enableTranslating))]
   [ShowIf(nameof(_translatingMode), Mode.Auto)]
@@ -66,17 +36,6 @@ public class Translater : SerializableBase {
   [LabelText("On Reach Boundary")]
   private OnBoundaryAction _translationalOnBoundaryAction = OnBoundaryAction.LoopPingPong;
 
-  private bool IsTranslatingOnY => _translationalSpeed.y != 0;
-  private bool? IsTranslatingToMaxY;
-
-  public void InvertTranslationalY() {
-    IsTranslatingToMaxY = !IsTranslatingToMaxY;
-  }
-
-  public void InvertTranslationalDirection() {
-    InvertTranslationalY();
-  }
-
   [ToggleGroup(nameof(_enableTranslating))] [SerializeField] [LabelText("Acceleration")]
   private Vector3 _translationalAcceleration;
 
@@ -91,6 +50,34 @@ public class Translater : SerializableBase {
 
   [ToggleGroup(nameof(_enableTranslating))] [ShowIf(nameof(_translatingMode), Mode.Control)] [SerializeField]
   private InputModifier _zTranslateKey = new(InputModifier.InputType.Axis, inputAxis: InputAxis.Horizontal);
+
+  private Vector3 _originalPos;
+  private Transform _transform;
+  private bool? IsTranslatingToMaxY;
+
+  public Vector3 TranslationalSpeed {
+    get => _translationalSpeed;
+    set => _translationalSpeed = value;
+  }
+
+  private bool IsTranslatingOnY => _translationalSpeed.y != 0;
+
+  public void Setup(Transform transform) {
+    _transform = transform;
+  }
+
+  public void Init() {
+    _originalPos = _transform.position;
+    IsTranslatingToMaxY = _translationalSpeed.y > 0;
+  }
+
+  public void InvertTranslationalY() {
+    IsTranslatingToMaxY = !IsTranslatingToMaxY;
+  }
+
+  public void InvertTranslationalDirection() {
+    InvertTranslationalY();
+  }
 
   public void DrawGizmosTranslating() {
     if (!_enableTranslating) return;
@@ -134,5 +121,17 @@ public class Translater : SerializableBase {
 
   public void StopTranslating() {
     _enableTranslating = false;
+  }
+
+  private enum Mode {
+    Auto,
+    Control,
+  }
+
+  private enum OnBoundaryAction {
+    Stop,
+    LoopMinToMax,
+    LoopMaxToMin,
+    LoopPingPong,
   }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 // ? What is the point of EventManager when we can just use Action
@@ -14,7 +14,7 @@ namespace ObserverPattern.Case2.Alternative3 {
   using EventHandler = Action<Dictionary<string, object>>; // paramName + value
 
   public class EventManager : MonoBehaviourSingleton<EventManager> {
-    private readonly Dictionary<Event, EventHandler> _events = new Dictionary<Event, EventHandler>();
+    private readonly Dictionary<Event, EventHandler> _events = new();
 
     private void OnApplicationQuit() {
       // foreach loop causes error on modifying

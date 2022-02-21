@@ -6,7 +6,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 // REFACTOR: Extend Interactor<GameObject>
@@ -17,7 +17,7 @@ using Enginoobz.Attribute;
 ///   GameObject Interactor base class.
 /// </summary>
 public abstract partial class GOI {
-  protected List<GameObject> _interactedGos = new List<GameObject>();
+  protected List<GameObject> _interactedGos = new();
 
   public virtual List<GameObject> InteractedGos => _interactedGos;
 

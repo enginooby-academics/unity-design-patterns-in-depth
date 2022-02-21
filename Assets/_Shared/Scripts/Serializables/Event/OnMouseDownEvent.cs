@@ -3,10 +3,9 @@ using System;
 using Sirenix.OdinInspector;
 
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 [Serializable]
 [InlineProperty]
-public class OnMouseDownEvent : TriggerEvent {
-}
+public class OnMouseDownEvent : TriggerEvent { }

@@ -3,7 +3,7 @@ using UnityEngine;
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
-using Enginoobz.Attribute;
+using Enginooby.Attribute;
 #endif
 
 #if ASSET_ALINE
@@ -21,16 +21,13 @@ namespace CompositePattern.Case1.Base {
   /// </summary>
   public class AreaAxis : Area {
     [HideLabel] [SerializeField] [ToggleGroup(nameof(_isEnabled))]
-    protected Vector3Range _box = new Vector3Range("Axes", new Vector2(-100, 100));
+    protected Vector3Range _box = new("Axes", new Vector2(-100, 100));
 
-    public AreaAxis() {
-    }
+    public AreaAxis() { }
 
-    public AreaAxis(Vector3 staticOrigin) : base(staticOrigin) {
-    }
+    public AreaAxis(Vector3 staticOrigin) : base(staticOrigin) { }
 
-    public AreaAxis(GameObject gameObjectOrigin) : base(gameObjectOrigin) {
-    }
+    public AreaAxis(GameObject gameObjectOrigin) : base(gameObjectOrigin) { }
 
 
     /// <summary>
