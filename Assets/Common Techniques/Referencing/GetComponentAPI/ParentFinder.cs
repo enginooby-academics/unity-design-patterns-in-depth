@@ -6,5 +6,11 @@ namespace Techniques.Referencing {
       var target = GetComponentInParent<Target>();
       print(target is null ? "Target not found." : "Target found.");
     }
+
+    [AutoRef(AutoRefTarget.Parent)] private Target _target;
+
+    private void Start() {
+      print(_target is null ? "Target not found." : "Target found.");
+    }
   }
 }
