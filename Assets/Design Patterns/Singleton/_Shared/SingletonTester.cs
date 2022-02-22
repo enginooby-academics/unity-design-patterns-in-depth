@@ -1,5 +1,3 @@
-#if ASM
-
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
@@ -9,7 +7,9 @@ using Enginooby.Attribute;
 using System;
 using System.Collections;
 using System.Linq;
+#if ASM
 using AdvancedSceneManager.Models;
+#endif
 using UnityEngine;
 using static UnityEngine.SceneManagement.SceneManager;
 
@@ -19,10 +19,12 @@ namespace SingletonPattern {
   ///   ! Replay after each test.
   /// </summary>
   public abstract class SingletonTester<T> : MonoBehaviourSingleton<SingletonTester<T>> where T : class {
+#if ASM
     [SerializeField]
     [InfoBox(
       "ASM scene can be found in Settings/Resources with the same name of the scene. Scene also needs added in the Build setting.")]
     private Scene _scene2;
+#endif
 
     private readonly float TEST_DELAY = .2f;
 
@@ -49,7 +51,9 @@ namespace SingletonPattern {
     public void TestUniquenessOnLoadScene2Additively() {
       // ! temperory solution: add a small delay to ensure Testuniqueness is performed after new scene is opened.
       Invoke(nameof(TestUniqueness), TEST_DELAY);
+#if ASM
       _scene2.Open();
+#endif
     }
 
     private void TestUniqueness() {
@@ -84,7 +88,9 @@ namespace SingletonPattern {
     public void TestPersistenceOnLoadScene2() {
       Invoke(nameof(TestPersistence), TEST_DELAY);
       UnloadSceneAsync(GetActiveScene());
+#if ASM
       _scene2.OpenSingle(); // ! sometimes not close scene 1
+#endif
     }
 
     [Button]
@@ -93,7 +99,9 @@ namespace SingletonPattern {
     // ? always pass if TestUniquenessOnCurrentScene() fails
     public void TestPersistenceOnLoadScene2Additively() {
       Invoke(nameof(TestPersistence), TEST_DELAY);
+#if ASM
       _scene2.Open();
+#endif
     }
 
     private void TestPersistence() {
@@ -104,4 +112,3 @@ namespace SingletonPattern {
     }
   }
 }
-#endif

@@ -7,7 +7,7 @@ namespace CallbackPattern.Case2.Base1 {
   /// </summary>
   public class TaskLogger : ICallback {
     public void Execute(float taskDuration) {
-      Debug.Log($"The task took ${taskDuration} seconds.");
+      Debug.Log($"The task took {taskDuration} seconds.");
     }
   }
 }
