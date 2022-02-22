@@ -8,6 +8,8 @@ public static class TypeUtils {
   // TIP: Use generics to pass type as argument with shorter syntax
   public static bool IsSubclassOf<T>(this Type type) => type.IsSubclassOf(typeof(T));
 
+  public static bool IsListType(this Type type) => type.GetGenericTypeDefinition() == typeof(List<>);
+
   /// <summary>
   ///   Checks if the type implements the other type.
   /// </summary>

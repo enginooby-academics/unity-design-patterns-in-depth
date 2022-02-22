@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using Object = UnityEngine.Object;
 using Enginooby.Utils;
+using UnityEngine.SceneManagement;
 
 public static class GameObjectUtils {
   // ? Rename to SetPosition, reserve With... for duplication operations
@@ -108,5 +109,47 @@ public static class GameObjectUtils {
     }
 
     return gos.ElementAt(nearestGoIndex);
+  }
+
+  /// <summary>
+  /// Get all GameObjects by name in the active scene.
+  /// </summary>
+  public static IEnumerable<GameObject> FindAllGameObjects(string name) {
+    var gos = new List<GameObject>();
+    var rootGos = SceneManager.GetActiveScene().GetRootGameObjects();
+    // Use scene roots to iterate and check each GameObject.
+
+    foreach (var rootGo in rootGos) {
+      // If the name matches, add the root GameObject to the target list.
+      if (rootGo.name == name) gos.Add(rootGo);
+      // Get the number of children of the scene root GameObject.
+      var childCount = rootGo.transform.childCount;
+
+      for (var i = 0; i < childCount; i++) {
+        var childGo = rootGo.transform.GetChild(i).gameObject;
+        if (childGo.name == name) gos.Add(childGo);
+      }
+    }
+
+    return gos;
+  }
+
+  public static IEnumerable<GameObject> GetChildGameObjects(this GameObject go) {
+    var childGos = new List<GameObject>();
+
+    for (var i = 0; i < go.transform.childCount; i++) {
+      var childGo = go.transform.GetChild(i).gameObject;
+      childGos.Add(childGo);
+    }
+
+    return childGos;
+  }
+
+  /// <summary>
+  /// Return all GameObjects at the same level in the hierarchy, excluding itself.
+  /// </summary>
+  public static IEnumerable<GameObject> GetSiblingGameObjects(this GameObject go) {
+    var siblings = go.transform.parent.gameObject.GetChildGameObjects();
+    return siblings.Where(sibling => sibling != go);
   }
 }
