@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Collection
   - Obstacle
+  - Target
   layers:
   - Default
   - TransparentFX
