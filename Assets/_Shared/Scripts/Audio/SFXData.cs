@@ -12,10 +12,10 @@ using Enginooby.Attribute;
 // TODO: Rename to SFXVariation
 
 namespace Enginooby.Audio {
-  [CreateAssetMenu(fileName = "SFX_", menuName = "Audio/SFX Data", order = 0)]
   /// <summary>
-  /// List of audio clips for a certain event (e.g. play taked damage, enemy dead).
+  ///   List of audio clips for a certain event (e.g. play take damage, enemy dead).
   /// </summary>
+  [CreateAssetMenu(fileName = "SFX_", menuName = "Audio/SFX Data", order = 0)]
   public class SFXData : ScriptableObject {
     // TODO: Turn mode: random, random iterate, iterate, random other than last
 

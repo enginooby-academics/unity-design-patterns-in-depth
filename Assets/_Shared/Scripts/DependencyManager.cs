@@ -11,6 +11,7 @@
 [assembly: OptionalDependency("Beautify.Universal.Beautify", "ASSET_BEAUTIFY")]
 [assembly: OptionalDependency("SCPE.DoubleVision", "ASSET_SCPE")]
 [assembly: OptionalDependency("UnityEngine.UI.ProceduralImage.ProceduralImage", "ASSET_PROCEDURAL_IMAGE")]
+[assembly: OptionalDependency("NaughtyAttributes.INaughtyAttribute", "ASSET_NAUGHTY_ATTRIBUTES")]
 
 // [assembly: OptionalDependency("EnviroSkyMgr", "ASSET_ENVIRO")] //  ENVIRO_LW || ENVIRO_HD
 // [assembly: OptionalDependency("EPOOutline.Outlinable", "ASSET_EPO_OUTLINE")] // URP_OUTLINE 

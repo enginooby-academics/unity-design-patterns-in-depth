@@ -13,21 +13,21 @@ using Enginooby.Attribute;
 [Serializable]
 [InlineProperty]
 public class Vector3Range {
-  private const float LABEL_WIDTH = 40;
+  private const float LabelWidth = 40;
 
   [FoldoutGroup("$title")] [HideInInspector]
   public string title;
 
-  [FoldoutGroup("$title")] [LabelWidth(LABEL_WIDTH)] [LabelText("X")]
+  [FoldoutGroup("$title")] [LabelWidth(LabelWidth)] [LabelText("X")]
   public Vector2Wrapper xRange = new();
 
-  [FoldoutGroup("$title")] [LabelWidth(LABEL_WIDTH)] [LabelText("Y")]
+  [FoldoutGroup("$title")] [LabelWidth(LabelWidth)] [LabelText("Y")]
   public Vector2Wrapper yRange = new();
 
-  [FoldoutGroup("$title")] [LabelWidth(LABEL_WIDTH)] [LabelText("Z")]
+  [FoldoutGroup("$title")] [LabelWidth(LabelWidth)] [LabelText("Z")]
   public Vector2Wrapper zRange = new();
 
-  [FoldoutGroup("$title")] [LabelWidth(LABEL_WIDTH)] [LabelText("All")] [OnValueChanged(nameof(OnAllUpdate), true)]
+  [FoldoutGroup("$title")] [LabelWidth(LabelWidth)] [LabelText("All")] [OnValueChanged(nameof(OnAllUpdate), true)]
   public Vector2Wrapper all = new();
 
   [HideInInspector] public Vector2 initialMinMax;
@@ -49,7 +49,7 @@ public class Vector3Range {
   public Vector3 Size => new(xRange.Length, yRange.Length, zRange.Length);
 
   private void OnAllUpdate() {
-    // ? define = operatot for Vector2Wrapper
+    // ? define = operator for Vector2Wrapper
     xRange.Value = yRange.Value = zRange.Value = all.Value;
     xRange.min = yRange.min = zRange.min = all.min;
     xRange.max = yRange.max = zRange.max = all.max;

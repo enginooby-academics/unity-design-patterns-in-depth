@@ -10,6 +10,7 @@ using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEngine;
 
+// TODO: This is an Editor script, what about in build case?
 public class AutoRefs : Editor {
   // which contains [AutoRef]
   private static MonoBehaviour _currentMonoBehaviour;
@@ -91,9 +92,7 @@ public class AutoRefs : Editor {
     var elementType = _currentFieldInfo.FieldType.GetGenericArguments()[0];
     var components = new List<Component>();
 
-    foreach (var autoRefGo in AutoRefGameObjects) {
-      components.AddRange(autoRefGo.GetComponents(elementType));
-    }
+    foreach (var autoRefGo in AutoRefGameObjects) components.AddRange(autoRefGo.GetComponents(elementType));
 
     if (components.IsNullOrEmpty()) {
       LogErrorAutoRefFailedToFindReference();
@@ -107,9 +106,7 @@ public class AutoRefs : Editor {
     // Create an IList of the correct type.
     var cIList = Activator.CreateInstance(genericElementType) as IList;
     // For each component which was found, copy it into the IList.
-    foreach (var component in componentArray) {
-      cIList?.Add(component);
-    }
+    foreach (var component in componentArray) cIList?.Add(component);
     // Set the value of the FieldInfo to the value of the IList, which fills the original list.
     _currentFieldInfo.SetValue(_currentMonoBehaviour, cIList);
   }
@@ -121,9 +118,8 @@ public class AutoRefs : Editor {
     var elementType = fieldType.GetElementType();
     var components = new List<Component>();
 
-    foreach (var autoRefGameObject in AutoRefGameObjects) {
+    foreach (var autoRefGameObject in AutoRefGameObjects)
       components.AddRange(autoRefGameObject.GetComponents(elementType));
-    }
 
     if (components.IsNullOrEmpty()) {
       LogErrorAutoRefFailedToFindReference();
@@ -137,9 +133,7 @@ public class AutoRefs : Editor {
     // i.e. The FieldInfo may be an array MyClass[]. You cannot set the value of a MyClass[] to a Component[].
     var componentObjects = Array.CreateInstance(elementType, componentArray.Length);
     // For each component which was found, copy it into the correctly typed array.
-    for (var i = 0; i < componentArray.Length; i++) {
-      componentObjects.SetValue(componentArray[i], i);
-    }
+    for (var i = 0; i < componentArray.Length; i++) componentObjects.SetValue(componentArray[i], i);
 
     // Set the value of the FieldInfo to the newly created array.
     _currentFieldInfo.SetValue(_currentMonoBehaviour, componentObjects);
@@ -181,9 +175,8 @@ public class AutoRefs : Editor {
         return;
       }
 
-      foreach (var name in autoRefAttribute.GameObjectNames) {
+      foreach (var name in autoRefAttribute.GameObjectNames)
         AutoRefGameObjects.AddRange(GameObjectUtils.FindAllGameObjects(name));
-      }
     }
   }
 }

@@ -6,7 +6,16 @@ using System.Reflection;
 // ? Rename to ReflectionUtils
 public static class TypeUtils {
   // TIP: Use generics to pass type as argument with shorter syntax
+  /// <summary>
+  ///   Is this type extending from (but not) the given type?
+  /// </summary>
   public static bool IsSubclassOf<T>(this Type type) => type.IsSubclassOf(typeof(T));
+
+  // ! Doesn't work for class extending MonoBehaviour while implementing interface
+  /// <summary>
+  ///   Is this type extending from the given type or the given type?
+  /// </summary>
+  public static bool Is<T>(this Type type) => type.IsSubclassOf<T>() || type == typeof(T);
 
   public static bool IsListType(this Type type) => type.GetGenericTypeDefinition() == typeof(List<>);
 
@@ -28,6 +37,20 @@ public static class TypeUtils {
         @interface.IsConstructedGenericType && @interface.GetGenericTypeDefinition() == interfaceTarget);
 
     return interfaces.Any(@interface => @interface == interfaceTarget);
+  }
+
+  public static Type GetType(string typeName) {
+    Type typeResult = null;
+    var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+
+    foreach (var assembly in assemblies)
+    foreach (var type in assembly.GetTypes())
+      if (type.Name.Equals(typeName)) {
+        typeResult = type;
+        break;
+      }
+
+    return typeResult;
   }
 
   public static IEnumerable<Type> GetConcreteTypesOf<T>() => GetTypesOf<T>();

@@ -21,31 +21,25 @@ public abstract partial class GOI<TSelf, TComponent, TEffect> {
   public TEffect CurrentEffect => _currentEffect;
   public override List<GameObject> InteractedGos => _interactedGos.Keys.ToList();
 
-  public override void IncrementEffect() {
-    _currentEffect = _effectPrefabs.GetNext(_currentEffect);
-  }
+  public override void IncrementEffect() => _currentEffect = _effectPrefabs.GetNext(_currentEffect);
 
-  public override void DecrementEffect() {
-    _currentEffect = _effectPrefabs.GetPrevious(_currentEffect);
-  }
+  public override void DecrementEffect() => _currentEffect = _effectPrefabs.GetPrevious(_currentEffect);
 
   public abstract void Interact(GameObject go, TEffect effect);
 
-  public override void Interact(GameObject go) {
-    Interact(go, _currentEffect);
-  }
+  public override void Interact(GameObject go) => Interact(go, _currentEffect);
 
-  protected override void ClearInteractedGos() {
-    _interactedGos.Clear();
-  }
+  protected override void ClearInteractedGos() => _interactedGos.Clear();
 
   // REFACTOR: Duplicated with parent class
   public override void InteractRestore(GameObject go) {
-    if (_interactedGos.TryGetValue(go, out var cache)) SetComponentActive(cache.Component, true);
+    if (_interactedGos.TryGetValue(go, out var cache))
+      SetComponentActive(cache.Component, true);
   }
 
   public override void InteractRevert(GameObject go) {
-    if (_interactedGos.TryGetValue(go, out var cache)) SetComponentActive(cache.Component, false);
+    if (_interactedGos.TryGetValue(go, out var cache))
+      SetComponentActive(cache.Component, false);
   }
 
   public override void InteractToggle(GameObject go) {

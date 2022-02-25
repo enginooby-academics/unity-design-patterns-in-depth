@@ -1,37 +1,33 @@
-// * Manage all events of each GameObject
-
 using System.Collections;
 using System.Collections.Generic;
 using Enginooby;
-#if ODIN_INSPECTOR
 using UnityEngine;
 
-#else
-#endif
-
 // ! Cannot bind events in Inspector if the listener is Prefab Asset. Workaround: only use Scene Prefab
+// ? Rename: GameObjectEventManager
+/// <summary>
+///   Manage all events for an individual GameObject.
+/// </summary>
 public class EventManager : MonoBehaviour {
   public List<OnTriggerEnterEvent> onTriggerEnterEvents = new();
   public List<OnCollisionEnterEvent> onCollisionEnterEvents = new();
   public List<OnMouseDownEvent> onMouseDownEvents = new();
 
   private IEnumerator OnCollisionEnter(Collision other) {
-    for (var i = 0; i < onCollisionEnterEvents.Count; i++) {
-      var e = onCollisionEnterEvents[i];
+    foreach (var @event in onCollisionEnterEvents) {
       // TODO: Refactor
-      if (!e.enable || !e.IsTriggerBy(other.gameObject)) continue;
-      PreprocessEventUpdateNameAndTag(e, other.gameObject);
-      yield return new WaitForSeconds(e.delay);
-      e.Invoke();
-      ProcessEventFX(e);
-      ProcessAfterInvoke(e, other.gameObject);
+      if (!@event.enable || !@event.IsTriggerBy(other.gameObject)) continue;
+      PreprocessEventUpdateNameAndTag(@event, other.gameObject);
+      yield return new WaitForSeconds(@event.delay);
+      @event.Invoke();
+      ProcessEventFX(@event);
+      ProcessAfterInvoke(@event, other.gameObject);
     }
   }
 
   private IEnumerator OnMouseDown() {
     // ! Events do not invoke async
-    for (var i = 0; i < onMouseDownEvents.Count; i++) {
-      var e = onMouseDownEvents[i];
+    foreach (var e in onMouseDownEvents) {
       if (!e.enable) continue;
       yield return new WaitForSeconds(e.delay);
       e.Invoke();
@@ -42,15 +38,14 @@ public class EventManager : MonoBehaviour {
 
 
   private IEnumerator OnTriggerEnter(Collider other) {
-    for (var i = 0; i < onTriggerEnterEvents.Count; i++) {
-      var e = onTriggerEnterEvents[i];
+    foreach (var @event in onTriggerEnterEvents) {
       // TODO: Refactor
-      if (!e.enable || !e.IsTriggerBy(other.gameObject)) continue;
-      PreprocessEventUpdateNameAndTag(e, other.gameObject);
-      yield return new WaitForSeconds(e.delay);
-      e.Invoke();
-      ProcessEventFX(e);
-      ProcessAfterInvoke(e, other.gameObject);
+      if (!@event.enable || !@event.IsTriggerBy(other.gameObject)) continue;
+      PreprocessEventUpdateNameAndTag(@event, other.gameObject);
+      yield return new WaitForSeconds(@event.delay);
+      @event.Invoke();
+      ProcessEventFX(@event);
+      ProcessAfterInvoke(@event, other.gameObject);
     }
   }
 
@@ -77,14 +72,12 @@ public class EventManager : MonoBehaviour {
 
     if (triggerEvent.releaseToPoolTargetAfterInvoked.HasFlag(ReleaseToPoolTarget.Self)) {
       var poolObject = GetComponent<PoolObject>();
-      ;
       if (!poolObject) return;
       poolObject.ReleaseToPool();
     }
 
-    if (triggerEvent.releaseToPoolTargetAfterInvoked.HasFlag(ReleaseToPoolTarget.Other)) {
+    if (triggerEvent.releaseToPoolTargetAfterInvoked.HasFlag(ReleaseToPoolTarget.Other) && other) {
       var poolObject = other.GetComponent<PoolObject>();
-      ;
       if (!poolObject) return;
       poolObject.ReleaseToPool();
     }

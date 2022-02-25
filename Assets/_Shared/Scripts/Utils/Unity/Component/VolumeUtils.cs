@@ -5,7 +5,7 @@ using UnityEngine.Rendering.Universal;
 #endif
 
 public static class VolumeUtils {
-  public static void ToggleState(this VolumeComponent volumeComponent) {
+  public static void ToggleActive(this VolumeComponent volumeComponent) {
     volumeComponent.active = !volumeComponent.active;
   }
 

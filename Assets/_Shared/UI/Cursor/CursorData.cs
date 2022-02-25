@@ -17,9 +17,7 @@ namespace Enginooby.UI {
     [SerializeField] [InlineButton(nameof(CentralizeHotSpot), "Center")]
     private Vector2 _hotSpot;
 
-    public void CentralizeHotSpot() {
-      _hotSpot = new Vector2(_texture.width / 2, _texture.height / 2);
-    }
+    public void CentralizeHotSpot() => _hotSpot = new Vector2(_texture.width / 2, _texture.height / 2);
 
     public bool CompareName(CursorName nameTarget) => _name == nameTarget;
 

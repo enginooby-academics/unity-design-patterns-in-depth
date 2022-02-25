@@ -34,6 +34,7 @@ namespace CallbackPattern.Case2.Csharp1 {
 
     private void UseAnonymousFunction() {
       _task.Process(this, taskDuration => Debug.Log($"The task took {taskDuration} seconds."));
+      // _task.Process(this, delegate(float taskDuration) { Debug.Log($"The task took {taskDuration} seconds."); });
     }
 
     // This requires to change TaskCallbackDelegate type in Task to Action<float>

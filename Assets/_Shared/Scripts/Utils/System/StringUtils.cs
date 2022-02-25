@@ -15,12 +15,23 @@ public static class StringUtils {
   }
 
   /// <summary>
-  ///   Add a space after every capital character.
-  ///   <example>TheAppDemo -> The App Demo</example>
+  ///   Add space before and lower every capital character except the 1st one to form a normal sentence.
+  ///   <example>TheAppDemo -> The app demo</example>
   /// </summary>
-  public static string ToSentenceCase(this string str) {
+  public static string ToSentenceLowerCase(this string str) {
     return Regex.Replace(str, "[a-z][A-Z]", m => m.Value[0] + " " + char.ToLower(m.Value[1]));
   }
+
+  /// <summary>
+  ///   Add a space before every capital character.
+  ///   <example>TheAppDemo -> The app demo</example>
+  /// </summary>
+  public static string AddSpacesBeforeCapitals(this string @string) {
+    return Regex.Replace(@string, "[a-z][A-Z]", m => m.Value[0] + " " + m.Value[1]);
+  }
+
+  [Obsolete("Use " + nameof(ToSentenceLowerCase))]
+  public static string ToSentenceCase(this string str) => str.ToSentenceLowerCase();
 
   public static bool IsEmpty(this string @string) => @string.Equals(string.Empty);
 

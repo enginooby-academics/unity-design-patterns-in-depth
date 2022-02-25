@@ -14,7 +14,7 @@ namespace Enginooby.Graphics {
     private string statesDebug; // OPTIM: use StringBuilder
 
     public Volume Volume => _volume ??= gameObject.GetComponent<Volume>();
-    public VolumeProfile Profile => _profile ?? Volume.profile;
+    public VolumeProfile Profile => _profile ? _profile : Volume.profile;
 
     private void Awake() {
       _volume = gameObject.GetComponent<Volume>();

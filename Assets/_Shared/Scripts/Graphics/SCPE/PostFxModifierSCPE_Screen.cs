@@ -112,9 +112,7 @@ namespace Enginooby.Graphics {
     }
 
     // [Command(CommandPrefix.PostFx + "kaleidoscope-toggle")]
-    public void ToggleKaleidoscope() {
-      kaleidoscope.ToggleState();
-    }
+    public void ToggleKaleidoscope() => kaleidoscope.ToggleActive();
   }
 }
 #endif

@@ -1,9 +1,4 @@
 using UnityEngine;
-#if ODIN_INSPECTOR
-
-#else
-using Enginooby.Attribute;
-#endif
 
 namespace Enginooby.Audio {
   [RequireComponent(typeof(AudioSource))]

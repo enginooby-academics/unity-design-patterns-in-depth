@@ -8,29 +8,29 @@ namespace Enginooby.Utils {
   public static class CollectionUtils {
     public static List<T> ToList<T>(this Array array) => array.Cast<T>().ToList();
 
-    /// <summary>
-    ///   Perform an action on each item.
-    /// </summary>
-    public static IEnumerable<T> ForEach<T>(this IEnumerable<T> collection, Action<T> action) {
-      foreach (var obj in collection)
-        action(obj);
-      return collection;
-    }
+
+    // =================================================================================================================
 
     #region VALIDATION
-
-    // ===================================================================================================================
 
     public static bool HasIndex<T>(this IEnumerable<T> collection, int index) =>
       index.IsInRange(0, collection.Count() - 1);
 
-    public static bool IsNullOrEmpty<T>(this IEnumerable<T> enumerable) => enumerable == null || !enumerable.Any();
+    /// <summary>
+    ///   Does collection has at least one element of the given value?
+    ///   <example>(1, 2, 3, 1).Has(4) -> false</example>
+    /// </summary>
+    public static bool Has<T>(this IEnumerable<T> collection, T value) where T : IComparable {
+      return collection.Any(element => element.CompareTo(value) == 0);
+    }
+
+    public static bool IsNullOrEmpty<T>(this IEnumerable<T> collection) => collection == null || !collection.Any();
 
     #endregion
 
-    #region RETRIEVAL
+    // =================================================================================================================
 
-    // ===================================================================================================================
+    #region RETRIEVAL
 
     /// <summary>
     ///   Return -1 if the given element doesn't exist in the collection.
@@ -106,9 +106,9 @@ namespace Enginooby.Utils {
 
     #endregion
 
-    #region MODIFICATION
+    // =================================================================================================================
 
-    // ===================================================================================================================
+    #region MODIFICATION
 
     private static readonly System.Random rng = new();
 
@@ -160,6 +160,15 @@ namespace Enginooby.Utils {
     public static IEnumerable<T> Append<T>(this IEnumerable<T> collection, IEnumerable<T> elements) {
       foreach (var element in elements) collection.Append(element);
 
+      return collection;
+    }
+
+    /// <summary>
+    ///   Perform an action on each item.
+    /// </summary>
+    public static IEnumerable<T> ForEach<T>(this IEnumerable<T> collection, Action<T> action) {
+      foreach (var obj in collection)
+        action(obj);
       return collection;
     }
 

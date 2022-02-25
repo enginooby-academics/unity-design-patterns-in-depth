@@ -6,54 +6,50 @@ using UnityEngine;
 
 namespace Enginooby.Graphics {
   public partial class PostFxModifierSCPE : MonoBehaviour {
-    private DoubleVision doubleVision;
-    private bool doubleVisionOriginalState;
-    private RadialBlur radialBlur;
-    private bool radialBlurOriginalState;
-    private TiltShift tiltShift;
-    private bool tiltShiftOriginalState;
+    private DoubleVision _doubleVision;
+    private bool _doubleVisionOriginalState;
+    private RadialBlur _radialBlur;
+    private bool _radialBlurOriginalState;
+    private TiltShift _tiltShift;
+    private bool _tiltShiftOriginalState;
 
     private void GetBlurringOriginalStates() {
-      doubleVisionOriginalState = doubleVision.active;
-      tiltShiftOriginalState = tiltShift.active;
-      radialBlurOriginalState = radialBlur.active;
+      _doubleVisionOriginalState = _doubleVision.active;
+      _tiltShiftOriginalState = _tiltShift.active;
+      _radialBlurOriginalState = _radialBlur.active;
     }
 
     private void ResetBlurringSettings() {
-      doubleVision.active = doubleVisionOriginalState;
-      tiltShift.active = tiltShiftOriginalState;
-      radialBlur.active = radialBlurOriginalState;
+      _doubleVision.active = _doubleVisionOriginalState;
+      _tiltShift.active = _tiltShiftOriginalState;
+      _radialBlur.active = _radialBlurOriginalState;
     }
 
     private void RandomizeBlurringSettings() {
-      doubleVision.SetActiveOnRandom();
-      tiltShift.SetActiveOnRandom();
-      radialBlur.SetActiveOnRandom();
-      if (doubleVision.active) statesDebug += "doubleVision ";
-      if (tiltShift.active) statesDebug += "tiltShift ";
-      if (radialBlur.active) statesDebug += "radialBlur ";
+      _doubleVision.SetActiveOnRandom();
+      _tiltShift.SetActiveOnRandom();
+      _radialBlur.SetActiveOnRandom();
+      if (_doubleVision.active) statesDebug += "doubleVision ";
+      if (_tiltShift.active) statesDebug += "tiltShift ";
+      if (_radialBlur.active) statesDebug += "radialBlur ";
     }
 
     private void GetBlurringSettings() {
-      Profile.TryGet(out doubleVision);
-      Profile.TryGet(out tiltShift);
-      Profile.TryGet(out radialBlur);
+      Profile.TryGet(out _doubleVision);
+      Profile.TryGet(out _tiltShift);
+      Profile.TryGet(out _radialBlur);
     }
 
     // [Command(CommandPrefix.PostFx + "double-vision-toggle")]
     public void ToggleDoubleVision() {
-      doubleVision.active = !doubleVision.active;
+      _doubleVision.active = !_doubleVision.active;
     }
 
     // [Command(CommandPrefix.PostFx + "tilt-shift-toggle")]
-    public void ToggleTiltShift() {
-      tiltShift.active = !tiltShift.active;
-    }
+    public void ToggleTiltShift() => _tiltShift.ToggleActive();
 
     // [Command(CommandPrefix.PostFx + "blur-radial-toggle")]
-    public void ToggleRadialBlur() {
-      radialBlur.active = !radialBlur.active;
-    }
+    public void ToggleRadialBlur() => _radialBlur.ToggleActive();
   }
 }
 #endif

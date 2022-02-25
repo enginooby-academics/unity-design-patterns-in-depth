@@ -3,14 +3,15 @@
     "rootNamespace": "",
     "references": [
         "Library",
-        "ASM_IUnified"
+        "ASM_IUnified",
+        "NaughtyAttributes.Core"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
     "precompiledReferences": [],
-    "autoReferenced": true,
+    "autoReferenced": false,
     "defineConstraints": [],
     "versionDefines": [],
     "noEngineReferences": false

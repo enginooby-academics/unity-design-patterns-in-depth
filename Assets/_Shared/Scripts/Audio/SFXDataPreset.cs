@@ -1,19 +1,14 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-#if ODIN_INSPECTOR
-
-#else
-using Enginooby.Attribute;
-#endif
 
 // TODO: Rename to SFXCollection/SFXTheme
 
 namespace Enginooby.Audio {
-  [CreateAssetMenu(fileName = "SFXPreset_", menuName = "Audio/SFX Data Preset", order = 0)]
   /// <summary>
-  /// Centralization for all SFXData.
+  ///   Centralization for all SFXData.
   /// </summary>
+  [CreateAssetMenu(fileName = "SFXPreset_", menuName = "Audio/SFX Data Preset", order = 0)]
   public class SFXDataPreset : ScriptableObject {
     [SerializeField] private List<SFXData> _sfxDatas = new();
 
@@ -21,6 +16,7 @@ namespace Enginooby.Audio {
       var sfxData = _sfxDatas.Find(sfxData => sfxData.Target == sfxTarget && sfxData.Action == sfxAction)
                     ?? _sfxDatas.Find(sfxData => sfxData.Target == SFXTarget.Any && sfxData.Action == sfxAction)
                     ?? _sfxDatas.Find(sfxData => sfxData.Action == sfxAction);
+
       if (!sfxData)
         Debug.LogError("No SFXData found for " + Enum.GetName(typeof(SFXTarget), sfxTarget) + " " +
                        Enum.GetName(typeof(SFXAction), sfxAction));
