@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace SingletonPattern.Case2 {
   public abstract class MonoBehaviourCube : MonoBehaviour {
-    // TIP: Use this property in replacement of a private field & a public getter property
     public float Size { get; protected set; }
 
     private void Start() {

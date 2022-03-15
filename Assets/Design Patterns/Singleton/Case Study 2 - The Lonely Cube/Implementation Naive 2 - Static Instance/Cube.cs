@@ -4,7 +4,7 @@ using Shared = SingletonPattern.Case2;
 
 namespace SingletonPattern.Case2.Naive2 {
   public class Cube : MonoBehaviourCube {
-    public static Cube Instance { get; protected set; }
+    public static Cube Instance { get; private set; }
 
     private void Awake() => Instance = this;
   }

@@ -1,5 +1,5 @@
-#if ASM
 // TODO: Create wrapper for Scene class from ASM
+
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
 #else
@@ -8,7 +8,6 @@ using Enginooby.Attribute;
 
 using System.Collections;
 using System.Linq;
-using AdvancedSceneManager.Models;
 using UnityEngine;
 using static UnityEngine.SceneManagement.SceneManager;
 
@@ -20,10 +19,14 @@ namespace SingletonPattern {
   // TIP: Customize script title in the Inspector
   [AddComponentMenu("SingletonPattern/MonoBehaviour Singleton Tester")]
   public class MonoBehaviourSingletonTester : MonoBehaviourSingleton<MonoBehaviourSingletonTester> {
+    [SerializeField] private Scene _scene2;
+
+#if ASM
     [SerializeField]
     [InfoBox(
       "ASM scene can be found in Settings/Resources with the same name of the scene. Scene also needs added in the Build setting.")]
-    private Scene _scene2;
+    private AdvancedSceneManager.Models.Scene _scene2;
+#endif
 
     [SerializeField] private GameObject _singleton;
 
@@ -49,7 +52,7 @@ namespace SingletonPattern {
     public void TestUniquenessOnLoadScene2Additively() {
       // ! temperory solution: add a small delay to ensure Testuniqueness is performed after new scene is opened.
       Invoke(nameof(TestUniqueness), TEST_DELAY);
-      _scene2.Open();
+      _scene2.LoadAdditively();
     }
 
     private void TestUniqueness() {
@@ -57,10 +60,7 @@ namespace SingletonPattern {
         .Where(go => go.name.Contains(singletonName))
         .ToArray();
 
-      if (singletons.Length > 1)
-        print("Failed");
-      else
-        print("Passed");
+      print(singletons.Length > 1 ? "Failed" : "Passed");
     }
 
     [Button]
@@ -85,7 +85,7 @@ namespace SingletonPattern {
     public void TestPersistenceOnLoadScene2() {
       Invoke(nameof(TestPersistence), TEST_DELAY);
       UnloadSceneAsync(GetActiveScene());
-      _scene2.OpenSingle(); // ! sometimes not close scene 1
+      _scene2.Load();
     }
 
     [Button]
@@ -94,15 +94,11 @@ namespace SingletonPattern {
     // ? always pass if TestUniquenessOnCurrentScene() fails
     public void TestPersistenceOnLoadScene2Additively() {
       Invoke(nameof(TestPersistence), TEST_DELAY);
-      _scene2.Open();
+      _scene2.LoadAdditively();
     }
 
     private void TestPersistence() {
-      if (_singleton == null)
-        print("Failed");
-      else
-        print("Passed");
+      print(_singleton == null ? "Failed" : "Passed");
     }
   }
 }
-#endif

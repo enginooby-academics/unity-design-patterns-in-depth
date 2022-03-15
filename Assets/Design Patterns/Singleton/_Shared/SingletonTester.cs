@@ -7,9 +7,6 @@ using Enginooby.Attribute;
 using System;
 using System.Collections;
 using System.Linq;
-#if ASM
-using AdvancedSceneManager.Models;
-#endif
 using UnityEngine;
 using static UnityEngine.SceneManagement.SceneManager;
 
@@ -23,7 +20,7 @@ namespace SingletonPattern {
     [SerializeField]
     [InfoBox(
       "ASM scene can be found in Settings/Resources with the same name of the scene. Scene also needs added in the Build setting.")]
-    private Scene _scene2;
+    private AdvancedSceneManager.Models.Scene _scene2;
 #endif
 
     private readonly float TEST_DELAY = .2f;

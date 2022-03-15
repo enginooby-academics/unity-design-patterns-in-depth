@@ -14,13 +14,15 @@ namespace SingletonPattern {
     [LabelWidth(80)]
     [InlineButton(nameof(LoadScene2), "Load")]
     [InlineButton(nameof(LoadScene2Additively), "Load Additively")]
-    private Scene _scene2;
+    private AdvancedSceneManager.Models.Scene _scene2;
 
     [Button]
     public void ReloadScene() => SceneUtils.ReloadScene();
 
+    [Button]
     public void LoadScene2() => _scene2.OpenSingle();
 
+    [Button]
     public void LoadScene2Additively() => _scene2.Open();
   }
 }
