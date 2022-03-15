@@ -13,45 +13,64 @@ MonoBehaviour:
   m_Name: Bloom
   m_EditorClassIdentifier: 
   active: 1
-  m_AdvancedMode: 0
   threshold:
     m_OverrideState: 1
     m_Value: 1.2
-    min: 0
   intensity:
     m_OverrideState: 1
     m_Value: 1
-    min: 0
   scatter:
     m_OverrideState: 0
     m_Value: 0.7
-    min: 0
-    max: 1
   clamp:
     m_OverrideState: 0
     m_Value: 65472
-    min: 0
   tint:
     m_OverrideState: 0
     m_Value: {r: 1, g: 1, b: 1, a: 1}
-    hdr: 0
-    showAlpha: 0
-    showEyeDropper: 1
   highQualityFiltering:
     m_OverrideState: 0
     m_Value: 0
   skipIterations:
     m_OverrideState: 0
     m_Value: 1
-    min: 0
-    max: 16
   dirtTexture:
     m_OverrideState: 0
     m_Value: {fileID: 0}
   dirtIntensity:
     m_OverrideState: 0
     m_Value: 0
-    min: 0
+--- !u!114 &-8865019736792681266
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3ffd454053aaa249a62a461f9c8db22, type: 3}
+  m_Name: Overlay
+  m_EditorClassIdentifier: 
+  active: 0
+  overlayTex:
+    m_OverrideState: 1
+    m_Value: {fileID: 2800000, guid: be1547b9461404a408764cfe64cf0b06, type: 3}
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0.296
+  luminanceThreshold:
+    m_OverrideState: 0
+    m_Value: 0
+  autoAspect:
+    m_OverrideState: 0
+    m_Value: 0
+  blendMode:
+    m_OverrideState: 0
+    m_Value: 0
+  tiling:
+    m_OverrideState: 0
+    m_Value: 0
 --- !u!114 &-8163904152288653998
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -65,7 +84,6 @@ MonoBehaviour:
   m_Name: LightStreaks
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   quality:
     m_OverrideState: 1
     m_Value: 1
@@ -75,33 +93,21 @@ MonoBehaviour:
   intensity:
     m_OverrideState: 1
     m_Value: 1
-    min: 0
-    max: 1
   luminanceThreshold:
     m_OverrideState: 1
     m_Value: 0.01
-    min: 0.01
-    max: 5
   direction:
     m_OverrideState: 1
     m_Value: -0.02
-    min: -1
-    max: 1
   blur:
     m_OverrideState: 1
     m_Value: 2.9
-    min: 0
-    max: 10
   iterations:
     m_OverrideState: 1
     m_Value: 1
-    min: 1
-    max: 8
   downscaling:
     m_OverrideState: 1
     m_Value: 2
-    min: 1
-    max: 4
 --- !u!114 &-7719466422599153536
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -115,20 +121,15 @@ MonoBehaviour:
   m_Name: BlackBars
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   mode:
     m_OverrideState: 1
     m_Value: 0
   size:
     m_OverrideState: 1
     m_Value: 0.571
-    min: 0
-    max: 1
   maxSize:
     m_OverrideState: 1
     m_Value: 0.313
-    min: 0
-    max: 1
 --- !u!114 &-7665217573716254280
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -142,17 +143,12 @@ MonoBehaviour:
   m_Name: RadialBlur
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   amount:
     m_OverrideState: 1
     m_Value: 0.368
-    min: 0
-    max: 1
   iterations:
     m_OverrideState: 1
     m_Value: 6
-    min: 3
-    max: 12
 --- !u!114 &-7641695317341611029
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -165,11 +161,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3797b844bf119c94c83b110e6cf4997a, type: 3}
   m_Name: Sketch
   m_EditorClassIdentifier: 
-  active: 0
-  m_AdvancedMode: 0
+  active: 1
   strokeTex:
     m_OverrideState: 1
-    m_Value: {fileID: 2800000, guid: 8bd158bf28fbf3d4cb9151f3c3ae5516, type: 3}
+    m_Value: {fileID: 2800000, guid: f24e4c3dda89e824bac5f9f19949c372, type: 3}
   projectionMode:
     m_OverrideState: 1
     m_Value: 0
@@ -178,17 +173,13 @@ MonoBehaviour:
     m_Value: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.31
-    min: 0
-    max: 1
+    m_Value: 0.071
   brightness:
     m_OverrideState: 1
-    m_Value: {x: 0, y: 0.99999994}
+    m_Value: {x: 0.12679763, y: 1.6732026}
   tiling:
     m_OverrideState: 1
     m_Value: 32
-    min: 1
-    max: 32
 --- !u!114 &-6690028159576540560
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -202,26 +193,18 @@ MonoBehaviour:
   m_Name: Vignette
   m_EditorClassIdentifier: 
   active: 1
-  m_AdvancedMode: 0
   color:
     m_OverrideState: 0
     m_Value: {r: 0, g: 0, b: 0, a: 1}
-    hdr: 0
-    showAlpha: 0
-    showEyeDropper: 1
   center:
     m_OverrideState: 0
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
     m_Value: 0.33
-    min: 0
-    max: 1
   smoothness:
     m_OverrideState: 0
     m_Value: 0.2
-    min: 0.01
-    max: 1
   rounded:
     m_OverrideState: 0
     m_Value: 0
@@ -238,7 +221,6 @@ MonoBehaviour:
   m_Name: LUT
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   mode:
     m_OverrideState: 1
     m_Value: 0
@@ -251,8 +233,6 @@ MonoBehaviour:
   intensity:
     m_OverrideState: 1
     m_Value: 1
-    min: 0
-    max: 1
   lutNear:
     m_OverrideState: 1
     m_Value: {fileID: 2800000, guid: b7b3c17d58b414646a424a3e55785fe5, type: 3}
@@ -272,7 +252,6 @@ MonoBehaviour:
   m_Name: EdgeDetection
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   debug:
     m_OverrideState: 1
     m_Value: 1
@@ -294,39 +273,24 @@ MonoBehaviour:
   sensitivityDepth:
     m_OverrideState: 0
     m_Value: 0
-    min: 0
-    max: 1
   sensitivityNormals:
     m_OverrideState: 0
     m_Value: 1
-    min: 0
-    max: 1
   lumThreshold:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0.01
-    min: 0.01
-    max: 1
   edgeColor:
     m_OverrideState: 1
     m_Value: {r: 0, g: 0, b: 0, a: 1}
-    hdr: 0
-    showAlpha: 1
-    showEyeDropper: 1
   edgeExp:
     m_OverrideState: 0
     m_Value: 1
-    min: 1
-    max: 50
   edgeSize:
     m_OverrideState: 1
     m_Value: 1
-    min: 1
-    max: 4
   edgeOpacity:
     m_OverrideState: 1
     m_Value: 1
-    min: 0
-    max: 1
   sobelThin:
     m_OverrideState: 0
     m_Value: 0
@@ -344,20 +308,15 @@ MonoBehaviour:
   m_Name: Caustics
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   causticsTexture:
     m_OverrideState: 1
     m_Value: {fileID: 2800000, guid: f76f6be48fafde34b818e658b93e7850, type: 3}
   intensity:
     m_OverrideState: 1
     m_Value: 4.62
-    min: 0
-    max: 5
   luminanceThreshold:
     m_OverrideState: 0
     m_Value: 0.65
-    min: 0
-    max: 2
   projectFromSun:
     m_OverrideState: 0
     m_Value: 1
@@ -367,26 +326,18 @@ MonoBehaviour:
   minHeightFalloff:
     m_OverrideState: 0
     m_Value: 9.7
-    min: 0.01
-    max: 64
   maxHeight:
     m_OverrideState: 1
     m_Value: 8
   maxHeightFalloff:
     m_OverrideState: 0
     m_Value: 0.01
-    min: 0.01
-    max: 64
   size:
     m_OverrideState: 1
     m_Value: 0.1
-    min: 0.1
-    max: 1
   speed:
     m_OverrideState: 1
     m_Value: 0.023
-    min: 0
-    max: 1
   distanceFade:
     m_OverrideState: 0
     m_Value: 1
@@ -409,66 +360,45 @@ MonoBehaviour:
   m_Name: LensFlares
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   debug:
     m_OverrideState: 0
     m_Value: 0
   intensity:
     m_OverrideState: 1
     m_Value: 0.82
-    min: 0
-    max: 1
   luminanceThreshold:
     m_OverrideState: 0
     m_Value: 1
-    min: 0.01
-    max: 5
   iterations:
     m_OverrideState: 0
     m_Value: 2
-    min: 1
-    max: 4
   distance:
     m_OverrideState: 0
     m_Value: 1.5
-    min: 1
-    max: 2
   falloff:
     m_OverrideState: 0
     m_Value: 10
-    min: 1
-    max: 10
   haloSize:
     m_OverrideState: 0
     m_Value: 0.2
-    min: 0
-    max: 1
   haloWidth:
     m_OverrideState: 0
     m_Value: 70
-    min: 0
-    max: 100
   maskTex:
     m_OverrideState: 1
     m_Value: {fileID: 2800000, guid: b0860ff85f5d4e040b7596fafe2d7c8f, type: 3}
   chromaticAbberation:
     m_OverrideState: 1
     m_Value: 10
-    min: 0
-    max: 20
   colorTex:
     m_OverrideState: 1
     m_Value: {fileID: 2800000, guid: af4273a5206164b4fa126b91bc0f5e78, type: 3}
   blur:
     m_OverrideState: 0
     m_Value: 2
-    min: 1
-    max: 8
   passes:
     m_OverrideState: 0
     m_Value: 3
-    min: 1
-    max: 12
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -512,6 +442,27 @@ MonoBehaviour:
   - {fileID: 3650864212083798474}
   - {fileID: 4985055531062270337}
   - {fileID: 7699739154408298074}
+  - {fileID: 1740079160292839929}
+  - {fileID: -8865019736792681266}
+--- !u!114 &1740079160292839929
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab22b3400d2f8464d9d467a4e5f30570, type: 3}
+  m_Name: Sharpen
+  m_EditorClassIdentifier: 
+  active: 1
+  amount:
+    m_OverrideState: 1
+    m_Value: 1
+  radius:
+    m_OverrideState: 0
+    m_Value: 2
 --- !u!114 &1841099454319396111
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -525,7 +476,6 @@ MonoBehaviour:
   m_Name: Sunshafts
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   useCasterColor:
     m_OverrideState: 1
     m_Value: 1
@@ -544,15 +494,9 @@ MonoBehaviour:
   sunThreshold:
     m_OverrideState: 1
     m_Value: {r: 0, g: 0, b: 0, a: 1}
-    hdr: 0
-    showAlpha: 1
-    showEyeDropper: 1
   sunColor:
     m_OverrideState: 0
     m_Value: {r: 1, g: 1, b: 1, a: 1}
-    hdr: 1
-    showAlpha: 0
-    showEyeDropper: 0
   sunShaftIntensity:
     m_OverrideState: 0
     m_Value: 0
@@ -578,32 +522,21 @@ MonoBehaviour:
   m_Name: Gradient
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
     m_Value: 0.237
-    min: 0
-    max: 1
   input:
     m_OverrideState: 1
     m_Value: 1
   color1:
     m_OverrideState: 0
     m_Value: {r: 0, g: 0.8, b: 0.56, a: 0.5}
-    hdr: 0
-    showAlpha: 1
-    showEyeDropper: 1
   color2:
     m_OverrideState: 0
     m_Value: {r: 0.81, g: 0.37, b: 1, a: 0.5}
-    hdr: 0
-    showAlpha: 1
-    showEyeDropper: 1
   rotation:
     m_OverrideState: 1
     m_Value: 0.263
-    min: 0
-    max: 1
   gradientTex:
     m_OverrideState: 1
     m_Value: {fileID: 2800000, guid: 4ea2e43ba6316b7428cb5808c696bc96, type: 3}
@@ -623,25 +556,18 @@ MonoBehaviour:
   m_Name: Dithering
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   lut:
     m_OverrideState: 1
-    m_Value: {fileID: 2800000, guid: 7a95f13299f9b0948aff699c1881bfc6, type: 3}
+    m_Value: {fileID: 2800000, guid: 039004ec2fad19949bfc60fa90b758a6, type: 3}
   intensity:
     m_OverrideState: 1
     m_Value: 1
-    min: 0
-    max: 1
   luminanceThreshold:
-    m_OverrideState: 1
-    m_Value: 0.525
-    min: 0
-    max: 1
-  tiling:
     m_OverrideState: 0
-    m_Value: 1
-    min: 0
-    max: 2
+    m_Value: 0.446
+  tiling:
+    m_OverrideState: 1
+    m_Value: 2
 --- !u!114 &2478622741782794265
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -655,7 +581,6 @@ MonoBehaviour:
   m_Name: HueShift3D
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   colorSource:
     m_OverrideState: 1
     m_Value: 0
@@ -665,23 +590,15 @@ MonoBehaviour:
   intensity:
     m_OverrideState: 1
     m_Value: 0.19
-    min: 0
-    max: 1
   speed:
     m_OverrideState: 1
     m_Value: 0.088
-    min: 0
-    max: 1
   size:
     m_OverrideState: 1
     m_Value: 1.03
-    min: 0
-    max: 3
   geoInfluence:
     m_OverrideState: 0
     m_Value: 3.47
-    min: 0
-    max: 10
   DepthNormalsShader: {fileID: 4800000, guid: 516d67fad41db074ca871164dfde9e71, type: 3}
 --- !u!114 &2733638583487452849
 MonoBehaviour:
@@ -696,15 +613,12 @@ MonoBehaviour:
   m_Name: DoubleVision
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   mode:
     m_OverrideState: 1
     m_Value: 1
   intensity:
     m_OverrideState: 1
     m_Value: 0.303
-    min: 0
-    max: 1
 --- !u!114 &3008677692352488229
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -717,26 +631,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c74b981ab35fcb1468c7aaf9752b24e1, type: 3}
   m_Name: CloudShadows
   m_EditorClassIdentifier: 
-  active: 0
-  m_AdvancedMode: 0
+  active: 1
   texture:
     m_OverrideState: 1
     m_Value: {fileID: 2800000, guid: 32ef32965c344ed4c9af86f0dc15661a, type: 3}
   size:
     m_OverrideState: 1
     m_Value: 0.114
-    min: 0
-    max: 1
   density:
     m_OverrideState: 1
     m_Value: 0.271
-    min: 0
-    max: 1
   speed:
     m_OverrideState: 1
     m_Value: 0.265
-    min: 0
-    max: 1
   direction:
     m_OverrideState: 1
     m_Value: {x: 1, y: 0}
@@ -761,8 +668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74483714bbf784b45b0c9c7c76035dd8, type: 3}
   m_Name: Fog
   m_EditorClassIdentifier: 
-  active: 0
-  m_AdvancedMode: 0
+  active: 1
   useSceneSettings:
     m_OverrideState: 1
     m_Value: 0
@@ -772,8 +678,6 @@ MonoBehaviour:
   globalDensity:
     m_OverrideState: 1
     m_Value: 0.034
-    min: 0
-    max: 1
   fogStartDistance:
     m_OverrideState: 1
     m_Value: 194.98
@@ -789,9 +693,6 @@ MonoBehaviour:
   fogColor:
     m_OverrideState: 0
     m_Value: {r: 0.76, g: 0.94, b: 1, a: 1}
-    hdr: 1
-    showAlpha: 0
-    showEyeDropper: 1
   fogColorGradient:
     m_OverrideState: 0
     m_Value: {fileID: 0}
@@ -807,16 +708,12 @@ MonoBehaviour:
   distanceDensity:
     m_OverrideState: 1
     m_Value: 0.001
-    min: 0.001
-    max: 1
   useRadialDistance:
     m_OverrideState: 0
     m_Value: 1
   skyboxInfluence:
     m_OverrideState: 1
     m_Value: 0.482
-    min: 0
-    max: 1
   enableDirectionalLight:
     m_OverrideState: 1
     m_Value: 0
@@ -832,9 +729,6 @@ MonoBehaviour:
   lightColor:
     m_OverrideState: 0
     m_Value: {r: 1, g: 0.89, b: 0.55, a: 1}
-    hdr: 0
-    showAlpha: 1
-    showEyeDropper: 1
   lightDirection:
     m_OverrideState: 0
     m_Value: {x: 0, y: 0.5, z: -1}
@@ -859,18 +753,12 @@ MonoBehaviour:
   heightNoiseSize:
     m_OverrideState: 0
     m_Value: 1
-    min: 0
-    max: 1
   heightNoiseStrength:
     m_OverrideState: 0
     m_Value: 1
-    min: 0
-    max: 1
   heightNoiseSpeed:
     m_OverrideState: 0
     m_Value: 4.83
-    min: 0
-    max: 10
   lightScattering:
     m_OverrideState: 0
     m_Value: 0
@@ -883,13 +771,9 @@ MonoBehaviour:
   scatterDiffusion:
     m_OverrideState: 0
     m_Value: 10
-    min: 1
-    max: 10
   scatterSoftKnee:
     m_OverrideState: 0
     m_Value: 0.5
-    min: 0
-    max: 1
 --- !u!114 &3260818582715414931
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -903,35 +787,24 @@ MonoBehaviour:
   m_Name: Ripples
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   mode:
     m_OverrideState: 1
     m_Value: 1
   strength:
     m_OverrideState: 1
     m_Value: 4.14
-    min: 0
-    max: 10
   distance:
     m_OverrideState: 0
     m_Value: 5
-    min: 1
-    max: 10
   speed:
     m_OverrideState: 0
     m_Value: 3
-    min: 1
-    max: 10
   width:
     m_OverrideState: 0
     m_Value: 1.5
-    min: 0
-    max: 5
   height:
     m_OverrideState: 0
     m_Value: 1
-    min: 0
-    max: 5
 --- !u!114 &3306194189780448691
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -945,15 +818,12 @@ MonoBehaviour:
   m_Name: Colorize
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   mode:
     m_OverrideState: 1
     m_Value: 0
   intensity:
     m_OverrideState: 1
     m_Value: 0.677
-    min: 0
-    max: 1
   colorRamp:
     m_OverrideState: 1
     m_Value: {fileID: 2800000, guid: 33f1e29958f0470408dcdccdbc83359e, type: 3}
@@ -970,12 +840,9 @@ MonoBehaviour:
   m_Name: Pixelize
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   amount:
     m_OverrideState: 1
     m_Value: 0.05
-    min: 0
-    max: 1
 --- !u!114 &3650864212083798474
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -989,25 +856,18 @@ MonoBehaviour:
   m_Name: SpeedLines
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   noiseTex:
     m_OverrideState: 1
     m_Value: {fileID: 2800000, guid: fe06d9035cfd4064497518ed947395ca, type: 3}
   intensity:
     m_OverrideState: 1
     m_Value: 0.208
-    min: 0
-    max: 1
   size:
     m_OverrideState: 1
     m_Value: 0.521
-    min: 0
-    max: 1
   falloff:
     m_OverrideState: 0
     m_Value: 0.632
-    min: 0
-    max: 1
 --- !u!114 &4189159687601315005
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1021,7 +881,6 @@ MonoBehaviour:
   m_Name: Refraction
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   refractionTex:
     m_OverrideState: 1
     m_Value: {fileID: 2800000, guid: 164478144d56399428df2c7b3571a4dd, type: 3}
@@ -1031,8 +890,6 @@ MonoBehaviour:
   amount:
     m_OverrideState: 1
     m_Value: 1
-    min: 0
-    max: 1
 --- !u!114 &4295933926337956173
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1046,15 +903,12 @@ MonoBehaviour:
   m_Name: Kuwahara
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   mode:
     m_OverrideState: 1
     m_Value: 0
   radius:
     m_OverrideState: 1
     m_Value: 5
-    min: 0
-    max: 8
   startFadeDistance:
     m_OverrideState: 0
     m_Value: 100
@@ -1074,15 +928,12 @@ MonoBehaviour:
   m_Name: TubeDistortion
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   mode:
     m_OverrideState: 1
     m_Value: 1
   amount:
     m_OverrideState: 1
     m_Value: 0.364
-    min: 0
-    max: 1
 --- !u!114 &4997335616520683214
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1096,12 +947,9 @@ MonoBehaviour:
   m_Name: TiltShift
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   amount:
     m_OverrideState: 1
     m_Value: 1
-    min: 0
-    max: 1
   mode:
     m_OverrideState: 1
     m_Value: 1
@@ -1111,23 +959,15 @@ MonoBehaviour:
   areaSize:
     m_OverrideState: 1
     m_Value: 0.163
-    min: 0
-    max: 1
   areaFalloff:
     m_OverrideState: 0
     m_Value: 1
-    min: 0.01
-    max: 1
   offset:
     m_OverrideState: 0
     m_Value: 0
-    min: -1
-    max: 1
   angle:
     m_OverrideState: 0
     m_Value: 0
-    min: 0
-    max: 360
 --- !u!114 &5057748932079676034
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1141,15 +981,12 @@ MonoBehaviour:
   m_Name: Transition
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   gradientTex:
     m_OverrideState: 1
     m_Value: {fileID: 2800000, guid: 33962d2183abdf5478b2a1253ec4f759, type: 3}
   progress:
     m_OverrideState: 1
     m_Value: 0
-    min: 0
-    max: 1
 --- !u!114 &5366241300603316790
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1163,15 +1000,12 @@ MonoBehaviour:
   m_Name: Mosaic
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   mode:
     m_OverrideState: 1
     m_Value: 2
   size:
     m_OverrideState: 1
-    m_Value: 0.092
-    min: 0
-    max: 1
+    m_Value: 0.008
 --- !u!114 &5474848227654045115
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1185,7 +1019,6 @@ MonoBehaviour:
   m_Name: Tonemapping
   m_EditorClassIdentifier: 
   active: 1
-  m_AdvancedMode: 0
   mode:
     m_OverrideState: 1
     m_Value: 2
@@ -1202,22 +1035,15 @@ MonoBehaviour:
   m_Name: Scanlines
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
     m_Value: 0.594
-    min: 0
-    max: 1
   amount:
     m_OverrideState: 1
     m_Value: 230
-    min: 0
-    max: 2048
   speed:
     m_OverrideState: 1
     m_Value: 0.415
-    min: 0
-    max: 1
 --- !u!114 &6672212654260689202
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1231,30 +1057,21 @@ MonoBehaviour:
   m_Name: Posterize
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   hsvMode:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 1
   levels:
     m_OverrideState: 1
     m_Value: 10
-    min: 0
-    max: 256
   hue:
     m_OverrideState: 1
     m_Value: 114
-    min: 0
-    max: 256
   saturation:
     m_OverrideState: 1
     m_Value: 102
-    min: 0
-    max: 256
   value:
     m_OverrideState: 1
-    m_Value: 29
-    min: 0
-    max: 256
+    m_Value: 10
 --- !u!114 &7121811246543226627
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1268,26 +1085,18 @@ MonoBehaviour:
   m_Name: Danger
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   overlayTex:
     m_OverrideState: 1
     m_Value: {fileID: 2800000, guid: 98c0119733857aa4c9f68936ca75cf73, type: 3}
   color:
     m_OverrideState: 1
     m_Value: {r: 0.66, g: 0, b: 0, a: 1}
-    hdr: 0
-    showAlpha: 1
-    showEyeDropper: 1
   intensity:
     m_OverrideState: 1
     m_Value: 0.441
-    min: 0
-    max: 1
   size:
     m_OverrideState: 1
     m_Value: 0.585
-    min: 0
-    max: 1
 --- !u!114 &7699739154408298074
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1301,12 +1110,9 @@ MonoBehaviour:
   m_Name: Kaleidoscope
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   splits:
     m_OverrideState: 1
     m_Value: 5
-    min: 0
-    max: 10
 --- !u!114 &7738025952362213141
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1320,7 +1126,6 @@ MonoBehaviour:
   m_Name: ColorSplit
   m_EditorClassIdentifier: 
   active: 0
-  m_AdvancedMode: 0
   mode:
     m_OverrideState: 1
     m_Value: 0

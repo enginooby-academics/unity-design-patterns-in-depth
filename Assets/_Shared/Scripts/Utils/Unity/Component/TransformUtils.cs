@@ -13,7 +13,7 @@ public static class TransformUtils {
     transform.TryGetComponent(out Collider collider) ? collider.bounds.center : transform.position;
 
   /// <summary>
-  ///   Destroy all child GameObjects safely.
+  ///   Destroy all child GameObjects safely (check null).
   /// </summary>
   public static void DestroyChildren(this Transform transform) {
     transform.gameObject.GetComponentsInChildrenOnly<Transform>().DestroyGameObjects();
@@ -27,7 +27,7 @@ public static class TransformUtils {
 
   // ? Remove this short 
   /// <summary>
-  ///   Is distance from this transform to given target is less than given range?
+  ///   Is distance from this transform to given <paramref name="target"/> is less than given <paramref name="range"/>?
   /// </summary>
   public static bool IsInRange(this Transform transform, Transform target, float range) =>
     transform.GetDistanceTo(target) < range;
@@ -45,12 +45,12 @@ public static class TransformUtils {
 
   #endregion
 
-  #region MOVEMENT
-
   // ===================================================================================================================
 
+  #region MOVEMENT
+
   /// <summary>
-  ///   (DeltaTime multiplied)
+  /// <remarks>In-update method</remarks>
   /// </summary>
   public static void RotateForward(this Transform transform, float speed) =>
     transform.Rotate(transform.forward, speed * Time.deltaTime);
@@ -86,14 +86,14 @@ public static class TransformUtils {
   public static void LookAtZ(this Transform transform, Vector3 dest) => transform.forward = dest - transform.position;
 
   /// <summary>
-  ///   [In-update] <br />
+  /// <remarks>In-update method</remarks>
   ///   Translate on local X (included deltaTime).
   /// </summary>
   public static void MoveX(this Transform transform, float distance = 1f) =>
     transform.Translate(v100 * Time.deltaTime * distance);
 
   /// <summary>
-  ///   [In-update] <br />
+  /// <remarks>In-update method</remarks>
   ///   Translate on local Y (included deltaTime).
   /// </summary>
   public static void MoveY(this Transform transform, float distance = 1f) =>
@@ -113,14 +113,14 @@ public static class TransformUtils {
   }
 
   /// <summary>
-  ///   [In-update] <br />
+  /// <remarks>In-update method</remarks>
   ///   Translate on local Z (included deltaTime).
   /// </summary>
   public static void MoveZ(this Transform transform, float distance = 1f) =>
     transform.Translate(v001 * Time.deltaTime * distance);
 
   /// <summary>
-  ///   [In-update] <br />
+  /// <remarks>In-update method</remarks>
   ///   Rotate local Y (green axis) and move to (stop at) destination (included deltaTime).
   /// </summary>
   public static void LookAtAndMoveY(this Transform transform, Vector3 dest, float distance = 1f) {
@@ -129,7 +129,7 @@ public static class TransformUtils {
   }
 
   /// <summary>
-  ///   [In-update] <br />
+  /// <remarks>In-update method</remarks>
   ///   Rotate local Y (green axis) and move to (stop at) target (included deltaTime).
   /// </summary>
   public static void LookAtAndMoveY(this Transform transform, Transform target, float distance = 1f) {

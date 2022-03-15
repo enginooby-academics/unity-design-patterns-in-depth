@@ -5,12 +5,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using Sirenix.Utilities;
+using Enginooby.Attribute;
+using Enginooby.Utils;
 using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEngine;
 
 // TODO: This is an Editor script, what about in build case?
+// Use menu tool to set AutoRefs for SerializeField before build
 public class AutoRefs : Editor {
   // which contains [AutoRef]
   private static MonoBehaviour _currentMonoBehaviour;
@@ -29,13 +31,14 @@ public class AutoRefs : Editor {
     var gos = FindObjectsOfType<GameObject>();
     Undo.SetCurrentGroupName("Undo AutoRefs");
     var undoGroup = Undo.GetCurrentGroup();
-    gos.ForEach(ProcessGameObject);
+    gos?.ForEach(ProcessGameObject);
     Undo.CollapseUndoOperations(undoGroup);
   }
 
   private static void ProcessGameObject(GameObject go) {
-    var monoBehaviours = go.GetComponents<MonoBehaviour>();
-    Undo.RecordObjects(monoBehaviours, "AutoRefs MonoBehaviours");
+    var monoBehaviours = go.GetComponents<MonoBehaviour>().ToList<MonoBehaviour>();
+    monoBehaviours.RemoveNullEntries();
+    Undo.RecordObjects(monoBehaviours.ToArray(), "AutoRefs MonoBehaviours");
     monoBehaviours.ForEach(ProcessMonoBehaviour);
   }
 

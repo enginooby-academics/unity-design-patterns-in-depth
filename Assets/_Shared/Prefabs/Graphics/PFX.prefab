@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7060277219435553629}
   - component: {fileID: 7060277219435553627}
   m_Layer: 0
-  m_Name: PostFX
+  m_Name: PFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

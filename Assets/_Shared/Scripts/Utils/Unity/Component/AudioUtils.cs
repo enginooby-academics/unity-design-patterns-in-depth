@@ -26,7 +26,7 @@ public static class AudioUtils {
 
   // ? Naming convention: for "action if in state" method
   /// <summary>
-  ///   Trigger playing music if the source is not playing && the given condition is true.
+  ///   Trigger playing given <paramref name="clip"/> if the source is not playing && the given condition is true.
   /// </summary>
   public static void PlayIfStopped(this AudioSource audioSource, AudioClip clip, bool @if = true) {
     if (!@if) return;

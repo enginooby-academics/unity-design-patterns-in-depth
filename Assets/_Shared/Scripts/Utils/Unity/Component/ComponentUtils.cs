@@ -9,7 +9,7 @@ using Object = UnityEngine.Object;
 
 public static class ComponentUtils {
   /// <summary>
-  ///   Destroy all GameObjects of the given components.
+  ///   Destroy all GameObjects of the given <paramref name="components"/>.
   /// </summary>
   public static void DestroyWithGameObject<T>(this IEnumerable<T> components) where T : Component {
     foreach (var component in components) {
@@ -20,9 +20,7 @@ public static class ComponentUtils {
     }
   }
 
-  /// <summary>
-  ///   Destroy all GameObjects of components if component is not null.
-  /// </summary>
+  /// <inheritdoc cref="DestroyWithGameObject{T}"/>
   public static void DestroyGameObjects(this IEnumerable<Component> components) {
     foreach (var component in components) component.DestroyGameObject();
   }
@@ -49,14 +47,14 @@ public static class ComponentUtils {
   public static IEnumerable<GameObject> GetGameObjectsInChildrenOnly(this GameObject go) =>
     from Transform transformChild in go.transform select transformChild.gameObject;
 
-  // TIP: Use tag in XML docs of method needed attention on usage
+  // TIP: Use tag (remarks) in XML docs for method needed attention on usage
   // E.g., Reflection: methods should be used rarely due to performance cost.
   // Safe-update: methods are safe to use in Update() w/o harming performance, mostly thanks to dirty flag.
   // In-update: methods are supposed to be used inside Update(), usually included deltaTime.
   // Out-update: methods are supposed to be used outside Update(), usually involving coroutine.
 
   /// <summary>
-  ///   [Reflection] <br />
+  ///  <remarks>Reflection method</remarks>
   /// </summary>
   public static T CopyTo<T>(this T original, GameObject destination) where T : Component {
     var type = original.GetType();
@@ -67,7 +65,7 @@ public static class ComponentUtils {
   }
 
   /// <summary>
-  ///   [Reflection] <br />
+  ///  <remarks>Reflection method</remarks>
   ///   Return a linked copy of the component. When the copy changes, the component will update and vice versa.
   /// </summary>
   public static T GetLinkedCopyOf<T>(this Component component, T other) where T : Component {
@@ -155,7 +153,7 @@ public static class ComponentUtils {
 
   // ? Naming convention / API design: "perform action, after a time period, revert action"
   /// <summary>
-  ///   Temporarily disable the component for a given period.
+  ///   Temporarily disable the component for a given <paramref name="timePeriod"/>.
   /// </summary>
   public static void Disable(this MonoBehaviour monoBehaviour, float timePeriod) {
     monoBehaviour.enabled = false;
@@ -167,7 +165,7 @@ public static class ComponentUtils {
     // void EnableMonoBehaviour() => monoBehaviour.enabled = true;
     // monoBehaviour.StartCoroutine(DelayCoroutine(timePeriod, EnableMonoBehaviour));
 
-    // 2: lambda function
+    // 2: lambda expression
     monoBehaviour.StartCoroutine(DelayCoroutine(timePeriod, () => monoBehaviour.enabled = true));
 
     // 3: delegate (anonymous function)
@@ -175,7 +173,7 @@ public static class ComponentUtils {
   }
 
   /// <summary>
-  ///   Temporarily disable the components for a given period.
+  ///   Temporarily disable the components for a given <paramref name="timePeriod"/>.
   /// </summary>
   public static void Disable(this IEnumerable<MonoBehaviour> monoBehaviours, float timePeriod) {
     foreach (var monoBehaviour in monoBehaviours) monoBehaviour.Disable(timePeriod);

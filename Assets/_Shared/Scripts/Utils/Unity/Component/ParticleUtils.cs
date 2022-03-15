@@ -11,6 +11,7 @@ public static class ParticleUtils {
     return vfx;
   }
 
+  // ? Remove lazy method
   public static ParticleSystem WithColorOf(this ParticleSystem vfx, Material material) => vfx.WithColor(material.color);
 
   public static ParticleSystem WithColorOf(this ParticleSystem vfx, MeshRenderer meshRenderer) =>

@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Enginooby.Utils;
-using NaughtyAttributes;
 using UnityEditor;
 using UnityEngine;
 #if ODIN_INSPECTOR
@@ -125,17 +124,19 @@ public class Spawner : MonoBehaviourBase {
 
   #region ASSET COLLECTION ===================================================================================================================================
 
-  [HorizontalLine(color: EColor.Red)]
+#if ASSET_NAUGHTY_ATTRIBUTES
+  [NaughtyAttributes.HorizontalLine(color: NaughtyAttributes.EColor.Red)]
+#endif
   [PropertySpace(SpaceBefore = SectionSpace + 10)]
   [HideLabel]
   [DisplayAsString(false)]
   [ShowInInspector]
   private const string ObjectSelectionSpace = "Configure resources and selection mode to spawn";
 
-  [Sirenix.OdinInspector.OnValueChanged(nameof(OnAssetCollectionChanged), true)]
-  [Sirenix.OdinInspector.InfoBox("If using SceneAsset, pay attention not to destroy the asset blueprint.",
+  [OnValueChanged(nameof(OnAssetCollectionChanged), true)]
+  [InfoBox("If using SceneAsset, pay attention not to destroy the asset blueprint.",
     InfoMessageType.Warning)]
-  [Sirenix.OdinInspector.BoxGroup("Asset Collection")]
+  [BoxGroup("Asset Collection")]
   [SerializeField]
   [HideLabel]
   public AssetCollection<GameObject> assetCollection = new();
@@ -155,7 +156,7 @@ public class Spawner : MonoBehaviourBase {
   [PropertySpace(SpaceBefore = SectionSpace)] [HideLabel] [DisplayAsString(false)] [ShowInInspector]
   private const string OBJECT_ATTRIBUTES_SPACE = "";
 
-  [Sirenix.OdinInspector.BoxGroup("Spawned Attributes")]
+  [BoxGroup("Spawned Attributes")]
   [InlineButton(nameof(SetSelfAsParent), "Self")]
   [InlineButton(nameof(SetNoneAsParent), "None")]
   [SerializeField]
@@ -175,7 +176,7 @@ public class Spawner : MonoBehaviourBase {
     Prefab,
   }
 
-  [Sirenix.OdinInspector.BoxGroup("Spawned Attributes")]
+  [BoxGroup("Spawned Attributes")]
   [Tooltip(
     "Spawn new object and set it active/inactive or same as asset. Useful when using SceneAsset and deactivate it but need to spawn active instances.")]
   [EnumToggleButtons]
@@ -189,19 +190,16 @@ public class Spawner : MonoBehaviourBase {
 
   // CONSIDER: Separate rotation and selection modes for Auto and Active Spawning
   // CONSIDER: Replace by keepPrefabRotation
-  [Sirenix.OdinInspector.BoxGroup("Spawned Attributes")] [EnumToggleButtons] [SerializeField]
+  [BoxGroup("Spawned Attributes")] [EnumToggleButtons] [SerializeField]
   private Rotation rotationMode = Rotation.Identity;
 
-  [Sirenix.OdinInspector.BoxGroup("Spawned Attributes")] [EnumToggleButtons] [SerializeField]
+  [BoxGroup("Spawned Attributes")] [EnumToggleButtons] [SerializeField]
   private AxisFlag keepPrefabPosition = (AxisFlag) 1;
 
-  [Sirenix.OdinInspector.BoxGroup("Spawned Attributes")] [SerializeField] [LabelText("Lifetime")]
+  [BoxGroup("Spawned Attributes")] [SerializeField] [LabelText("Lifetime")]
   private bool enableLifeTime;
 
-  [Sirenix.OdinInspector.BoxGroup("Spawned Attributes")]
-  [Sirenix.OdinInspector.EnableIf(nameof(enableLifeTime))]
-  [SerializeField]
-  [HideLabel]
+  [BoxGroup("Spawned Attributes")] [EnableIf(nameof(enableLifeTime))] [SerializeField] [HideLabel]
   private Vector2Wrapper lifeTimeRange = new(Vector2.zero, 0);
 
   // ? FXs on Destroy
@@ -216,10 +214,7 @@ public class Spawner : MonoBehaviourBase {
   [PropertySpace(SpaceBefore = SectionSpace)] [HideLabel] [DisplayAsString(false)] [ShowInInspector]
   private const string SPAWNING_LOCATION_SPACE = "";
 
-  [Sirenix.OdinInspector.BoxGroup("Spawning Location")]
-  [Sirenix.OdinInspector.OnValueChanged(nameof(OnSpawningAreaChange), true)]
-  [SerializeField]
-  [HideLabel]
+  [BoxGroup("Spawning Location")] [OnValueChanged(nameof(OnSpawningAreaChange), true)] [SerializeField] [HideLabel]
   private Area spawningArea = new();
 
   private enum PointSpawnMode {
@@ -231,17 +226,17 @@ public class Spawner : MonoBehaviourBase {
 
   private Transform pointCurrentIterate;
 
-  [Sirenix.OdinInspector.BoxGroup("Spawning Location")]
-  [Sirenix.OdinInspector.ShowIf(nameof(IsPointArea))]
-  [Sirenix.OdinInspector.OnValueChanged(nameof(OnSpawningAreaChange), true)]
+  [BoxGroup("Spawning Location")]
+  [ShowIf(nameof(IsPointArea))]
+  [OnValueChanged(nameof(OnSpawningAreaChange), true)]
   [SerializeField]
   [EnumToggleButtons]
   [HideLabel]
   private PointSpawnMode pointSpawnMode = PointSpawnMode.RandomAll;
 
-  [Sirenix.OdinInspector.BoxGroup("Spawning Location")]
-  [Sirenix.OdinInspector.ShowIf(nameof(IsPointAreaAndRandomAll))]
-  [Sirenix.OdinInspector.ProgressBar(0f, 100f)]
+  [BoxGroup("Spawning Location")]
+  [ShowIf(nameof(IsPointAreaAndRandomAll))]
+  [ProgressBar(0f, 100f)]
   // [Range(0f, 100f)]
   [SerializeField]
   [LabelText("Probability")]
@@ -298,28 +293,22 @@ public class Spawner : MonoBehaviourBase {
   private bool enableAdjacentSpawning;
 
   [FoldoutGroup("Spawning Location/Adjacent")]
-  [Sirenix.OdinInspector.InfoBox("Useful for Trigger Spawning")]
-  [Sirenix.OdinInspector.EnableIf(nameof(enableAdjacentSpawning))]
+  [InfoBox("Useful for Trigger Spawning")]
+  [EnableIf(nameof(enableAdjacentSpawning))]
   [SerializeField]
   private bool moveSpawnerToMark = true;
 
-  [FoldoutGroup("Spawning Location/Adjacent")]
-  [Sirenix.OdinInspector.EnableIf(nameof(enableAdjacentSpawning))]
-  [SerializeField]
+  [FoldoutGroup("Spawning Location/Adjacent")] [EnableIf(nameof(enableAdjacentSpawning))] [SerializeField]
   private GameObject adjacentMarkPrefab;
 
-  [FoldoutGroup("Spawning Location/Adjacent")]
-  [Sirenix.OdinInspector.EnableIf(nameof(enableAdjacentSpawning))]
-  [SerializeField]
+  [FoldoutGroup("Spawning Location/Adjacent")] [EnableIf(nameof(enableAdjacentSpawning))] [SerializeField]
   private GameObject adjacentMark;
 
-  [FoldoutGroup("Spawning Location/Adjacent")]
-  [Sirenix.OdinInspector.EnableIf(nameof(enableAdjacentSpawning))]
-  [SerializeField]
+  [FoldoutGroup("Spawning Location/Adjacent")] [EnableIf(nameof(enableAdjacentSpawning))] [SerializeField]
   private float adjacentOffset;
 
   [FoldoutGroup("Spawning Location/Adjacent")]
-  [Sirenix.OdinInspector.EnableIf(nameof(enableAdjacentSpawning))]
+  [EnableIf(nameof(enableAdjacentSpawning))]
   [ShowInInspector]
   [DisplayAsString(false)]
   private float previousSpawnedSize;
@@ -401,21 +390,18 @@ public class Spawner : MonoBehaviourBase {
   [TabGroup("Spawning Mode", "Active Spawning")] [SerializeField]
   private KeyCode activeSpawnKey;
 
-  [TabGroup("Spawning Mode", "Active Spawning")] [Sirenix.OdinInspector.MinValue(0)] [SerializeField]
+  [TabGroup("Spawning Mode", "Active Spawning")] [MinValue(0)] [SerializeField]
   private float activeRate = 5f;
 
   private float nextTimeToActiveSpawn;
 
   // IMPL loading: player can spawn prefab continously util maxPrefab, then wait for reload time
-  [TabGroup("Spawning Mode", "Active Spawning")] [Sirenix.OdinInspector.MinValue(1)] [SerializeField]
+  [TabGroup("Spawning Mode", "Active Spawning")] [MinValue(1)] [SerializeField]
   private int activeMaxAmount = 10;
 
   private int activeCurrentAmount; // the amount that player can spawn
 
-  [TabGroup("Spawning Mode", "Active Spawning")]
-  [SuffixLabel("(seconds)")]
-  [Sirenix.OdinInspector.MinValue(0f)]
-  [SerializeField]
+  [TabGroup("Spawning Mode", "Active Spawning")] [SuffixLabel("(seconds)")] [MinValue(0f)] [SerializeField]
   private float activeReloadTime = 1f;
 
   private void ProcessActiveSpawn() {
@@ -471,7 +457,7 @@ public class Spawner : MonoBehaviourBase {
   [TabGroup("Spawning Mode", "Wave Spawning")] [SerializeField] [Min(1)]
   private int firstWaveAmount;
 
-  [TabGroup("Spawning Mode", "Wave Spawning")] [SerializeField] [Sirenix.OdinInspector.MinMaxSlider(0, 20, true)]
+  [TabGroup("Spawning Mode", "Wave Spawning")] [SerializeField] [MinMaxSlider(0, 20, true)]
   private Vector2Int amountIncrementRange;
 
   private List<GameObject> currentWaveSpawnedObjects;
@@ -510,19 +496,16 @@ public class Spawner : MonoBehaviourBase {
 
   #region SPAWNER CONFIG ===================================================================================================================================
 
-  [Sirenix.OdinInspector.BoxGroup("Spawner Config")] [SerializeField] [LabelText("Spawn Amount/Time")]
+  [BoxGroup("Spawner Config")] [SerializeField] [LabelText("Spawn Amount/Time")]
   private Vector2Wrapper spawnAmountRangePerTime = new(new Vector2(1, 1), 0);
 
-  [Sirenix.OdinInspector.BoxGroup("Spawner Config")] [SerializeField] [EnumToggleButtons]
+  [BoxGroup("Spawner Config")] [SerializeField] [EnumToggleButtons]
   private GizmosMode gizmosMode = GizmosMode.Always;
 
-  [Sirenix.OdinInspector.BoxGroup("Spawner Config")]
-  [Sirenix.OdinInspector.InfoBox("Useful for Trigger Spawning")]
-  [ToggleLeft]
-  [SerializeField]
+  [BoxGroup("Spawner Config")] [InfoBox("Useful for Trigger Spawning")] [ToggleLeft] [SerializeField]
   private bool moveToLastSpawnedObject; // TODO: add offset attribute
 
-  [Sirenix.OdinInspector.BoxGroup("Spawner Config")]
+  [BoxGroup("Spawner Config")]
   [InlineButton(nameof(DestroySpawnedObjects), "Destroy All")]
   [ToggleLeft]
   [SerializeField]
@@ -533,9 +516,7 @@ public class Spawner : MonoBehaviourBase {
     spawnedObjects.Clear();
   }
 
-  [Sirenix.OdinInspector.BoxGroup("Spawner Config")]
-  [Sirenix.OdinInspector.ShowIf(nameof(saveSpawnedObjects))]
-  [ShowInInspector]
+  [BoxGroup("Spawner Config")] [ShowIf(nameof(saveSpawnedObjects))] [ShowInInspector]
   private List<GameObject> spawnedObjects; // TODO: make list non-editable from Inspector
 
   #endregion ===================================================================================================================================
@@ -553,8 +534,8 @@ public class Spawner : MonoBehaviourBase {
     return spawnedObject;
   }
 
-  [Sirenix.OdinInspector.BoxGroup("Test")]
-  [Sirenix.OdinInspector.Button(ButtonSizes.Medium)]
+  [BoxGroup("Test")]
+  [Button(ButtonSizes.Medium)]
   [PropertyTooltip("Button Tooltip")]
   [GUIColor(.6f, 1f, .6f)]
   public List<GameObject> SpawnAsset() {
@@ -564,8 +545,8 @@ public class Spawner : MonoBehaviourBase {
   }
 
   // ! Keep rotation useful for projectiles
-  [Sirenix.OdinInspector.BoxGroup("Test")]
-  [Sirenix.OdinInspector.Button(ButtonSizes.Medium)]
+  [BoxGroup("Test")]
+  [Button(ButtonSizes.Medium)]
   [GUIColor(.6f, 1f, .6f)]
   public List<GameObject> SpawnAssetKeepRotation() {
     var spawnedObjs = new List<GameObject>();

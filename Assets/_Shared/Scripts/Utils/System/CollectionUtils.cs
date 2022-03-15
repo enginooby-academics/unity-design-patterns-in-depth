@@ -24,7 +24,8 @@ namespace Enginooby.Utils {
       return collection.Any(element => element.CompareTo(value) == 0);
     }
 
-    public static bool IsNullOrEmpty<T>(this IEnumerable<T> collection) => collection == null || !collection.Any();
+    public static bool IsNullOrEmpty<T>([CanBeNull] this IEnumerable<T> collection) =>
+      collection == null || !collection.Any();
 
     #endregion
 
@@ -166,9 +167,9 @@ namespace Enginooby.Utils {
     /// <summary>
     ///   Perform an action on each item.
     /// </summary>
-    public static IEnumerable<T> ForEach<T>(this IEnumerable<T> collection, Action<T> action) {
+    public static IEnumerable<T> ForEach<T>([CanBeNull] this IEnumerable<T> collection, Action<T> action) {
       foreach (var obj in collection)
-        action(obj);
+        action?.Invoke(obj);
       return collection;
     }
 

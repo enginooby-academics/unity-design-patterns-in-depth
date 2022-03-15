@@ -1,7 +1,8 @@
+using UnityEngine;
+
 #if ASSET_SCPE && ASSET_BEAUTIFY
 #if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
-using UnityEngine;
 
 #else
 using Enginooby.Attribute;

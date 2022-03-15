@@ -1,4 +1,10 @@
+#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+#else
+using System;
+using System.Diagnostics;
+using UnityEngine;
+#endif
 
 namespace Enginooby.Attribute {
 #if ODIN_INSPECTOR

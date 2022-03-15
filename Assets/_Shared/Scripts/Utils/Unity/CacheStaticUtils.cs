@@ -12,6 +12,7 @@ using Object = UnityEngine.Object;
 ///   calling GetComponent(). <br />
 ///   The GameObject w/ used components are cached. If component is changed in runtime, call ClearCache().
 /// </summary>
+/// <remarks>Global cache</remarks>
 public static class CacheStaticUtils {
   private const bool EnableDebug = false;
 

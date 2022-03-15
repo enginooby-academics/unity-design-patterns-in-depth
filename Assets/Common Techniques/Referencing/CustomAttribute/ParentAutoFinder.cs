@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Enginooby.Attribute;
+using UnityEngine;
 
 namespace Techniques.Referencing {
   public class ParentAutoFinder : MonoBehaviour {
