@@ -1,3 +1,4 @@
+using ObserverPattern.Case2.Base1;
 using UnityEngine;
 
 namespace ObserverPattern.Case2 {

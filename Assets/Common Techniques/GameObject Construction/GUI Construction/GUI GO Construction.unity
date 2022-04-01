@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18090053, g: 0.2264469, b: 0.3072314, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -192,6 +192,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a55c95e368579b48ad0185a422798f1, type: 3}
+--- !u!1 &153893102 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4464546904162140633, guid: 1a55c95e368579b48ad0185a422798f1,
+    type: 3}
+  m_PrefabInstance: {fileID: 153893101}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &153893103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153893102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &720738024
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,13 +248,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shapeType: 0
-  _rotatingCubePrefab: {fileID: 2013205458449799921, guid: 8f45958f150d48547846eb877089513f,
+  _rotatingCubePrefab: {fileID: 5711654576273654130, guid: b7d5627d646f92f49ad7e59c6384cc9e,
     type: 3}
-  _shakingCubePrefab: {fileID: 5711654576273654130, guid: b7d5627d646f92f49ad7e59c6384cc9e,
+  _shakingCubePrefab: {fileID: 2013205458449799921, guid: 8f45958f150d48547846eb877089513f,
     type: 3}
-  _rotatingSpherePrefab: {fileID: 6977832821009255143, guid: 2bf3f2a023ba3224195ed93d9221d1d0,
+  _rotatingSpherePrefab: {fileID: 5143033134553853589, guid: 8bbdff9add6a6db4f9e7b5b32a3c23b5,
     type: 3}
-  _shakingSpherePrefab: {fileID: 5143033134553853589, guid: 8bbdff9add6a6db4f9e7b5b32a3c23b5,
+  _shakingSpherePrefab: {fileID: 6977832821009255143, guid: 2bf3f2a023ba3224195ed93d9221d1d0,
     type: 3}
 --- !u!4 &720738026
 Transform:
@@ -240,6 +266,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -254,6 +281,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1078872301}
   - component: {fileID: 1078872300}
+  - component: {fileID: 1078872302}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -333,7 +361,28 @@ Transform:
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1078872302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078872299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}

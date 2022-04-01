@@ -3,8 +3,8 @@ using Shared = GOConstruction;
 
 namespace GOConstruction.Scripting {
   public abstract class Cube : IShape {
-    protected Shared.Cube _cubeComponent;
-    protected GameObject _gameObject;
+    protected readonly GameObject _gameObject;
+    private readonly Shared.Cube _cubeComponent;
 
     protected Cube() {
       _gameObject = new GameObject();

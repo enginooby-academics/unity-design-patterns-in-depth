@@ -7,6 +7,6 @@ namespace VisitorPattern.Case1.Base1 {
   public class VolumeCalculator : Calculator {
     public override double Calculate(ProceduralCube cube) => Pow(cube.Size, 3);
 
-    public override double Calculate(ProceduralSphere sphere) => 4 / 3 * PI * Pow(sphere.Radius, 3);
+    public override double Calculate(ProceduralSphere sphere) => 4f / 3f * PI * Pow(sphere.Radius, 3);
   }
 }

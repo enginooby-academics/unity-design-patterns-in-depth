@@ -12,7 +12,7 @@ using UnityEngine;
 using static TypeUtils;
 
 namespace GOConstruction.Scripting {
-  public sealed class ReflectionScriptingShapeGenerator : MonoBehaviour {
+  public sealed class DecoupledScriptingShapeGenerator : MonoBehaviour {
     [SerializeField]
     [LabelText("Current Type")]
     [ValueDropdown(nameof(GetTypeNames))]
@@ -22,21 +22,20 @@ namespace GOConstruction.Scripting {
     [SerializeField] [HideInInspector] private string _currentQualifiedName;
 
     private IEnumerable<string> _qualifiedNames;
-
     private IEnumerable<string> _typeNames;
 
-    // ! guard case: current type is removed
-    public Type CurrentShapeType => Type.GetType(_currentQualifiedName) ?? GetAndSetFirstType();
+    private IEnumerable<string> GetTypeNames() {
+      _qualifiedNames = GetConcreteTypeQualifiedNamesOf<IShape>();
+      return _typeNames = GetConcreteTypeNamesOf<IShape>();
+    }
 
     private void UpdateCurrentQualifiedName() {
       var id = _typeNames.IndexOf(_currentTypeName);
       _currentQualifiedName = _qualifiedNames.ElementAt(id);
     }
 
-    private IEnumerable<string> GetTypeNames() {
-      _qualifiedNames = GetConcreteTypeQualifiedNamesOf<IShape>();
-      return _typeNames = GetConcreteTypeNamesOf<IShape>();
-    }
+    // ! guard case: current type is removed
+    public Type CurrentShapeType => Type.GetType(_currentQualifiedName) ?? GetAndSetFirstType();
 
     private Type GetAndSetFirstType() {
       GetTypeNames();
@@ -45,17 +44,17 @@ namespace GOConstruction.Scripting {
       return Type.GetType(_currentQualifiedName);
     }
 
+    [Button]
+    public void CreateShape() {
+      var shape = CreateShapeInstance();
+      print("Volume of the generated shape is: " + shape.GetVolume());
+    }
+
     public IShape CreateShapeInstance() {
       if (!CurrentShapeType.IsSubclassOf(typeof(MonoBehaviour)))
         return (IShape) Activator.CreateInstance(CurrentShapeType);
 
       return new GameObject().AddComponent(CurrentShapeType) as IShape;
-    }
-
-    [Button]
-    public void CreateShape() {
-      var shape = CreateShapeInstance();
-      print("Volume of the generated shape is: " + shape.GetVolume());
     }
   }
 }

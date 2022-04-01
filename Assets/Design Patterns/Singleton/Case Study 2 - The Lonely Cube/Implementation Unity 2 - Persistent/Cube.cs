@@ -5,7 +5,7 @@ using Shared = SingletonPattern.Case2;
 
 namespace SingletonPattern.Case2.Unity2 {
   public class Cube : MonoBehaviourCube {
-    public static Cube Instance { get; protected set; }
+    public static Cube Instance { get; private set; }
 
     private void Awake() {
       if (Instance) {
@@ -13,7 +13,7 @@ namespace SingletonPattern.Case2.Unity2 {
       }
       else {
         Instance = this;
-        DontDestroyOnLoad(gameObject); // !
+        DontDestroyOnLoad(gameObject);
       }
     }
   }

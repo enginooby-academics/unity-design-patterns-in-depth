@@ -10,7 +10,7 @@ namespace ObserverPattern.Case2.Unity1 {
     // ! 1. Declare UnityEvent in the Subject 
     // ! (if use static for convenient ref, will not show in the inspector)
     // [UnityEngine.SerializeField]
-    public UnityEvent<int> OnCountUpEvent = new UnityEvent<int>();
+    public UnityEvent<int> OnCountUpEvent = new();
 
     public override int Count {
       set {

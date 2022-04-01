@@ -16,9 +16,9 @@ namespace TemplateMethodPattern.Case1.Base {
 
     private void Awake() => _mover = GetComponent<TransformOperator>();
 
-    private void OnEnable() => _speedStat.OnStatChangeEvent += UpdateSpeed;
+    private void OnEnable() => _speedStat.OnChanged += UpdateSpeed;
 
-    private void OnDisable() => _speedStat.OnStatChangeEvent -= UpdateSpeed;
+    private void OnDisable() => _speedStat.OnChanged -= UpdateSpeed;
 
     private void UpdateSpeed() => print("UpdateSpeed");
 

@@ -11,7 +11,7 @@ namespace GOConstruction.Hybrid {
 
 // #pragma warning restore 0414
 
-    public override void CreateShape() => CreateShapeInScriptingApproach();
+    public override void CreateShape() => CreateShapeInScriptApproach();
 
     public void CreateShapeInGuiApproach() {
       IShape shape = _shapeType switch {
@@ -25,7 +25,7 @@ namespace GOConstruction.Hybrid {
       print("Volume of the generated shape is: " + shape.GetVolume());
     }
 
-    public void CreateShapeInScriptingApproach() {
+    public void CreateShapeInScriptApproach() {
       var go = new GameObject();
 
       IShape shape = _shapeType switch {

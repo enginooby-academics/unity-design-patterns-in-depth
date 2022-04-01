@@ -3,8 +3,8 @@ using Shared = GOConstruction;
 
 namespace GOConstruction.Scripting {
   public abstract class Sphere : IShape {
-    protected GameObject _gameObject;
-    protected Shared.Sphere _sphereComponent;
+    protected readonly GameObject _gameObject;
+    private readonly Shared.Sphere _sphereComponent;
 
     protected Sphere() {
       _gameObject = new GameObject();

@@ -95,6 +95,7 @@ Thumbs.db
 /Assets/*
 !/Assets/Gizmos
 !/Assets/_*/
+/Assets/_ArtLowPoly
 /Assets/_TerrainAutoUpgrade
 
 ### PROJECT-SPECIFIC ###

@@ -6,23 +6,26 @@ namespace ObserverPattern.Case2.CSharp {
   ///   * [The 'Subject' class]
   /// </summary>
   public class Counter : Shared.Counter {
-    // ! 2: Use Delegate: can have return type
-    // public delegate string OnCountUpEventHandler(int number);
-    // public static event OnCountUpEventHandler OnCountUpEvent;
+    // ! Use static for easy referencing
+    // ! Use keyword event to secure the event being invoked from outside the subject
+    // ! 1: Use Delegate: can have return type
+    public delegate string OnCountUpEventHandler(int number);
 
-    // ! 3: Use Func: can have return type
-    // public static System.Func<int, string> OnCountUpEvent;
+    public static event OnCountUpEventHandler OnCountUpDelegate;
+
+    // ! 2: Use Func: can have return type
+    public static event Func<int, string> OnCountUpFunc;
+
+    // ! 3: Use C# Action: no return type
+    public static event Action<int> OnCountUpAction;
 
     public override int Count {
       set {
         _count = value;
-        OnCountUpEvent?.Invoke(_count);
-        // OnCountUpEvent?.Invoke(_count).Log();
+        OnCountUpDelegate?.Invoke(_count).Log();
+        OnCountUpFunc?.Invoke(_count).Log();
+        OnCountUpAction?.Invoke(_count);
       }
     }
-
-    // ! 1: Use C# Action: no return type
-    // ! Use keyword event to secure the action being invoked from outside the subject
-    public static event Action<int> OnCountUpEvent;
   }
 }

@@ -8,7 +8,7 @@ namespace ObserverPattern.Case2.Unity2 {
   public class Counter : Shared.Counter {
     // ! Process similar to UnityEvent
     // [UnityEngine.SerializeField]
-    public UltEvent<int> OnCountUpEvent = new UltEvent<int>();
+    public UltEvent<int> OnCountUpEvent = new();
 
     public override int Count {
       set {

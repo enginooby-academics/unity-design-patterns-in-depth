@@ -3,7 +3,7 @@ using Enginooby.Attribute;
 using UnityEngine;
 
 namespace GOConstruction.GUI {
-  public class RefinedGUIShapeGenerator : MonoBehaviour {
+  public class DecoupledGUIShapeGenerator : MonoBehaviour {
     [SerializeField] private IShapeContainer _shapePrefab;
 
     [Button]

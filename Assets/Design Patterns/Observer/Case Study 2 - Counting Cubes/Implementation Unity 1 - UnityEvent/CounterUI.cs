@@ -8,10 +8,10 @@ using UnityEngine;
 using Shared = ObserverPattern.Case2;
 
 namespace ObserverPattern.Case2.Unity1 {
-  [RequireComponent(typeof(TextMeshProUGUI))]
   /// <summary>
   /// * [An 'Observer' class]
   /// </summary>
+  [RequireComponent(typeof(TextMeshProUGUI))]
   public class CounterUI : Shared.CounterUI {
     // ! 3. Register subject's event from the observer (scripting binding)
     // Alternative: serialize in the inspector (UI binding)

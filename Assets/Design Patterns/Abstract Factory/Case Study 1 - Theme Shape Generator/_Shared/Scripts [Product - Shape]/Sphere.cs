@@ -5,18 +5,18 @@ namespace AbstractFactoryPattern.Case1 {
   /// <summary>
   ///   * [An 'Abstract Product']
   /// </summary>
-  public abstract class Sphere {
-    protected GameObject _gameObject;
-    protected float _radius;
+public abstract class Sphere {
+  protected readonly GameObject _gameObject;
+  protected readonly float _radius;
 
-    protected Sphere(float radius, Color color) {
-      _radius = radius;
-      _gameObject = CreatePrimitive(PrimitiveType.Sphere, color);
-      _gameObject.SetScale(_radius);
-    }
-
-    public void SetPos(Vector3 pos) => _gameObject.transform.position = pos;
-
-    public float GetDiameter() => _radius * 2;
+  protected Sphere(float radius, Color color) {
+    _radius = radius;
+    _gameObject = CreatePrimitive(PrimitiveType.Sphere, color);
+    _gameObject.SetScale(_radius);
   }
+
+  public void SetPos(Vector3 pos) => _gameObject.transform.position = pos;
+
+  public float GetDiameter() => _radius * 2;
+}
 }

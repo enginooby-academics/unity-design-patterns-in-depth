@@ -97,8 +97,6 @@ namespace SingletonPattern {
       _scene2.LoadAdditively();
     }
 
-    private void TestPersistence() {
-      print(_singleton == null ? "Failed" : "Passed");
-    }
+    private void TestPersistence() => print(_singleton == null ? "Failed" : "Passed");
   }
 }

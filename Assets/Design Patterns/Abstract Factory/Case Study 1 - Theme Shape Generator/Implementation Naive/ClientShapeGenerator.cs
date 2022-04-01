@@ -20,7 +20,7 @@ namespace AbstractFactoryPattern.Case1.Naive {
         _ => throw new ArgumentOutOfRangeException(),
       };
       cube.SetPos(RandomPos);
-      generatedCubes.Add(cube);
+      _generatedCubes.Add(cube);
     }
 
     [Button]
@@ -31,7 +31,7 @@ namespace AbstractFactoryPattern.Case1.Naive {
         _ => throw new ArgumentOutOfRangeException(),
       };
       sphere.SetPos(RandomPos);
-      generatedSpheres.Add(sphere);
+      _generatedSpheres.Add(sphere);
     }
 
     // ! need to modify if new theme is added

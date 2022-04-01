@@ -18,14 +18,14 @@ namespace AbstractFactoryPattern.Case1.Base {
     public void CreateCube() {
       var cube = _currentShapeFactory.CreateCube();
       cube.SetPos(RandomPos);
-      generatedCubes.Add(cube);
+      _generatedCubes.Add(cube);
     }
 
     [Button]
     public void CreateSphere() {
       var sphere = _currentShapeFactory.CreateSphere();
       sphere.SetPos(RandomPos);
-      generatedSpheres.Add(sphere);
+      _generatedSpheres.Add(sphere);
     }
   }
 }

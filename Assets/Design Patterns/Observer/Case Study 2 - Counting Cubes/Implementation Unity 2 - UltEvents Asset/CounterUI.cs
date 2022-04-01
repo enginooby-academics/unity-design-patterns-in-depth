@@ -9,22 +9,17 @@ using UnityEngine;
 using Shared = ObserverPattern.Case2;
 
 namespace ObserverPattern.Case2.Unity2 {
-  [RequireComponent(typeof(TextMeshProUGUI))]
   /// <summary>
   /// * [An 'Observer' class]
   /// </summary>
+  [RequireComponent(typeof(TextMeshProUGUI))]
   public class CounterUI : Shared.CounterUI {
-    private UltEvent<int> _onCountUp;
-    private UltEvent<int> OnCountUp => _onCountUp ??= FindObjectOfType<Counter>().OnCountUpEvent;
+    private void OnEnable() => FindObjectOfType<Counter>().OnCountUpEvent.DynamicCalls += SetText;
 
-    private void OnEnable() => OnCountUp.DynamicCalls += SetText;
+    private void OnDisable() => FindObjectOfType<Counter>().OnCountUpEvent.DynamicCalls -= SetText;
 
-    private void OnDisable() => OnCountUp.DynamicCalls -= SetText;
-
+    // ! Same as UnityEvent
     [Button]
-    public void ExploitEvent() {
-      // ! Same as UnityEvent
-      _onCountUp.Invoke(100);
-    }
+    public void ExploitEvent() => FindObjectOfType<Counter>().OnCountUpEvent.Invoke(100);
   }
 }

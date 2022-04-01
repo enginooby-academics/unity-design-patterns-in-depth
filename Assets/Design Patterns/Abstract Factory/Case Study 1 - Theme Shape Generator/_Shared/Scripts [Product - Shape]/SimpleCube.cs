@@ -5,7 +5,6 @@ namespace AbstractFactoryPattern.Case1 {
   ///   * [A 'Concrete Product']
   /// </summary>
   public class SimpleCube : Cube {
-    public SimpleCube() : base(Random.Range(3f, 4f), Color.red) {
-    }
+    public SimpleCube() : base(Random.Range(3f, 4f), Color.red) { }
   }
 }

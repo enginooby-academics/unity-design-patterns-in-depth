@@ -6,10 +6,9 @@ namespace VisitorPattern.Case1.Naive2 {
       var shapeType = shape.GetType();
       var calculatorType = GetType();
       var calculatingMethod = calculatorType.GetNonPublicMethod(nameof(Calculate), shapeType);
+      var result = (double) calculatingMethod?.Invoke(this, new object[] {shape})!;
 
-      return (double) calculatingMethod?.Invoke(this, new[] {shape});
-
-      throw new NotImplementedException();
+      return result;
     }
 
     protected abstract double Calculate(ProceduralCube shape);
