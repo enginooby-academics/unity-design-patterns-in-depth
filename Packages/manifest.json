@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.github.siccity.serializablecallback": "https://github.com/Unity-Technologies/SerializableCallback.git",
     "com.unity.burst": "1.6.4",
     "com.unity.collab-proxy": "1.15.12",
     "com.unity.collections": "0.7.0-preview.2",

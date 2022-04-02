@@ -13,6 +13,9 @@
 [assembly: OptionalDependency("UnityEngine.UI.ProceduralImage.ProceduralImage", "ASSET_PROCEDURAL_IMAGE")]
 [assembly: OptionalDependency("NaughtyAttributes.INaughtyAttribute", "ASSET_NAUGHTY_ATTRIBUTES")]
 [assembly: OptionalDependency("GameCreator.Runtime.Characters.Character", "ASSET_GAME_CREATOR")]
+[assembly: OptionalDependency("RootMotion.Dynamics.PuppetMaster", "ASSET_PUPPET_MASTER")]
+[assembly: OptionalDependency("GoogleMobileAds.Api.MobileAds", "ASSET_ADMOD")] // TODO: Double check
+[assembly: OptionalDependency("SerializableEvent", "ASSET_SERIALIZABLE_CALLBACK")]
 
 // [assembly: OptionalDependency("EnviroSkyMgr", "ASSET_ENVIRO")] //  ENVIRO_LW || ENVIRO_HD
 // [assembly: OptionalDependency("EPOOutline.Outlinable", "ASSET_EPO_OUTLINE")] // URP_OUTLINE 

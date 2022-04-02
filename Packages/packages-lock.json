@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.github.siccity.serializablecallback": {
+      "version": "https://github.com/Unity-Technologies/SerializableCallback.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "7ff19f122305b6adb47bbee6c8e36e77cb471fb0"
+    },
     "com.unity.burst": {
       "version": "1.6.4",
       "depth": 0,
